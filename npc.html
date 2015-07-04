@@ -1243,7 +1243,7 @@ races[44].size = "Medium";
 races[44].type = "humanoid (deathless)";
 races[44].speed = "30 feet";
 races[44].senses = "darkvision 60 feet, ";
-races[44].traits = Darkvision() + Deathless() + ImmunityDisease() + Resilient("Night Walker") + "<b>Crawling Claws</b> You can painlesslessly and bloodlessly separate one of your hands. A separated hand can move and act independently. You can feel through your zombie hand, but canot see, hear, or taste. You can use your action to move the hand (climb 30 feet), cause it to attack (1d4 slashing damage), or manipulate an object with it. Once separated, any limb can be reattached by holding it against the stump and making a successful Concentration check<br>" + SunlightSensitivity();
+races[44].traits = Darkvision() + Deathless() + ImmunityDisease() + Resilient("Night Walker") + "<b>Crawling Claws</b> You can painlesslessly and bloodlessly separate one of your hands. A separated hand can move and act independently. You can feel through your zombie hand, but cannot see, hear, or taste. You can use your action to move the hand (climb 30 feet), cause it to attack (1d4 slashing damage), or manipulate an object with it. Your hand can be reattached by holding it against the stump and making a successful Concentration check<br>" + SunlightSensitivity();
 
 races[45] = {};
 races[45].name = randomize("Wildborn, Wildkin, Mongrelman");
@@ -1653,7 +1653,7 @@ races[85].size = "Medium";
 races[85].type = "humanoid (monstrous)";
 races[85].speed = "30 feet";
 races[85].senses = "darkvision 60 feet, ";
-races[85].traits = Darkvision() + Armored("Natural Armor") + HoldBreath() + Camouflage() + Bite();
+races[85].traits = Darkvision() + HoldBreath() + Camouflage() + Bite();
 
 races[86] = {};
 races[86].name = randomize("Lizardfolk Shaman, Sarrukh Shaman, Lizardfolk, Sarrukh");
@@ -1663,7 +1663,7 @@ races[86].size = "Medium";
 races[86].type = "humanoid (monstrous)";
 races[86].speed = "30 feet";
 races[86].senses = "darkvision 60 feet, ";
-races[86].traits = Darkvision() + Armored("Natural Armor") + HoldBreath() + Camouflage() + Bite() + "<b>Shapeshifter</b> You can magically polymorph into a crocodile. Your statistics, other than size, are the same in each form. Any equipment you are wearing or carrying isn't transformed. You revert to your true form if you die<br>" + Cantrip("Saurian Magic", "Druidcraft", "Constitution");
+races[86].traits = Darkvision() + HoldBreath() + Camouflage() + Bite() + "<b>Shapeshifter</b> You can magically polymorph into a crocodile. Your statistics, other than size, are the same in each form. Any equipment you are wearing or carrying isn't transformed. You revert to your true form if you die<br>" + Cantrip("Saurian Magic", "Druidcraft", "Constitution");
 
 races[87] = {};
 races[87].name = randomize("Lizardfolk Warrior, Sarrukh Warrior, Lizardfolk, Sarrukh");
@@ -1673,7 +1673,7 @@ races[87].size = "Medium";
 races[87].type = "humanoid (monstrous)";
 races[87].speed = "30 feet";
 races[87].senses = "darkvision 60 feet, ";
-races[87].traits = Darkvision() + Armored("Natural Armor") + HoldBreath() + Camouflage() + Bite() + "<b>Grab</b> When the target is surprised, you have advantage on grapple checks<br>";
+races[87].traits = Darkvision() + HoldBreath() + Camouflage() + Bite() + "<b>Grab</b> When the target is surprised, you have advantage on grapple checks<br>";
 
 races[88] = {};
 races[88].name = randomize("Farspawn, Illithid, Neothelid, Nidarian, Aberrant");
@@ -2519,7 +2519,7 @@ races[171].size = "Medium";
 races[171].type = "supernal";
 races[171].speed = "30 feet, Climb 30 feet";
 races[171].senses = "";
-races[171].traits = "<b>Contemplative</b> Vrusk are the preeminent racial masters of intuitive, pattern-oriented leaps of logic. Once per short or long rest, you may spend your action and succeed on a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
+races[171].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per short or long rest, you may spend your action and succeed on a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
 
 races[172] = {};
 races[172].name = "Morkoth";
