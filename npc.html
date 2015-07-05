@@ -137,6 +137,12 @@ function ArmorTraining(input) { try { if (input.length > 1) {
 function Bite(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
 	}} catch (err) {
+	return ("<b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage<br>");
+}};
+
+function BiteGrapple(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
+	}} catch (err) {
 	return ("<b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
 }};
 
@@ -793,7 +799,7 @@ backgrounds[16].flaws = ["I will do anyting to win fame and renown", "I am a suc
 
 races = [];
 races[0] = {};
-races[0].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Earthling, Biot, Replicant");
+races[0].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot, Tcho-Tcho");
 races[0].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[0].abilities = "All abilities +1";
 races[0].size = "Medium";
@@ -933,7 +939,7 @@ races[13].senses = "darkvision 60 feet, ";
 races[13].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + ArmorTraining();
 
 races[14] = {};
-races[14].name = randomize("Forest Gnome, Forest Hob, Greenhob, Hob, Fae");
+races[14].name = randomize("Forest Gnome, Forest Hob, Greenhob, Hob, Menehune, Fae");
 races[14].languages = "Common, Gnomish";
 races[14].abilities = "Strength, Charisma scores +1";
 races[14].size = "Small";
@@ -943,7 +949,7 @@ races[14].senses = "darkvision 60 feet, ";
 races[14].traits = Darkvision() + Cunning() + Cantrip("Natural Illusionist", "Minor Illusion", "Intelligence") + "<b>Speak with Small Beasts</b> Communicate with Small or smaller beasts through grunts and gestures<br>";
 
 races[15] = {};
-races[15].name = randomize("Tinkerer Gnome, Tinkerer Hob, Hob, Fae");
+races[15].name = randomize("Tinkerer Gnome, Tinkerer Hob, Hob, Menehune, Fae");
 races[15].languages = "Common, Gnomish";
 races[15].abilities = "Strength, Charisma scores +1";
 races[15].size = "Small";
@@ -953,7 +959,7 @@ races[15].senses = "darkvision 60 feet, ";
 races[15].traits = Darkvision() + Cunning() + "<b>Artificer Lore</b> Add twice your skill proficiency on alchemy or technology related History rolls<br><b>Tinker</b> You have proficiency with artisan tinker tools. Using these tools you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can create a clockwork toy, a fire starter, or a music box<br>";
 
 races[16] = {};
-races[16].name = randomize("Svirfneblin, Deep Gnome, Deep Hob, Hob, Fae");
+races[16].name = randomize("Svirfneblin, Deep Gnome, Deep Hob, Hob, Menehune, Fae");
 races[16].languages = "Gnomish, Undercommon";
 races[16].abilities = "Intelligence +2, Dexterity +1";
 races[16].size = "Small";
@@ -1133,10 +1139,10 @@ races[33].senses = "";
 races[33].traits = "<b>Dragon Ancestry</b> White<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once in between every short rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
 
 races[34] = {};
-races[34].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Earthling, Biot, Replicant");
+races[34].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot, Tcho-Tcho");
 races[34].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[34].abilities = "Two abilities of your choice +1";
-races[34].size = "Medium";
+races[34].size = randomize("Small, Medium");
 races[34].type = "humanoid";
 races[34].speed = "30 feet";
 races[34].senses = "";
@@ -2164,7 +2170,7 @@ races[136].size = "Medium";
 races[136].type = "humanoid (giant)";
 races[136].speed = "30 feet";
 races[136].senses = "";
-races[136].traits = Skill("Athletic", "athletics") + Toughness() + Powerful() + BonusCriticalDamage("Strong");
+races[136].traits = Skill("Athletic", "athletics") + Toughness("Tough") + Powerful() + BonusCriticalDamage("Strong");
 
 races[137] = {};
 races[137].name = randomize("Symbiote, Bionid, Bionoid, Supernal");
@@ -2747,7 +2753,7 @@ races[193].senses = "";
 races[193].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
 
 races[194] = {};
-races[194].name = randomize("Living Construct, Warforged Scout, Warforged, Modron, Aeon");
+races[194].name = randomize("Warforged Scout, Warforged, Living Construct, Modron, Aeon");
 races[194].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[194].abilities = "Strength, Constitution +1";
 races[194].size = "Medium";
@@ -2767,7 +2773,7 @@ races[195].senses = "";
 races[195].traits = LivingConstruct() + ImmunityDisease() + Wellspring() + Trance() + "<b>Weapons</b> You are proficient with two weapons of your choice<br>";
 
 races[196] = {};
-races[196].name = randomize("Living Construct, Warforged Tactician, Warforged, Modron, Aeon");
+races[196].name = randomize("Warforged Tactician, Warforged, Living Construct, Modron, Aeon");
 races[196].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[196].abilities = "Strength, Constitution +1";
 races[196].size = "Medium";
@@ -2777,7 +2783,7 @@ races[196].senses = "";
 races[196].traits = LivingConstruct() + ImmunityDisease() + Wellspring() + Trance() + Cantrip("Tactics", "Guidance");
 
 races[197] = {};
-races[197].name = randomize("Living Construct, Warforged Tactician, Warforged, Modron, Aeon");
+races[197].name = randomize("Warforged Tactician, Warforged, Living Construct, Modron, Aeon");
 races[197].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[197].abilities = "Strength, Constitution +1";
 races[197].size = "Medium";
@@ -2786,11 +2792,51 @@ races[197].speed = "30 feet";
 races[197].senses = "";
 races[197].traits = LivingConstruct() + ImmunityDisease() + Wellspring() + Trance() + "<b>Archer</b> You are proficient with Longbows, Shortbows, and Crossbows<br>";
 
+races[198] = {};
+races[198].name = randomize("Pygmy, Tcho-Tcho, Tellem");
+races[198].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[198].abilities = "Two abilities of your choice +1";
+races[198].size = randomize("Small, Medium");
+races[198].type = "humanoid";
+races[198].speed = "30 feet";
+races[198].senses = "";
+races[198].traits = BonusSkill() + BonusFeat();
+
+races[199] = {};
+races[199].name = randomize("Abatwa, Liliputian");
+races[199].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[199].abilities = "Two abilities of your choice +1";
+races[199].size = "Tiny";
+races[199].type = "humanoid";
+races[199].speed = "30 feet";
+races[199].senses = "";
+races[199].traits = BonusSkill() + BonusFeat();
+
+races[200] = {};
+races[200].name = randomize("Blemmyes, Akephaloi, Anthropophage");
+races[200].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[200].abilities = "Two abilities of your choice +1";
+races[200].size = "Medium";
+races[200].type = "humanoid";
+races[200].speed = "30 feet";
+races[200].senses = "";
+races[200].traits = BonusSkill() + BonusFeat();
+
+races[201] = {};
+races[201].name = randomize("Wulver, Psoglav, Pasoglavac, Nacumerian, Theriocephalon, Cynocephali");
+races[201].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[201].abilities = "Two abilities of your choice +1";
+races[201].size = "Medium";
+races[201].type = "humanoid";
+races[201].speed = "30 feet";
+races[201].senses = "";
+races[201].traits = Bite() + Keen("Keen Scent", "smell") + BonusSkill();
+
 */
 
 // roll up the character
 race = Math.floor(Math.random()*races.length);
-//race = 82; // for race DEBUG
+//race = 201; // for race DEBUG
 
 background = Math.floor(Math.random()*backgrounds.length);
 alignment = Math.floor(Math.random()*alignments.length);
