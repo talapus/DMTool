@@ -926,7 +926,7 @@ races[11].senses = "";
 races[11].traits = "<b>Earth Walk</b> You can move across difficult terrain made of earth or stone without expending extra movement<br><b>Merge with Stone</b> You can cast the pass without trace spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
 
 races[12] = {}; // Core Race
-races[12].name = randomize("Hill Dwarf, Bergdweor, Dwarf, Dweor");
+races[12].name = randomize("Hill Dwarf, Bergdwor, Dwarf, Dwor");
 races[12].languages = "Common, Dwarven";
 races[12].abilities = "Constitution +2, Wisdom +1";
 races[12].size = "Medium";
@@ -936,7 +936,7 @@ races[12].senses = "darkvision 60 feet, ";
 races[12].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Toughness();
 
 races[13] = {}; // Core Race
-races[13].name = randomize("Mountain Dwarf, Dundwer, Dwarf, Dweor");
+races[13].name = randomize("Mountain Dwarf, Dundwor, Dwarf, Dwor");
 races[13].languages = "Common, Dwarven";
 races[13].abilities = "Constitution +2, Strength +1";
 races[13].size = "Medium";
@@ -1229,7 +1229,7 @@ races[41].senses = "darkvision 60 feet, ";
 races[41].traits = Darkvision() + ArmorTraining() + MartialAdvantage();
 
 races[42] = {}; // extended core material
-races[42].name = randomize("Svartalfar, Derro, Menehune, Dwarf, Dweor");
+races[42].name = randomize("Svartalfar, Derro, Dwarf, Dwor");
 races[42].languages = "Common, Dwarven";
 races[42].abilities = "Constitution +2, Intelligence +1";
 races[42].size = "Medium";
@@ -1239,7 +1239,7 @@ races[42].senses = "darkvision 60 feet, ";
 races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tashas Hideous Laughter", "Invisibility", "Constitution") + SunlightSensitivity() ;
 
 races[43] = {}; // extended core material
-races[43].name = randomize("Grey Dwarf, Graedwor, Duergar, Dwarf, Dweor");
+races[43].name = randomize("Grey Dwarf, Graedwor, Duergar, Dwarf, Dwor");
 races[43].languages = "Dwarven, Undercommon";
 races[43].abilities = "Constitution +2, Dexterity +1";
 races[43].size = "Medium";
@@ -1486,7 +1486,7 @@ races[67].size = "Medium";
 races[67].type = "humanoid (psychic)";
 races[67].speed = "30 feet";
 races[67].senses = "";
-races[67].traits = Immortal() + Psychic() + "<b>Repletion</b> Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal. Meditating in this way psychically satisfies your need for eat or drink<br>";
+races[67].traits = Immortal() + Psychic() + Repletion(); //"<b>Repletion</b> Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal. Meditating in this way psychically satisfies your need for eat or drink<br>";
 
 races[68] = {}; // extended core material
 races[68].name = randomize("Aberrant, Deepspawn");
