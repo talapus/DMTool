@@ -253,9 +253,9 @@ function Resilient(input) { try { if (input.length > 1) {
 }};
 
 function HealSelf(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. After you use this trait, you can not use it again until you finish a short or long rest<br>");
+	return ("<b>" + input + "</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. You may use this ability once per rest<br>");
 	}} catch (err) {
-	return ("<b>Heal</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. After you use this trait, you can not use it again until you finish a short or long rest<br>");
+	return ("<b>Heal</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. You may use this ability once per rest<br>");
 }};
 
 function HoldBreath(input) { try { if (input.length > 1) {
@@ -490,9 +490,9 @@ function Shifting(input) { try { if (input.length > 1) {
 }};
 
 function Shield(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. After you use this trait, you can not use it again until you finish a short or long rest<br>");
+	return ("<b>" + input + "</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br>");
 	}} catch (err) {
-	return ("<b>Shield</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. After you use this trait, you can not use it again until you finish a short or long rest<br>");
+	return ("<b>Shield</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br>");
 }};
 
 // arg1= Descriptive name, arg2= skill
@@ -529,9 +529,9 @@ function Tentacles(input) { try { if (input.length > 1) {
 }};
 
 function Telekinesis(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You can cast Unseen Servant once every short or long rest<br>");
+	return ("<b>" + input + "</b> You can cast Unseen Servant once after every rest<br>");
 	}} catch (err) {
-	return ("<b>Telekinesis</b> You can cast Unseen Servant once every short or long rest<br>");
+	return ("<b>Telekinesis</b> You can cast Unseen Servant once after every rest<br>");
 }};
 
 function Telepathy(input) { try { if (input.length > 1) {
@@ -1003,7 +1003,7 @@ races[19].size = "Medium";
 races[19].type = "humanoid (fey)";
 races[19].speed = "30 feet";
 races[19].senses = "darkvision 60 feet, ";
-races[19].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fey Step</b> You may cast Misty Step once every short or long rest<br>";
+races[19].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fey Step</b> You may cast Misty Step once per rest<br>";
 
 races[20] = {}; // Core Race
 races[20].name = randomize("Living Construct, Warforged, Modron, Aeon");
@@ -1326,7 +1326,7 @@ races[51].size = "Medium";
 races[51].type = "humanoid (giant)";
 races[51].speed = "30 feet";
 races[51].senses = "";
-races[51].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. After you use this trait, you can not use it again until you finish a short or long rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Nomad</b> You are acclimated to arid and desert environments. You are also naturally adapted to hot, desert climates where water is scarce<br>";
+races[51].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Nomad</b> You are acclimated to arid and desert environments. You are also naturally adapted to hot, desert climates where water is scarce<br>";
 
 races[52] = {}; //  extended core material/ makers of the independent machine state
 races[52].name = randomize("Automata, Living Construct, Modron, Aeon");
@@ -1426,7 +1426,7 @@ races[61].size = "Medium";
 races[61].type = "humanoid (shadow)";
 races[61].speed = "30 feet";
 races[61].senses = "darkvision 60 feet, ";
-races[61].traits = Darkvision() + FeyAncestry("Shadow Ancestry") + ShadowFade() + "<b>Shadow Step</b> You may cast Misty Step once every short or long rest<br>";
+races[61].traits = Darkvision() + FeyAncestry("Shadow Ancestry") + ShadowFade() + "<b>Shadow Step</b> You may cast Misty Step once per rest<br>";
 
 races[62] = {}; // extended core material
 races[62].name = "Shadar-zo";
@@ -1456,7 +1456,7 @@ races[64].size = "Medium";
 races[64].type = "humanoid (giant)";
 races[64].speed = "30 feet";
 races[64].senses = "";
-races[64].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. After you use this trait, you can not use it again until you finish a short or long rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Walk among them</b> You can shrink to standard human size or return to your natural size as a standard action. Death or unconsciousness return you to your default size. Firbolgs often consort with and live among humans, and prefer to keep their natures a secret<br>";
+races[64].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Walk among them</b> You can shrink to standard human size or return to your natural size as a standard action. Death or unconsciousness return you to your default size. Firbolgs often consort with and live among humans, and prefer to keep their natures a secret<br>";
 
 races[65] = {}; // extended core material
 races[65].name = randomize("Modron, Living Construct, Aeon");
@@ -1606,7 +1606,7 @@ races[79].size = "Medium";
 races[79].type = "supernal";
 races[79].speed = "30 feet, Climb 30 feet";
 races[79].senses = "";
-races[79].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per short or long rest, you may spend your action and succeed on a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
+races[79].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per rest, you may attempt a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
 
 races[80] = {}; // aetherspace core
 races[80].name = randomize("Vanir, Empyrean, Demigod");
@@ -1688,7 +1688,7 @@ races[88].size = "Medium";
 races[88].type = "humanoid (aberrant)";
 races[88].speed = "30 feet";
 races[88].senses = "";
-races[88].traits = Aberrant() + Telepathy() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone in front of you. You can do this once in between every short or long rest<br>";
+races[88].traits = Aberrant() + Telepathy() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone in front of you. You can do this once in between every per rest<br>";
 
 races[89] = {}; // aberrant
 races[89].name = randomize("Dolgaunt, Aberrant");
@@ -2188,7 +2188,7 @@ races[138].size = "Medium";
 races[138].type = "humanoid (psychic)";
 races[138].speed = "30 feet";
 races[138].senses = "";
-races[138].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once in between every short or long rest<br>";
+races[138].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once in between every per rest<br>";
 
 races[139] = {};
 races[139].name = randomize("Dromite, Primordial");
@@ -2208,7 +2208,7 @@ races[140].size = "Medium";
 races[140].type = "humanoid (plant)";
 races[140].speed = "30 feet";
 races[140].senses = "";
-races[140].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br><b>Stun spore</b> Once per short or long rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>";
+races[140].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br><b>Stun spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>";
 
 races[141] = {};
 races[141].name = randomize("Broodguard, Nagaji, Yuan-ti, Sarrukh");
@@ -2328,7 +2328,7 @@ races[152].size = "Medium";
 races[152].type = "humanoid (shadow)";
 races[152].speed = "30 feet";
 races[152].senses = "darkvision 60 feet, ";
-races[152].traits = Darkvision() + Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per short or long rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
+races[152].traits = Darkvision() + Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
 
 races[153] = {}; // goblin core
 races[153].name = randomize("Meenlock, Aberrant, Goblin");
@@ -2348,7 +2348,7 @@ races[154].size = "Medium";
 races[154].type = "humanoid (shapechanger)";
 races[154].speed = "30 feet";
 races[154].senses = "";
-races[154].traits = Keen("Hearing and Scent", "hearing and smell") + "<b>Shapeshift</b> You can assume the shape of a Seal or your default shape as a standard action. In seal form, you gain a swim speed of 30. You revert to your true form if you become unconscious or if you die<br>" + Amphibious() + Bite();
+races[154].traits = Keen("Scent", "smell") + "<b>Shapeshift</b> You can assume the shape of a Seal or your default shape as a standard action. In seal form, you gain a swim speed of 30. You revert to your true form if you become unconscious or if you die<br>" + Amphibious() + Bite();
 
 races[155] = {}; // dark sun core
 races[155].name = randomize("Ancient, Eldar, Kalashtar, Psion, Psychic");
