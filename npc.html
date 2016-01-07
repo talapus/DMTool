@@ -519,7 +519,7 @@ function Symbiote(input) { try { if (input.length > 1) {
 function Talons(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d6 slashing damage<br>");
 	}} catch (err) {
-	return ("<b>Claws</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d6 slashing damage<br>");
+	return ("<b>Talons</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d6 slashing damage<br>");
 }};
 
 function Tentacles(input) { try { if (input.length > 1) {
@@ -863,7 +863,7 @@ races[5].size = "Medium";
 races[5].type = "humanoid (supernal)";
 races[5].speed = "25 feet, fly 50 feet";
 races[5].senses = "";
-races[5].traits = FlightWings() + Claws("Talons");
+races[5].traits = FlightWings() + Talons();
 
 races[6] = {}; // Core Race
 races[6].name = randomize("Celestial, Aasimar");
