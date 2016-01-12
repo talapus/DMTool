@@ -856,7 +856,7 @@ races[4].senses = "";
 races[4].traits = Skill("Duplicity", "Deception") + "<b>Shapechanger</b> As an action, you can polymorph into any humanoid of your size that you have seen, or back into your true form. Your equipment does not change with you. If you die, you revert to your natural appearance<br>";
 
 races[5] = {}; // Core Race
-races[5].name = randomize("Aarakocra, Yehat, Aearee");
+races[5].name = randomize("Aarakocra, Yehat");
 races[5].languages = "Common, Aarakocra, Auran";
 races[5].abilities = "Dexterity +2, Wisdom +1";
 races[5].size = "Medium";
@@ -1256,7 +1256,7 @@ races[44].size = "Medium";
 races[44].type = "humanoid (deathless)";
 races[44].speed = "30 feet";
 races[44].senses = "darkvision 60 feet, ";
-races[44].traits = Darkvision() + Deathless() + ImmunityDisease() + Resilient("Night Walker") + "<b>Crawling Claws</b> You can painlesslessly and bloodlessly separate one of your hands. A separated hand can move and act independently. You can feel through your zombie hand, but cannot see, hear, or taste. You can use your action to move the hand (climb 30 feet), cause it to attack (1d4 slashing damage), or manipulate an object with it. Your hand can be reattached by holding it against the stump and making a successful Concentration check<br>" + SunlightSensitivity();
+races[44].traits = Darkvision() + Deathless() + Resilient("Night Walker") + "<b>Crawling Claws</b> You can painlesslessly and bloodlessly separate one of your hands. A separated hand can move and act independently. You can feel through your zombie hand, but cannot see, hear, or taste. You can use your action to move the hand (climb 30 feet), cause it to attack (1d4 slashing damage), or manipulate an object with it. Your hand can be reattached by holding it against the stump and making a successful Concentration check<br>" + SunlightSensitivity();
 
 races[45] = {}; // extended race material
 races[45].name = randomize("Wildborn, Wildkin, Mongrelman");
@@ -1349,7 +1349,7 @@ races[53].senses = "";
 races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Sneaky</b> You have proficiency with the Stealth skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
 
 races[54] = {}; // extended race material
-races[54].name = randomize("Rook, Ravenfolk, Aearee");
+races[54].name = randomize("Rook, Ravenfolk");
 races[54].languages = "Common, Primordial, Auran";
 races[54].abilities = "Dexterity +2, Wisdom +1";
 races[54].size = "Medium";
@@ -1649,7 +1649,7 @@ races[83].senses = "darkvision 60 feet, ";
 races[83].traits = FlightWings() + Darkvision() + Cantrip("Pixie Magic", "Minor Illusion", "Charisma") + "<b>Pixie Weaponry</b> Ancient fae magic empowers your tiny weapons. All tiny-size Pixie weapons do 1d4 points of damage to targets small and larger, but standard die-type damage to Tiny (and smaller) size targets<br>";
 
 races[84] = {}; // extended core race
-races[84].name = randomize("Kenku, Aearee");
+races[84].name = randomize("Kenku");
 races[84].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
 races[84].abilities = "Charisma +2, Intelligence +1";
 races[84].size = "Small";
@@ -2311,7 +2311,7 @@ races[150].senses = "";
 races[150].traits = "<b>Brain in a Jar</b> You are a human brain housed in a bronze cannister, but you are still subject to spells that affect living creatures. You do not need to breathe. You do not age. You do not need to eat or drink<br>" + Blindsight() + Psychic() + Telepathy() + "<b>Telekinesis</b> You may create a psychic force similar to an Unseen Servant at will. You may use it to complete somatic requirements for spells, and it is your method of movement<br>" + Cantrip("Telekinetic Bolt", "eldritch bolt", "Constitution");
 
 races[151] = {};
-races[151].name = randomize("Halfblood, Nagaji, Yuan-ti, Surrukh");
+races[151].name = randomize("Halfblood, Nagaji, Yuan-ti");
 races[151].languages = "Common, Celestial "
 races[151].abilities = "Dexterity +2, Constitution +1";
 races[151].size = "Medium";
@@ -2359,26 +2359,6 @@ races[155].type = "humanoid (supernal)";
 races[155].speed = "30 feet";
 races[155].senses = "";
 races[155].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once in between every short rest<br>";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
