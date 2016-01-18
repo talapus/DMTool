@@ -499,17 +499,6 @@ races[50].senses = "";
 races[50].traits = HumanoidPlant() + Flight();
 */
 
-/*
-races[84] = {}; // extended core race
-races[84].name = randomize("Kenku, Skulk, Wildborn, Wildkin");
-races[84].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
-races[84].abilities = "Charisma +2, Intelligence +1";
-races[84].size = randomize("Small, Medium");
-races[84].type = "humanoid (monstrous)";
-races[84].speed = "25 feet";
-races[84].senses = "darkvision 60 feet";
-races[84].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
-*/
 
 races[137] = {}; // stealth focus race
 races[137].name = "Skulk";
@@ -522,17 +511,6 @@ races[137].senses = "";
 races[137].traits = "<b>Skulk</b> You have advantage on Stealth rolls<br>" + Skill("Stealthy", "Stealth") + ShadowFade() + Camouflage();
 
 
-/*
-races[5] = {}; // Core Race
-races[5].name = randomize("Aarakocra, Yehat");
-races[5].languages = "Common, Aarakocra, Auran";
-races[5].abilities = "Dexterity +2, Wisdom +1";
-races[5].size = "Medium";
-races[5].type = "humanoid (supernal)";
-races[5].speed = "25 feet, fly 50 feet";
-races[5].senses = "";
-races[5].traits = FlightWings() + Talons();
-*/
 
 /*
 races[117] = {};
@@ -557,30 +535,6 @@ races[118].traits = Darkvision() + Shifting() + "<b>Dreamsight Shifting</b> Whil
 */
 
 /*
-races[91] = {}; // jinn
-races[91].name = randomize("Jann, Jinn, Demigod, Empyrean, Elemental");
-races[91].languages = "Common, Primordial";
-races[91].abilities = "Charisma +2, Intelligence +1";
-races[91].size = "Medium";
-races[91].type = "humanoid (elemental)";
-races[91].speed = "25 feet, fly 50 feet";
-races[91].senses = "";
-races[91].traits = Immortal() + Flight() + "<b>Genie Magic</b> You know the Minor Illusion cantrip";
-*/
-
-/*
-races[93] = {};
-races[93].name = "Hyperion"; // Mortal Celestial Hero
-races[93].languages = "Common, Celestial "
-races[93].abilities = "Strength +2, Constitution +1";
-races[93].size = "Medium";
-races[93].type = "humanoid (celestial)";
-races[93].speed = "30 feet, fly 30 feet";
-races[93].senses = "";
-races[93].traits = Darkvision() + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>" + Spells135("Celestial Hero", "Shillelagh", "Detect Evil and Good", "Find Steed","Constitution");
-*/
-
-/*
 races[95] = {};
 races[95].name = "Maedar";
 races[95].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
@@ -590,16 +544,4 @@ races[95].type = "humanoid (monstrous)";
 races[95].speed = "30 feet, climb 30 feet";
 races[95].senses = "darkvision 60 feet, ";
 races[95].traits = Darkvision() + Claws() + ResiliencePoison() + "<b>Petrification Immunity</b> Immune to petrification<br>";
-*/
-
-/*
-races[92] = {}; // immortal
-races[92].name = randomize("Hyperion, Archon, Empyrean, Demigod");
-races[92].languages = "Common, Celestial, "+ languages[Math.floor(Math.random()*languages.length)];
-races[92].abilities = "Dexterity +2, Wisdom +1";
-races[92].size = "Medium";
-races[92].type = "humanoid (celestial)";
-races[92].speed = "30 feet";
-races[92].senses = "";
-races[92].traits = Immortal() + Repletion() + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br><b>Celestial Weaponry</b> Weapons wielded by you are considered magical for purposes of overcoming resistances<br>";
 */
