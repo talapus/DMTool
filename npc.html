@@ -1985,6 +1985,52 @@ races[114].speed = "25 feet, fly 50 feet";
 races[114].senses = "";
 races[114].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
+races[115] = {};
+races[115].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
+races[115].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[115].abilities = "Strength, Dexterity +1";
+races[115].size = randomize("Small, Medium");
+races[115].type = "humanoid (monstrous)";
+races[115].speed = randomize("25 feet, 30 feet");
+races[115].senses = "";
+races[115].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
+
+races[116] = {};
+races[116].name = randomize("Auran, Jinn, Elemental");
+races[116].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
+races[116].abilities = "Dexterity +2, Wisdom +1";
+races[116].size = "Medium"
+races[116].type = "humanoid (elemental)";
+races[116].speed = "25 feet, fly 40 feet";
+races[116].senses = "";
+races[116].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
+
+races[117] = {}; // frogfolk
+races[117].name = randomize("Grippli, Bullywug, Batrachi");
+races[117].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[117].abilities = "Wisdom, Dexterity +1";
+races[117].size = "Small";
+races[117].type = "humanoid (monstrous)";
+races[117].speed = "25 feet, climb 30 feet";
+races[117].senses = "";
+races[117].traits = HoldBreath() + "<b>GreeDeep</b> Communicate simple concepts to frogs and toads when speaking in Bullywug<br><b>Swamp Camoflage</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas<br>" + Leap() + "<b>Swamp Adapted</b> You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
+
+races[118] = {}; // turtlefolk
+races[118].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
+races[118].languages = "Common, Supernal";
+races[118].abilities = "Strength +2, Constitution +1";
+races[118].size = "Medium";
+races[118].type = "humanoid (supernal)";
+races[118].speed = "30 feet, swim 30 feet";
+races[118].senses = "";
+races[118].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
+
+
+
+
+
+
+
 
 
 

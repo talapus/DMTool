@@ -151,7 +151,7 @@ races[131].senses = "";
 races[131].traits = "<b>Shapechanger</b> As an action, you can polymorph into any medium to tiny sized mammal that you have seen, or back into your default form. Your equipment does not change with you. If you become unconscious or die, you revert to your natural form<br>"
 
 races[132] = {}; //
-races[132].name = randomize("Nidarian, Psion, Brainslave");
+races[132].name = randomize("Nidarian, Psion");
 races[132].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[132].abilities = "Strength, Constitution +1";
 races[132].size = "Medium";
@@ -218,16 +218,6 @@ races[120].traits = Amphibious() + Darkvision() + "<b>Weapon training</b> You ha
 */
 
 /*
-races[112] = {}; // extended core / Star Control /
-races[112].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
-races[112].languages = "Common, Supernal";
-races[112].abilities = "Strength +2, Constitution +1";
-races[112].size = "Medium";
-races[112].type = "humanoid (supernal)";
-races[112].speed = "30 feet, swim 30 feet";
-races[112].senses = "";
-races[112].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
-
 races[113] = {}; // abberant
 races[113].name = "Aberrant";
 races[113].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
@@ -249,29 +239,6 @@ races[114].senses = "";
 races[114].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Fleet of Foot</b> Your base move speed is 35 feet<br>";
 */
 
-/* animal humanoid hybrid
-races[108] = {}; // animal humanoid hybrid
-races[108].name = randomize("Grippli, Bullywug, Batrachi");
-races[108].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[108].abilities = "Wisdom, Dexterity +1";
-races[108].size = "Small";
-races[108].type = "humanoid (monstrous)";
-races[108].speed = "25 feet, climb 30 feet";
-races[108].senses = "";
-races[108].traits = HoldBreath() + "<b>GreeDeep</b> Communicate simple concepts to frogs and toads when speaking in Bullywug<br><b>Swamp Camoflage</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas<br>" + Leap() + "<b>Swamp Adapted</b> You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
-*/
-
-/* fly
-races[109] = {};
-races[109].name = randomize("Auran, Jinn, Elemental");
-races[109].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
-races[109].abilities = "Dexterity +2, Wisdom +1";
-races[109].size = "Medium"
-races[109].type = "humanoid (elemental)";
-races[109].speed = "25 feet, fly 40 feet";
-races[109].senses = "";
-races[109].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
-*/
 
 /*
 races[110] = {}; // Construct
@@ -330,16 +297,6 @@ races[95].type = "humanoid (construct)";
 races[95].speed = "30 feet";
 races[95].senses = "";
 races[95].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Archer</b> You are proficient with Longbows, Shortbows, and Crossbows<br>";
-
-races[96] = {};
-races[96].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
-races[96].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[96].abilities = "Strength, Dexterity +1";
-races[96].size = randomize("Small, Medium");
-races[96].type = "humanoid (monstrous)";
-races[96].speed = randomize("25 feet, 30 feet");
-races[96].senses = "";
-races[96].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
 
 races[97] = {}; // Construct
 races[97].name = randomize("Warforged Tactician, Warforged, Living Construct, Modron, Aeon");
@@ -441,18 +398,6 @@ races[65].speed = "30 feet";
 races[65].senses = "";
 races[65].traits = LivingConstruct() + ImmunityDisease() + Repletion() +  "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
 */
-
-
-/*
-races[54] = {}; // extended race material
-races[54].name = randomize("Rook, Ravenfolk");
-races[54].languages = "Common, Primordial, Auran";
-races[54].abilities = "Dexterity +2, Wisdom +1";
-races[54].size = "Medium";
-races[54].type = "humanoid (monstrous)";
-races[54].speed = "25 feet, fly 50 feet";
-races[54].senses = "";
-races[54].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
 /*
 races[55] = {}; // extended race material
