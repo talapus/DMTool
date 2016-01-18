@@ -283,10 +283,18 @@ function ImmunityDisease(input) { try { if (input.length > 1) {
 }};
 
 function Immortal(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You do not age<br>");
+	}} catch (err) {
+	return ("<b>Immortal</b> You do not age<br>");
+}};
+
+/*
+function Immortal(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You do not age. All hit points are restored at the end of a long rest. You fade away into nothing if you die<br>");
 	}} catch (err) {
 	return ("<b>Immortal</b> You do not age. All hit points are restored at the end of a long rest. You fade away into nothing if you die<br>");
 }};
+*/
 
 // arg1= Descriptive name, arg2= skill
 function Keen(arg1, arg2) { return ("<b>" + arg1 + "</b> You have advantage on Perception(Wisdom) rolls that rely on " + arg2 + "<br>") };
@@ -581,6 +589,25 @@ function Camouflage(input) { try { if (input.length > 1) {
 	}} catch (err) {
 	return ("<b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br>");
 }};
+
+function StunSpore(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>");
+	}} catch (err) {
+	return ("<b>Stun Spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>");
+}};
+
+function Wings(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b>You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall to the ground. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+	}} catch (err) {
+	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall to the ground. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+}};
+
+function Flight(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b>You can fly at your movement speed<br>");
+	}} catch (err) {
+	return ("<b>Flight</b> You can fly at your movement speed<br>");
+}};
+
 
 /// Backgrounds
 
@@ -1356,7 +1383,7 @@ races[54].size = "Small";
 races[54].type = "humanoid (goblin, aberrant)";
 races[54].speed = "25 feet";
 races[54].senses = "";
-races[54].traits = Darkvision() + Aberrant() + "<b>Delusions</b> You know the <i>Minor Illusion</i> cantrip<br><b>Poison Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus <i>sleep</i> poison<br>";
+races[54].traits = Darkvision() + Aberrant() + "<b>Delusions</b> You know the <i>Minor Illusion</i> cantrip<br><b>Poison Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus DC 10 <i>sleep</i> poison<br>";
 
 races[55] = {}; // goblins
 races[55].name = randomize("Norker, Goblin");
@@ -1526,7 +1553,7 @@ races[71].size = "Medium";
 races[71].type = "humanoid (plant)";
 races[71].speed = "30 feet";
 races[71].senses = "";
-races[71].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br><b>Stun spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>";
+races[71].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br>";
 
 races[72] = {}; // fae
 races[72].name = "Centaur";
@@ -1606,7 +1633,7 @@ races[79].size = "Medium";
 races[79].type = "supernal";
 races[79].speed = "30 feet, Climb 30 feet";
 races[79].senses = "";
-races[79].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per rest, you may attempt a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
+races[79].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per rest, you may attempt a Concentration check to realize an important fact /  cast guidance or some other appropriate spell<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br>";
 
 races[80] = {}; // aetherspace
 races[80].name = randomize("Vanir, Empyrean, Demigod");
@@ -1868,20 +1895,95 @@ races[105].speed = "40 feet";
 races[105].senses = "";
 races[105].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
 
+races[106] = {}; // Core Race
+races[106].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
+races[106].languages = "Common, Celestial";
+races[106].abilities = "Charisma +2, Wisdom +1";
+races[106].size = "Medium";
+races[106].type = "humanoid (celestial)";
+races[106].speed = "30 feet";
+races[106].senses = "darkvision 60 feet, ";
+races[106].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Thaumaturgy", "Cure Wounds", "Lesser Restoration");
 
+races[107] = {}; // Core Race
+races[107].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
+races[107].languages = "Common, Celestial";
+races[107].abilities = "Charisma +2, Wisdom +1";
+races[107].size = "Medium";
+races[107].type = "humanoid (celestial)";
+races[107].speed = "30 feet";
+races[107].senses = "darkvision 60 feet, ";
+races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Flight() + Wings();
 
+races[108] = {}; // variant
+races[108].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
+races[108].languages = "Common, Celestial";
+races[108].abilities = "Charisma +2, Wisdom +1";
+races[108].size = "Medium";
+races[108].type = "humanoid (celestial)";
+races[108].speed = "30 feet";
+races[108].senses = "darkvision 60 feet, ";
+races[108].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Hero", "Shillelagh", "Detect Evil and Good", "Find Steed");
 
+races[109] = {}; // variant
+races[109].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
+races[109].languages = "Common, Celestial";
+races[109].abilities = "Charisma +2, Wisdom +1";
+races[109].size = "Medium";
+races[109].type = "humanoid (celestial)";
+races[109].speed = "30 feet";
+races[109].senses = "darkvision 60 feet, ";
+races[109].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Dancing Lights", "Find Familiar", "Find Steed");
 
+races[110] = {}; // variant
+races[110].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
+races[110].languages = "Common, Celestial";
+races[110].abilities = "Charisma +2, Wisdom +1";
+races[110].size = "Medium";
+races[110].type = "humanoid (celestial)";
+races[110].speed = "30 feet";
+races[110].senses = "darkvision 60 feet, ";
+races[110].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>";
 
+races[111] = {}; // genie
+races[111].name = randomize("Jann, Jinn, Empyrean, Elemental");
+races[111].languages = "Common, Primordial";
+races[111].abilities = "Charisma +2, Intelligence +1";
+races[111].size = "Medium";
+races[111].type = "humanoid (elemental)";
+races[111].speed = "25 feet, fly 50 feet";
+races[111].senses = "";
+races[111].traits = Immortal() + Flight() + "<b>Genie Magic</b> You know the Minor Illusion cantrip";
 
+races[112] = {}; // Core Race
+races[112].name = randomize("Aarakocra");
+races[112].languages = "Common, Aarakocra, Auran";
+races[112].abilities = "Dexterity +2, Wisdom +1";
+races[112].size = "Medium";
+races[112].type = "humanoid (supernal)";
+races[112].speed = "25 feet, fly 50 feet";
+races[112].senses = "";
+races[112].traits = FlightWings() + Talons();
 
+races[113] = {}; //
+races[113].name = randomize("Kenku, Skulk, Wildborn, Wildkin");
+races[113].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
+races[113].abilities = "Charisma +2, Intelligence +1";
+races[113].size = randomize("Small, Medium");
+races[113].type = "humanoid (monstrous)";
+races[113].speed = "25 feet";
+races[113].senses = "darkvision 60 feet";
+races[113].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
 
-
-
-
-
-
-
+races[114] = {}; // extended race material
+races[114].name = randomize("Rook, Ravenfolk");
+races[114].languages = "Common, Primordial, Auran";
+races[114].abilities = "Dexterity +2, Wisdom +1";
+races[114].size = "Medium";
+races[114].type = "humanoid (monstrous)";
+races[114].speed = "25 feet, fly 50 feet";
+races[114].senses = "";
+races[114].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
 
 
