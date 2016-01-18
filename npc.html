@@ -271,9 +271,9 @@ function Horns(input) { try { if (input.length > 1) {
 }};
 
 function HumanoidPlant(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. You you get all the food you need from 4 hours per day of sunlight, but still need to ingest water. You do not age<br>");
+	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. You get all the food you need from 4 hours per day of unobstructed sunlight. You still need to ingest water. You do not age<br>");
 	}} catch (err) {
-	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. You you get all the food you need from 4 hours per day of sunlight, but still need to ingest water. You do not age<br>");
+	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. You get all the food you need from 4 hours per day of unobstrocted sunlight. You still need to ingest water. You do not age<br>");
 }};
 
 function ImmunityDisease(input) { try { if (input.length > 1) {
@@ -352,9 +352,9 @@ function Psychic(input) { try { if (input.length > 1) {
 }};
 
 function Repletion(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal. Meditating in this way psychically satisfies your need for eat or drink<br>");
+	return ("<b>" + input + "</b> Instead of sleeping, you enter an inactive state. Meditating for for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
 	}} catch (err) {
-	return ("<b>Repletion</b> Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal. Meditating in this way psychically satisfies your need for eat or drink<br>");
+	return ("<b>Repletion</b> Instead of sleeping, you enter an inactive state. Meditating for for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
 }};
 
 function ResilienceAcid(input) { try { if (input.length > 1) {
@@ -529,9 +529,9 @@ function Tentacles(input) { try { if (input.length > 1) {
 }};
 
 function Telekinesis(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You can cast Unseen Servant once after every rest<br>");
+	return ("<b>" + input + "</b> You can cast Unseen Servant once per rest<br>");
 	}} catch (err) {
-	return ("<b>Telekinesis</b> You can cast Unseen Servant once after every rest<br>");
+	return ("<b>Telekinesis</b> You can cast Unseen Servant once per rest<br>");
 }};
 
 function Telepathy(input) { try { if (input.length > 1) {
@@ -823,7 +823,7 @@ races[1].size = "Medium";
 races[1].type = "humanoid (dragon)";
 races[1].speed = "30 feet";
 races[1].senses = "";
-races[1].traits = "<b>Dragon Ancestry</b> Brass<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of fire once in between every short rest<br>" + ResistDamageFire();
+races[1].traits = "<b>Dragon Ancestry</b> Brass<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of fire once per rest<br>" + ResistDamageFire();
 
 races[2] = {}; // Core Race
 races[2].name = randomize("Halfelf, Aelfkin, Fae");
@@ -855,15 +855,15 @@ races[4].speed = "30 feet"
 races[4].senses = "";
 races[4].traits = Skill("Duplicity", "Deception") + "<b>Shapechanger</b> As an action, you can polymorph into any humanoid of your size that you have seen, or back into your true form. Your equipment does not change with you. If you die, you revert to your natural appearance<br>";
 
-races[5] = {}; // Core Race
-races[5].name = randomize("Aarakocra, Yehat");
-races[5].languages = "Common, Aarakocra, Auran";
-races[5].abilities = "Dexterity +2, Wisdom +1";
-races[5].size = "Medium";
-races[5].type = "humanoid (supernal)";
-races[5].speed = "25 feet, fly 50 feet";
-races[5].senses = "";
-races[5].traits = FlightWings() + Talons();
+races[5] = {}; // Wildkin
+races[5].name = randomize("Kenku, Skulk, Wildborn, Wildkin");
+races[5].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
+races[5].abilities = "Charisma +2, Intelligence +1";
+races[5].size = randomize("Small, Medium");
+races[5].type = "humanoid (monstrous)";
+races[5].speed = "25 feet";
+races[5].senses = "darkvision 60 feet";
+races[5].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
 
 races[6] = {}; // Core Race
 races[6].name = randomize("Celestial, Aasimar");
@@ -876,27 +876,27 @@ races[6].senses = "darkvision 60 feet, ";
 races[6].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Light", "Lesser Restoration", "Daylight");
 
 races[7] = {}; // Core Race
-races[7].name = randomize("Fiend, Tiefling");
+races[7].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
 races[7].languages = "Common, Fiendish";
 races[7].abilities = "Charisma +2, Intelligence +1";
 races[7].size = "Medium";
 races[7].type = "humanoid (fiend)";
 races[7].speed = "30 feet";
 races[7].senses = "darkvision 60 feet, ";
-races[7].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness");
+races[7].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
 races[8] = {}; // Core Race
-races[8].name = randomize("Ignan, Fire Genasi, Genasi, Ifrit");
+races[8].name = randomize("Ignan, Ifrit, Fire Genasi, Genasi, Jann");
 races[8].languages = "Common, Ignan";
 races[8].abilities = "Strength, Charisma +1";
 races[8].size = "Medium";
 races[8].type = "humanoid (elemental)";
 races[8].speed = "30 feet";
 races[8].senses = "darkvision 60 feet, ";
-races[8].traits = Darkvision() + ResistDamageFire() + Spells135("Reach to the Blaze", "Produce Flame", "Burning Hands", "Heat Metal", "Constitution");
+races[8].traits = Darkvision() + ResistDamageFire() + Spells("Reach to the Blaze", "Produce Flame", "Hellish Rebuke", "Constitution");
 
 races[9] = {}; // Core Race
-races[9].name = randomize("Aquan, Water Genasi, Undine, Genasi");
+races[9].name = randomize("Aquan, Undine, Water Genasi, Genasi, Jann");
 races[9].languages = "Common, Aquan";
 races[9].abilities = "Strength, Charisma +1";
 races[9].size = "Medium";
@@ -906,7 +906,7 @@ races[9].senses = "";
 races[9].traits = Amphibious() + ResistDamageAcid() + Spells("Call to the Wave", "Shape Water", "Create and Destroy Water", "Constitution")
 
 races[10] = {}; // Core Race
-races[10].name = randomize("Auran, Air Genasi, Genasi, Jinn");
+races[10].name = randomize("Auran, Jinn, Air Genasi, Genasi, Jann");
 races[10].languages = "Common, Auran";
 races[10].abilities = "Strength, Charisma +1";
 races[10].size = "Medium";
@@ -916,7 +916,7 @@ races[10].senses = "";
 races[10].traits = "<b>Unending Breath</b> You can hold your breath indefinitely while you are not incapacitated<br><b>Mingle with the Wind</b> You can cast the levitate spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
 
 races[11] = {}; // Core Race
-races[11].name = randomize("Terran, Oread, Earth Genasi, Genasi");
+races[11].name = randomize("Terran, Oread, Earth Genasi, Genasi, Jann");
 races[11].languages = "Common, Terran";
 races[11].abilities = "Strength, Charisma +1";
 races[11].size = "Medium";
@@ -1013,7 +1013,7 @@ races[20].size = "Medium";
 races[20].type = "humanoid (construct)";
 races[20].speed = "30 feet";
 races[20].senses = "";
-races[20].traits = LivingConstruct() + Armored("Composite Plating") + ImmunityDisease() + Repletion() + Trance();
+races[20].traits = LivingConstruct() + Armored("Composite Plating") + ImmunityDisease() + Repletion();
 
 races[21] = {}; // Core Race
 races[21].name = randomize("Wood Elf, Ljosalfar, Elf, Fae");
@@ -1083,7 +1083,7 @@ races[27].size = "Medium";
 races[27].type = "humanoid (dragon)";
 races[27].speed = "30 feet";
 races[27].senses = "";
-races[27].traits = "<b>Dragon Ancestry</b> Gold<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once in between every short rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
+races[27].traits = "<b>Dragon Ancestry</b> Gold<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
 
 races[28] = {}; // Core Race
 races[28].name = randomize("Silver Dragonborn, Silver Drake, Silver Dragonkin, Seolfordrake, Drake, Dragonborn, Dragonkin");
@@ -1093,7 +1093,7 @@ races[28].size = "Medium";
 races[28].type = "humanoid (dragon)";
 races[28].speed = "30 feet";
 races[28].senses = "";
-races[28].traits = "<b>Dragon Ancestry</b> Silver<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once in between every short rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
+races[28].traits = "<b>Dragon Ancestry</b> Silver<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
 
 races[29] = {}; // Core Race
 races[29].name = randomize("Bronze Dragonborn, Bronze Drake, Bronze Dragonkin, Braesdrake, Drake, Dragonborn, Dragonkin");
@@ -1103,7 +1103,7 @@ races[29].size = "Medium";
 races[29].type = "humanoid (dragon)";
 races[29].speed = "30 feet";
 races[29].senses = "";
-races[29].traits = "<b>Dragon Ancestry</b> Bronze<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of lightning once in between every short rest<br><b>Damage Resistance</b> You have resistance to lightning<br>";
+races[29].traits = "<b>Dragon Ancestry</b> Bronze<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of lightning once per rest<br><b>Damage Resistance</b> You have resistance to lightning<br>";
 
 races[30] = {}; // Core Race
 races[30].name = randomize("Red Dragonborn, Red Drake, Red Dragonkin, Reorake, Drake, Dragonborn, Dragonkin");
@@ -1113,7 +1113,7 @@ races[30].size = "Medium";
 races[30].type = "humanoid (dragon)";
 races[30].speed = "30 feet";
 races[30].senses = "";
-races[30].traits = "<b>Dragon Ancestry</b> Red<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once in between every short rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
+races[30].traits = "<b>Dragon Ancestry</b> Red<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
 
 races[31] = {}; // Core Race
 races[31].name = randomize("Black Dragonborn, Black Drake, Black Dragonkin, Svartaldrake, Drake, Dragonborn, Dragonkin");
@@ -1123,7 +1123,7 @@ races[31].size = "Medium";
 races[31].type = "humanoid (dragon)";
 races[31].speed = "30 feet";
 races[31].senses = "";
-races[31].traits = "<b>Dragon Ancestry</b> Black<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once in between every short rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
+races[31].traits = "<b>Dragon Ancestry</b> Black<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
 
 races[32] = {}; // Core Race
 races[32].name = randomize("Green Dragonborn, Green Drake, Green Dragonkin, Drake, Dragonborn, Dragonkin");
@@ -1133,7 +1133,7 @@ races[32].size = "Medium";
 races[32].type = "humanoid (dragon)";
 races[32].speed = "30 feet";
 races[32].senses = "";
-races[32].traits = "<b>Dragon Ancestry</b> Green<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of poison once in between every short rest<br><b>Damage Resistance</b> You have resistance to poison<br>";
+races[32].traits = "<b>Dragon Ancestry</b> Green<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of poison once per rest<br><b>Damage Resistance</b> You have resistance to poison<br>";
 
 races[33] = {}; // Core Race
 races[33].name = randomize("White Dragonborn, White Drake, White Dragonkin, Drake, Dragonborn, Dragonkin");
@@ -1143,10 +1143,10 @@ races[33].size = "Medium";
 races[33].type = "humanoid (dragon)";
 races[33].speed = "30 feet";
 races[33].senses = "";
-races[33].traits = "<b>Dragon Ancestry</b> White<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once in between every short rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
+races[33].traits = "<b>Dragon Ancestry</b> White<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
 
 races[34] = {}; // Core Race
-races[34].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot, Tcho-Tcho");
+races[34].name = randomize("Human, Hyborean, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot");
 races[34].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[34].abilities = "Two abilities of your choice +1";
 races[34].size = randomize("Small, Medium");
@@ -1163,7 +1163,7 @@ races[35].size = "Medium";
 races[35].type = "humanoid (dragon)";
 races[35].speed = "30 feet";
 races[35].senses = "";
-races[35].traits = "<b>Dragon Ancestry</b> Copper<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once in between every short rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
+races[35].traits = "<b>Dragon Ancestry</b> Copper<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
 
 races[36] = {}; // Core Race
 races[36].name = randomize("Beasthide Shifter, Shifter, Shapeshifter");
@@ -1176,7 +1176,7 @@ races[36].senses = "darkvision 60 feet, ";
 races[36].traits = Darkvision() + Shifting() + "<b>Beasthide Shifting</b> While shifting, you gain a +1 bonus to Armor Class<br>";
 
 races[37] = {}; // Core Race
-races[37].name = randomize("Cliffwalk Shifter, Shifter, Therianthrope");
+races[37].name = randomize("Cliffwalk Shifter, Shifter, Shapeshifter");
 races[37].languages = "Common, Silvan";
 races[37].abilities = "Dexterity +2";
 races[37].size = "Medium";
@@ -1208,7 +1208,7 @@ races[39].traits = Darkvision() + Shifting() + "<b>Wildhunt Shifting</b> While s
 
 // Generic Extended race material. Not extensively playtested, but should be balanced.
 
-races[40] = {}; // extended core material
+races[40] = {}; // aetherspace
 races[40].name = randomize("Mul, Dweorkin");
 races[40].languages = "Common, Dwarven, " + languages[Math.floor(Math.random()*languages.length)];
 races[40].abilities = "Strength +2, Constitution +1";
@@ -1218,7 +1218,7 @@ races[40].speed = "30 feet";
 races[40].senses = "darkvision 60 feet, ";
 races[40].traits = Darkvision() + ResiliencePoison() + BonusSkills() + "<b>Tireless</b> You have advantage on saving throws and ability checks against increasing your exhaustion level<br>";
 
-races[41] = {}; // extended core material
+races[41] = {}; // goblin core
 races[41].name = randomize("Hobgoblin, Goblin");
 races[41].languages = "Common, Goblin";
 races[41].abilities = "Constitution +2, Strength +1";
@@ -1228,7 +1228,7 @@ races[41].speed = "30 feet";
 races[41].senses = "darkvision 60 feet, ";
 races[41].traits = Darkvision() + ArmorTraining() + MartialAdvantage();
 
-races[42] = {}; // extended core material
+races[42] = {}; // dwarf core
 races[42].name = randomize("Svartalfar, Derro, Dwarf, Dwor");
 races[42].languages = "Common, Dwarven";
 races[42].abilities = "Constitution +2, Intelligence +1";
@@ -1238,7 +1238,7 @@ races[42].speed = "25 feet";
 races[42].senses = "darkvision 60 feet, ";
 races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tashas Hideous Laughter", "Invisibility", "Constitution") + SunlightSensitivity() ;
 
-races[43] = {}; // extended core material
+races[43] = {}; // dwarf core
 races[43].name = randomize("Grey Dwarf, Graedwor, Duergar, Dwarf, Dwor");
 races[43].languages = "Dwarven, Undercommon";
 races[43].abilities = "Constitution +2, Dexterity +1";
@@ -1248,7 +1248,7 @@ races[43].speed = "25 feet";
 races[43].senses = "darkvision 120 feet, ";
 races[43].traits = DarkvisionSuperior() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + "<b>Dwergar Magic</b> You may cast <i>Enlarge</i> once per day<br>" + SunlightSensitivity();
 
-races[44] = {}; // extended race material
+races[44] = {}; // deathless
 races[44].name = "Revenant";
 races[44].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[44].abilities = "Strength, Constitution +1";
@@ -1256,9 +1256,9 @@ races[44].size = "Medium";
 races[44].type = "humanoid (deathless)";
 races[44].speed = "30 feet";
 races[44].senses = "darkvision 60 feet, ";
-races[44].traits = Darkvision() + Deathless() + Resilient("Night Walker") + "<b>Crawling Claws</b> You can painlesslessly and bloodlessly separate one of your hands. A separated hand can move and act independently. You can feel through your zombie hand, but cannot see, hear, or taste. You can use your action to move the hand (climb 30 feet), cause it to attack (1d4 slashing damage), or manipulate an object with it. Your hand can be reattached by holding it against the stump and making a successful Concentration check<br>" + SunlightSensitivity();
+races[44].traits = Darkvision() + Deathless() + Resilient("Night Walker");
 
-races[45] = {}; // extended race material
+races[45] = {}; // wildkin
 races[45].name = randomize("Wildborn, Wildkin, Mongrelman");
 races[45].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[45].abilities = "Strength, Constitution +1";
@@ -1268,18 +1268,18 @@ races[45].speed = randomize("25 feet, 30 feet");
 races[45].senses = "";
 races[45].traits = Keen("Keen Hearing and Smell", "hearing or smell") + AnimalAncestry() + Mimicry() + NaturalWeapons();
 
-races[46] = {}; // extended race material
-races[46].name = randomize("Dhampir, Nightborn, Nightkin");
+races[46] = {}; // wildkin
+races[46].name = randomize("Tabaxi, Leonine, Leonid, Kzinti, Wildborn, Wildkin");
 races[46].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[46].abilities = "Strength, Constitution +1";
-races[46].size = "Medium";
-races[46].type = "humanoid (deathless)";
-races[46].speed = "30 feet";
-races[46].senses = "darkvision 60 feet, ";
-races[46].traits = Darkvision() + ResilienceNecrotic("Eldritch Resilience") + Spells135("Eldritch Powers", "Minor Illusion", "Charm Person", "Invisibility", "Constitution")
+races[46].abilities = "Strength, Dexterity +1";
+races[46].size = randomize("Small, Medium");
+races[46].type = "humanoid (monstrous)";
+races[46].speed = randomize("25 feet, 30 feet");
+races[46].senses = "";
+races[46].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + Talons();
 
-races[47] = {}; // extended race material
-races[47].name = randomize("Fetchling, Ancient, Eldar, Old One, Shadowborn, Shade, Shadow");
+races[47] = {}; // shadow
+races[47].name = randomize("Ancient, Eldar, Shadowborn, Shade, Shadow");
 races[47].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[47].abilities = "Dexterity +2, Charisma +1";
 races[47].size = "Medium";
@@ -1288,7 +1288,7 @@ races[47].speed = "30 feet";
 races[47].senses = "darkvision 60 feet, ";
 races[47].traits = Darkvision() + ResilienceNecrotic("Shadowborn") + Spells135("Shadows", "Minor Illusion", "Disguise Self", "Darkness", "Constitution");
 
-races[48] = {}; // extended race material
+races[48] = {}; // goblin
 races[48].name = randomize("Goblin, Hob");
 races[48].languages = "Common, Goblin";
 races[48].abilities = "Dexterity +2, Wisdom +1";
@@ -1298,7 +1298,7 @@ races[48].speed = "30 feet";
 races[48].senses = "darkvision 60 feet, ";
 races[48].traits = Darkvision() + Skill("Sneaky", "Stealth") + NimbleEscape() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>";
 
-races[49] = {}; // extended race material
+races[49] = {}; // aetherspace
 races[49].name = randomize("Simulacrum, Living Construct, Modron, Aeon");
 races[49].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[49].abilities = "Strength, Constitution +1";
@@ -1306,19 +1306,19 @@ races[49].size = "Medium";
 races[49].type = "humanoid (construct)";
 races[49].speed = "30 feet";
 races[49].senses = "";
-races[49].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br><br><b>Repair</b> You know the Mend cantrip<br>";
+races[49].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br><b>Repair</b> You know the Mend cantrip<br>";
 
-races[50] = {}; // extended race material
-races[50].name = randomize("Black Orchid, Nightbloom");
+races[50] = {}; // aetherspace
+races[50].name = randomize("Ancient, Eldar, Kalashtar");
 races[50].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[50].abilities = "Dexterity +2, Wisdom +1";
+races[50].abilities = "Intelligence, Wisdom +1";
 races[50].size = "Medium";
-races[50].type = "humanoid (plant)";
-races[50].speed = "25 feet, fly 40 feet";
+races[50].type = "humanoid (psychic, supernal)";
+races[50].speed = "30 feet";
 races[50].senses = "";
-races[50].traits = HumanoidPlant() + Flight();
+races[50].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once per rest<br>";
 
-races[51] = {}; // extended race material
+races[51] = {}; // aetherspace
 races[51].name = "Athas Halfgiant";
 races[51].languages = "Common, Giant";
 races[51].abilities = "Strength +2, Constitution +1";
@@ -1328,7 +1328,7 @@ races[51].speed = "30 feet";
 races[51].senses = "";
 races[51].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Nomad</b> You are acclimated to arid and desert environments. You are also naturally adapted to hot, desert climates where water is scarce<br>";
 
-races[52] = {}; //  extended core material/ makers of the independent machine state
+races[52] = {}; // aetherspace
 races[52].name = randomize("Automata, Living Construct, Modron, Aeon");
 races[52].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[52].abilities = "Strength, Constitution +1";
@@ -1336,9 +1336,9 @@ races[52].size = "Medium";
 races[52].type = "humanoid (construct)";
 races[52].speed = "30 feet";
 races[52].senses = "";
-races[52].traits = LivingConstruct() + ImmunityDisease() + Trance() + "<b>Artificer</b> You have advantage on alchemy or technology related rolls. You know the Mend cantrip<br>";
+races[52].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Artificer</b> You know the Mend cantrip. You have advantage on alchemy or technology related rolls<br>";
 
-races[53] = {}; // eextended core material
+races[53] = {}; // aetherspace
 races[53].name = randomize("Simian, Awakened Ape, Forestfolk");
 races[53].languages = "Common";
 races[53].abilities = "Strength +2, Dexterity +1";
@@ -1346,49 +1346,49 @@ races[53].size = "Medium";
 races[53].type = "humanoid";
 races[53].speed = "30 feet, climb 30 feet";
 races[53].senses = "";
-races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Sneaky</b> You have proficiency with the Stealth skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
+races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Climb</b> You have proficiency with the Athletics skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
 
-races[54] = {}; // extended race material
-races[54].name = randomize("Rook, Ravenfolk");
-races[54].languages = "Common, Primordial, Auran";
-races[54].abilities = "Dexterity +2, Wisdom +1";
-races[54].size = "Medium";
-races[54].type = "humanoid (monstrous)";
-races[54].speed = "25 feet, fly 50 feet";
+races[54] = {}; // goblins
+races[54].name = randomize("Meenlock, Aberrant, Goblin");
+races[54].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[54].abilities = "Strength, Constitution +1";
+races[54].size = "Small";
+races[54].type = "humanoid (goblin, aberrant)";
+races[54].speed = "25 feet";
 races[54].senses = "";
-races[54].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
+races[54].traits = Darkvision() + Aberrant() + "<b>Delusions</b> You know the <i>Minor Illusion</i> cantrip<br><b>Poison Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus <i>sleep</i> poison<br>";
 
-races[55] = {}; // extended race material
-races[55].name = randomize("Nimblewright, Living Construct, Modron, Aeon");
-races[55].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[55].abilities = "Dexterity, Constitution +1";
+races[55] = {}; // goblins
+races[55].name = randomize("Norker, Goblin");
+races[55].languages = "Common, Goblin";
+races[55].abilities = "Constitution +2, Strength +1";
 races[55].size = "Medium";
-races[55].type = "humanoid (construct)";
+races[55].type = "humanoid (goblin)";
 races[55].speed = "30 feet";
-races[55].senses = "";
-races[55].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Rapier Hands</b> You fight with two rapiers that are actually parts of your body. These rapiers are treated as natural weapons. When not in use, the weapons fold into your forearm and you can use your hands normally. You can fully deploy both rapiers as a free action<br><b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a human<br>";
+races[55].senses = "darkvision 60 feet, ";
+races[55].traits = Darkvision() + Armored("Tough Hide") + MartialAdvantage();
 
-races[56] = {}; // extended race material
-races[56].name = randomize("Darkspawn, Aberrant");
-races[56].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[56].abilities = "Strength, Constitution +1";
+races[56] = {}; // aetherspace
+races[56].name = randomize("Yazarian, Hadozee");
+races[56].languages = "Common";
+races[56].abilities = "Strength +2, Dexterity +1";
 races[56].size = "Medium";
-races[56].type = "humanoid (aberrant)";
-races[56].speed = "30 feet";
+races[56].type = "humanoid (supernal)";
+races[56].speed = "30 feet, climb 30 feet, glide 40 feet";
 races[56].senses = "";
-races[56].traits = Darkvision() + Aberrant() + AberrantAppetite() + ArmorTraining();
+races[56].traits = Keen("Keen Scent", "smell") + "<b>Glide</b> Membranes between your arms and torso allow you to glide at a speed of 40 feet per round (5 feet of altitude are lost every 20 feet). You can use your gliding ability to negate falling damage if your arms are unrestrained<br><b>Extra Manipulators</b> You have very dexterous feet which can function as an alternate pair of hands. They can even use their big toes as opposable thumbs<br>";
 
-races[57] = {}; // extended race material
-races[57].name = "Thri-kreen";
-races[57].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[57].abilities = "Dexterity, Wisdom +1";
-races[57].size = "Medium";
-races[57].type = "humanoid (monstrous)";
-races[57].speed = "30 feet";
+races[57] = {}; // MM
+races[57].name = randomize("Kobold, Drake, Dragonkin");
+races[57].languages = "Common, Draconic";
+races[57].abilities = "Strength +2, Constitution +1";
+races[57].size = "Small";
+races[57].type = "humanoid (supernal)";
+races[57].speed = "25 feet";
 races[57].senses = "";
-races[57].traits = Armored("Exoskeleton") + "<b>Clawed Limbs</b> Unlike humanoid creatures, thri-kreen have four sets of clawed upper limbs. They can wield two additional one-handed weapons, or one additional two-handed weapon. As a bonus action during their turn, they can make one additional unarmed strike for 1d4 damage or one additional attack with a Thri-keen racial weapons. They cannot use these extra arms to wear extra rings, due to the properties of these magical items, nor can they grapple with them or use them to wear shields, due to their reduced size<br><b>Gytka</b> Thri-kreen racial weapon. One handed, three-bladed weapon used for punching or throwing.  It deals 1d6 slashing damage and has a range of 60/120<br><b>Chatka</b> Thri-kreen racial weapon. Twin bladed polearm weapon which deals 1d10 slashing damage and has reach 5<br>" + Trance("Torpor") + Leap() + "<b>Desert Adapted</b> You do not need to drink water. You get everything you need from the food that you eat<br>";
+races[57].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b>You are a skilled miner<br>";
 
-races[58] = {}; // extended race material
+races[58] = {}; // deathless
 races[58].name = randomize("Deathless, Vaettir, Wight");
 races[58].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[58].abilities = "Strength, Constitution +1";
@@ -1398,17 +1398,17 @@ races[58].speed = "30 feet";
 races[58].senses = "darkvision 60 feet, ";
 races[58].traits = Darkvision() + Deathless() + ImmunityDisease();
 
-races[59] = {}; // extended race material
-races[59].name = randomize("Cambion, Alu-Fiend, Fiend");
+races[59] = {}; // fiend
+races[59].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
 races[59].languages = "Common, Fiendish";
 races[59].abilities = "Charisma +2, Intelligence +1";
 races[59].size = "Medium";
 races[59].type = "humanoid (fiend)";
 races[59].speed = "30 feet";
 races[59].senses = "darkvision 60 feet, ";
-races[59].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Thaumaturgy", "Charm Person", "Suggestion", "Constitution");
+races[59].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
 
-races[60] = {}; // extended race material
+races[60] = {}; // core race / minotaur
 races[60].name = randomize("Minotaur, Asterion");
 races[60].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[60].abilities = "Strength +2";
@@ -1418,7 +1418,7 @@ races[60].speed = "30 feet";
 races[60].senses = "";
 races[60].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Mountain Born</b> You are acclimated to high altitude, including elevations above 20,000 feet. You are also naturally adapted to cold climates<br>";
 
-races[61] = {}; // extended core material
+races[61] = {}; // shadow / eladrin
 races[61].name = "Shadar-kai";
 races[61].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[61].abilities = "Dexterity +2, Charisma +1";
@@ -1426,9 +1426,9 @@ races[61].size = "Medium";
 races[61].type = "humanoid (shadow)";
 races[61].speed = "30 feet";
 races[61].senses = "darkvision 60 feet, ";
-races[61].traits = Darkvision() + FeyAncestry("Shadow Ancestry") + ShadowFade() + "<b>Shadow Step</b> You may cast Misty Step once per rest<br>";
+races[61].traits = Darkvision() + ShadowFade() + "<b>Shadow Step</b> You may cast Misty Step once per rest<br>";
 
-races[62] = {}; // extended core material
+races[62] = {}; // shadow / drow
 races[62].name = "Shadar-zo";
 races[62].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[62].abilities = "Dexterity +2, Charisma +1";
@@ -1436,9 +1436,9 @@ races[62].size = "Medium";
 races[62].type = "humanoid (shadow)";
 races[62].speed = "30 feet";
 races[62].senses = "120 feet";
-races[62].traits = DarkvisionSuperior() + FeyAncestry("Shadow Ancestry") + ShadowFade() + Spells135("Shadow Magic", "Minor Illusion", "Disguise Self", "Darkness", "Constitution") + SunlightSensitivity();
+races[62].traits = DarkvisionSuperior() + ShadowFade() + Spells135("Shadow Magic", "Minor Illusion", "Disguise Self", "Darkness", "Constitution") + SunlightSensitivity();
 
-races[63] = {}; // extended core material
+races[63] = {}; // giant
 races[63].name = randomize("Trollkin, Trow, Trollir, Troll");
 races[63].languages = "Common, Giant";
 races[63].abilities = "Strength +2, Constitution +1";
@@ -1448,7 +1448,7 @@ races[63].speed = "30 feet";
 races[63].senses = "";
 races[63].traits = HealSelf("Regeneration") + Resilient() + Keen("Scent", "smell");
 
-races[64] = {}; // extended core material
+races[64] = {}; // giant
 races[64].name = "Firbolg";
 races[64].languages = "Common, Giant";
 races[64].abilities = "Strength +2, Constitution +1";
@@ -1458,17 +1458,17 @@ races[64].speed = "30 feet";
 races[64].senses = "";
 races[64].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Walk among them</b> You can shrink to standard human size or return to your natural size as a standard action. Death or unconsciousness return you to your default size. Firbolgs often consort with and live among humans, and prefer to keep their natures a secret<br>";
 
-races[65] = {}; // extended core material
-races[65].name = randomize("Modron, Living Construct, Aeon");
+races[65] = {}; // shadow / deathless
+races[65].name = randomize("Shade, Shadow");
 races[65].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[65].abilities = "Strength, Consitution +1";
+races[65].abilities = "Strength, Constitution +1";
 races[65].size = "Medium";
-races[65].type = "humanoid (construct)";
+races[65].type = "humanoid (shadow)";
 races[65].speed = "30 feet";
-races[65].senses = "";
-races[65].traits = LivingConstruct() + ImmunityDisease() + Repletion() +  "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
+races[65].senses = "darkvision 60 feet, ";
+races[65].traits = Darkvision() + Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
 
-races[66] = {}; // extended core material
+races[66] = {}; // aetherspace
 races[66].name = randomize("Gith");
 races[66].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[66].abilities = "Wisdom +2, Intelligence +1";
@@ -1476,9 +1476,9 @@ races[66].size = "Medium";
 races[66].type = "humanoid (supernal)";
 races[66].speed = "30 feet";
 races[66].senses = "darkvision 60 feet, ";
-races[66].traits = Darkvision() + Psychic() + Spells135("Psychic Powers", "Mage Hand", "Charm Person", "Levitate", "Constitution");
+races[66].traits = Darkvision() + Psychic() + Spells135("Psychic Powers", "Mage Hand", "Unseen Servant", "Levitate", "Constitution");
 
-races[67] = {}; // extended core material
+races[67] = {}; // aetherspace
 races[67].name = "Elan";
 races[67].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[67].abilities = "Strength, Constitution +1";
@@ -1486,19 +1486,19 @@ races[67].size = "Medium";
 races[67].type = "humanoid (psychic)";
 races[67].speed = "30 feet";
 races[67].senses = "";
-races[67].traits = Immortal() + Psychic() + Repletion(); //"<b>Repletion</b> Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal. Meditating in this way psychically satisfies your need for eat or drink<br>";
+races[67].traits = Immortal() + Psychic() + Repletion();
 
-races[68] = {}; // extended core material
-races[68].name = randomize("Aberrant, Deepspawn");
-races[68].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[68].abilities = "Strength, Constitution +1";
+races[68] = {}; // aetherspace / plant
+races[68].name = randomize("Supox");
+races[68].languages = "Common, Supernal";
+races[68].abilities = "Constitution +2, Wisdom +1";
 races[68].size = "Medium";
-races[68].type = "humanoid (aberrant)";
-races[68].speed = "30 feet, swim 30 feet";
+races[68].type = "humanoid (plant)";
+races[68].speed = "30 feet";
 races[68].senses = "";
-races[68].traits = Amphibious() + Aberrant() + "<b>Aberrant Appetite</b> You can ingest any bite sized material and gain sustenance from it<br>" + Bite();
+races[68].traits = HumanoidPlant() + HealSelf("Regrowth") + "<b>Berries</b> Once per day, you can cast <i>Goodberry</i><br>";
 
-races[69] = {}; // extended core race
+races[69] = {}; // aetherspace
 races[69].name = randomize("Blemmyes, Akephaloi, Anthropophage");
 races[69].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[69].abilities = "Two abilities of your choice +1";
@@ -1508,28 +1508,28 @@ races[69].speed = "30 feet";
 races[69].senses = "";
 races[69].traits = Keen("Keen Scent", "smell");
 
-races[70] = {};
-races[70].name = randomize("Ancient, Eldar, Empyrean, Demigod");
-races[70].languages = "Common, Supernal "
-races[70].abilities = "Strength +2, Constitution +1";
+races[70] = {}; // goblin core / Hobgoblin/Worg battle hybrid
+races[70].name = randomize("Varag, Goblin");
+races[70].languages = "Goblin";
+races[70].abilities = "Constitution +2, Strength +1";
 races[70].size = "Medium";
-races[70].type = "humanoid (supernal)";
+races[70].type = "humanoid (goblin)";
 races[70].speed = "30 feet";
-races[70].senses = "";
-races[70].traits = Immortal() + Sustained() + "<b>Magic Weapons</b> Your weapons are treated as magical weapons for purposes of dealing damage<br><b>Magic Resistance</b> You have advantage on saving throws against spells and magical effects<br>";
+races[70].senses = "darkvision 60 feet, ";
+races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite();
 
-races[71] = {};
-races[71].name = randomize("Angel, Seraphim, Elohim");
-races[71].languages = "Common, Celestial, "+ languages[Math.floor(Math.random()*languages.length)];
-races[71].abilities = "Dexterity +2, Wisdom +1";
+races[71] = {}; // aetherspace / plant / Juffa-Wup, Non, Void.
+races[71].name = randomize("Myconid, Mycon");
+races[71].languages = "Common, Undercommon, " + languages[Math.floor(Math.random()*languages.length)];
+races[71].abilities = "Wisdom +2, Constitution +1";
 races[71].size = "Medium";
-races[71].type = "humanoid (celestial)";
-races[71].speed = "25 feet, fly 50 feet";
+races[71].type = "humanoid (plant)";
+races[71].speed = "30 feet";
 races[71].senses = "";
-races[71].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Celestial Weaponry</b> You may use an action to summon a holy melee weapon that you are proficient with. Treat this weapon as magical for purposes of overcoming resistances<br>";
+races[71].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br><b>Stun spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>";
 
-races[72] = {};
-races[72].name = "Centaur"; //
+races[72] = {}; // fae
+races[72].name = "Centaur";
 races[72].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[72].abilities = "Strength, Constitution +1";
 races[72].size = "Medium";
@@ -1538,7 +1538,7 @@ races[72].speed = "40 feet";
 races[72].senses = "";
 races[72].traits = "<b>Quadruped</b> +10 base land speed, advantage against tripping<br><b>Fey Ancestry</b> Advantage against charm and magic saving throws. You can not be put to sleep<br><b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
 
-races[73] = {}; // goblin core
+races[73] = {}; // goblin
 races[73].name = randomize("Mossgob, Jungle Goblin, Goblin");
 races[73].languages = "Common, Goblin";
 races[73].abilities = "Dexterity +2, Wisdom +1";
@@ -1548,7 +1548,7 @@ races[73].speed = "30 feet";
 races[73].senses = "darkvision 60 feet, ";
 races[73].traits = Darkvision() + "<b>Greenskin Cavalry</b> You gain proficiency with riding wolves into combat<br>" + NimbleEscape() + "<b>Greenskin Weapon Training</b> You have proficiency with pike and net<br>";
 
-races[74] = {}; // goblin core
+races[74] = {}; // goblin
 races[74].name = randomize("Boggart, Goblin");
 races[74].languages = "Common, Goblin";
 races[74].abilities = "Dexterity +2, Wisdom +1";
@@ -1556,9 +1556,9 @@ races[74].size = "Small";
 races[74].type = "humanoid (goblin)";
 races[74].speed = "30 feet";
 races[74].senses = "darkvision 60 feet, ";
-races[74].traits = Darkvision() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br><b>Swamp Resilience</b> You have advantage on saving throws against poison, and you have resistance against poison damage<br>" + NimbleEscape() + "<b>Swamp Combat Training</b> You have proficiency with blowgun and net<br>";
+races[74].traits = Darkvision() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>" + NimbleEscape() + "<b>Swamp Combat Training</b> You have proficiency with blowgun and net<br>";
 
-races[75] = {}; // goblin core
+races[75] = {}; // goblin
 races[75].name = randomize("Gremlin, Goblin");
 races[75].languages = "Common, Goblin";
 races[75].abilities = "Dexterity +2, Wisdom +1";
@@ -1568,17 +1568,17 @@ races[75].speed = "30 feet";
 races[75].senses = "darkvision 60 feet, ";
 races[75].traits = Darkvision() + ResistDamageFire("Shielded Coat") + "<b>Goblin Alchemy</b> You have proficiency with goblin alchemy tools. Using these tools you can spend 1 hour and 10 gp worth of materials to construct a Tiny alchemical item (AC 5, 1 hp). You can create a smoke bomb, a fire starter, or a tanglebomb<br>";
 
-races[76] = {}; // darksun core
-races[76].name = randomize("Ancient, Eldar, Old One, Kalashtar, Psion, Psychic");
+races[76] = {}; // aetherspace
+races[76].name = randomize("Ancient, Eldar, Kalashtar");
 races[76].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[76].abilities = "Intelligence +2, Wisdom +1";
 races[76].size = "Medium";
-races[76].type = "humanoid (psychic)";
+races[76].type = "humanoid (psychic, supernal)";
 races[76].speed = "30 feet";
 races[76].senses = "";
 races[76].traits = Telepathy() + Psychic() + Telekinesis();
 
-races[77] = {};// goblin core
+races[77] = {}; // goblin
 races[77].name = randomize("Bugbear, Goblin");
 races[77].languages = "Common, Goblin";
 races[77].abilities = "Strength +2, Dexterity +1";
@@ -1588,7 +1588,7 @@ races[77].speed = "30 feet";
 races[77].senses = "darkvision 60 feet, ";
 races[77].traits = Darkvision() + "<b>Brute</b> A melee weapon deals one extra die of its damage when bugbear hits with it once per round<br><b>Surprise Attack</b> If the bugbear surprises a creature and hits it with an attack during the first round of combat, the bugbear has advantage on the damage roll for that attack<br>";
 
-races[78] = {}; // aetherspace core
+races[78] = {}; // aetherspace
 races[78].name = randomize("Giff, Thraddash");
 races[78].languages = "Common, Undercommon, Gith";
 races[78].abilities = "Strength +2, Constitution +1";
@@ -1596,9 +1596,9 @@ races[78].size = "Medium";
 races[78].type = "humanoid (supernal)";
 races[78].speed = "30 feet";
 races[78].senses = "";
-races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon if necessary, given enough time and materials. It takes two rounds to load. When fired, it does 1d10 piercing damage in a 15 foot cone. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Powerful() + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
+races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
 
-races[79] = {}; // Star Frontiers // Alien Insect Centaur
+races[79] = {}; // aetherspace / Alien Insect Centaur
 races[79].name = randomize("Vrusk");
 races[79].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[79].abilities = "Intelligence, Wisdom +1";
@@ -1608,7 +1608,7 @@ races[79].speed = "30 feet, Climb 30 feet";
 races[79].senses = "";
 races[79].traits = "<b>Contemplative</b> You are a master of intuitive, pattern-oriented leaps of logic. Once per rest, you may attempt a Concentration check to realize an important fact<br>" + Darkvision("Compound Eyes") + "<b>Insectaur</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check. You can climb 30 feet per round<br><b>Antennae</b> Advantage on Perception(Wisdom) rolls that rely on smell<br>";
 
-races[80] = {}; // aetherspace core
+races[80] = {}; // aetherspace
 races[80].name = randomize("Vanir, Empyrean, Demigod");
 races[80].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[80].abilities = "Strength, Constitution +1";
@@ -1618,7 +1618,7 @@ races[80].speed = "30 feet";
 races[80].senses = "";
 races[80].traits = Immortal() + Sustained() + "<b>Vanir Weapon Training</b> Longsword, Longbow<br>";
 
-races[81] = {}; // aetherspace core
+races[81] = {}; // aetherspace
 races[81].name = randomize("Aesir, Empyrean, Demigod");
 races[81].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[81].abilities = "Strength, Constitution +1";
@@ -1628,7 +1628,7 @@ races[81].speed = "30 feet";
 races[81].senses = "";
 races[81].traits = Immortal() + Sustained() + "<b>Aesir Weapon Training</b> Greataxe, Greatspear <br>";
 
-races[82] = {}; // extended core
+races[82] = {}; // aetherspace
 races[82].name = randomize("Abatwa, Liliputian");
 races[82].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[82].abilities = "Two abilities of your choice +1";
@@ -1638,7 +1638,7 @@ races[82].speed = "30 feet";
 races[82].senses = "";
 races[82].traits = BonusSkill() + BonusFeat();
 
-races[83] = {}; // extended core race
+races[83] = {}; // fae
 races[83].name = randomize("Pixie, Fae");
 races[83].languages = "Common, Elvish, Pixie";
 races[83].abilities = "Charisma +2, Intelligence +1";
@@ -1648,17 +1648,17 @@ races[83].speed = "20 feet, fly 30 feet";
 races[83].senses = "darkvision 60 feet, ";
 races[83].traits = FlightWings() + Darkvision() + Cantrip("Pixie Magic", "Minor Illusion", "Charisma") + "<b>Pixie Weaponry</b> Ancient fae magic empowers your tiny weapons. All tiny-size Pixie weapons do 1d4 points of damage to targets small and larger, but standard die-type damage to Tiny (and smaller) size targets<br>";
 
-races[84] = {}; // extended core race
-races[84].name = randomize("Kenku");
-races[84].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
-races[84].abilities = "Charisma +2, Intelligence +1";
-races[84].size = "Small";
-races[84].type = "humanoid (monstrous)";
+races[84] = {}; // aetherspace
+races[84].name = randomize("Dromite, Ancient, Eldar");
+races[84].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[84].abilities = "Strength, Constitution +1";
+races[84].size = randomize("Small, Medium");
+races[84].type = "humanoid";
 races[84].speed = "25 feet";
-races[84].senses = "darkvision 60 feet, ";
-races[84].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Deceptive", "Deception") + ShadowFade();
+races[84].senses = "";
+races[84].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases whn you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
 
-races[85] = {}; // extended core
+races[85] = {}; // aetherspace
 races[85].name = randomize("Pygmy, Tcho-Tcho, Tellem");
 races[85].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[85].abilities = "Two abilities of your choice +1";
@@ -1668,10 +1668,18 @@ races[85].speed = "30 feet";
 races[85].senses = "";
 races[85].traits = BonusSkill() + BonusFeat();
 
-///---///
+races[86] = {}; // aetherspace
+races[86].name = randomize("Ancient, Eldar, Kalashtar");
+races[86].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[86].abilities = "Strength, Constitution +1";
+races[86].size = "Medium";
+races[86].type = "humanoid (psychic, supernal)";
+races[86].speed = "30 feet";
+races[86].senses = "";
+races[86].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once per rest<br>";
 
-races[87] = {};  // extended core race
-races[87].name = randomize("Lizardfolk Warrior, Lizardfolk, Sarrukh");
+races[87] = {};  // MM
+races[87].name = "Lizardfolk";
 races[87].languages = "Common, Lizardfolk";
 races[87].abilities = "Constitution +1, Strength +1";
 races[87].size = "Medium";
@@ -1680,67 +1688,67 @@ races[87].speed = "30 feet";
 races[87].senses = "";
 races[87].traits = HoldBreath() + Camouflage() + Bite() + "<b>Grab</b> When the target is surprised, you have advantage on grapple checks<br>";
 
-races[88] = {}; // aberrant
-races[88].name = randomize("Farspawn, Illithid, Neothelid, Nidarian, Aberrant");
-races[88].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[88].abilities = "Strength, Constitution +1";
+races[88] = {}; // drake
+races[88].name = randomize("Shadow Dragonborn, Shadow Drake, Shadow Dragonkin, Drake, Dragonborn, Dragonkin");
+races[88].languages = "Common, Draconic";
+races[88].abilities = "Strength +2, Charisma +1";
 races[88].size = "Medium";
-races[88].type = "humanoid (aberrant)";
+races[88].type = "humanoid (shadow)";
 races[88].speed = "30 feet";
 races[88].senses = "";
-races[88].traits = Aberrant() + Telepathy() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone in front of you. You can do this once in between every per rest<br>";
+races[88].traits = "<b>Dragon Ancestry</b> Shadow<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of necrosis once per rest<br><b>Shadowborn</b> You have resistance to necrotic damage<br>";
 
-races[89] = {}; // aberrant
-races[89].name = randomize("Dolgaunt, Aberrant");
-races[89].languages = "Common, Undercommon";
-races[89].abilities = "Strength, Constitution +1";
+races[89] = {}; // giant
+races[89].name = randomize("Laskarim, Halforc, Orc, Ork, Reaver, Orog, Scro, Ruk, Druuge");
+races[89].languages = "Common, Giant";
+races[89].abilities = "Strength +2, Constitution +1";
 races[89].size = "Medium";
-races[89].type = "humanoid (aberrant)";
+races[89].type = "humanoid (giant)";
 races[89].speed = "30 feet";
-races[89].senses = "";
-races[89].traits = Blindsight() + Aberrant() + "<b>Tentacles</b> Two long, whiplike tentacles extend from your shoulder blades. You may use tentacles for fine manipulation, as you would a hand. As a bonus action, you can use them to make one unarmed strike up to 5 feet away for 1d4 damage<br>";
+races[89].senses = "darkvision 60 feet, ";
+races[89].traits = Darkvision() + "<b>Sea Reaver</b> Proficiency with navigator's tools and waterborne vehicles<br>" + Resilient() + BonusCriticalDamage();
 
-races[90] = {}; // aberrant
-races[90].name = randomize("Aberrant, Deepspawn, Grell");
-races[90].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[90].abilities = "Strength, Constitution +1";
+races[90] = {}; // giant
+races[90].name = randomize("Giantkin, Halfgiant, Ogrekin, Halfogre, Ogrillion");
+races[90].languages = "Common, Giant";
+races[90].abilities = "Strength +2, Constitution +1";
 races[90].size = "Medium";
-races[90].type = "humanoid (aberrant)";
-races[90].speed = "30 feet, swim 30 feet";
+races[90].type = "humanoid (giant)";
+races[90].speed = "30 feet";
 races[90].senses = "";
-races[90].traits = Amphibious() + Aberrant() + Tentacles();
+races[90].traits = Skill("Athletic", "athletics") + Toughness("Tough") + Powerful() + BonusCriticalDamage("Strong");
 
-races[91] = {}; // jinn
-races[91].name = randomize("Jann, Jinn, Demigod, Empyrean, Elemental");
-races[91].languages = "Common, Primordial";
-races[91].abilities = "Charisma +2, Intelligence +1";
+races[91] = {}; // aetherspace
+races[91].name = randomize("Mercane, Melnorme, Mael-Num");
+races[91].languages = "Common, Supernal "
+races[91].abilities = "Intelligence +1, Constitution +1";
 races[91].size = "Medium";
-races[91].type = "humanoid (elemental)";
-races[91].speed = "25 feet, fly 50 feet";
+races[91].type = "humanoid (supernal)";
+races[91].speed = "30 feet";
 races[91].senses = "";
-races[91].traits = Immortal() + Flight() + "<b>Genie Magic</b> You know the Minor Illusion cantrip";
+races[91].traits = "<b>Personal Space</b> Once per day, you may enter a personal demiplane accessible only by you and the items you are carrying. It is large enough to hold up to 8 medium sized creatures. Attacks and spells can not cross through the entrance into or out of the extradimensional space, but you can see out as if through a 3 foot by 5 foot window centered on the point of entry. You may remain inside as long as you desire. The space persists in your absence and items left behind remain there<br><b>Recall</b> You may use an action to summon a hand-held item stored in your personal space<br>";
 
-races[92] = {}; // immortal
-races[92].name = randomize("Archon, Empyrean, Demigod");
-races[92].languages = "Common, Celestial, "+ languages[Math.floor(Math.random()*languages.length)];
+races[92] = {}; // aetherspace / Plant
+races[92].name = randomize("Briarborn, Bloodvine, Trapper, Lasher, Wildvine, Triffid");
+races[92].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[92].abilities = "Dexterity +2, Wisdom +1";
 races[92].size = "Medium";
-races[92].type = "humanoid (celestial)";
-races[92].speed = "30 feet";
+races[92].type = "humanoid (plant)";
+races[92].speed = "30 feet, climb 30 feet";
 races[92].senses = "";
-races[92].traits = Immortal() + Repletion() + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br><b>Celestial Weaponry</b> You may use an action to summon a holy melee weapon that you are proficient with. Treat this weapon as magical for purposes of overcoming resistances<br>";
+races[92].traits = HumanoidPlant() + Cantrip("Thorn Whip", "Thorn Whip", "Constitution") + Armored("Bark") + Camouflage();
 
-races[93] = {};
-races[93].name = randomize("Avariel, Sky Elf, Fae");
-races[93].languages = "Common, Elvish";
-races[93].abilities = "Charisma +2, Intelligence +1";
-races[93].size = randomize("Small, Medium");
-races[93].type = "humanoid (fey)";
-races[93].speed = "25 feet, fly 50 feet";
-races[93].senses = "darkvision 60 feet, ";
-races[93].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br>" + Darkvision() + Trance();
+races[93] = {}; // aetherspace
+races[93].name = randomize("Dralasite");
+races[93].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[93].abilities = "Strength, Constitution +1";
+races[93].size = "Medium";
+races[93].type = "supernal";
+races[93].speed = "25 feet";
+races[93].senses = "";
+races[93].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b>A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
 
-races[94] = {}; // extended core
+races[94] = {}; // aetherspace
 races[94].name = randomize("Spiderfolk, Ilwrath, Ettercap");
 races[94].languages = "Common, "+ languages[Math.floor(Math.random()*languages.length)];
 races[94].abilities = "Dexterity+2, Constitution +1";
@@ -1750,37 +1758,37 @@ races[94].speed = "25 feet, climb 30 feet";
 races[94].senses = "Websense 60 feet, ";
 races[94].traits = Darkvision() +  "<b>Spider Climb</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check<br><b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus save or become poisoned<br>";
 
-races[95] = {}; // Construct
-races[95].name = randomize("Warforged Archer, Warforged, Living Construct, Modron, Aeon");
-races[95].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[95].abilities = "Strength, Constitution +1";
+races[95] = {}; // aetherspace
+races[95].name = randomize("Grimlock, Aberrant");
+races[95].languages = "Undercommon";
+races[95].abilities = "Wisdom, Dexterity +1";
 races[95].size = "Medium";
-races[95].type = "humanoid (construct)";
-races[95].speed = "30 feet";
-races[95].senses = "";
-races[95].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Archer</b> You are proficient with Longbows, Shortbows, and Crossbows<br>";
+races[95].type = "humanoid (aberrant)";
+races[95].speed = "40 feet";
+races[95].senses = "Blindsight 30 feet, ";
+races[95].traits = Blindsight() + Keen("Hearing and Scent", "hearing and smell") + StoneCamouflage();
 
-races[96] = {};
-races[96].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
+races[96] = {}; // plant
+races[96].name = randomize("Mandrake", "Sylvan", "Arboreal");
 races[96].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[96].abilities = "Strength, Dexterity +1";
-races[96].size = randomize("Small, Medium");
-races[96].type = "humanoid (monstrous)";
-races[96].speed = randomize("25 feet, 30 feet");
+races[96].abilities = "Dexterity +2, Wisdom +1";
+races[96].size = "Medium";
+races[96].type = "humanoid (plant)";
+races[96].speed = "30 feet, climb 30 feet";
 races[96].senses = "";
-races[96].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
+races[96].traits = HumanoidPlant() + ResiliencePoison() + "<b>Poisonous Blood</b> Mandrake blood is poisonous. Any creature that scores a bite attack on the mandrake must save to avoid becoming poisoned<br>";
 
-races[97] = {}; // Construct
-races[97].name = randomize("Warforged Tactician, Warforged, Living Construct, Modron, Aeon");
-races[97].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[97].abilities = "Strength, Constitution +1";
-races[97].size = "Medium";
-races[97].type = "humanoid (construct)";
-races[97].speed = "30 feet";
-races[97].senses = "";
-races[97].traits = LivingConstruct() + ImmunityDisease() + Repletion() + Cantrip("Tactics", "Guidance", "Intelligence");
+races[97] = {}; // fae
+races[97].name = randomize("House Hob, Hob, Fae");
+races[97].languages = "Common, Gnomish";
+races[97].abilities = "Strength, Charisma scores +1";
+races[97].size = "Tiny";
+races[97].type = "humanoid (fey)";
+races[97].speed = "20 feet"; // fly 30 while carried by a mage hand
+races[97].senses = "darkvision 60 feet, ";
+races[97].traits = Darkvision() + Cunning() + "<b>Fae Magic</b> You know the Minor Illusion and Mage Hand cantrips<br>";
 
-races[98] = {};
+races[98] = {}; // goblins
 races[98].name = "Barghest";
 races[98].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[98].abilities = "Strength, Constitution +1";
@@ -1790,7 +1798,7 @@ races[98].speed = "30 feet";
 races[98].senses = "";
 races[98].traits = NaturalWeapons() + "<b>Shapeshifter</b> A Barghest can assume the shape of a Goblin, Wolf, or Barghest as a standard action. In Goblin form, a Barghest cannot use its natural weapons but can wield weapons and wear armor. In Wolf form, a Barghest loses its claw attacks but gains movement 40 feet. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>";
 
-races[99] = {};
+races[99] = {}; // minotaur
 races[99].name = randomize("Marinotaur, Minotaur, Asterion");
 races[99].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[99].abilities = "Strength +1, Intelligence +1";
@@ -1800,7 +1808,7 @@ races[99].speed = "30 feet";
 races[99].senses = "";
 races[99].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Sea Reaver</b> Proficiency with navigator's tools and waterborne vehicles<br>";
 
-races[100] = {};
+races[100] = {}; // minotaur
 races[100].name = randomize("Yakman, Minotaur, Asterion");
 races[100].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[100].abilities = "Strength +1, Wisdom +1";
@@ -1810,7 +1818,7 @@ races[100].speed = "30 feet";
 races[100].senses = "";
 races[100].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Geomancy</b> You know the Druidcraft cantrip<br>";
 
-races[101] = {};
+races[101] = {}; // aetherspace
 races[101].name = "Einherjar";
 races[101].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[101].abilities = "Strength, Constitution +1";
@@ -1820,7 +1828,7 @@ races[101].speed = "30 feet";
 races[101].senses = "darkvision 60 feet, ";
 races[101].traits = Deathless() + "<b>Weapon Training</b> Greataxe, Greatspear<br>";
 
-races[102] = {};
+races[102] = {}; // aetherspace
 races[102].name = "Hrimthur";
 races[102].languages = "Common, Dwarven, Ignan";
 races[102].abilities = "Constitution +2, Strength +1";
@@ -1828,9 +1836,9 @@ races[102].size = "Medium";
 races[102].type = "humanoid (elemental)";
 races[102].speed = "25 feet";
 races[102].senses = "darkvision 60 feet, ";
-races[102].traits = "<b>Freezing Aura</b> Anyone that touches an Azer or strikes it with a physical attack takes 1d10 points of cold damage<br><b>Frozen Weapon</b> Attacks with natural or metal weapons do 1d6 bonus cold damage<br>";
+races[102].traits = "<b>Freezing Aura</b> Anyone that touches an Azer or strikes it with a physical attack takes 1d4 points of cold damage<br><b>Frozen Weapon</b> Attacks with natural or metal weapons do 1d6 bonus cold damage<br>";
 
-races[103] = {}; // Spelljammer Dragon Centaur
+races[103] = {}; // aetherspace / Dragon Centaur
 races[103].name = randomize("Dracon, Saurian");
 races[103].languages = "Common, Draconic, Supernal";
 races[103].abilities = "Strength, Constitution +1";
@@ -1840,525 +1848,40 @@ races[103].speed = "40 feet";
 races[103].senses = "";
 races[103].traits = Darkvision() + "<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>" + Armored() + Talons();
 
-races[104] = {};
-races[104].name = randomize("Baedwegalfar, Sea Elf, Merfolk, Triton, Atlantean, Lemurian Elf, Fae");
-races[104].languages = "Common, Elven";
-races[104].abilities = "Dexterity +2, Wisdom +1";
+races[104] = {}; // aetherspace
+races[104].name = randomize("Daelkyr, Demigod, Aberrant");
+races[104].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[104].abilities = "Strength, Constitution +1";
 races[104].size = "Medium";
-races[104].type = "humanoid (fey)";
-races[104].speed = "30 feet, swim 40 feet";
-races[104].senses = "darkvision 60 feet, ";
-races[104].traits = Amphibious() + Darkvision() + Skill("Keen Senses", "perception") + FeyAncestry() + Trance() + "<b>Weapon training</b> You have proficiency with pike, net, and harpoon<br>";
+races[104].type = "humanoid (aberrant)";
+races[104].speed = "30 feet";
+races[104].senses = "";
+races[104].traits = Immortal() + Repletion() + Aberrant() + "<b>Xoriat Nobility</b> All aberrations are biologically programmed not to attack you unless you attack first<br>" + SunlightSensitivity();
 
-races[105] = {};
-races[105].name = randomize("Malkin, Leonine, Ailuran");
+races[105] = {}; // fae
+races[105].name = randomize("Bariaur, Cloven, Fey");
 races[105].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[105].abilities = "Dexterity +2, Wisdom +1";
+races[105].abilities = "Strength, Constitution +1";
 races[105].size = "Medium";
-races[105].type = "humanoid (shapeshifter)";
-races[105].speed = "30 feet, climb 30 feet";
+races[105].type = "humanoid (fey)";
+races[105].speed = "40 feet";
 races[105].senses = "";
-races[105].traits = Darkvision() + "<b>Shapeshift</b> You can assume the shape of an Alleycat or your default shape as a standard action. In Cat form, your bite and claw attacks do 1 point of damage, your size changes to Tiny, and your base land speed increases to 40. Any equipment you are wearing or carrying isn't transformed when you change. You revert to your true form if you become unconscious or die<br>" + NaturalWeapons();
+races[105].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
 
-races[106] = {};
-races[106].name = randomize("Grim, Wolfen");
-races[106].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[106].abilities = "Wisdom +2, Dexterity +1";
-races[106].size = "Medium";
-races[106].type = "humanoid (shapeshifter)";
-races[106].speed = "30 feet";
-races[106].senses = "";
-races[106].traits = Keen("Hearing and Scent", "hearing and smell") + "<b>Shapeshift</b> You can assume the shape of a Wolf or your default shape as a standard action. In wolf form, you gain a move speed of 40. Any equipment you are wearing or carrying is not transformed. You revert to your true form if you become unconscious or if you die<br>" + MartialAdvantage("Pack Tactics") + Bite();
 
-races[107] = {};
-races[107].name = randomize("Grimlock, Aberrant");
-races[107].languages = "Undercommon";
-races[107].abilities = "Wisdom, Dexterity +1";
-races[107].size = "Medium";
-races[107].type = "humanoid (aberrant)";
-races[107].speed = "40 feet";
-races[107].senses = "Blindsight 30 feet, ";
-races[107].traits = Blindsight() + Keen("Hearing and Scent", "hearing and smell") + StoneCamouflage();
 
-races[108] = {};
-races[108].name = randomize("Grippli, Bullywug, Batrachi");
-races[108].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[108].abilities = "Wisdom, Dexterity +1";
-races[108].size = "Small";
-races[108].type = "humanoid (monstrous)";
-races[108].speed = "25 feet, climb 30 feet";
-races[108].senses = "";
-races[108].traits = HoldBreath() + "<b>GreeDeep</b> Communicate simple concepts to frogs and toads when speaking in Bullywug<br><b>Swamp Camoflage</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas<br>" + Leap() + "<b>Swamp Adapted</b> You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
 
-races[109] = {};
-races[109].name = randomize("Auran, Jinn, Elemental");
-races[109].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
-races[109].abilities = "Dexterity +2, Wisdom +1";
-races[109].size = "Medium"
-races[109].type = "humanoid (elemental)";
-races[109].speed = "25 feet, fly 40 feet";
-races[109].senses = "";
-races[109].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
 
-races[110] = {}; // Construct
-races[110].name = randomize("Living Construct, Warforged Skirmisher, Warforged, Modron, Aeon");
-races[110].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[110].abilities = "Strength, Constitution +1";
-races[110].size = "Medium";
-races[110].type = "humanoid (construct)";
-races[110].speed = "30 feet";
-races[110].senses = "";
-races[110].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Weapons</b> You are proficient with two weapons of your choice<br>";
 
-races[111] = {}; // Star Frontiers
-races[111].name = randomize("Dralasite");
-races[111].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[111].abilities = "Strength, Constitution +1";
-races[111].size = "Medium";
-races[111].type = "supernal";
-races[111].speed = "25 feet";
-races[111].senses = "";
-races[111].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b>A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
 
-races[112] = {}; // extended core / Star Control /
-races[112].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
-races[112].languages = "Common, Supernal";
-races[112].abilities = "Strength +2, Constitution +1";
-races[112].size = "Medium";
-races[112].type = "humanoid (supernal)";
-races[112].speed = "30 feet, swim 30 feet";
-races[112].senses = "";
-races[112].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
 
-races[113] = {}; // abberant
-races[113].name = "Aberrant";
-races[113].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[113].abilities = "Strength, Constitution +1";
-races[113].size = "Medium";
-races[113].type = "humanoid (aberrant)";
-races[113].speed = "30 feet, swim 30 feet";
-races[113].senses = "";
-races[113].traits = Amphibious() + Aberrant() + "Aberrant Appetite</b> You can ingest any bite sized material and gain sustenance from it<br><b>Aberrant Ancestry</b> You know the Poison Spray cantrip. At 3rd level you can cast Grease once per day. At 5th level, you can cast Acid Arrow once per day<br>";
 
-races[114] = {}; // Construct
-races[114].name = randomize("Warforged Scout, Warforged, Living Construct, Modron, Aeon");
-races[114].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[114].abilities = "Strength, Constitution +1";
-races[114].size = "Medium";
-races[114].type = "humanoid (construct)";
-races[114].speed = "35 feet";
-races[114].senses = "";
-races[114].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Fleet of Foot</b> Your base move speed is 35 feet<br>";
 
-races[115] = {};
-races[115].name = randomize("Mercane, Melnorme, Mael-Num");
-races[115].languages = "Common, Supernal "
-races[115].abilities = "Intelligence +1, Constitution +1";
-races[115].size = "Medium";
-races[115].type = "humanoid (supernal)";
-races[115].speed = "30 feet";
-races[115].senses = "";
-races[115].traits = "<b>Personal Space</b> Once per day, you may enter a personal demiplane accessible only by you and the items you are carrying. It is large enough to hold up to 8 medium sized creatures. Attacks and spells can not cross through the entrance into or out of the extradimensional space, but you can see out as if through a 3 foot by 5 foot window centered on the point of entry. You may remain inside as long as you desire. The space persists in your absence and items left behind remain there<br><b>Recall</b> You may use an action to summon a hand-held item stored in your personal space<br>";
 
-races[116] = {}; // without symbiotes, they look just like us
-races[116].name = randomize("Daelkyr, Demigod, Aberrant");
-races[116].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[116].abilities = "Strength, Constitution +1";
-races[116].size = "Medium";
-races[116].type = "humanoid (aberrant)";
-races[116].speed = "30 feet";
-races[116].senses = "";
-races[116].traits = Immortal() + Repletion() + Aberrant() + "<b>Xoriat Nobility</b> All aberrations are biologically programmed not to attack you unless you attack first<br>" + SunlightSensitivity();
 
-races[117] = {};
-races[117].name = randomize("Gorebrute Shifter, Shifter");
-races[117].languages = "Common, Silvan";
-races[117].abilities = "Dexterity, Strength +1";
-races[117].size = "Medium";
-races[117].type = "humanoid (shapeshifter)";
-races[117].speed = "30 feet";
-races[117].senses = "darkvision 60 feet, ";
-races[117].traits = Darkvision() + Shifting() + "<b>Gorebrute Shifting</b> While shifting, you gain a pair of horns which can be used as a natural attack. Your hornsdeal 1d10 piercing damage, offer advantage on shoving checks, automatically shove when used as part of an Attack action, and can be used to gore an enemy as a bonus action even after a Dash<br>";
 
-races[118] = {};
-races[118].name = randomize("Dreamsight Shifter, Shifter");
-races[118].languages = "Common, Silvan";
-races[118].abilities = "Dexterity, Wisdom +1";
-races[118].size = "Medium";
-races[118].type = "humanoid (shapeshifter)";
-races[118].speed = "30 feet";
-races[118].senses = "darkvision 60 feet, ";
-races[118].traits = Darkvision() + Shifting() + "<b>Dreamsight Shifting</b> While shifting, you can speak with animals<br>";
 
-races[119] = {}; // Centaur
-races[119].name = randomize("Bariaur, Cloven, Fey");
-races[119].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[119].abilities = "Strength, Constitution +1";
-races[119].size = "Medium";
-races[119].type = "humanoid (fey)";
-races[119].speed = "40 feet";
-races[119].senses = "";
-races[119].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
 
-races[120] = {}; // Amphibious
-races[120].name = randomize("Merfolk, Triton, Atlantean, Lemurian, Deep One");
-races[120].languages = "Common, Elven";
-races[120].abilities = "Dexterity +2, Wisdom +1";
-races[120].size = "Medium";
-races[120].type = "humanoid";
-races[120].speed = "30 feet, swim 40 feet";
-races[120].senses = "darkvision 60 feet, ";
-races[120].traits = Amphibious() + Darkvision() + BonusSkills() + "<b>Weapon training</b> You have proficiency with pike, net, and harpoon<br>";
-
-races[121] = {}; // Plant
-races[121].name = randomize("Briarborn, Bloodvine, Trapper, Lasher, Wildvine, Triffid");
-races[121].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[121].abilities = "Dexterity +2, Wisdom +1";
-races[121].size = "Medium";
-races[121].type = "humanoid (plant)";
-races[121].speed = "30 feet, climb 30 feet";
-races[121].senses = "";
-races[121].traits = HumanoidPlant() + Cantrip("Thorn Whip", "Thorn Whip", "Constitution") + Armored("Bark") + Camouflage();
-
-races[122] = {};
-races[122].name = "Hyperion"; // Mortal Celestial Hero
-races[122].languages = "Common, Celestial "
-races[122].abilities = "Strength +2, Constitution +1";
-races[122].size = "Medium";
-races[122].type = "humanoid (celestial)";
-races[122].speed = "30 feet, fly 30 feet";
-races[122].senses = "";
-races[122].traits = Darkvision() + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>" + Spells135("Celestial Hero", "Shillelagh", "Detect Evil and Good", "Find Steed","Constitution");
-
-races[123] = {};
-races[123].name = randomize("Pureblood, Nagaji, Yuan-ti, Sarrukh");
-races[123].languages = "Common, Celestial "
-races[123].abilities = "Dexterity +2, Constitution +1";
-races[123].size = "Medium";
-races[123].type = "humanoid (monstrous)";
-races[123].speed = "30 feet";
-races[123].senses = "";
-races[123].traits = "<b>Parseltongue</b> Speak with snakes at will<br>" + ResiliencePoison() + "<b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus poison<br>";
-
-races[124] = {};
-races[124].name = "Maedar";
-races[124].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[124].abilities = "Dexterity +2, Wisdom +1";
-races[124].size = "Medium";
-races[124].type = "humanoid (monstrous)";
-races[124].speed = "30 feet, climb 30 feet";
-races[124].senses = "darkvision 60 feet, ";
-races[124].traits = Darkvision() + Claws() + ResiliencePoison() + "<b>Petrification Immunity</b> Immune to petrification<br>";
-
-races[125] = {}; //  Plant person
-races[125].name = randomize("Mandrake", "Sylvan", "Arboreal");
-races[125].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[125].abilities = "Dexterity +2, Wisdom +1";
-races[125].size = "Medium";
-races[125].type = "humanoid (plant)";
-races[125].speed = "30 feet, climb 30 feet";
-races[125].senses = "";
-races[125].traits = HumanoidPlant() + ResiliencePoison() + "<b>Poisonous Blood</b> Mandrake blood is poisonous. Any creature that scores a bite attack on the mandrake must save to avoid becoming poisoned<br>";
-
-races[126] = {}; //  Shifter
-races[126].name = randomize("Flux Shifter, Shifter");
-races[126].languages = "Common, Silvan";
-races[126].abilities = "Dexterity, Wisdom +1";
-races[126].size = "Medium";
-races[126].type = "humanoid (Shapechanger)";
-races[126].speed = "30 feet";
-races[126].senses = "darkvision 60 feet, ";
-races[126].traits = Darkvision() + Shifting() + "<b>Flux Shifting</b> While shifting, the temporary hit point bonus granted by your shifting renews itself each round<br>";
-
-races[127] = {}; // Aberrant
-races[127].name = randomize("Dolgrim, Aberrant");
-races[127].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[127].abilities = "Dexterity, Constitution +1";
-races[127].size = "Small";
-races[127].type = "humanoid (aberrant)";
-races[127].speed = "25 feet";
-races[127].senses = "";
-races[127].traits = Darkvision() + Aberrant() + "<b>Duality</b> A dolgrim has two sets of arms, each controlled by a separate brain and able to act independently. The second pair of arms controlled by the other brain can make one melee attack as a bonus action<br>";
-
-races[128] = {}; // Paizo
-races[128].name = randomize("Kitsune, Foxfolk, Shapeshifter");
-races[128].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[128].abilities = "Wisdom +2, Dexterity +1";
-races[128].size = "Medium";
-races[128].type = "humanoid (shapeshifter)";
-races[128].speed = "30 feet";
-races[128].senses = "";
-races[128].traits = Keen("Hearing and Scent", "hearing or smell") + "<b>Shapeshift</b> You can assume the shape of a Wolf or your default shape as a standard action. In wolf form, you gain a move speed of 40. Any equipment you are wearing or carrying is not transformed. You revert to your true form if you become unconscious or if you die<br>" + Bite() + "<b>Kitsune Magic</b> You know the Dancing Lights cantrip<br>";
-
-races[129] = {};
-races[129].name = randomize("House Hob, Hob, Fae");
-races[129].languages = "Common, Gnomish";
-races[129].abilities = "Strength, Charisma scores +1";
-races[129].size = "Tiny";
-races[129].type = "humanoid (fey)";
-races[129].speed = "20 feet";
-races[129].senses = "darkvision 60 feet, ";
-races[129].traits = Darkvision() + Cunning() + "<b>Fae Magic</b>You can cast Minor Illusion at will. You can cast the Unseen Servant once per day<br>";
-
-races[130] = {};
-races[130].name = randomize("Tengu, Rook, Ravenfolk, Ravenkin");
-races[130].languages = "Common, Auran, " + languages[Math.floor(Math.random()*languages.length)];;
-races[130].abilities = "Strength +2, Constitution +1";
-races[130].size = "Small";
-races[130].type = "humanoid (supernal)";
-races[130].speed = "25 feet";
-races[130].senses = "";
-races[130].traits = Darkvision() + "<b>Weapon Training</b> You are proficient in the use of Rapiers, Longswords, and Greatswords<br><b>Gifted Linguist</b> Extra language<br>" + Mimicry();
-
-races[131] = {}; // cat
-races[131].name = "Grimalkin";
-races[131].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)] + ", " + languages[Math.floor(Math.random()*languages.length)];
-races[131].abilities = "Dexterity, Charisma +1";
-races[131].size = "Medium";
-races[131].type = "humanoid (Shapechanger)";
-races[131].speed = "30 feet"
-races[131].senses = "";
-races[131].traits = "<b>Shapechanger</b> As an action, you can polymorph into any medium to tiny sized mammal that you have seen, or back into your default form. Your equipment does not change with you. If you become unconscious or die, you revert to your natural form<br>"
-
-races[132] = {}; //
-races[132].name = randomize("Nidarian, Psion, Brainslave");
-races[132].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[132].abilities = "Strength, Constitution +1";
-races[132].size = "Medium";
-races[132].type = "humanoid (supernal)";
-races[132].speed = "30 feet";
-races[132].senses = "";
-races[132].traits = "<b>Supernal</b> Advantage against charm and magic saving throws. You have resistance to psychic damage<br>" + Telepathy() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once in between every short rest<br>";
-
-races[133] = {};
-races[133].name = randomize("Shadow Dragonborn, Shadow Drake, Shadow Dragonkin, Drake, Dragonborn, Dragonkin");
-races[133].languages = "Common, Draconic";
-races[133].abilities = "Strength +2, Charisma +1";
-races[133].size = "Medium";
-races[133].type = "humanoid (shadow)";
-races[133].speed = "30 feet";
-races[133].senses = "";
-races[133].traits = "<b>Dragon Ancestry</b> Shadow<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of necrosis once in between every short rest<br><b>Shadowborn</b> You have resistance to necrotic damage<br>";
-
-races[134] = {}; // extended core  / Star Control
-races[134].name = randomize("Taalo");
-races[134].languages = "Common, Supernal";
-races[134].abilities = "Strength +2, Constitution +1";
-races[134].size = "Medium";
-races[134].type = "humanoid (elemental)";
-races[134].speed = "30 feet";
-races[134].senses = "";
-races[134].traits = Toughness() + Shield() + "<b>Immune to Telepathy</b> You are racially immune to telathic contact. You are immune to psychic damage and attacks, and unable to telepathically communicate<br>";
-
-races[135] = {};
-races[135].name = randomize("Laskarim, Halforc, Orc, Ork, Reaver, Orog, Scro, Ruk, Druuge");
-races[135].languages = "Common, Giant";
-races[135].abilities = "Strength +2, Constitution +1";
-races[135].size = "Medium";
-races[135].type = "humanoid (giant)";
-races[135].speed = "30 feet";
-races[135].senses = "darkvision 60 feet, ";
-races[135].traits = Darkvision() + "<b>Sea Reaver</b> Proficiency with navigator's tools and waterborne vehicles<br>" + Resilient() + BonusCriticalDamage();
-
-races[136] = {};
-races[136].name = randomize("Giantkin, Halfgiant, Ogrekin, Halfogre, Ogrillion");
-races[136].languages = "Common, Giant";
-races[136].abilities = "Strength +2, Constitution +1";
-races[136].size = "Medium";
-races[136].type = "humanoid (giant)";
-races[136].speed = "30 feet";
-races[136].senses = "";
-races[136].traits = Skill("Athletic", "athletics") + Toughness("Tough") + Powerful() + BonusCriticalDamage("Strong");
-
-races[137] = {};
-races[137].name = "Skulk";
-races[137].languages = "Common, Undercommon";
-races[137].abilities = "Two abilities of your choice +1";
-races[137].size = "Medium";
-races[137].type = "humanoid";
-races[137].speed = "30 feet";
-races[137].senses = "";
-races[137].traits = "<b>Skulk</b> You have advantage on Stealth rolls<br>" + Skill("Stealthy", "Stealth") + ShadowFade() + Camouflage();
-
-races[138] = {};
-races[138].name = randomize("Ancient, Eldar, Kalashtar, Psion, Psychic");
-races[138].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[138].abilities = "Strength, Constitution +1";
-races[138].size = "Medium";
-races[138].type = "humanoid (psychic)";
-races[138].speed = "30 feet";
-races[138].senses = "";
-races[138].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once in between every per rest<br>";
-
-races[139] = {};
-races[139].name = randomize("Dromite, Primordial");
-races[139].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[139].abilities = "Strength, Constitution +1";
-races[139].size = "Small";
-races[139].type = "humanoid";
-races[139].speed = "25 feet";
-races[139].senses = "";
-races[139].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases whn you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
-
-races[140] = {}; // Star Frontiers / Juffa-Wup, Non, Void.
-races[140].name = randomize("Myconid, Mycon");
-races[140].languages = "Common, Undercommon, " + languages[Math.floor(Math.random()*languages.length)];
-races[140].abilities = "Wisdom +2, Constitution +1";
-races[140].size = "Medium";
-races[140].type = "humanoid (plant)";
-races[140].speed = "30 feet";
-races[140].senses = "";
-races[140].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br><b>Stun spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>";
-
-races[141] = {};
-races[141].name = randomize("Broodguard, Nagaji, Yuan-ti, Sarrukh");
-races[141].languages = "Common, Celestial"
-races[141].abilities = "Dexterity +2, Constitution +1";
-races[141].size = "Medium";
-races[141].type = "humanoid (monstrous)";
-races[141].speed = "30 feet, climb 30 feet";
-races[141].senses = "";
-races[141].traits = ResiliencePoison() + Bite() + Claws() + "<b>Broodguard</b> Anyone who undergoes the ritual of serpentine transformation is rendered mute. Most lose their minds and become savage Histachii, to be used as watch dogs or foot soldiers. A small portion of those transformed retain their minds and these are broodguard<br>";
-
-races[142] = {}; // goblin core / Hobgoblin/Worg battle hybrid
-races[142].name = randomize("Varag, Goblin");
-races[142].languages = "Goblin";
-races[142].abilities = "Constitution +2, Strength +1";
-races[142].size = "Medium";
-races[142].type = "humanoid (goblin)";
-races[142].speed = "30 feet";
-races[142].senses = "darkvision 60 feet, ";
-races[142].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite();
-
-races[143] = {}; // goblin core / Savage Hobgoblin relative
-races[143].name = randomize("Norker, Goblin");
-races[143].languages = "Common, Goblin";
-races[143].abilities = "Constitution +2, Strength +1";
-races[143].size = "Medium";
-races[143].type = "humanoid (goblin)";
-races[143].speed = "30 feet";
-races[143].senses = "darkvision 60 feet, ";
-races[143].traits = Darkvision() + Armored("Tough Hide") + MartialAdvantage();
-
-races[144] = {};
-races[144].name = "Swanmay";
-races[144].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[144].abilities = "Dexterity +2, Wisdom +1";
-races[144].size = "Medium";
-races[144].type = "humanoid (Shapechanger)";
-races[144].speed = "30 feet";
-races[144].senses = "";
-races[144].traits = "<b>Shapeshift</b> You can assume the shape of a Swan or your default shape as a standard action. In Swan form, you gain a fly speed of 50 and your size becomes small. You revert to your true form if you become unconscious or die<br>" + AnimalAncestry() + "<b>Animal Friends</b> You can speak with animals at will<br>";
-
-races[145] = {}; // Paizo
-races[145].name = randomize("Ratfolk, Ratkin");
-races[145].languages = "Common, Primordial";
-races[145].abilities = "Strength +2, Constitution +1";
-races[145].size = "Small";
-races[145].type = "humanoid (supernal)";
-races[145].speed = "25 feet";
-races[145].senses = "";
-races[145].traits = Darkvision() + "<b>Rodent Empathy</b> Rodents instinctively trust you, seeing you as one of their own. Ratfolk commonly cohabitate with domestic rodents<br><b>Swarming</b> Ratfolk are used to living and fighting communally, and are adept at swarming foes for their own gain and their foes' detriment. Up to two ratfolk can share the same square at the same time. If two ratfolk in the same square attack the same foe, they are considered to be flanking that foe as if they were in two opposite squares<br>";
-
-races[146] = {};
-races[146].name = randomize("Yazarian, Hadozee");
-races[146].languages = "Common";
-races[146].abilities = "Strength +2, Dexterity +1";
-races[146].size = "Medium";
-races[146].type = "humanoid (supernal)";
-races[146].speed = "30 feet, climb 30 feet, glide 40 feet";
-races[146].senses = "";
-races[146].traits = Keen("Keen Scent", "smell") + "<b>Glide</b> Membranes between your arms and torso allow you to glide at a speed of 40 feet per round (5 feet of altitude are lost every 20 feet). You can use your gliding ability to negate falling damage if your arms are unrestrained<br><b>Extra Manipulators</b> You have very dexterous feet which can function as an alternate pair of hands. They can even use their big toes as opposable thumbs<br>";
-
-races[147] = {};
-races[147].name = randomize("Kobold, Drake, Dragonkin");
-races[147].languages = "Common, Draconic";
-races[147].abilities = "Strength +2, Constitution +1";
-races[147].size = "Small";
-races[147].type = "humanoid (supernal)";
-races[147].speed = "25 feet";
-races[147].senses = "";
-races[147].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b>You are a skilled miner<br>";
-
-races[148] = {};
-races[148].name = randomize("Ancient, Eldar, Old One, Psion");
-races[148].languages = "Common, Supernal, "+ languages[Math.floor(Math.random()*languages.length)];
-races[148].abilities = "Constitution +2, Dexterity +1";
-races[148].size = "Medium";
-races[148].type = "humanoid (psychic)";
-races[148].speed = "25 feet, fly 40 feet";
-races[148].senses = "";
-races[148].traits = Flight() + Cantrip("Telekinesis", "Mage Hand", "Constitution");
-
-races[149] = {}; // Plant / Star Frontiers
-races[149].name = randomize("Supox");
-races[149].languages = "Common, Supernal";
-races[149].abilities = "Constitution +2, Wisdom +1";
-races[149].size = "Medium";
-races[149].type = "humanoid (plant)";
-races[149].speed = "30 feet";
-races[149].senses = "";
-races[149].traits = HumanoidPlant() + HealSelf("Regrowth") + "<b>Berries</b> Once per day, you can cast <i>Goodberry</i><br>";
-
-races[150] = {};
-races[150].name = randomize("Donovan");
-races[150].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[150].abilities = "Strength, Consitution +1";
-races[150].size = "Medium";
-races[150].type = "humanoid (psychic)";
-races[150].speed = "30 feet";
-races[150].senses = "";
-races[150].traits = "<b>Brain in a Jar</b> You are a human brain housed in a bronze cannister, but you are still subject to spells that affect living creatures. You do not need to breathe. You do not age. You do not need to eat or drink<br>" + Blindsight() + Psychic() + Telepathy() + "<b>Telekinesis</b> You may create a psychic force similar to an Unseen Servant at will. You may use it to complete somatic requirements for spells, and it is your method of movement<br>" + Cantrip("Telekinetic Bolt", "eldritch bolt", "Constitution");
-
-races[151] = {};
-races[151].name = randomize("Halfblood, Nagaji, Yuan-ti");
-races[151].languages = "Common, Celestial "
-races[151].abilities = "Dexterity +2, Constitution +1";
-races[151].size = "Medium";
-races[151].type = "humanoid (monstrous)";
-races[151].speed = "30 feet";
-races[151].senses = "";
-races[151].traits = "<b>Parseltongue</b> Speak with snakes at will<br><b>Poison Resistance</b> You have advantage on saving throws against poison, and you have resistance against poison damage<br><b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus poison<br><b>Shapeshifter</b> You can change your shape into a medium snake or back to your default form as a standard action. Your statistics, other than size, are the same in each form. Any equipment you are wearing or carrying isn't transformed. You revert to your true form if you become unconscious or die<br>";
-
-races[152] = {}; // Deathless
-races[152].name = randomize("Shade, Shadow");
-races[152].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[152].abilities = "Strength, Constitution +1";
-races[152].size = "Medium";
-races[152].type = "humanoid (shadow)";
-races[152].speed = "30 feet";
-races[152].senses = "darkvision 60 feet, ";
-races[152].traits = Darkvision() + Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
-
-races[153] = {}; // goblin core
-races[153].name = randomize("Meenlock, Aberrant, Goblin");
-races[153].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[153].abilities = "Strength, Constitution +1";
-races[153].size = "Small";
-races[153].type = "humanoid (goblin, aberrant)";
-races[153].speed = "25 feet";
-races[153].senses = "";
-races[153].traits = Darkvision() + Aberrant() + "<b>Delusions</b> You know the <i>Minor Illusion</i> cantrip<br><b>Poison Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus <i>sleep</i> poison<br>";
-
-races[154] = {};
-races[154].name = "Selkie";
-races[154].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[154].abilities = "Wisdom +2, Dexterity +1";
-races[154].size = "Medium";
-races[154].type = "humanoid (shapechanger)";
-races[154].speed = "30 feet";
-races[154].senses = "";
-races[154].traits = Keen("Scent", "smell") + "<b>Shapeshift</b> You can assume the shape of a Seal or your default shape as a standard action. In seal form, you gain a swim speed of 30. You revert to your true form if you become unconscious or if you die<br>" + Amphibious() + Bite();
-
-races[155] = {}; // dark sun core
-races[155].name = randomize("Ancient, Eldar, Kalashtar, Psion, Psychic");
-races[155].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[155].abilities = "Intelligence, Wisdom +1";
-races[155].size = "Medium";
-races[155].type = "humanoid (supernal)";
-races[155].speed = "30 feet";
-races[155].senses = "";
-races[155].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once in between every short rest<br>";
 
 
 
