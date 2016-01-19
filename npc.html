@@ -1283,7 +1283,7 @@ races[44].size = "Medium";
 races[44].type = "humanoid (deathless)";
 races[44].speed = "30 feet";
 races[44].senses = "darkvision 60 feet, ";
-races[44].traits = Darkvision() + Deathless() + Resilient("Night Walker");
+races[44].traits = Deathless() + Resilient("Night Walker");
 
 races[45] = {}; // wildkin
 races[45].name = randomize("Wildborn, Wildkin, Mongrelman");
@@ -1423,7 +1423,7 @@ races[58].size = "Medium";
 races[58].type = "humanoid (deathless)";
 races[58].speed = "30 feet";
 races[58].senses = "darkvision 60 feet, ";
-races[58].traits = Darkvision() + Deathless() + ImmunityDisease();
+races[58].traits = Darkvision() + Deathless();
 
 races[59] = {}; // fiend
 races[59].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -1493,7 +1493,7 @@ races[65].size = "Medium";
 races[65].type = "humanoid (shadow)";
 races[65].speed = "30 feet";
 races[65].senses = "darkvision 60 feet, ";
-races[65].traits = Darkvision() + Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
+races[65].traits = Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
 
 races[66] = {}; // aetherspace
 races[66].name = randomize("Gith");
@@ -1573,7 +1573,7 @@ races[73].size = "Small";
 races[73].type = "humanoid (goblin)";
 races[73].speed = "30 feet";
 races[73].senses = "darkvision 60 feet, ";
-races[73].traits = Darkvision() + "<b>Greenskin Cavalry</b> You gain proficiency with riding wolves into combat<br>" + NimbleEscape() + "<b>Greenskin Weapon Training</b> You have proficiency with pike and net<br>";
+races[73].traits = Darkvision() + NimbleEscape() + "<b>Greenskin Weapon Training</b> You have proficiency with blowgun, pike, and net<br>";
 
 races[74] = {}; // goblin
 races[74].name = randomize("Boggart, Goblin");
@@ -1583,7 +1583,7 @@ races[74].size = "Small";
 races[74].type = "humanoid (goblin)";
 races[74].speed = "30 feet";
 races[74].senses = "darkvision 60 feet, ";
-races[74].traits = Darkvision() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>" + NimbleEscape() + "<b>Swamp Combat Training</b> You have proficiency with blowgun and net<br>";
+races[74].traits = Darkvision() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>" + NimbleEscape();
 
 races[75] = {}; // goblin
 races[75].name = randomize("Gremlin, Goblin");
@@ -1683,7 +1683,7 @@ races[84].size = randomize("Small, Medium");
 races[84].type = "humanoid";
 races[84].speed = "25 feet";
 races[84].senses = "";
-races[84].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases whn you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
+races[84].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
 
 races[85] = {}; // aetherspace
 races[85].name = randomize("Pygmy, Tcho-Tcho, Tellem");
