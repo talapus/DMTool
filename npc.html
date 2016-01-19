@@ -372,9 +372,9 @@ function Lucky(input) { try { if (input.length > 1) {
 }};
 
 function MartialAdvantage(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not capacitated<br>");
+	return ("<b>" + input + "</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not incapacitated<br>");
 	}} catch (err) {
-	return ("<b>Martial Advantage</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not capacitated<br>");
+	return ("<b>Martial Advantage</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not incapacitated<br>");
 }};
 
 function Mimicry(input) { try { if (input.length > 1) {
@@ -887,7 +887,7 @@ backgrounds[16].flaws = ["I will do anyting to win fame and renown", "I am a suc
 
 races = []; // Core Race
 races[0] = {};
-races[0].name = randomize("Human, Vilani, Solomani, Hyborean, Syreen, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot, Tcho-Tcho");
+races[0].name = randomize("Human, Hyborean, Androsynth, Ancient, Biot");
 races[0].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[0].abilities = "All abilities +1";
 races[0].size = "Medium";
@@ -1597,7 +1597,7 @@ races[70].size = "Medium";
 races[70].type = "humanoid (goblin)";
 races[70].speed = "30 feet";
 races[70].senses = "darkvision 60 feet, ";
-races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite();
+races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite() + "<b>Prey driven</b> You are impulsive and bestial. Disadvantage to resist obeying your primal instinct to hunt and kill prey";
 
 races[71] = {}; // aetherspace / plant / Juffa-Wup, Non, Void.
 races[71].name = randomize("Myconid, Mycon");
