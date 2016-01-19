@@ -277,9 +277,9 @@ function DarkvisionSuperior(input) { try { if (input.length > 1) {
 }};
 
 function Deathless(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You are not alive, yet you are not dead or undead. You are subject to spells that affect living creatures. You do not age. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
+	return ("<b>" + input + "</b> You are not alive, yet you are not dead or undead. You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
 	}} catch (err) {
-	return ("<b>Deathless</b> You are not alive, yet you are not dead or undead. You are subject to spells that affect living creatures. You do not age. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
+	return ("<b>Deathless</b> You are not alive, yet you are not dead or undead. You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
 }};
 
 function FeyAncestry(input) { try { if (input.length > 1) {
@@ -1094,7 +1094,7 @@ races[20].size = "Medium";
 races[20].type = "humanoid (construct)";
 races[20].speed = "30 feet";
 races[20].senses = "";
-races[20].traits = LivingConstruct() + Armored("Composite Plating") + ImmunityDisease() + Repletion();
+races[20].traits = LivingConstruct() + Armored("Composite Plating");
 
 races[21] = {}; // Core Race
 races[21].name = randomize("Wood Elf, Ljosalfar, Elf, Fae");
@@ -1387,7 +1387,7 @@ races[49].size = "Medium";
 races[49].type = "humanoid (construct)";
 races[49].speed = "30 feet";
 races[49].senses = "";
-races[49].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br><b>Repair</b> You know the Mend cantrip<br>";
+races[49].traits = LivingConstruct() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br>";
 
 races[50] = {}; // aetherspace
 races[50].name = randomize("Ancient, Eldar, Kalashtar, Gith");
@@ -1429,15 +1429,7 @@ races[53].speed = "30 feet, climb 30 feet";
 races[53].senses = "";
 races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Climb</b> You have proficiency with the Athletics skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
 
-races[54] = {}; // goblins
-races[54].name = randomize("Meenlock, Aberrant, Goblin");
-races[54].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[54].abilities = "Strength, Constitution +1";
-races[54].size = "Small";
-races[54].type = "humanoid (goblin, aberrant)";
-races[54].speed = "25 feet";
-races[54].senses = "";
-races[54].traits = Darkvision() + Aberrant() + "<b>Delusions</b> You know the <i>Minor Illusion</i> cantrip<br><b>Poison Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus DC 10 <i>sleep</i> poison<br>";
+///---///
 
 races[55] = {}; // goblins
 races[55].name = randomize("Norker, Goblin");
