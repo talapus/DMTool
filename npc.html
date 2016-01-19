@@ -1687,15 +1687,7 @@ races[82].speed = "20 feet";
 races[82].senses = "";
 races[82].traits = BonusSkill() + BonusFeat() + Cantrip("Mage Hand");
 
-races[83] = {}; // fae
-races[83].name = randomize("Pixie, Fae");
-races[83].languages = "Common, Elvish, Pixie";
-races[83].abilities = "Charisma +2, Intelligence +1";
-races[83].size = "Tiny";
-races[83].type = "humanoid (fey)";
-races[83].speed = "20 feet";
-races[83].senses = "darkvision 60 feet, ";
-races[83].traits = Darkvision() + Cantrip("Pixie Dust", "Mage Hand", "Charisma") + Cantrip("Pixie Magic", "Minor Illusion", "Charisma");
+///---///
 
 races[84] = {}; // aetherspace
 races[84].name = randomize("Dromite, Ancient, Eldar");
@@ -1820,7 +1812,7 @@ races[96].senses = "";
 races[96].traits = HumanoidPlant() + ResiliencePoison() + "<b>Poisonous Blood</b> Mandrake blood is poisonous. Any creature that scores a bite attack on the mandrake must save to avoid becoming poisoned<br>";
 
 races[97] = {}; // fae
-races[97].name = randomize("House Hob, Hob, Fae");
+races[97].name = randomize("House Hob, Hob, Pixie, Fae");
 races[97].languages = "Common, Gnomish";
 races[97].abilities = "Strength, Charisma scores +1";
 races[97].size = "Tiny";
