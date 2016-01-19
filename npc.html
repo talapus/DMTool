@@ -1619,11 +1619,35 @@ races[72].speed = "40 feet";
 races[72].senses = "";
 races[72].traits = "<b>Quadruped</b> +10 base land speed, advantage against tripping<br><b>Fey Ancestry</b> Advantage against charm and magic saving throws. You can not be put to sleep<br><b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
 
-///---///
+races[73] = {}; // turtlefolk
+races[73].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
+races[73].languages = "Common, Supernal";
+races[73].abilities = "Strength +2, Constitution +1";
+races[73].size = "Medium";
+races[73].type = "humanoid (supernal)";
+races[73].speed = "30 feet, swim 30 feet";
+races[73].senses = "";
+races[73].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
 
-///---///
+races[74] = {}; // frogfolk
+races[74].name = randomize("Grippli, Bullywug, Batrachi");
+races[74].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[74].abilities = "Wisdom, Dexterity +1";
+races[74].size = "Small";
+races[74].type = "humanoid (monstrous)";
+races[74].speed = "25 feet, climb 30 feet";
+races[74].senses = "";
+races[74].traits = HoldBreath() + "<b>GreeDeep</b> Communicate simple concepts to frogs and toads when speaking in Bullywug<br><b>Swamp Camoflage</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas<br>" + Leap() + "<b>Swamp Adapted</b> You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
 
-///---///
+races[75] = {};
+races[75].name = randomize("Auran, Jinn, Elemental");
+races[75].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
+races[75].abilities = "Dexterity +2, Wisdom +1";
+races[75].size = "Medium"
+races[75].type = "humanoid (elemental)";
+races[75].speed = "25 feet, fly 40 feet";
+races[75].senses = "";
+races[75].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
 
 races[76] = {}; // aetherspace
 races[76].name = randomize("Ancient, Eldar, Kalashtar, Gith");
@@ -1655,7 +1679,15 @@ races[78].speed = "30 feet";
 races[78].senses = "";
 races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
 
-///---//
+races[79] = {};
+races[79].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
+races[79].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[79].abilities = "Strength, Dexterity +1";
+races[79].size = randomize("Small, Medium");
+races[79].type = "humanoid (monstrous)";
+races[79].speed = randomize("25 feet, 30 feet");
+races[79].senses = "";
+races[79].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
 
 races[80] = {}; // aetherspace
 races[80].name = randomize("Vanir, Empyrean, Demigod");
@@ -1687,7 +1719,15 @@ races[82].speed = "20 feet";
 races[82].senses = "";
 races[82].traits = BonusSkill() + BonusFeat() + Cantrip("Mage Hand");
 
-///---///
+races[83] = {};
+races[83].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
+races[83].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[83].abilities = "Strength, Dexterity +1";
+races[83].size = randomize("Small, Medium");
+races[83].type = "humanoid (monstrous)";
+races[83].speed = randomize("25 feet, 30 feet");
+races[83].senses = "";
+races[83].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
 
 races[84] = {}; // aetherspace
 races[84].name = randomize("Dromite, Ancient, Eldar");
@@ -1699,7 +1739,15 @@ races[84].speed = "25 feet";
 races[84].senses = "";
 races[84].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
 
-///---///
+races[85] = {}; // extended race material
+races[85].name = randomize("Rook, Ravenfolk");
+races[85].languages = "Common, Primordial, Auran";
+races[85].abilities = "Dexterity +2, Wisdom +1";
+races[85].size = "Medium";
+races[85].type = "humanoid (monstrous)";
+races[85].speed = "25 feet, fly 50 feet";
+races[85].senses = "";
+races[85].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
 races[86] = {}; // aetherspace
 races[86].name = randomize("Ancient, Eldar, Kalashtar, Gith");
@@ -1981,66 +2029,6 @@ races[113].speed = "25 feet";
 races[113].senses = "darkvision 60 feet";
 races[113].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
 
-races[114] = {}; // extended race material
-races[114].name = randomize("Rook, Ravenfolk");
-races[114].languages = "Common, Primordial, Auran";
-races[114].abilities = "Dexterity +2, Wisdom +1";
-races[114].size = "Medium";
-races[114].type = "humanoid (monstrous)";
-races[114].speed = "25 feet, fly 50 feet";
-races[114].senses = "";
-races[114].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
-
-races[115] = {};
-races[115].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
-races[115].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[115].abilities = "Strength, Dexterity +1";
-races[115].size = randomize("Small, Medium");
-races[115].type = "humanoid (monstrous)";
-races[115].speed = randomize("25 feet, 30 feet");
-races[115].senses = "";
-races[115].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
-
-races[116] = {};
-races[116].name = randomize("Auran, Jinn, Elemental");
-races[116].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
-races[116].abilities = "Dexterity +2, Wisdom +1";
-races[116].size = "Medium"
-races[116].type = "humanoid (elemental)";
-races[116].speed = "25 feet, fly 40 feet";
-races[116].senses = "";
-races[116].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
-
-races[117] = {}; // frogfolk
-races[117].name = randomize("Grippli, Bullywug, Batrachi");
-races[117].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[117].abilities = "Wisdom, Dexterity +1";
-races[117].size = "Small";
-races[117].type = "humanoid (monstrous)";
-races[117].speed = "25 feet, climb 30 feet";
-races[117].senses = "";
-races[117].traits = HoldBreath() + "<b>GreeDeep</b> Communicate simple concepts to frogs and toads when speaking in Bullywug<br><b>Swamp Camoflage</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas<br>" + Leap() + "<b>Swamp Adapted</b> You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
-
-races[118] = {}; // turtlefolk
-races[118].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
-races[118].languages = "Common, Supernal";
-races[118].abilities = "Strength +2, Constitution +1";
-races[118].size = "Medium";
-races[118].type = "humanoid (supernal)";
-races[118].speed = "30 feet, swim 30 feet";
-races[118].senses = "";
-races[118].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
-
-
-
-
-
-
-
-
-
-
-// */
 
 // roll up the character
 race = Math.floor(Math.random()*races.length);
