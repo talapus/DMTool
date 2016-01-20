@@ -277,9 +277,9 @@ function DarkvisionSuperior(input) { try { if (input.length > 1) {
 }};
 
 function Deathless(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
+	return ("<b>" + input + "</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. You have no heartbeat. While asleep, you are indistinguishable from a corpse<br>");
 	}} catch (err) {
-	return ("<b>Deathless</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. While asleep, you are indistinguishable from a corpse<br>");
+	return ("<b>Deathless</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. You have no heartbeat. While asleep, you are indistinguishable from a corpse<br>");
 }};
 
 function FeyAncestry(input) { try { if (input.length > 1) {
@@ -885,7 +885,7 @@ backgrounds[16].flaws = ["I will do anyting to win fame and renown", "I am a suc
 
 // Races
 
-races = []; // Core Race
+races = []; // Core Race / Human
 races[0] = {};
 races[0].name = randomize("Human, Hyborean, Androsynth, Ancient, Biot");
 races[0].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
@@ -896,7 +896,7 @@ races[0].speed = "30 feet";
 races[0].senses = "";
 races[0].traits = "";
 
-races[1] = {}; // Core Race
+races[1] = {}; // Core Race / Dragonborn
 races[1].name = randomize("Brass Dragonborn, Brass Drake, Brass Dragonkin, Braesdrake, Drake, Dragonborn, Dragonkin");
 races[1].languages = "Common, Draconic";
 races[1].abilities = "Strength +2, Charisma +1";
@@ -906,7 +906,7 @@ races[1].speed = "30 feet";
 races[1].senses = "";
 races[1].traits = "<b>Dragon Ancestry</b> Brass<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of fire once per rest<br>" + ResistDamageFire();
 
-races[2] = {}; // Core Race
+races[2] = {}; // Core Race / Halfelf
 races[2].name = randomize("Halfelf, Aelfkin, Fae");
 races[2].languages = "Common, Elven, " + languages[Math.floor(Math.random()*languages.length)];
 races[2].abilities = "Charisma +2, Intelligence +1";
@@ -916,7 +916,7 @@ races[2].speed = "30 feet";
 races[2].senses = "darkvision 60 feet, ";
 races[2].traits = Darkvision() + FeyAncestry() + BonusSkills();
 
-races[3] = {}; // Core Race
+races[3] = {}; // Core Race / Halforc
 races[3].name = randomize("Halforc, Orc, Ork, Orog, Reaver, Scro, Ruk, Druuge");
 races[3].languages = "Common, Giant";
 races[3].abilities = "Strength +2, Constitution +1";
@@ -926,7 +926,7 @@ races[3].speed = "30 feet";
 races[3].senses = "darkvision 60 feet, ";
 races[3].traits = Darkvision() + Skill("Menacing", "Intimidation") + Resilient("Relentless Endurance") + BonusCriticalDamage("Savage Attacks");
 
-races[4] = {}; // Core Race
+races[4] = {}; // Eberron / Changeling
 races[4].name = randomize("Changeling, Shapeshifter, Skinthief, Doppleganger");
 races[4].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)] + ", " + languages[Math.floor(Math.random()*languages.length)];
 races[4].abilities = "Dexterity, Charisma +1";
@@ -946,7 +946,7 @@ races[5].speed = "25 feet";
 races[5].senses = "darkvision 60 feet";
 races[5].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
 
-races[6] = {}; // Core Race
+races[6] = {}; // Core Race / Aasimar
 races[6].name = randomize("Celestial, Aasimar");
 races[6].languages = "Common, Celestial";
 races[6].abilities = "Charisma +2, Wisdom +1";
@@ -956,7 +956,7 @@ races[6].speed = "30 feet";
 races[6].senses = "darkvision 60 feet, ";
 races[6].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Light", "Lesser Restoration", "Daylight");
 
-races[7] = {}; // Core Race
+races[7] = {}; // Core Race / Tiefling
 races[7].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
 races[7].languages = "Common, Fiendish";
 races[7].abilities = "Charisma +2, Intelligence +1";
@@ -966,7 +966,7 @@ races[7].speed = "30 feet";
 races[7].senses = "darkvision 60 feet, ";
 races[7].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
-races[8] = {}; // Core Race
+races[8] = {}; // Core Race / Genasi
 races[8].name = randomize("Ignan, Ifrit, Fire Genasi, Genasi, Jann");
 races[8].languages = "Common, Ignan";
 races[8].abilities = "Strength, Charisma +1";
@@ -976,7 +976,7 @@ races[8].speed = "30 feet";
 races[8].senses = "darkvision 60 feet, ";
 races[8].traits = Darkvision() + ResistDamageFire() + Spells("Reach to the Blaze", "Produce Flame", "Hellish Rebuke", "Constitution");
 
-races[9] = {}; // Core Race
+races[9] = {}; // Core Race / Genasi
 races[9].name = randomize("Aquan, Undine, Water Genasi, Genasi, Jann");
 races[9].languages = "Common, Aquan";
 races[9].abilities = "Strength, Charisma +1";
@@ -986,7 +986,7 @@ races[9].speed = "30 feet, swim 30 feet";
 races[9].senses = "";
 races[9].traits = Amphibious() + ResistDamageAcid() + Spells("Call to the Wave", "Shape Water", "Create and Destroy Water", "Constitution")
 
-races[10] = {}; // Core Race
+races[10] = {}; // Core Race / Genasi
 races[10].name = randomize("Auran, Jinn, Air Genasi, Genasi, Jann");
 races[10].languages = "Common, Auran";
 races[10].abilities = "Strength, Charisma +1";
@@ -996,7 +996,7 @@ races[10].speed = "30 feet";
 races[10].senses = "";
 races[10].traits = "<b>Unending Breath</b> You can hold your breath indefinitely while you are not incapacitated<br><b>Mingle with the Wind</b> You can cast the levitate spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
 
-races[11] = {}; // Core Race
+races[11] = {}; // Core Race / Genasi
 races[11].name = randomize("Terran, Oread, Earth Genasi, Genasi, Jann");
 races[11].languages = "Common, Terran";
 races[11].abilities = "Strength, Charisma +1";
@@ -1006,7 +1006,7 @@ races[11].speed = "30 feet";
 races[11].senses = "";
 races[11].traits = "<b>Earth Walk</b> You can move across difficult terrain made of earth or stone without expending extra movement<br><b>Merge with Stone</b> You can cast the pass without trace spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
 
-races[12] = {}; // Core Race
+races[12] = {}; // Core Race / Dwarf
 races[12].name = randomize("Hill Dwarf, Bergdwor, Dwarf, Dwor");
 races[12].languages = "Common, Dwarven";
 races[12].abilities = "Constitution +2, Wisdom +1";
@@ -1016,7 +1016,7 @@ races[12].speed = "25 feet";
 races[12].senses = "darkvision 60 feet, ";
 races[12].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Toughness();
 
-races[13] = {}; // Core Race
+races[13] = {}; // Core Race / Dwarf
 races[13].name = randomize("Mountain Dwarf, Dundwor, Dwarf, Dwor");
 races[13].languages = "Common, Dwarven";
 races[13].abilities = "Constitution +2, Strength +1";
@@ -1026,7 +1026,7 @@ races[13].speed = "25 feet";
 races[13].senses = "darkvision 60 feet, ";
 races[13].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + ArmorTraining();
 
-races[14] = {}; // Core Race
+races[14] = {}; // Core Race / Gnome
 races[14].name = randomize("Forest Gnome, Forest Hob, Greenhob, Hob, Menehune, Fae");
 races[14].languages = "Common, Gnomish";
 races[14].abilities = "Strength, Charisma scores +1";
@@ -1036,7 +1036,7 @@ races[14].speed = "25 feet";
 races[14].senses = "darkvision 60 feet, ";
 races[14].traits = Darkvision() + Cunning() + Cantrip("Natural Illusionist", "Minor Illusion", "Intelligence") + "<b>Speak with Small Beasts</b> Communicate with Small or smaller beasts through grunts and gestures<br>";
 
-races[15] = {}; // Core Race
+races[15] = {}; // Core Race / Gnome
 races[15].name = randomize("Tinkerer Gnome, Tinkerer Hob, Hob, Fae");
 races[15].languages = "Common, Gnomish";
 races[15].abilities = "Strength, Charisma scores +1";
@@ -1046,7 +1046,7 @@ races[15].speed = "25 feet";
 races[15].senses = "darkvision 60 feet, ";
 races[15].traits = Darkvision() + Cunning() + "<b>Artificer Lore</b> Add twice your skill proficiency on alchemy or technology related History rolls<br><b>Tinker</b> You have proficiency with artisan tinker tools. Using these tools you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can create a clockwork toy, a fire starter, or a music box<br>";
 
-races[16] = {}; // Core Race
+races[16] = {}; // Core Race / Gnome
 races[16].name = randomize("Svirfneblin, Deep Gnome, Deep Hob, Hob, Fae");
 races[16].languages = "Gnomish, Undercommon";
 races[16].abilities = "Intelligence +2, Dexterity +1";
@@ -1056,7 +1056,7 @@ races[16].speed = "25 feet";
 races[16].senses = "darkvision 60 feet, ";
 races[16].traits = Darkvision() + Cunning() + StoneCamouflage();
 
-races[17] = {}; // Core Race
+races[17] = {}; // Core Race / Halfling
 races[17].name = randomize("Lightfoot Halfling, Lightfoot Hob, Hob, Fae");
 races[17].languages = "Common, Halfling";
 races[17].abilities = "Dexterity +2, Charisma +1";
@@ -1066,7 +1066,7 @@ races[17].speed = "25 feet";
 races[17].senses = "";
 races[17].traits = Lucky() + "<b>Brave</b> You have advantage on saving throws against being frightened<br>" + Nimble() + "<b>Natural Stealth</b> You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you<br>";
 
-races[18] = {}; // Core Race
+races[18] = {}; // Core Race / Halfling
 races[18].name = randomize("Stout Halfling, Stout Hob, Hob, Fae");
 races[18].languages = "Common, Halfling";
 races[18].abilities = "Dexterity +2, Charisma +1";
@@ -1076,7 +1076,7 @@ races[18].speed = "25 feet";
 races[18].senses = "";
 races[18].traits = Lucky() + "<b>Brave</b> You have advantage on saving throws against being frightened<br>" + Nimble() + ResiliencePoison();
 
-races[19] = {}; // Core Race
+races[19] = {}; // Core Race / Elf
 races[19].name = randomize("Eladrin, Elf, Fae");
 races[19].languages = "Common, Elven";
 races[19].abilities = "Dexterity +2, Intelligence +1";
@@ -1086,7 +1086,7 @@ races[19].speed = "30 feet";
 races[19].senses = "darkvision 60 feet, ";
 races[19].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fey Step</b> You may cast Misty Step once per rest<br>";
 
-races[20] = {}; // Core Race
+races[20] = {}; // Eberron / Warforged
 races[20].name = randomize("Living Construct, Warforged, Modron, Aeon");
 races[20].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[20].abilities = "Strength, Constitution +1";
@@ -1096,7 +1096,7 @@ races[20].speed = "30 feet";
 races[20].senses = "";
 races[20].traits = LivingConstruct() + Armored("Composite Plating");
 
-races[21] = {}; // Core Race
+races[21] = {}; // Core Race / Elf
 races[21].name = randomize("Wood Elf, Ljosalfar, Elf, Fae");
 races[21].languages = "Common, Elven";
 races[21].abilities = "Dexterity +2, Wisdom +1";
@@ -1106,7 +1106,7 @@ races[21].speed = "35 feet";
 races[21].senses = "darkvision 60 feet, ";
 races[21].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fleet of Foot</b> Your base walking speed is 35 feet<br>" + Camouflage();
 
-races[22] = {}; // Core Race
+races[22] = {}; // Core Race / Elf
 races[22].name = randomize("High Elf, Beornalfar, Elf, Fae");
 races[22].languages = "Common, Elven, " + languages[Math.floor(Math.random()*languages.length)];
 races[22].abilities = "Dexterity +2, Intelligence +1";
@@ -1116,7 +1116,7 @@ races[22].speed = "30 feet";
 races[22].senses = "darkvision 60 feet, ";
 races[22].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Cantrip</b> You know one cantrip of your choice from the Wizard spell list. Intelligence is your spellcasting ability for it<br>";
 
-races[23] = {}; // Core Race
+races[23] = {}; // Core Race / Elf
 races[23].name = randomize("Drow, Dark Elf, Dokkalfar, Elf, Fae");
 races[23].languages = "Common, Elven";
 races[23].abilities = "Dexterity +2, your Charisma +1";
@@ -1126,7 +1126,7 @@ races[23].speed = "30 feet";
 races[23].senses = "120 feet";
 races[23].traits = DarkvisionSuperior() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingDrow() + Spells135("Drow Magic", "Dancing Lights", "Faerie Fire", "Darkness", "Charisma") + SunlightSensitivity();
 
-races[24] = {}; // Core Race
+races[24] = {}; // Core Race / Goliath
 races[24].name = randomize("Goliath, Giantkin, Halfgiant, Ogrekin, Halfogre, Ogrillion");
 races[24].languages = "Common, Giant";
 races[24].abilities = "Strength +2, Constitution +1";
@@ -1136,7 +1136,7 @@ races[24].speed = "30 feet";
 races[24].senses = "";
 races[24].traits = Skill("Natural Athlete", "Athletics") + Shield("Stone Endurance") + Powerful("Powerful Build") + "<b>Mountain Born</b> You are acclimated to high altitude, including elevations above 20,000 feet. You are also naturally adapted to cold climates, as described in chapter 5 of the Dungeon Master Guide<br>";
 
-races[25] = {}; // Core Race
+races[25] = {}; // Core Race / Shifter
 races[25].name = randomize("Longtooth Shifter, Shifter");
 races[25].languages = "Common, Silvan";
 races[25].abilities = "Dexterity, Strength +1";
@@ -1146,7 +1146,7 @@ races[25].speed = "30 feet";
 races[25].senses = "darkvision 60 feet, ";
 races[25].traits = Darkvision() + Shifting() + "<b>Longtooth Shifting</b> While shifting, you can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>";
 
-races[26] = {}; // Core Race
+races[26] = {}; // Core Race / Shifter
 races[26].name = randomize("Razorclaw Shifter, Shifter");
 races[26].languages = "Common, Silvan";
 races[26].abilities = "Dexterity +2";
@@ -1156,7 +1156,7 @@ races[26].speed = "30 feet";
 races[26].senses = "darkvision 60 feet, ";
 races[26].traits = Darkvision() + Shifting() + "<b>Razorclaw Shifting</b> While shifting, you can make an unarmed strike as a bonus action. You can use Strength for its attack roll and damage bonus, and this attack deals slashing damage<br>";
 
-races[27] = {}; // Core Race
+races[27] = {}; // Core Race / Dragonborn
 races[27].name = randomize("Gold Dragonkin, Gold Dragonborn, Gold Drake, Dragonborn, Dragonkin, Drake, Goldrake");
 races[27].languages = "Common, Draconic";
 races[27].abilities = "Strength +2, Charisma +1";
@@ -1166,7 +1166,7 @@ races[27].speed = "30 feet";
 races[27].senses = "";
 races[27].traits = "<b>Dragon Ancestry</b> Gold<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
 
-races[28] = {}; // Core Race
+races[28] = {}; // Core Race / Dragonborn
 races[28].name = randomize("Silver Dragonborn, Silver Drake, Silver Dragonkin, Seolfordrake, Drake, Dragonborn, Dragonkin");
 races[28].languages = "Common, Draconic";
 races[28].abilities = "Strength +2, Charisma +1";
@@ -1176,7 +1176,7 @@ races[28].speed = "30 feet";
 races[28].senses = "";
 races[28].traits = "<b>Dragon Ancestry</b> Silver<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
 
-races[29] = {}; // Core Race
+races[29] = {}; // Core Race / Dragonborn
 races[29].name = randomize("Bronze Dragonborn, Bronze Drake, Bronze Dragonkin, Braesdrake, Drake, Dragonborn, Dragonkin");
 races[29].languages = "Common, Draconic";
 races[29].abilities = "Strength +2, Charisma +1";
@@ -1186,7 +1186,7 @@ races[29].speed = "30 feet";
 races[29].senses = "";
 races[29].traits = "<b>Dragon Ancestry</b> Bronze<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of lightning once per rest<br><b>Damage Resistance</b> You have resistance to lightning<br>";
 
-races[30] = {}; // Core Race
+races[30] = {}; // Core Race / Dragonborn
 races[30].name = randomize("Red Dragonborn, Red Drake, Red Dragonkin, Reorake, Drake, Dragonborn, Dragonkin");
 races[30].languages = "Common, Draconic";
 races[30].abilities = "Strength +2, Charisma +1";
@@ -1196,7 +1196,7 @@ races[30].speed = "30 feet";
 races[30].senses = "";
 races[30].traits = "<b>Dragon Ancestry</b> Red<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
 
-races[31] = {}; // Core Race
+races[31] = {}; // Core Race / Dragonborn
 races[31].name = randomize("Black Dragonborn, Black Drake, Black Dragonkin, Svartaldrake, Drake, Dragonborn, Dragonkin");
 races[31].languages = "Common, Draconic";
 races[31].abilities = "Strength +2, Charisma +1";
@@ -1206,7 +1206,7 @@ races[31].speed = "30 feet";
 races[31].senses = "";
 races[31].traits = "<b>Dragon Ancestry</b> Black<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
 
-races[32] = {}; // Core Race
+races[32] = {}; // Core Race / Dragonborn
 races[32].name = randomize("Green Dragonborn, Green Drake, Green Dragonkin, Drake, Dragonborn, Dragonkin");
 races[32].languages = "Common, Draconic";
 races[32].abilities = "Strength +2, Charisma +1";
@@ -1216,7 +1216,7 @@ races[32].speed = "30 feet";
 races[32].senses = "";
 races[32].traits = "<b>Dragon Ancestry</b> Green<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of poison once per rest<br><b>Damage Resistance</b> You have resistance to poison<br>";
 
-races[33] = {}; // Core Race
+races[33] = {}; // Core Race / Dragonborn
 races[33].name = randomize("White Dragonborn, White Drake, White Dragonkin, Drake, Dragonborn, Dragonkin");
 races[33].languages = "Common, Draconic";
 races[33].abilities = "Strength +2, Charisma +1";
@@ -1226,7 +1226,7 @@ races[33].speed = "30 feet";
 races[33].senses = "";
 races[33].traits = "<b>Dragon Ancestry</b> White<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
 
-races[34] = {}; // Core Race
+races[34] = {}; // Core Race / Human variant
 races[34].name = randomize("Human, Hyborean, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot");
 races[34].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[34].abilities = "Two abilities of your choice +1";
@@ -1236,7 +1236,7 @@ races[34].speed = "30 feet";
 races[34].senses = "";
 races[34].traits = BonusSkill() + BonusFeat();
 
-races[35] = {}; // Core Race
+races[35] = {}; // Core Race / Dragonborn
 races[35].name = randomize("Copper Dragonborn, Copper Drake, Copper Dragonkin, Drake, Dragonborn, Dragonkin");
 races[35].languages = "Common, Draconic";
 races[35].abilities = "Strength +2, Charisma +1";
@@ -1246,7 +1246,7 @@ races[35].speed = "30 feet";
 races[35].senses = "";
 races[35].traits = "<b>Dragon Ancestry</b> Copper<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
 
-races[36] = {}; // Core Race
+races[36] = {}; // Core Race / Shifter
 races[36].name = randomize("Beasthide Shifter, Shifter");
 races[36].languages = "Common, Silvan";
 races[36].abilities = "Dexterity and Constitution scores and +1";
@@ -1256,7 +1256,7 @@ races[36].speed = "30 feet";
 races[36].senses = "darkvision 60 feet, ";
 races[36].traits = Darkvision() + Shifting() + "<b>Beasthide Shifting</b> While shifting, you gain a +1 bonus to Armor Class<br>";
 
-races[37] = {}; // Core Race
+races[37] = {}; // Core Race / Shifter
 races[37].name = randomize("Cliffwalk Shifter, Shifter");
 races[37].languages = "Common, Silvan";
 races[37].abilities = "Dexterity +2";
@@ -1266,7 +1266,7 @@ races[37].speed = "30 feet";
 races[37].senses = "darkvision 60 feet, ";
 races[37].traits = Darkvision() + Shifting() + "<b>Cliffwalk Shifting</b> While shifting, you gain a climb speed of 30 feet<br>";
 
-races[38] = {}; // Core Race
+races[38] = {}; // Core Race / Shifter
 races[38].name = randomize("Longstride Shifter, Shifter");
 races[38].languages = "Common, Silvan";
 races[38].abilities = "Dexterity +2";
@@ -1276,7 +1276,7 @@ races[38].speed = "30 feet";
 races[38].senses = "darkvision 60 feet, ";
 races[38].traits = Darkvision() + Shifting() + "<b>Longstride Shifting</b> While shifting, you can use the Dash action as a bonus action<br>";
 
-races[39] = {}; // Core Race
+races[39] = {}; // Core Race / Shifter
 races[39].name = randomize("Wildhunt Shifter, Shifter");
 races[39].languages = "Common, Silvan";
 races[39].abilities = "Dexterity, Wisdom +1";
@@ -1289,8 +1289,8 @@ races[39].traits = Darkvision() + Shifting() + "<b>Wildhunt Shifting</b> While s
 
 // Generic Extended race material. Not extensively playtested, but should be balanced.
 
-races[40] = {}; // aetherspace
-races[40].name = randomize("Mul, Dweorkin");
+races[40] = {}; // dwarf
+races[40].name = randomize("Mul, Halfdwarf, Half-dwarf, Dweorkin");
 races[40].languages = "Common, Dwarven, " + languages[Math.floor(Math.random()*languages.length)];
 races[40].abilities = "Strength +2, Constitution +1";
 races[40].size = "Medium";
@@ -1299,7 +1299,7 @@ races[40].speed = "30 feet";
 races[40].senses = "darkvision 60 feet, ";
 races[40].traits = Darkvision() + ResiliencePoison() + BonusSkills() + "<b>Tireless</b> You have advantage on saving throws and ability checks against increasing your exhaustion level<br>";
 
-races[41] = {}; // goblin core
+races[41] = {}; // goblin
 races[41].name = randomize("Hobgoblin, Goblin");
 races[41].languages = "Common, Goblin";
 races[41].abilities = "Constitution +2, Strength +1";
@@ -1309,7 +1309,7 @@ races[41].speed = "30 feet";
 races[41].senses = "darkvision 60 feet, ";
 races[41].traits = Darkvision() + ArmorTraining() + MartialAdvantage();
 
-races[42] = {}; // dwarf core
+races[42] = {}; // dwarf
 races[42].name = randomize("Svartalfar, Derro, Dwarf, Dwor");
 races[42].languages = "Common, Dwarven";
 races[42].abilities = "Constitution +2, Intelligence +1";
@@ -1319,7 +1319,7 @@ races[42].speed = "25 feet";
 races[42].senses = "darkvision 60 feet, ";
 races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tashas Hideous Laughter", "Invisibility", "Constitution") + SunlightSensitivity() ;
 
-races[43] = {}; // dwarf core
+races[43] = {}; // dwarf
 races[43].name = randomize("Grey Dwarf, Graedwor, Duergar, Dwarf, Dwor");
 races[43].languages = "Dwarven, Undercommon";
 races[43].abilities = "Constitution +2, Dexterity +1";
@@ -1459,7 +1459,7 @@ races[56].speed = "30 feet, climb 30 feet, glide 40 feet";
 races[56].senses = "";
 races[56].traits = Keen("Keen Scent", "smell") + "<b>Glide</b> Membranes between your arms and torso allow you to glide at a speed of 40 feet per round (5 feet of altitude are lost every 20 feet). You can use your gliding ability to negate falling damage if your arms are unrestrained<br><b>Extra Manipulators</b> You have very dexterous feet which can function as an alternate pair of hands. They can even use their big toes as opposable thumbs<br>";
 
-races[57] = {}; // MM
+races[57] = {}; //
 races[57].name = randomize("Kobold, Drake, Dragonkin");
 races[57].languages = "Common, Draconic";
 races[57].abilities = "Strength +2, Constitution +1";
@@ -1589,7 +1589,7 @@ races[69].speed = "30 feet";
 races[69].senses = "";
 races[69].traits = Keen("Keen Scent", "smell");
 
-races[70] = {}; // goblin core / Hobgoblin/Worg battle hybrid
+races[70] = {}; // goblin
 races[70].name = randomize("Varag, Goblin");
 races[70].languages = "Goblin";
 races[70].abilities = "Constitution +2, Strength +1";
@@ -1930,7 +1930,7 @@ races[103].senses = "";
 races[103].traits = Darkvision() + "<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>" + Armored() + Talons();
 
 races[104] = {}; // aetherspace
-races[104].name = randomize("Daelkyr, Demigod, Aberrant");
+races[104].name = randomize("Daelkyr");
 races[104].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[104].abilities = "Strength, Constitution +1";
 races[104].size = "Medium";
@@ -1949,7 +1949,7 @@ races[105].speed = "40 feet";
 races[105].senses = "";
 races[105].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
 
-races[106] = {}; // Core Race
+races[106] = {}; // aasimar
 races[106].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
 races[106].languages = "Common, Celestial";
 races[106].abilities = "Charisma +2, Wisdom +1";
@@ -1959,7 +1959,7 @@ races[106].speed = "30 feet";
 races[106].senses = "darkvision 60 feet, ";
 races[106].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Thaumaturgy", "Cure Wounds", "Lesser Restoration");
 
-races[107] = {}; // Core Race
+races[107] = {}; // aasimar
 races[107].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
 races[107].languages = "Common, Celestial";
 races[107].abilities = "Charisma +2, Wisdom +1";
@@ -1969,7 +1969,7 @@ races[107].speed = "30 feet";
 races[107].senses = "darkvision 60 feet, ";
 races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Flight() + Wings();
 
-races[108] = {}; // variant
+races[108] = {}; // aasimar
 races[108].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
 races[108].languages = "Common, Celestial";
 races[108].abilities = "Charisma +2, Wisdom +1";
@@ -1979,7 +1979,7 @@ races[108].speed = "30 feet";
 races[108].senses = "darkvision 60 feet, ";
 races[108].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Hero", "Shillelagh", "Detect Evil and Good", "Find Steed");
 
-races[109] = {}; // variant
+races[109] = {}; // aasimar
 races[109].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
 races[109].languages = "Common, Celestial";
 races[109].abilities = "Charisma +2, Wisdom +1";
@@ -1987,9 +1987,9 @@ races[109].size = "Medium";
 races[109].type = "humanoid (celestial)";
 races[109].speed = "30 feet";
 races[109].senses = "darkvision 60 feet, ";
-races[109].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Dancing Lights", "Find Familiar", "Find Steed");
+races[109].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Dancing Lights", "Find Familiar", "Find Steed", "Charisma");
 
-races[110] = {}; // variant
+races[110] = {}; // aasimar
 races[110].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
 races[110].languages = "Common, Celestial";
 races[110].abilities = "Charisma +2, Wisdom +1";
@@ -2032,7 +2032,6 @@ races[113].traits = "<b>Ambusher</b> You have advantage on attack rolls against 
 
 // roll up the character
 race = Math.floor(Math.random()*races.length);
-//race = 201; // for race DEBUG
 
 background = Math.floor(Math.random()*backgrounds.length);
 alignment = Math.floor(Math.random()*alignments.length);
@@ -2131,59 +2130,3 @@ document.write("<p><div id='whitebox'><b>Equipment</b> "+ backgrounds[background
 document.write("</td></tr></table></div>");
 
 </script></body></html>
-
-<!--
-
-/* House Rules
-
-"Supernal" means.
-	= Celestials and Fiends.
-	= an extradimentional entity that isn't celestial or fiendish
-	= an extra planetary entity ("aliens")
-
-Languages:
-
-Supernal is the common galactic trade language. No one speaks it natively
-
-Deep Speech is spoken by aberrations, servitors, doomsday cultists, and the messengers of the Great Old Ones.
-
-Primordial is the root language of giant, abyssal and all elemental languages.
-
-Modron is a mathematial language of Law. Order. Stasis. Uniformity.
-
-Kythric is a memetic seed of chaos that grows in the mind of it's students. Some become irretrievably insane.
-
-Irial is the language of the land of Eternal Day. Light. Radiance
-
-Mabaran is the language of the land of Eternal Night. Shadow. Necrosis
-
-Giant = Orcs speak a dialect of Giant
-
-/// Fae Races: Elves, Gnomes
-/// Jotun Races: Giants, Ogres, Trolls, Orcs
-/// Humanoid: Humans, Dwarves, Halflings
-/// Primordials: Elementals, Genasi, Dragons
-/// Supernals: Celestials, Fiends, Shadows
-/// Plants: Sylvan, Arboreal, Mycon
-///
-
-// Notes ///
-
-/// Galactic Empires:
-/// - Hegemonic Crux
-/// - Alliance of Free Stars
-/// - Ur-Quan Empire
-/// - Galactic Mileu
-
-/// Neutral or potentially friendly Xeno NPCs
-/// Slylandro / NPC information traders. Live in gas giants.
-/// Umgah / Bioscience masters of surgery and genetic engieering. Gibbering Mouthers.
-
-/// Xeno NPC Enemies:
-/// Ur-Quan Kzer-Za / "Eternal Doctrine". Hostile to everyone.
-/// Ur-Quan Korh-Ah / "Path of Now and Forever". Keeps battle thralls.
-/// Orz / NPC race of bioscience fish people. Each an extension of one dimensional being with an agenda of it's own.
-/// Dnyarri / Hypnotoad / Overlord / Master / Mindslug / Thrint
-//	- Telepathy, Suggestion. Battle Thralls.
-
--->
