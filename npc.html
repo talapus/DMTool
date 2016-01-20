@@ -656,12 +656,27 @@ function Wings(input) { try { if (input.length > 1) {
 	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall to the ground. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
 }};
 
-function Flight(input) { try { if (input.length > 1) {
+function Fly(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "/b>You can fly at your movement speed<br>");
 	}} catch (err) {
-	return ("<b>Flight</b> You can fly at your movement speed<br>");
+	return ("<b>Fly</b> You can fly at your movement speed<br>");
 }};
 
+function Wings(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.<br>");
+	}} catch (err) {
+	return ("<b>Flight</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.<br>");
+}};
+
+function NoHover(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
+	}} catch (err) {
+	return ("<b>Can't Hover</b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
+}};
+
+// You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.
+
+// Can Not Hover. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn.
 
 /// Backgrounds
 
@@ -1310,14 +1325,14 @@ races[41].senses = "darkvision 60 feet, ";
 races[41].traits = Darkvision() + ArmorTraining() + MartialAdvantage();
 
 races[42] = {}; // dwarf
-races[42].name = randomize("Svartalfar, Derro, Dwarf, Dwor");
+races[42].name = randomize("Svartalfar, Dark Dwarf, Derro, Dwarf, Dwor");
 races[42].languages = "Common, Dwarven";
 races[42].abilities = "Constitution +2, Intelligence +1";
 races[42].size = "Medium";
 races[42].type = "humanoid (fey)";
 races[42].speed = "25 feet";
 races[42].senses = "darkvision 60 feet, ";
-races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tashas Hideous Laughter", "Invisibility", "Constitution") + SunlightSensitivity() ;
+races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tasha's Hideous Laughter", "Crown of Madness", "Constitution") + SunlightSensitivity() ;
 
 races[43] = {}; // dwarf
 races[43].name = randomize("Grey Dwarf, Graedwor, Duergar, Dwarf, Dwor");
@@ -1327,7 +1342,7 @@ races[43].size = "Medium";
 races[43].type = "humanoid";
 races[43].speed = "25 feet";
 races[43].senses = "darkvision 120 feet, ";
-races[43].traits = DarkvisionSuperior() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + "<b>Dwergar Magic</b> You may cast <i>Enlarge</i> once per day<br>" + SunlightSensitivity();
+races[43].traits = DarkvisionSuperior() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Dwergar Magic", "Minor Illusion", "Disguise Self", "Enlarge", "Constitution") + SunlightSensitivity();
 
 races[44] = {}; // deathless
 races[44].name = "Revenant";
@@ -1747,7 +1762,7 @@ races[85].size = "Medium";
 races[85].type = "humanoid (monstrous)";
 races[85].speed = "25 feet, fly 50 feet";
 races[85].senses = "";
-races[85].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br><b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
+races[85].traits = Flight() + Wings() + Mimicry() + "<b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
 races[86] = {}; // aetherspace
 races[86].name = randomize("Ancient, Eldar, Kalashtar, Gith");
@@ -1967,7 +1982,7 @@ races[107].size = "Medium";
 races[107].type = "humanoid (celestial)";
 races[107].speed = "30 feet";
 races[107].senses = "darkvision 60 feet, ";
-races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Flight() + Wings();
+races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Flight() + Wings() + NoHover();
 
 races[108] = {}; // aasimar
 races[108].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
