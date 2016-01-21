@@ -79,10 +79,10 @@ var getName = function() {
   }
 
   var myName = getSegment()
-  //if (randomNumber(2) > 0) {   // 50% chance that a second word is added to the name structure
-  //  myName += getConnector()
-  //  myName += getSegment()
-  //}
+  if (randomNumber(2) > 0) {   // 50% chance that a second word is added to the name structure
+    myName += getConnector()
+    myName += getSegment()
+  }
   return(myName)
 }
 
@@ -325,9 +325,9 @@ function Horns(input) { try { if (input.length > 1) {
 }};
 
 function HumanoidPlant(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. You get all the food you need from 4 hours per day of unobstructed sunlight. You still need to ingest water. You do not age<br>");
+	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight provides all the food you need. Once per day, you may regenerate 1 hit point per class level when in full sunlight.<br>");
 	}} catch (err) {
-	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. You get all the food you need from 4 hours per day of unobstrocted sunlight. You still need to ingest water. You do not age<br>");
+	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight provides all the food you need. Once per day, you may regenerate 1 hit point per class level when in full sunlight.<br>");
 }};
 
 function ImmunityDisease(input) { try { if (input.length > 1) {
@@ -414,9 +414,9 @@ function Psychic(input) { try { if (input.length > 1) {
 }};
 
 function Repletion(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> Instead of sleeping, you enter an inactive state. Meditating for for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+	return ("<b>" + input + "</b> Instead of sleeping, you enter an inactive state. Meditating for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
 	}} catch (err) {
-	return ("<b>Repletion</b> Instead of sleeping, you enter an inactive state. Meditating for for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+	return ("<b>Repletion</b> Instead of sleeping, you enter an inactive state. Meditating for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
 }};
 
 function ResilienceAcid(input) { try { if (input.length > 1) {
@@ -1612,7 +1612,7 @@ races[70].size = "Medium";
 races[70].type = "humanoid (goblin)";
 races[70].speed = "30 feet";
 races[70].senses = "darkvision 60 feet, ";
-races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite() + "<b>Prey driven</b> You are impulsive and bestial. Disadvantage to resist obeying your primal instinct to hunt and kill prey";
+races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite() + "<b>Prey driven</b> You are impulsive and bestial. Disadvantage to resist obeying your primal instinct to hunt and kill prey<br>";
 
 races[71] = {}; // aetherspace / plant / Juffa-Wup, Non, Void.
 races[71].name = randomize("Myconid, Mycon");
@@ -1842,7 +1842,7 @@ races[93].size = "Medium";
 races[93].type = "supernal";
 races[93].speed = "25 feet";
 races[93].senses = "";
-races[93].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b>A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
+races[93].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b> A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
 
 races[94] = {}; // aetherspace
 races[94].name = randomize("Spiderfolk, Ilwrath, Ettercap");
@@ -1952,7 +1952,7 @@ races[104].size = "Medium";
 races[104].type = "humanoid (aberrant)";
 races[104].speed = "30 feet";
 races[104].senses = "";
-races[104].traits = Immortal() + Repletion() + Aberrant() + "<b>Xoriat Nobility</b> All aberrations are biologically programmed not to attack you unless you attack first<br>" + SunlightSensitivity();
+races[104].traits = "<b>Human Seeming</b> Without symbiont armor and weaponry, you are physically indistinguishable from a human" + Immortal() + Repletion() + Aberrant() + "<b>Xoriat Nobility</b> All aberrations are biologically programmed not to attack you unless you attack first<br>" + SunlightSensitivity();
 
 races[105] = {}; // fae
 races[105].name = randomize("Bariaur, Cloven, Fey");
