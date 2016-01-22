@@ -1593,7 +1593,7 @@ races[68].size = "Medium";
 races[68].type = "humanoid (plant)";
 races[68].speed = "30 feet";
 races[68].senses = "";
-races[68].traits = HumanoidPlant() + HealSelf("Regrowth") + "<b>Berries</b> Once per day, you can cast <i>Goodberry</i><br>";
+races[68].traits = HumanoidPlant() + HealSelf("Regrowth") + "<b>Berries</b> Once per day, you can produce the effects of the <i>Goodberry</i> spell<br>";
 
 races[69] = {}; // aetherspace
 races[69].name = randomize("Blemmyes, Akephaloi, Anthropophage");
@@ -1763,7 +1763,7 @@ races[85].size = "Medium";
 races[85].type = "humanoid (monstrous)";
 races[85].speed = "25 feet, fly 50 feet";
 races[85].senses = "";
-races[85].traits = Flight() + Wings() + Mimicry() + "<b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
+races[85].traits = Wings() + Mimicry() + "<b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
 
 races[86] = {}; // aetherspace
 races[86].name = randomize("Ancient, Eldar, Kalashtar, Gith");
@@ -1983,7 +1983,7 @@ races[107].size = "Medium";
 races[107].type = "humanoid (celestial)";
 races[107].speed = "30 feet";
 races[107].senses = "darkvision 60 feet, ";
-races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Flight() + Wings() + NoHover();
+races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Wings() + NoHover();
 
 races[108] = {}; // aasimar
 races[108].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
@@ -2033,7 +2033,7 @@ races[112].size = "Medium";
 races[112].type = "humanoid (supernal)";
 races[112].speed = "25 feet, fly 50 feet";
 races[112].senses = "";
-races[112].traits = FlightWings() + Talons();
+races[112].traits = Wings() + Talons();
 
 races[113] = {}; //
 races[113].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling");
@@ -2060,8 +2060,10 @@ CHR = rollStat();
 HP = Math.floor(Math.random()*8)+1 + getBaseMod(CON);
 
 // show the DMTool menu and refresh button
-/* // buttons
-document.write("<table cellpadding=6><tr><td valign='top'><input id='menu' type='button' value='&#9776;' onClick='window.location.reload()'><p><input id='reload-button' type='button' value='&#9850;' onClick='window.location.reload()'></td><td>");
+/* buttons
+document.write("<table cellpadding=6><tr><td valign='top'>")
+document.write("<input id='menu' type='button' value='&#9776;' onClick='window.location.reload()'>")
+document.write("<p><input id='reload-button' type='button' value='&#9850;' onClick='window.location.reload()'></td><td>")
 */
 
 // display the character
