@@ -1,0 +1,47 @@
+Racial Trait List
+This list of traits covers how I would score the included traits. It is very possible you don’t agree with me, so I encourage you to ignore the listed values if you feel the need to.
+[1 - 2] Ability Score Increase. Your _______ score increases by [1 or 2].
+[.5 - 2] Armor Training. You have proficiency with ___ armor.
+[.5] Brave. You have advantage on saving throws against being frightened.
+[1] Breath Weapon. You can use your action to exhale destructive energy. This produces a __foot [cone or line] dealing _____ damage.
+When you use your breath weapon, each creature in the area of the exhalation must make a _____ saving throw. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.
+After you use your breath weapon, you can’t use it again until you complete a short or long rest.
+[.5] Cantrip. You know [one cantrip of your choice from the _____ spell list]/[the _____ cantrip]. ______ is your spellcasting ability for it.
+[2] Cunning. You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.
+[.5] Darkvision. You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.
+[-1 - +1] Damage [Immunity/Resistance/Vulnerability]. You have __________ to ______ damage.
+[.5] Extra Language. You can speak, read, and write _______[one extra language of your choice].
+[.5/5ft.] Extra Movement. Your base walking speed increases to __ feet.
+[?] Feat. You gain one feat of your choice.
+[.5] Fey Ancestry. You have advantage on saving throws against being charmed and magic can’t put you to sleep.
+[1] Innate Magic. You know the _____ cantrip. You can cast the first level spell _____ once per day. _______ is your spellcasting ability for these spells.
+[1.5] Innate Magic. You know the _____ cantrip. When you reach 3rd level, you can cast the _____ spell once per day. When you reach 5th level, you can also cast the _____ spell once per day. _______ is your spellcasting ability for these spells.
+[0] Languages. You can speak, read, and write Common and ______.
+[1] Living Construct. Even though you were constructed, you are a living creature. You are immune to disease. You do not need to eat or breathe, but you can ingest food and drink if you wish. Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal.
+[.5] Lucky. When you roll a 1 on an attack roll, ability check, or saving throw, you can re-roll the die and must use the new roll.
+[.5 - 2] Natural Armor. You have a natural armor bonus of +__. When unarmored, your AC is equal to 10 + your natural armor bonus + your dexterity modifier.
+[1] Naturally Stealthy. You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.
+[.5 - 1] Natural Weapon. You are proficient with your unarmed strikes, which deal 1dX ____ damage on a hit.
+[.5] Nimble. You can move through the space of any creature that is of a size larger than yours.
+[.5] Poison Resilience. You have advantage on saving throws against poison, and you have resistance against poison damage.
+[1] Relentless Endurance. When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+[.5] Savage Attacks. When you score a critical hit with a melee weapon attack, you can roll one of the weapon’s damage dice one additional time and add it to the extra damage of the critical hit.
+[.5] Skills. You have proficiency in the _____ skill.
+[.5] Speak with Small Beasts. Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts.
+[+/-X] Speed. Your base walking speed is 30 feet. (include special notes about movement here)
+[.5] Stonecunning. Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.
+Subrace. Two main subraces of _____ populate the worlds of D&D: ______ and ______. Choose one of these subraces.
+[.5] Superior Darkvision. Your darkvision has a radius of 120 feet.
+[-1] Sunlight Sensitivity. You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.
+[.5] Tool Proficiency. You gain proficiency with the ____ tools of your choice: _____.
+[1.5] Toughness. Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+[.5] Trance. You don’t need to sleep. Instead, you meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is “trance.”) While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.
+[0 - 1] Weapon Familiarity. You consider the _______[racial weapons] martial weapons instead of exotic weapons.
+[.5] Weapon Training. You have proficiency with the ________[weapons].
+[X-1] Wings. You have a flying speed of __ feet.
+You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. [-.5 per 5ft past the first 5 ft.]
+You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.
+[-1] Can Not Hover. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn.
+[1.5 - 2] Higher Ability Scores. Your _______ score increases by [1, 2, 3, or 4].
+(The Cost of this trait is 1.5 for the first extra point above baseline, and 2 for the second extra point. So a race with +2/+1 would be worth 3 points as normal. +2/+1/+1 would be worth 4.5, +2/+1/+1/+1 would be worth 6, as would +3/+2, +2/+2/+1 would be worth 6.5, as would +4/+1. A race with only +3 in one ability score would be worth 3.5.)
+[1] Hideous to look at. Social disadvantage.
