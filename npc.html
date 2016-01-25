@@ -39,32 +39,24 @@ body {
 </head><body><script>
 
 
-var getName = function() {
+function getName() {
 
-  var getVowel = function () {
+  function getVowel() {
     var vowels = ['a', 'e', 'i', 'o', 'u' ]
     return(vowels[randomNumber(vowels.length)])
   }
 
-  var getConsonant = function() {
-    var consonants = ['b', 'c', 'd', 'f',
-                      'g', 'h', 'j', 'k', 'l',
-                      'm', 'n', 'p', 'p', 'r',
-                      's', 't', 'v', 'w', 'x',
-                      'y', 'z']
+  function getConsonant() {
+    var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n',
+											'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
     return(consonants[randomNumber(consonants.length)])
-  }
-
-  var getConnector = function() {
-    var connectors = ['-', ' ', '\'']
-    return(connectors[randomNumber(connectors.length)])
   }
 
   var getOptional = function() {
     return(getConsonant() + getVowel() + getConsonant())
   }
 
-  var getSegment = function() {
+  var getWord = function() {
 
     var myWord = getConsonant().toUpperCase() // first letter uppercase
     for (var i=0; i<randomNumber(2)+1; i++) {  // followed by 1-2 vowels
@@ -72,18 +64,13 @@ var getName = function() {
     }
 
     myWord += getConsonant()
-    if (randomNumber(2) > 0) { // 50% chance of an optional word segment
+    if (randomNumber(3) > 0) { // 75% chance of an optional word segment
       myWord += getOptional()
     }
     return(myWord)
   }
 
-  var myName = getSegment()
-	/*
-  if (randomNumber(2) > 0) {   // 50% chance that a second word is added to the name structure
-    myName += getConnector()
-    myName += getSegment()
-  } */
+  var myName = getWord()
   return(myName)
 }
 
@@ -326,9 +313,9 @@ function Horns(input) { try { if (input.length > 1) {
 }};
 
 function HumanoidPlant(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight provides all the food you need. Once per day, you may regenerate 1 hit point per class level when in full sunlight.<br>");
+	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight satisfies your food requirements for the day. Without sunlight, you can rely on humanoid food sources. Once per day, you may regenerate 1 hit point per class level <br>");
 	}} catch (err) {
-	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight provides all the food you need. Once per day, you may regenerate 1 hit point per class level when in full sunlight.<br>");
+	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight satisfies your food requirements for the day. Without sunlight, you can rely on humanoid food sources. Once per day, you may regenerate 1 hit point per class level <br>");
 }};
 
 function ImmunityDisease(input) { try { if (input.length > 1) {
@@ -355,9 +342,9 @@ function Immortal(input) { try { if (input.length > 1) {
 function Keen(arg1, arg2) { return ("<b>" + arg1 + "</b> You have advantage on Perception(Wisdom) rolls that rely on " + arg2 + "<br>") };
 
 function Leap(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> Thri-kreen have Advantage whenever they use their Athletics skill to jump<br>");
+	return ("<b>" + input + "</b> Advantage on Athletics skill rolls for jumping<br>");
 	}} catch (err) {
-	return ("<b>Leap</b> Thri-kreen have Advantage whenever they use their Athletics skill to jump<br>");
+	return ("<b>Leap</b> Advantage on Athletics skill rolls for jumping<br>");
 }};
 
 function LivingConstruct(input) { try { if (input.length > 1) {
@@ -652,9 +639,9 @@ function StunSpore(input) { try { if (input.length > 1) {
 }};
 
 function Wings(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b>You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall to the ground. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+	return ("<b>" + input + "/b>You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
 	}} catch (err) {
-	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall to the ground. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
 }};
 
 function Fly(input) { try { if (input.length > 1) {
@@ -663,17 +650,19 @@ function Fly(input) { try { if (input.length > 1) {
 	return ("<b>Fly</b> You can fly at your movement speed<br>");
 }};
 
-function Wings(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.<br>");
-	}} catch (err) {
-	return ("<b>Flight</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.<br>");
-}};
-
 function NoHover(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "/b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
 	}} catch (err) {
 	return ("<b>Can't Hover</b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
 }};
+
+function Quadruped(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage against tripping<br>");
+	}} catch (err) {
+	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>");
+}};
+
+//""<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>"
 
 // You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.
 
@@ -933,7 +922,7 @@ races[2].senses = "darkvision 60 feet, ";
 races[2].traits = Darkvision() + FeyAncestry() + BonusSkills();
 
 races[3] = {}; // Core Race / Halforc
-races[3].name = randomize("Halforc, Orc, Ork, Orog, Reaver, Scro, Ruk, Druuge");
+races[3].name = randomize("Halforc, Orc, Ork, Orog, Scro, Ruk, Druuge");
 races[3].languages = "Common, Giant";
 races[3].abilities = "Strength +2, Constitution +1";
 races[3].size = "Medium";
@@ -1396,7 +1385,7 @@ races[48].senses = "darkvision 60 feet, ";
 races[48].traits = Darkvision() + Skill("Sneaky", "Stealth") + NimbleEscape() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>";
 
 races[49] = {}; // aetherspace
-races[49].name = randomize("Simulacrum, Living Construct, Modron, Aeon");
+races[49].name = randomize("Simulacrum, Android, Living Construct, Modron, Aeon");
 races[49].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[49].abilities = "Strength, Constitution +1";
 races[49].size = "Medium";
@@ -1405,7 +1394,7 @@ races[49].speed = "30 feet";
 races[49].senses = "";
 races[49].traits = LivingConstruct() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br>";
 
-races[50] = {}; // aetherspace
+races[50] = {}; // athas/dark sun
 races[50].name = randomize("Ancient, Eldar, Kalashtar, Gith");
 races[50].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[50].abilities = "Intelligence, Wisdom +1";
@@ -1415,8 +1404,8 @@ races[50].speed = "30 feet";
 races[50].senses = "";
 races[50].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once per rest<br>";
 
-races[51] = {}; // aetherspace
-races[51].name = "Athas Halfgiant";
+races[51] = {}; // dark sun
+races[51].name = "Athasian Halfgiant";
 races[51].languages = "Common, Giant";
 races[51].abilities = "Strength +2, Constitution +1";
 races[51].size = "Medium";
@@ -1446,7 +1435,7 @@ races[53].senses = "";
 races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Climb</b> You have proficiency with the Athletics skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
 
 races[54] = {}; // aetherspace
-races[54].name = randomize("Simulacrum, Living Construct, Androsynth, Aeon");
+races[54].name = randomize("Simulacrum, Living Construct, Biot, Androsynth, Aeon");
 races[54].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[54].abilities = "Strength, Constitution +1";
 races[54].size = "Medium";
@@ -1573,10 +1562,10 @@ races[66].size = "Medium";
 races[66].type = "humanoid (supernal)";
 races[66].speed = "30 feet";
 races[66].senses = "darkvision 60 feet, ";
-races[66].traits = Darkvision() + Psychic() + Spells135("Psychic Powers", "Mage Hand", "Jump", "Detect Thoughts", "Constitution");
+races[66].traits = Darkvision() + Psychic() + Spells135("Psychic Powers", "Feather Fall", "Jump", "Detect Thoughts", "Constitution");
 
 races[67] = {}; // aetherspace
-races[67].name = "Elan";
+races[67].name = randomize("Immortal, Elan, Ancient, Eldar, Kalashtar, Gith");
 races[67].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[67].abilities = "Strength, Constitution +1";
 races[67].size = "Medium";
@@ -1633,7 +1622,7 @@ races[72].size = "Medium";
 races[72].type = "humanoid (fey)";
 races[72].speed = "40 feet";
 races[72].senses = "";
-races[72].traits = "<b>Quadruped</b> +10 base land speed, advantage against tripping<br><b>Fey Ancestry</b> Advantage against charm and magic saving throws. You can not be put to sleep<br><b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
+races[72].traits = Quadruped() + FeyAncestry() + "<b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
 
 races[73] = {}; // turtlefolk
 races[73].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
@@ -1687,13 +1676,13 @@ races[77].traits = Darkvision() + "<b>Brute</b> A melee weapon deals one extra d
 
 races[78] = {}; // aetherspace
 races[78].name = randomize("Giff, Thraddash");
-races[78].languages = "Common, Undercommon, Gith";
+races[78].languages = "Common, Undercommon, Giff";
 races[78].abilities = "Strength +2, Constitution +1";
 races[78].size = "Medium";
 races[78].type = "humanoid (supernal)";
 races[78].speed = "30 feet";
 races[78].senses = "";
-races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
+races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. The weapon takes one round to reload. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
 
 races[79] = {};
 races[79].name = randomize("Tabaxi, Leonine, Leonid, Kzinti");
@@ -1796,7 +1785,7 @@ races[88].senses = "";
 races[88].traits = "<b>Dragon Ancestry</b> Shadow<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of necrosis once per rest<br><b>Shadowborn</b> You have resistance to necrotic damage<br>";
 
 races[89] = {}; // giant
-races[89].name = randomize("Laskarim, Halforc, Orc, Ork, Reaver, Orog, Scro, Ruk, Druuge");
+races[89].name = randomize("Laskarim, Halforc, Orc, Ork, Orog, Scro, Ruk");
 races[89].languages = "Common, Giant";
 races[89].abilities = "Strength +2, Constitution +1";
 races[89].size = "Medium";
@@ -1823,7 +1812,7 @@ races[91].size = "Medium";
 races[91].type = "humanoid (supernal)";
 races[91].speed = "30 feet";
 races[91].senses = "";
-races[91].traits = "<b>Personal Space</b> Once per day, you may enter a personal demiplane accessible only by you and the items you are carrying. It is large enough to hold up to 8 medium sized creatures. Attacks and spells can not cross through the entrance into or out of the extradimensional space, but you can see out as if through a 3 foot by 5 foot window centered on the point of entry. You may remain inside as long as you desire. The space persists in your absence and items left behind remain there<br><b>Recall</b> You may use an action to summon a hand-held item stored in your personal space<br>";
+races[91].traits = "<b>Personal Space</b> Once per day, you may enter a personal demiplane accessible only by you and the items you are carrying. It is large enough to hold up to 8 medium sized creatures. Attacks and spells can not cross through the entrance into or out of the extradimensional space, but you can see out as if through a 3 foot by 5 foot window centered on the point of entry. You may remain inside for one hour per level. You are unable to bring other pocket dimensions into this one; they physically can't enter, falling onto the floor. The space persists in your absence and items left behind remain there<br><b>Recall</b> You may use an action to summon a hand-held item stored in your personal space<br>";
 
 races[92] = {}; // aetherspace / Plant
 races[92].name = randomize("Briarborn, Bloodvine, Trapper, Lasher, Wildvine, Triffid");
@@ -1856,7 +1845,7 @@ races[94].senses = "Websense 60 feet, ";
 races[94].traits = Darkvision() +  "<b>Spider Climb</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check<br><b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus save or become poisoned<br>";
 
 races[95] = {}; // aetherspace
-races[95].name = randomize("Grimlock, Aberrant");
+races[95].name = randomize("Grimlock, Cthonian, Morlock");
 races[95].languages = "Undercommon";
 races[95].abilities = "Wisdom, Dexterity +1";
 races[95].size = "Medium";
@@ -1885,18 +1874,18 @@ races[97].speed = "20 feet"; // fly 30 while carried by a mage hand
 races[97].senses = "darkvision 60 feet, ";
 races[97].traits = Darkvision() + Cunning() + "<b>Fae Magic</b> You know the Minor Illusion and Mage Hand cantrips<br>";
 
-races[98] = {}; // goblins
-races[98].name = "Barghest";
+races[98] = {}; // aetherspace
+races[98].name = randomize("Barghest, Wolfen, Werewolf, Shapeshifter");
 races[98].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[98].abilities = "Strength, Constitution +1";
 races[98].size = "Medium";
 races[98].type = "humanoid (shapeshifter)";
 races[98].speed = "30 feet";
 races[98].senses = "";
-races[98].traits = NaturalWeapons() + "<b>Shapeshifter</b> A Barghest can assume the shape of a Goblin, Wolf, or Barghest as a standard action. In Goblin form, a Barghest cannot use its natural weapons but can wield weapons and wear armor. In Wolf form, a Barghest loses its claw attacks but gains movement 40 feet. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>";
+races[98].traits = NaturalWeapons() + "<b>Shapeshifter</b> You can assume humanoid, wolf, or your natural form as a standard action. In humanoid form, you cannot use your natural weapons but can wield weapons and wear armor. In Wolf form, you lose your claw attacks but gain movement 40 feet. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>";
 
 races[99] = {}; // minotaur
-races[99].name = randomize("Marinotaur, Minotaur, Asterion");
+races[99].name = randomize("Minotaur, Asterion");
 races[99].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[99].abilities = "Strength +1, Intelligence +1";
 races[99].size = "Medium";
@@ -1943,7 +1932,7 @@ races[103].size = "Medium";
 races[103].type = "supernal (draconic)";
 races[103].speed = "40 feet";
 races[103].senses = "";
-races[103].traits = Darkvision() + "<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>" + Armored() + Talons();
+races[103].traits = Darkvision() + Quadruped() + Armored() + Talons();
 
 races[104] = {}; // aetherspace
 races[104].name = randomize("Daelkyr");
@@ -1963,7 +1952,7 @@ races[105].size = "Medium";
 races[105].type = "humanoid (fey)";
 races[105].speed = "40 feet";
 races[105].senses = "";
-races[105].traits = "<b>Mountain Footed</b> +10 base land speed, advantage on climb checks<br>" + FeyAncestry() + Horns();
+races[105].traits = Quadruped() + FeyAncestry() + Horns();
 
 races[106] = {}; // aasimar
 races[106].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
@@ -2035,7 +2024,7 @@ races[112].speed = "25 feet, fly 50 feet";
 races[112].senses = "";
 races[112].traits = Wings() + Talons();
 
-races[113] = {}; //
+races[113] = {}; // aetherspace
 races[113].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling");
 races[113].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
 races[113].abilities = "Charisma +2, Intelligence +1";
