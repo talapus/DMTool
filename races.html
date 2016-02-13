@@ -25,13 +25,14 @@ body {
   border-radius: 10px;
 	margin: auto;
   background: #ffffff;
+	padding: 10px;
 }
 
 #background {
   border-radius: 10px;
 	margin: auto;
   background: #e2e2e2;
-  padding: .5px;
+  padding: 10px;
 }
 
 </style>
@@ -40,9 +41,9 @@ body {
 
 
 function randomize(input) {
-	return(input)
-	//anArray = input.split(', ');
-  //return anArray[Math.floor(Math.random() * anArray.length)];
+	anArray = input.split(', ');
+	return anArray[0]
+	//return anArray[Math.floor(Math.random() * anArray.length)];
 }
 
 var randomNumber = function(input) {
@@ -1135,7 +1136,7 @@ races[57].size = "Small";
 races[57].type = "humanoid (dragon)";
 races[57].speed = "25 feet";
 races[57].senses = "";
-races[57].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b>You are a skilled miner<br>";
+races[57].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b> You are a skilled miner<br>";
 
 races[58] = {}; // deathless
 races[58].name = randomize("Deathless, Vaettir, Wight");
@@ -1717,19 +1718,25 @@ races[115].speed = "30 feet, swim 40 feet";
 races[115].senses = "darkvision 60 feet, ";
 races[115].traits = Amphibious() + Darkvision() + FeyAncestry() + Trance() + "<b>Weapon training</b> You have proficiency with pike, net, and harpoon<br>";
 
+// display functions
+
+function displayRace(race) {
+	document.write("<b>" + races[race].name + " </b> ")
+	document.write("<div id='whitebox'>" + races[race].size + " " + races[race].type)
+	document.write("<br><b>Abilities</b> "+ races[race].abilities)
+	document.write("<br><b>Languages</b> "+ races[race].languages)
+	document.write("<br><b>Speed</b> " + races[race].speed + "<p>")
+	document.write(races[race].traits + "</div>")
+}
+
 
 //main
 function main() {
 	race = Math.floor(Math.random()*races.length);
 	// race = 113 //DEBUG
-	document.write("<table cellpadding=0><tr><td><div id='main'>");
-	document.write("<b>" + races[race].name + " </b> ")
-	document.write("<br>" + races[race].size + " " + races[race].type);
-	document.write("<div id='background'><p><b>Abilities</b> "+ races[race].abilities);
-	document.write("<br><b>Languages</b> "+ races[race].languages);
-	document.write("<br><b>Speed</b> " + races[race].speed + "</div>");
-	document.write(races[race].traits);
-	document.write("</td></tr></table></div>");
+	document.write("<table cellpadding=0><tr><td><div id='main'>")
+	displayRace(race)
+	document.write("</td></tr></table></div>")
 }
 
 main()
