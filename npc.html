@@ -277,15 +277,9 @@ function FeyAncestry(input) { try { if (input.length > 1) {
 }};
 
 function Flight(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You can not be wearing medium or heavy armor to use this ability<br>");
+	return ("<b>" + input + "</b> When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
 	}} catch (err) {
-	return ("<b>Flight</b> You can not be wearing medium or heavy armor to use this ability<br>");
-}};
-
-function FlightWings(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br");
-	}} catch (err) {
-	return ("<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br>");
+	return ("<b>Flight</b> When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
 }};
 
 function Resilient(input) { try { if (input.length > 1) {
@@ -330,15 +324,6 @@ function Immortal(input) { try { if (input.length > 1) {
 	return ("<b>Immortal</b> You do not age<br>");
 }};
 
-/*
-function Immortal(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You do not age. All hit points are restored at the end of a long rest. You fade away into nothing if you die<br>");
-	}} catch (err) {
-	return ("<b>Immortal</b> You do not age. All hit points are restored at the end of a long rest. You fade away into nothing if you die<br>");
-}};
-*/
-
-// arg1= Descriptive name, arg2= skill
 function Keen(arg1, arg2) { return ("<b>" + arg1 + "</b> You have advantage on Perception(Wisdom) rolls that rely on " + arg2 + "<br>") };
 
 function Leap(input) { try { if (input.length > 1) {
@@ -639,34 +624,18 @@ function StunSpore(input) { try { if (input.length > 1) {
 }};
 
 function Wings(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b>You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+	return ("<b>" + input + "/b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
 	}} catch (err) {
 	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
 }};
 
-function Fly(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b>You can fly at your movement speed<br>");
-	}} catch (err) {
-	return ("<b>Fly</b> You can fly at your movement speed<br>");
-}};
-
-function NoHover(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
-	}} catch (err) {
-	return ("<b>Can't Hover</b> You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
-}};
-
 function Quadruped(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage against tripping<br>");
+	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
 	}} catch (err) {
-	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>");
+	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
 }};
 
-//""<b>Quadruped</b> +10 base land speed at a gallop, advantage against tripping<br>"
 
-// You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. You cannot fly if you are wearing armor you are not proficient in, armor not tailored to accommodate your wings, or a backpack not specially tailored to your wings.
-
-// Can Not Hover. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn.
 
 /// Backgrounds
 
@@ -939,17 +908,17 @@ races[4].size = "Medium";
 races[4].type = "humanoid (monstrous)";
 races[4].speed = "30 feet"
 races[4].senses = "";
-races[4].traits = Skill("Duplicity", "Deception") + "<b>Shapechanger</b> As an action, you can polymorph into any humanoid of your size that you have seen, or back into your true form. Your equipment does not change with you. If you die, you revert to your natural appearance<br>";
+races[4].traits = Skill("Duplicity", "Deception") + "<b>Shapeshifter</b> As an action, you can polymorph into any humanoid of your size that you have seen, or back into your true form. Your equipment does not change with you. If you die, you revert to your natural appearance<br>";
 
 races[5] = {}; // Wildkin
-races[5].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling");
+races[5].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling, Rook, Ravenfolk");
 races[5].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
-races[5].abilities = "Charisma +2, Intelligence +1";
+races[5].abilities = "Dexterity +2, Wisdom +1";
 races[5].size = randomize("Small, Medium");
 races[5].type = "humanoid (monstrous)";
 races[5].speed = "25 feet";
 races[5].senses = "darkvision 60 feet";
-races[5].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth") + ShadowFade();
+races[5].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth")
 
 races[6] = {}; // Core Race / Aasimar
 races[6].name = randomize("Celestial, Aasimar");
@@ -1396,10 +1365,10 @@ races[49].traits = LivingConstruct() + "<b>Fine craftmanship</b> A successful sp
 
 races[50] = {}; // athas/dark sun
 races[50].name = randomize("Ancient, Eldar, Kalashtar, Gith");
-races[50].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[50].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[50].abilities = "Intelligence, Wisdom +1";
 races[50].size = "Medium";
-races[50].type = "humanoid (psychic, supernal)";
+races[50].type = "humanoid (supernal)";
 races[50].speed = "30 feet";
 races[50].senses = "";
 races[50].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once per rest<br>";
@@ -1456,7 +1425,7 @@ races[55].traits = Darkvision() + Armored("Tough Hide") + MartialAdvantage();
 
 races[56] = {}; // aetherspace
 races[56].name = randomize("Yazarian, Hadozee");
-races[56].languages = "Common";
+races[56].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
 races[56].abilities = "Strength +2, Dexterity +1";
 races[56].size = "Medium";
 races[56].type = "humanoid (supernal)";
@@ -1469,7 +1438,7 @@ races[57].name = randomize("Kobold, Drake, Dragonkin");
 races[57].languages = "Common, Draconic";
 races[57].abilities = "Strength +2, Constitution +1";
 races[57].size = "Small";
-races[57].type = "humanoid (supernal)";
+races[57].type = "humanoid (dragon)";
 races[57].speed = "25 feet";
 races[57].senses = "";
 races[57].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b>You are a skilled miner<br>";
@@ -1556,7 +1525,7 @@ races[65].traits = Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per 
 
 races[66] = {}; // aetherspace
 races[66].name = randomize("Gith, Kalashtar, Eldar, Ancient");
-races[66].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[66].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
 races[66].abilities = "Wisdom +2, Intelligence +1";
 races[66].size = "Medium";
 races[66].type = "humanoid (supernal)";
@@ -1569,14 +1538,14 @@ races[67].name = randomize("Immortal, Elan, Ancient, Eldar, Kalashtar, Gith");
 races[67].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[67].abilities = "Strength, Constitution +1";
 races[67].size = "Medium";
-races[67].type = "humanoid (psychic)";
+races[67].type = "humanoid (supernal)";
 races[67].speed = "30 feet";
 races[67].senses = "";
 races[67].traits = Immortal() + Psychic() + Repletion();
 
-races[68] = {}; // aetherspace / plant
-races[68].name = randomize("Supox");
-races[68].languages = "Common, Supernal";
+races[68] = {}; // aetherspace
+races[68].name = "Supox"
+races[68].languages = "Common, Supernal, Supox"
 races[68].abilities = "Constitution +2, Wisdom +1";
 races[68].size = "Medium";
 races[68].type = "humanoid (plant)";
@@ -1626,10 +1595,10 @@ races[72].traits = Quadruped() + FeyAncestry() + "<b>Weapon training</b> You hav
 
 races[73] = {}; // turtlefolk
 races[73].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
-races[73].languages = "Common, Supernal";
+races[73].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)]
 races[73].abilities = "Strength +2, Constitution +1";
 races[73].size = "Medium";
-races[73].type = "humanoid (supernal)";
+races[73].type = "humanoid (monstrous)";
 races[73].speed = "30 feet, swim 30 feet";
 races[73].senses = "";
 races[73].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
@@ -1656,10 +1625,10 @@ races[75].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
 
 races[76] = {}; // aetherspace
 races[76].name = randomize("Ancient, Eldar, Kalashtar, Gith");
-races[76].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[76].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
 races[76].abilities = "Intelligence +2, Wisdom +1";
 races[76].size = "Medium";
-races[76].type = "humanoid (psychic, supernal)";
+races[76].type = "humanoid (supernal)";
 races[76].speed = "30 feet";
 races[76].senses = "";
 races[76].traits = Telepathy() + Psychic() + Telekinesis();
@@ -1676,7 +1645,7 @@ races[77].traits = Darkvision() + "<b>Brute</b> A melee weapon deals one extra d
 
 races[78] = {}; // aetherspace
 races[78].name = randomize("Giff, Thraddash");
-races[78].languages = "Common, Undercommon, Giff";
+races[78].languages = "Supernal, Giff, " + languages[Math.floor(Math.random()*languages.length)]
 races[78].abilities = "Strength +2, Constitution +1";
 races[78].size = "Medium";
 races[78].type = "humanoid (supernal)";
@@ -1748,18 +1717,18 @@ races[85] = {}; // extended race material
 races[85].name = randomize("Rook, Ravenfolk");
 races[85].languages = "Common, Primordial, Auran";
 races[85].abilities = "Dexterity +2, Wisdom +1";
-races[85].size = "Medium";
+races[85].size = randomize("Small, Medium");
 races[85].type = "humanoid (monstrous)";
 races[85].speed = "25 feet, fly 50 feet";
 races[85].senses = "";
-races[85].traits = Wings() + Mimicry() + "<b>Keen Sight</b> You have advantage on Wisdom (Perception) checks that rely on sight<br>";
+races[85].traits = Wings() + Mimicry();
 
 races[86] = {}; // aetherspace
 races[86].name = randomize("Ancient, Eldar, Kalashtar, Gith");
-races[86].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[86].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
 races[86].abilities = "Strength, Constitution +1";
 races[86].size = "Medium";
-races[86].type = "humanoid (psychic, supernal)";
+races[86].type = "humanoid (supernal)";
 races[86].speed = "30 feet";
 races[86].senses = "";
 races[86].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once per rest<br>";
@@ -1806,7 +1775,7 @@ races[90].traits = Skill("Athletic", "athletics") + Toughness("Tough") + Powerfu
 
 races[91] = {}; // aetherspace
 races[91].name = randomize("Mercane, Melnorme, Mael-Num");
-races[91].languages = "Common, Supernal "
+races[91].languages = "Common, Supernal, Mercane"
 races[91].abilities = "Intelligence +1, Constitution +1";
 races[91].size = "Medium";
 races[91].type = "humanoid (supernal)";
@@ -1826,10 +1795,10 @@ races[92].traits = HumanoidPlant() + Cantrip("Thorn Whip", "Thorn Whip", "Consti
 
 races[93] = {}; // aetherspace
 races[93].name = randomize("Dralasite");
-races[93].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[93].languages = "Common, Supernal, Dralasite"
 races[93].abilities = "Strength, Constitution +1";
 races[93].size = "Medium";
-races[93].type = "supernal";
+races[93].type = "humanoid (supernal)";
 races[93].speed = "25 feet";
 races[93].senses = "";
 races[93].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b> A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
@@ -1926,10 +1895,10 @@ races[102].traits = "<b>Freezing Aura</b> Anyone that touches an Azer or strikes
 
 races[103] = {}; // aetherspace / Dragon Centaur
 races[103].name = randomize("Dracon, Saurian");
-races[103].languages = "Common, Draconic, Supernal";
+races[103].languages = "Common, Supernal, Draconic";
 races[103].abilities = "Strength, Constitution +1";
 races[103].size = "Medium";
-races[103].type = "supernal (draconic)";
+races[103].type = "humanoid (dragon)";
 races[103].speed = "40 feet";
 races[103].senses = "";
 races[103].traits = Darkvision() + Quadruped() + Armored() + Talons();
@@ -1972,7 +1941,7 @@ races[107].size = "Medium";
 races[107].type = "humanoid (celestial)";
 races[107].speed = "30 feet";
 races[107].senses = "darkvision 60 feet, ";
-races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Wings() + NoHover();
+races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Wings()
 
 races[108] = {}; // aasimar
 races[108].name = randomize("Celestial, Aasimar, Hyperion, Eldar, Empyrean");
@@ -2015,27 +1984,29 @@ races[111].senses = "";
 races[111].traits = Flight() + "<b>Genie Magic</b> You know the Minor Illusion cantrip";
 
 races[112] = {}; // Core Race
-races[112].name = randomize("Aarakocra");
+races[112].name = randomize("Aarakocra, Rook, Ravenfolk");
 races[112].languages = "Common, Aarakocra, Auran";
 races[112].abilities = "Dexterity +2, Wisdom +1";
-races[112].size = "Medium";
-races[112].type = "humanoid (supernal)";
+races[112].size = randomize("Small, Medium");
+races[112].type = "humanoid (monstrous)";
 races[112].speed = "25 feet, fly 50 feet";
 races[112].senses = "";
 races[112].traits = Wings() + Talons();
 
 races[113] = {}; // aetherspace
-races[113].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling");
-races[113].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
-races[113].abilities = "Charisma +2, Intelligence +1";
+races[113].name = randomize("Rook, Ravenfolk, Swanmay");
+races[113].languages = "Common, Auran, " + languages[Math.floor(Math.random()*languages.length)];
+races[113].abilities = "Dexterity +2, Wisdom +1";
 races[113].size = randomize("Small, Medium");
-races[113].type = "humanoid (monstrous)";
+races[113].type = "humanoid (shapeshifter)";
 races[113].speed = "25 feet";
-races[113].senses = "darkvision 60 feet";
-races[113].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth");
+races[113].senses = "";
+races[113].traits = "<b>Shapeshifter</b> You can assume humanoid or avian form as a standard action. In avian form your size becomes Tiny, you gain flight speed 50, and you cannot use weapons. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>"
+
 
 // roll up the character
-race = Math.floor(Math.random()*races.length);
+//race = Math.floor(Math.random()*races.length);
+race = 113
 
 background = Math.floor(Math.random()*backgrounds.length);
 alignment = Math.floor(Math.random()*alignments.length);
