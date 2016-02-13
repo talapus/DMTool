@@ -2003,107 +2003,111 @@ races[113].speed = "25 feet";
 races[113].senses = "";
 races[113].traits = "<b>Shapeshifter</b> You can assume humanoid or avian form as a standard action. In avian form your size becomes Tiny, you gain flight speed 50, and you cannot use weapons. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>"
 
+//main
+function main() {
+	// roll up the character
+	//race = Math.floor(Math.random()*races.length);
+	race = 113
 
-// roll up the character
-//race = Math.floor(Math.random()*races.length);
-race = 113
+	background = Math.floor(Math.random()*backgrounds.length);
+	alignment = Math.floor(Math.random()*alignments.length);
 
-background = Math.floor(Math.random()*backgrounds.length);
-alignment = Math.floor(Math.random()*alignments.length);
+	STR = rollStat();
+	DEX = rollStat();
+	CON = rollStat();
+	INT = rollStat();
+	WIS = rollStat();
+	CHR = rollStat();
+	HP = Math.floor(Math.random()*8)+1 + getBaseMod(CON);
 
-STR = rollStat();
-DEX = rollStat();
-CON = rollStat();
-INT = rollStat();
-WIS = rollStat();
-CHR = rollStat();
-HP = Math.floor(Math.random()*8)+1 + getBaseMod(CON);
+	// show the DMTool menu and refresh button
+	/* buttons
+	document.write("<table cellpadding=6><tr><td valign='top'>")
+	document.write("<input id='menu' type='button' value='&#9776;' onClick='window.location.reload()'>")
+	document.write("<p><input id='reload-button' type='button' value='&#9850;' onClick='window.location.reload()'></td><td>")
+	*/
 
-// show the DMTool menu and refresh button
-/* buttons
-document.write("<table cellpadding=6><tr><td valign='top'>")
-document.write("<input id='menu' type='button' value='&#9776;' onClick='window.location.reload()'>")
-document.write("<p><input id='reload-button' type='button' value='&#9850;' onClick='window.location.reload()'></td><td>")
-*/
+	// display the character
 
-// display the character
+	document.write("<table cellpadding=0><tr><td><div id='main'> <b>" + getName() + ", ");
+	document.write(races[race].name + " " + backgrounds[background].name + "</b><br>")
+	document.write("<br><i>" + races[race].size + " " + races[race].type + ", " + alignments[alignment] + "</i><p>");
+	document.write("<b>Armor Class</b> " + getAC() + "<br>");
+	document.write("<b>Hit Points</b> " + HP + " (1d8" + getModifier(CON) + ")");
+	document.write("<br><b>Speed</b> " + races[race].speed);
+	//document.write("<br><b>Abilities</b> " + races[race].abilities);
+	document.write("<br><b>Skills</b> "+ backgrounds[background].proficiencies);
+	document.write("<br><b>Senses</b> " + races[race].senses + " passive perception " + (getBaseMod(WIS)+10));
+	document.write("<br><b>Languages</b> "+ races[race].languages + backgrounds[background].languages);
 
-document.write("<table cellpadding=0><tr><td><div id='main'> <b>" + getName() + ", ");
-document.write(races[race].name + " " + backgrounds[background].name + "</b><br>")
-document.write("<br><i>" + races[race].size + " " + races[race].type + ", " + alignments[alignment] + "</i><p>");
-document.write("<b>Armor Class</b> " + getAC() + "<br>");
-document.write("<b>Hit Points</b> " + HP + " (1d8" + getModifier(CON) + ")");
-document.write("<br><b>Speed</b> " + races[race].speed);
-//document.write("<br><b>Abilities</b> " + races[race].abilities);
-document.write("<br><b>Skills</b> "+ backgrounds[background].proficiencies);
-document.write("<br><b>Senses</b> " + races[race].senses + " passive perception " + (getBaseMod(WIS)+10));
-document.write("<br><b>Languages</b> "+ races[race].languages + backgrounds[background].languages);
+	document.write("<p><table border=0><tr><td valign='top'>");
 
-document.write("<p><table border=0><tr><td valign='top'>");
+	document.write("<table cellpadding=7 cellspacing=0 border=0>");
+	document.write("<tr><td>" + STR + "</td><td bgcolor=#e2e2e2><b>STR</b></td><td>");
+	document.write(getModifier(STR) + "</td><td>" + getModifier(STR) + "</td></tr>") ;
+	document.write("<tr><td>" + DEX + "</td><td bgcolor=#e2e2e2><b>DEX</b></td><td>");
+	document.write(getModifier(DEX) + "</td><td>" + getModifier(DEX) + "</td></tr>");
+	document.write("<tr><td>" + CON + "</td><td bgcolor=#e2e2e2><b>CON</b></td><td>");
+	document.write(getModifier(CON) + "</td><td>" + getModifier(CON) + "</td></tr>");
+	document.write("<tr><td>" + INT + "</td><td bgcolor=#e2e2e2><b>INT</b></td><td>");
+	document.write(getModifier(INT) + "</td><td>" + getModifier(INT) + "</td></tr>");
+	document.write("<tr><td>" + WIS + "</td><td bgcolor=#e2e2e2><b>WIS</b></td><td>");
+	document.write(getModifier(WIS) + "</td><td>" + getModifier(WIS) + "</td></tr>");
+	document.write("<tr><td>" + CHR + "</td><td bgcolor=#e2e2e2><b>CHR</b></td><td>");
+	document.write(getModifier(CHR) + "</td><td>" + getModifier(CHR) + "</td></tr></table>");
 
-document.write("<table cellpadding=7 cellspacing=0 border=0>");
-document.write("<tr><td>" + STR + "</td><td bgcolor=#e2e2e2><b>STR</b></td><td>");
-document.write(getModifier(STR) + "</td><td>" + getModifier(STR) + "</td></tr>") ;
-document.write("<tr><td>" + DEX + "</td><td bgcolor=#e2e2e2><b>DEX</b></td><td>");
-document.write(getModifier(DEX) + "</td><td>" + getModifier(DEX) + "</td></tr>");
-document.write("<tr><td>" + CON + "</td><td bgcolor=#e2e2e2><b>CON</b></td><td>");
-document.write(getModifier(CON) + "</td><td>" + getModifier(CON) + "</td></tr>");
-document.write("<tr><td>" + INT + "</td><td bgcolor=#e2e2e2><b>INT</b></td><td>");
-document.write(getModifier(INT) + "</td><td>" + getModifier(INT) + "</td></tr>");
-document.write("<tr><td>" + WIS + "</td><td bgcolor=#e2e2e2><b>WIS</b></td><td>");
-document.write(getModifier(WIS) + "</td><td>" + getModifier(WIS) + "</td></tr>");
-document.write("<tr><td>" + CHR + "</td><td bgcolor=#e2e2e2><b>CHR</b></td><td>");
-document.write(getModifier(CHR) + "</td><td>" + getModifier(CHR) + "</td></tr></table>");
+	document.write("</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>")
 
-document.write("</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>")
+	document.write("<table cellpadding=2 cellspacing=0 border=0 ><tr>");
+	document.write("<td>Acrobatics</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Animal Handling</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Arcana</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Athletics</td><td>&nbsp;" + getModifier(STR) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Deception</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>History</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Intimidation</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Medicine</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Nature</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Perception</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Performance</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Persuasion</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Religion</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Search</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Sense Motive</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Slight of Hand</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Stealth</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Survival</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr></table><p>");
 
-document.write("<table cellpadding=2 cellspacing=0 border=0 ><tr>");
-document.write("<td>Acrobatics</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
-document.write("<td>Animal Handling</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Arcana</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
-document.write("<td>Athletics</td><td>&nbsp;" + getModifier(STR) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Deception</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
-document.write("<td>History</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Intimidation</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
-document.write("<td>Medicine</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Nature</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
-document.write("<td>Perception</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Performance</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
-document.write("<td>Persuasion</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Religion</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
-document.write("<td>Search</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Sense Motive</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("<td>Slight of Hand</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
-document.write("</tr><tr>");
-document.write("<td>Stealth</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
-document.write("<td>Survival</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
-document.write("</tr></table><p>");
+	document.write("</td></tr></table>")
 
-document.write("</td></tr></table>")
+	document.write("<div id='whitebox'>" + races[race].traits);
+	document.write(backgrounds[background].feature + "</div>");
 
-document.write("<div id='whitebox'>" + races[race].traits);
-document.write(backgrounds[background].feature + "</div>");
+	document.write("<p><div id='background'>");
+	document.write("<b>Trait</b> ");
+	document.write(backgrounds[background].traits[Math.floor(Math.random() * backgrounds[background].traits.length)]);
+	document.write("<br><b>Ideal</b> ");
+	document.write(backgrounds[background].ideal);
+	document.write("<br><b>Bond</b> ");
+	document.write(backgrounds[background].bonds[Math.floor(Math.random() * backgrounds[background].bonds.length)]);
+	document.write("<br><b>Flaw</b> ");
+	document.write(backgrounds[background].flaws[Math.floor(Math.random() * backgrounds[background].flaws.length)]);
+	document.write("</div>")
 
-document.write("<p><div id='background'>");
-document.write("<b>Trait</b> ");
-document.write(backgrounds[background].traits[Math.floor(Math.random() * backgrounds[background].traits.length)]);
-document.write("<br><b>Ideal</b> ");
-document.write(backgrounds[background].ideal);
-document.write("<br><b>Bond</b> ");
-document.write(backgrounds[background].bonds[Math.floor(Math.random() * backgrounds[background].bonds.length)]);
-document.write("<br><b>Flaw</b> ");
-document.write(backgrounds[background].flaws[Math.floor(Math.random() * backgrounds[background].flaws.length)]);
-document.write("</div>")
+	document.write("<p><div id='whitebox'><b>Equipment</b> "+ backgrounds[background].equipment + "</div></div>");
 
-document.write("<p><div id='whitebox'><b>Equipment</b> "+ backgrounds[background].equipment + "</div></div>");
+	document.write("</td></tr></table></div>");
+}
 
-document.write("</td></tr></table></div>");
+main()
 
 </script></body></html>
