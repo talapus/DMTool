@@ -31,7 +31,7 @@ body {
   border-radius: 10px;
 	margin: auto;
   background: #e2e2e2;
-  padding: 10px; /* padding: 6px 12px 7px !important; */
+  padding: .5px;
 }
 
 </style>
@@ -1697,22 +1697,20 @@ races[113].speed = "25 feet";
 races[113].senses = "";
 races[113].traits = "<b>Shapeshifter</b> You can assume humanoid or avian form as a standard action. In avian form your size becomes Tiny, you gain flight speed 50, and you cannot use weapons. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>"
 
+//main
+function main() {
+	race = Math.floor(Math.random()*races.length);
+	// race = 113 //DEBUG
+	document.write("<table cellpadding=0><tr><td><div id='main'>");
+	document.write("<b>" + races[race].name + " </b> ")
+	document.write("<br>" + races[race].size + " " + races[race].type);
+	document.write("<div id='background'><p><b>Abilities</b> "+ races[race].abilities);
+	document.write("<br><b>Languages</b> "+ races[race].languages);
+	document.write("<br><b>Speed</b> " + races[race].speed + "</div>");
+	document.write(races[race].traits);
+	document.write("</td></tr></table></div>");
+}
 
-// roll up the character
-race = Math.floor(Math.random()*races.length);
-// race = 113
-
-// display the character
-
-document.write("<table cellpadding=0><tr><td><div id='main'> <b>");
-document.write(races[race].name + " </b> ")
-document.write("<br>" + races[race].size + " " + races[race].type);
-document.write("<p><b>Abilities</b> "+ races[race].abilities);
-document.write("<br><b>Languages</b> "+ races[race].languages);
-document.write("<br><b>Speed</b> " + races[race].speed);
-
-document.write("<p>" + races[race].traits);
-
-document.write("</td></tr></table></div>");
+main()
 
 </script></body></html>
