@@ -2003,11 +2003,32 @@ races[113].speed = "25 feet";
 races[113].senses = "";
 races[113].traits = "<b>Shapeshifter</b> You can assume humanoid or avian form as a standard action. In avian form your size becomes Tiny, you gain flight speed 50, and you cannot use weapons. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>"
 
+races[114] = {};
+races[114].name = randomize("Avariel, Sky Elf, Fae");
+races[114].languages = "Common, Elvish";
+races[114].abilities = "Charisma +2, Intelligence +1";
+races[114].size = randomize("Small, Medium");
+races[114].type = "humanoid (fey)";
+races[114].speed = "25 feet, fly 50 feet";
+races[114].senses = "darkvision 60 feet, ";
+races[114].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br>" + Darkvision() + Trance();
+
+races[115] = {};
+races[115].name = randomize("Baedwegalfar, Sea Elf, Merfolk, Triton, Atlantean, Lemurian, Fae");
+races[115].languages = "Common, Elven";
+races[115].abilities = "Dexterity +2, Wisdom +1";
+races[115].size = "Medium";
+races[115].type = "humanoid (fey)";
+races[115].speed = "30 feet, swim 40 feet";
+races[115].senses = "darkvision 60 feet, ";
+races[115].traits = Amphibious() + Darkvision() + FeyAncestry() + Trance() + "<b>Weapon training</b> You have proficiency with pike, net, and harpoon<br>";
+
+
 //main
 function main() {
 	// roll up the character
 	//race = Math.floor(Math.random()*races.length);
-	race = 113
+	race = 115
 
 	background = Math.floor(Math.random()*backgrounds.length);
 	alignment = Math.floor(Math.random()*alignments.length);
