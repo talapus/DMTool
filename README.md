@@ -1,6 +1,6 @@
 ``npc.html`` randomly generates and displays a 5th edition Dungeons and
 Dragons zero-level non player character. 
-To use it, download ``npc.html`` and launch it in a browser
+Download it and launch it in a browser to use it. 
 
 --
 Note:
