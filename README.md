@@ -1,4 +1,4 @@
-Download 'npc.html' and launch it in a browser for a randomly generated
+Download ``npc.html`` and launch it in a browser for a randomly generated
 NPC. Press refresh for a new one. 
 
 --
