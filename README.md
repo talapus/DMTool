@@ -8,4 +8,3 @@ I wrote this to teach myself javascript, and it's highly idomatic (eg: hacky as 
 I rolled the stylesheet and javascript files into one huge markup file.
 This is makes it more difficult to develop and maintain - but I really
 wanted this to be one downloadable file to make it super easy to use.
-Other than that, I wrote it in a way that I hope it should be relatively easy to understand and modify. 
