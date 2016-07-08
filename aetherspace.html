@@ -206,9 +206,15 @@ function BoltForce(input) { try { if (input.length > 1) { // Cantrip: Eldritch B
 }};
 
 function BoltNecrotic(input) { try { if (input.length > 1) { // Cantrip: Chill touch
-	return ("<b>" + input + "</b> Make a 120 foot ranged spell attack for 1d8 necrotic damage. If hit, the target and can't regain hitpoints until the end of your next turn. Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
+	return ("<b>" + input + "</b> Make a 120 foot ranged spell attack for 1d8 necrotic damage. If hit, the target and can't regain hitpoints until the end of your next turn. Damage increases to 2d8 at 5th level, 3d8 at 11th level, and 4d8 at 17th level<br>");
 	}} catch (err) {
-	return ("<b>Necrotic Bolt</b> Make a 120 foot ranged spell attack for 1d8 necrotic damage. If hit, the target can't regain hitpoints until the end of your next turn. Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
+	return ("<b>Necrotic Bolt</b> Make a 120 foot ranged spell attack for 1d8 necrotic damage. If hit, the target can't regain hitpoints until the end of your next turn. Damage increases to 2d8 at 5th level, 3d8 at 11th level, and 4d8 at 17th level<br>");
+}};
+
+function BoltPoison(input) { try { if (input.length > 1) { // Cantrip: Chill touch
+	return ("<b>" + input + "</b> Make a 120 foot ranged spell attack for 1d6 poison damage. If hit, the target must succeed at a Constitution save or become poisoned. Damage increases to 2d6 at 5th level, 3d6 at 11th level, and 4d6 at 17th level<br>");
+	}} catch (err) {
+	return ("<b>Poison Bolt</b> Make a 120 foot ranged spell attack for 1d6 poison damage. If hit, the target must succeed at a Constitution save or become poisoned. Damage increases to 2d6 at 5th level, 3d6 at 11th level, and 4d6 at 17th level<br>");
 }};
 
 function BoltAcid(input) { try { if (input.length > 1) { // Cantrip: Acid Splash
@@ -224,9 +230,15 @@ function BoltRadiant(input) { try { if (input.length > 1) { // Cantrip: Sacred F
 }};
 
 function BoltFrost(input) { try { if (input.length > 1) { // Cantrip: Ray of Frost
-	return ("<b>" + input + "</b> Make a 60 foot ranged spell attack for 1d8 cold damage. If hit, the target's speed is recuced by 10 until next turn. Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
+	return ("<b>" + input + "</b> Make a 60 foot ranged spell attack for 1d8 cold damage. If hit, the target's speed is reduced by 10 until next turn. Damage increases to 2d8 at 5th level, 3d8 at 11th level, and 4d8 at 17th level<br>");
 	}} catch (err) {
-	return ("<b>Frost Bolt</b> Make a 60 foot ranged spell attack for 1d8 cold damage. If hit, the target's speed is recuced by 10 until next turn. Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
+	return ("<b>Frost Bolt</b> Make a 60 foot ranged spell attack for 1d8 cold damage. If hit, the target's speed is reduced by 10 until next turn. Damage increases to 2d8 at 5th level, 3d8 at 11th level, and 4d8 at 17th level<br>");
+}};
+
+function BoltLightning(input) { try { if (input.length > 1) { //
+	return ("<b>" + input + "</b> Make a 60 foot ranged spell attack for 1d10 lightning damage.  Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
+	}} catch (err) {
+	return ("<b>Frost Bolt</b> Make a 60 foot ranged spell attack for 1d10 lightning damage. Damage increases to 2d10 at 5th level, 3d10 at 11th level, and 4d10 at 17th level<br>");
 }};
 
 function BlastFire(input) { try { if (input.length > 1) { // Dragonkin fire breath
@@ -263,6 +275,12 @@ function BlastPoison(input) { try { if (input.length > 1) { // Dragonkin fire br
 	return ("<b>" + input + "</b> Once per rest, you can project a blast of poison in a 15 foot cone, or a 5 x 30 line. Each creature in the area of the exhalation must make a Dexterity saving throw. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 poison damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level<br>");
 	}} catch (err) {
 	return ("<b>Poison Blast</b> Once per rest, you can project a blast of poison in a 15 foot cone, or a 5 x 30 line. Each creature in the area of the exhalation must make a Dexterity saving throw. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 poison damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level<br>");
+}};
+
+function BlastRadiant(input) { try { if (input.length > 1) { // Dragonkin fire breath
+	return ("<b>" + input + "</b> Once per rest, you can project a blast of radiance in a 15 foot cone, or a 5 x 30 line. Each creature in the area of the exhalation must make a Dexterity saving throw. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 radiant damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level<br>");
+	}} catch (err) {
+	return ("<b>Radiant Blast</b> Once per rest, you can project a blast of radiance in a 15 foot cone, or a 5 x 30 line. Each creature in the area of the exhalation must make a Dexterity saving throw. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 radiant damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level<br>");
 }};
 
 function BurstFire(input) { try { if (input.length > 1) { // Dragonkin fire breath
@@ -487,6 +505,12 @@ function NimbleEscape(input) { try { if (input.length > 1) {
 	return ("<b>Nimble Escape</b> You can Disengage or Hide as a bonus action on each of your turns<br>");
 }};
 
+function Presence(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>");
+	}} catch (err) {
+	return ("<b>Presence</b> Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>");
+}};
+
 function Powerful(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br>");
 	}} catch (err) {
@@ -516,8 +540,6 @@ function ResistDamageAcid(input) { try { if (input.length > 1) {
 	}} catch (err) {
 	return ("<b>Acid Resistance</b> You have resistance to acid damage<br>");
 }};
-
-
 
 function ResilienceBlunt(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You have advantage on saving throws against blunt attacks, and you have resistance to blunt damage<br>");
@@ -750,17 +772,48 @@ function StunSpore(input) { try { if (input.length > 1) {
 	return ("<b>Stun Spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>");
 }};
 
+function Quadruped(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+	}} catch (err) {
+	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+}};
+
 function Wings(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly<br>");
 	}} catch (err) {
 	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly<br>");
 }};
 
-function Quadruped(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+function WeaponDamageCold(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Attacks with natural or metal weapons do 1d4 bonus cold damage<br>");
 	}} catch (err) {
-	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+	return ("<b>Fiery Weapon</b> Attacks with natural or metal weapons do 1d4 bonus cold damage<br>");
 }};
+
+function WeaponDamageFire(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Attacks with natural or metal weapons do 1d4 bonus fire damage<br>");
+	}} catch (err) {
+	return ("<b>Fiery Weapon</b> Attacks with natural or metal weapons do 1d4 bonus fire damage<br>");
+}};
+
+function WeaponDamageRadiant(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Attacks with natural or metal weapons do 1d4 bonus radiant damage<br>");
+	}} catch (err) {
+	return ("<b>Radiant Weapon</b> Attacks with natural or metal weapons do 1d4 bonus radiant damage<br>");
+}};
+
+function WeaponDamageLightning(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Attacks with natural or metal weapons do 1d4 bonus lightning damage<br>");
+	}} catch (err) {
+	return ("<b>Electric Weapon</b> Attacks with natural or metal weapons do 1d4 bonus lightning damage<br>");
+}};
+
+function WeaponDamageForce(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Attacks with natural or metal weapons do 1d4 bonus force damage<br>");
+	}} catch (err) {
+	return ("<b>Force Weapon</b> Attacks with natural or metal weapons do 1d4 bonus force damage<br>");
+}};
+
 
 
 
@@ -999,14 +1052,13 @@ races[0].traits = "";
 
 races[1] = {}; // Core Race / Dragonborn
 races[1].name = "Dromite";
-races[1].languages = "Common, Draconic";
+races[1].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[1].abilities = "Strength +2, Charisma +1";
-races[1].size = "Medium";
+races[1].size = "Small";
 races[1].type = "humanoid (supernal)";
-races[1].speed = "30 feet";
+races[1].speed = "25 feet";
 races[1].senses = "";
-races[1].traits = BlastFire("Psionics") //"<b>Psionics</b> You can use your action to create a 5x30 foot line of fire once per rest<br>"
-	+ ResistDamageFire("Brass " + races[1].name);
+races[1].traits = Darkvision() + BlastFire() + ResistDamageFire();
 
 races[2] = {}; // Core Race / Halfelf
 races[2].name = randomize("Shadowborn, Eldar");
@@ -1293,67 +1345,69 @@ races[26].senses = "darkvision 60 feet, ";
 races[26].traits = Darkvision() + Shifting()
 	+ "<b>Razorclaw</b> While shifting, you can make an unarmed strike as a bonus action. You can use Strength for its attack roll and damage bonus, and this attack deals slashing damage<br>";
 
-races[27] = {}; // Core Race / Dragonborn
+races[27] = {};
 races[27].name = "Dromite";
-races[27].languages = "Common, Draconic";
+races[27].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[27].abilities = "Strength +2, Charisma +1";
-races[27].size = "Medium";
+races[27].size = "Small";
 races[27].type = "humanoid (supernal)";
-races[27].speed = "30 feet";
+races[27].speed = "25 feet";
 races[27].senses = "";
-races[27].traits = BlastFire("Psionics")
-	+ ResistDamageFire("Gold " + races[27].name)
+races[27].traits = Darkvision() + BlastLightning() + ResistDamageLightning();
 
-races[28] = {}; // Core Race / Dragonborn
+races[28] = {};
 races[28].name = "Dromite";
-races[28].languages = "Common, Draconic";
+races[28].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[28].abilities = "Strength +2, Charisma +1";
-races[28].size = "Medium";
+races[28].size = "Small";
 races[28].type = "humanoid (supernal)";
-races[28].speed = "30 feet";
+races[28].speed = "25 feet";
 races[28].senses = "";
-races[28].traits = BlastCold("Psionics")
-	+ ResistDamageCold("Silver " + races[28].name) //+ "<b>Silver</b> You have resistance to cold<br>";
+races[28].traits = Darkvision() + BlastRadiant() + ResistDamageRadiant();
 
-races[29] = {}; // Core Race / Dragonborn
+races[29] = {};
 races[29].name = "Dromite";
-races[29].languages = "Common, Draconic";
+races[29].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[29].abilities = "Strength +2, Charisma +1";
-races[29].size = "Medium";
+races[29].size = "Small";
 races[29].type = "humanoid (supernal)";
-races[29].speed = "30 feet";
+races[29].speed = "25 feet";
 races[29].senses = "";
-races[29].traits = "<b>Psionics</b> You can use your action to project a 5x30 foot line of lightning once per rest<br>"
-	+ ResistDamageLightning("Bronze " + races[29].name)
-	// + "<b>Bronze</b> You have resistance to lightning<br>";
+races[29].traits = Darkvision() + BoltLightning() + ResistDamageLightning()
 
-///---///---
+races[30] = {}; //
+races[30].name = "Dromite";
+races[30].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
+races[30].abilities = "Constitution +2, Strength +1";
+races[30].size = "Small";
+races[30].type = "humanoid (supernal)";
+races[30].speed = "25 feet";
+races[30].senses = "darkvision 60 feet, ";
+races[30].traits = Darkvision() + BoltRadiant() + ResistDamageRadiant();
 
 races[31] = {}; // Core Race / Dragonborn
 races[31].name = "Dracon";
-races[31].languages = "Common, Draconic";
+races[31].languages = "Supernal, Draconic";
 races[31].abilities = "Strength +2, Charisma +1";
 races[31].size = "Medium";
 races[31].type = "humanoid (supernal)";
 races[31].speed = "30 feet";
 races[31].senses = "";
-races[31].traits = BlastAcid()
-	+ ResistDamageAcid("Black Dracon");
+races[31].traits = BlastAcid() + ResistDamageAcid();
 
 races[32] = {}; // Core Race / Dragonborn
 races[32].name = "Dracon";
-races[32].languages = "Common, Draconic";
+races[32].languages = "Supernal, Draconic";
 races[32].abilities = "Strength +2, Charisma +1";
 races[32].size = "Medium";
 races[32].type = "humanoid (supernal)";
 races[32].speed = "30 feet";
 races[32].senses = "";
-races[32].traits = BlastPoison()
-	+ ResistDamagePoison("Green Dracon");
+races[32].traits = BlastPoison() + ResistDamagePoison();
 
 races[33] = {}; // extended race material
 races[33].name = "Thri-kreen";
-races[33].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[33].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[33].abilities = "Dexterity, Wisdom +1";
 races[33].size = "Medium";
 races[33].type = "humanoid (monstrous)";
@@ -1379,14 +1433,13 @@ races[34].traits = BonusSkill() + BonusFeat();
 
 races[35] = {}; // Core Race / Dragonborn
 races[35].name = "Dracon";
-races[35].languages = "Common, Draconic";
+races[35].languages = "Supernal, Draconic";
 races[35].abilities = "Strength +2, Charisma +1";
 races[35].size = "Medium";
 races[35].type = "humanoid (supernal)";
 races[35].speed = "30 feet";
 races[35].senses = "";
-races[35].traits = "<b>Copper Dracon Ancestry</b> You have resistance to acid<br>"
-	+ "<b>Psionics</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br>"
+races[35].traits = BoltAcid() + ResistDamageAcid();
 
 races[36] = {}; // Core Race / Shifter
 races[36].name = "Shifter";
@@ -1628,7 +1681,7 @@ races[56].traits = Keen("Keen Scent", "smell")
 
 races[57] = {};
 races[57].name = randomize("Kobold, Dracon");
-races[57].languages = "Common, Draconic";
+races[57].languages = "Supernal, Draconic";
 races[57].abilities = "Strength +2, Constitution +1";
 races[57].size = "Small";
 races[57].type = "humanoid (supernal)";
@@ -1926,16 +1979,14 @@ races[83].senses = "darkvision 60 feet, ";
 races[83].traits = Wings() + Darkvision() + Trance();
 
 races[84] = {};
-races[84].name = "Dromite";
-races[84].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[84].name = "Dracon";
+races[84].languages = "Common, Draconic, " + languages[Math.floor(Math.random()*languages.length)];
 races[84].abilities = "Strength, Constitution +1";
-races[84].size = randomize("Small, Medium");
+races[84].size = "Medium";
 races[84].type = "humanoid (supernal)";
-races[84].speed = "25 feet";
+races[84].speed = "30 feet";
 races[84].senses = "";
-races[84].traits = Darkvision()
-	+ "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d8 necrotic damage. The spell damage increases when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br>"
-	+ "<b>Resistance</b> Resistance to necrotic<br>";
+races[84].traits = BoltAcid() + ResistDamageAcid();
 
 races[85] = {};
 races[85].name = randomize("Rook");
@@ -1958,9 +2009,9 @@ races[86].senses = "";
 races[86].traits = Telepathy() + ResiliencePsychic()
 	+ "<b>Mindshock</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once per rest<br>";
 
-races[87] = {};  // Dracon
-races[87].name = randomize("Lizardfolk, Dracon");
-races[87].languages = "Common, Draconic, Lizardfolk";
+races[87] = {};
+races[87].name = "Dracon";
+races[87].languages = "Supernal, Draconic";
 races[87].abilities = "Constitution +1, Strength +1";
 races[87].size = "Medium";
 races[87].type = "humanoid (primal)";
@@ -1968,16 +2019,15 @@ races[87].speed = "30 feet";
 races[87].senses = "";
 races[87].traits = HoldBreath() + Armored("Scaled Hide") + Camouflage() + Bite();
 
-races[88] = {};
-races[88].name = randomize("Shade, Shadow, Dracon");
-races[88].languages = "Common, Draconic";
-races[88].abilities = "Strength +2, Charisma +1";
-races[88].size = "Medium";
-races[88].type = "humanoid (shadow)";
-races[88].speed = "30 feet";
-races[88].senses = "";
-races[88].traits = "<b>Psionics</b> You can use your action to project a 15 foot cone of necrotic damage once per rest<br>"
-	+ "<b>Shadow</b> You have resistance to necrotic damage<br>";
+races[35] = {};
+races[35].name = "Dracon";
+races[35].languages = "Supernal, Draconic";
+races[35].abilities = "Strength +2, Charisma +1";
+races[35].size = "Medium";
+races[35].type = "humanoid (supernal)";
+races[35].speed = "30 feet";
+races[35].senses = "";
+races[35].traits = BoltPoison() + ResistDamagePoison();
 
 races[89] = {};
 races[89].name = randomize("Laskarim, Orog, Scro");
@@ -2022,10 +2072,8 @@ races[92].type = "humanoid (supernal)";
 races[92].speed = "30 feet, climb 30 feet";
 races[92].senses = "";
 races[92].traits = HumanoidPlant()
-	+ Cantrip("Vine grab", "Thorn Whip", "Constitution")
-	+ Tentacles("Vine strike")
-	//+ Armored("Bark")
-	//+ Camouflage();
+	+ Tendrils()
+	+ Tentacles("Vine strike");
 
 races[93] = {};
 races[93].name = "Dralasite";
@@ -2128,26 +2176,26 @@ races[101].speed = "30 feet";
 races[101].senses = "darkvision 60 feet, ";
 races[101].traits = Deathless() + "<b>Weapon Training</b> Greataxe, Greatspear<br>";
 
-races[102] = {}; // Eldar Hob
-races[102].name = "Hrimthur";
-races[102].languages = "Common, Hob";
-races[102].abilities = "Constitution +2, Strength +1";
+races[102] = {};
+races[102].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[102].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[102].abilities = "Strength, Consitution +1";
 races[102].size = "Medium";
-races[102].type = "humanoid (supernal)";
-races[102].speed = "25 feet";
-races[102].senses = "darkvision 60 feet, ";
-races[102].traits = "<b>Freezing Aura</b> Anyone that touches an Azer or strikes it with a physical attack takes 1d4 points of cold damage<br>"
-	+ "<b>Frozen Weapon</b> Attacks with natural or metal weapons do 1d4 bonus cold damage<br>";
+races[102].type = "humanoid (automata)";
+races[102].speed = "30 feet";
+races[102].senses = "";
+races[102].traits = Automata()
+	+ "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
 
 races[103] = {};
-races[103].name = randomize("Saurian, Dracon");
-races[103].languages = "Common, Supernal, Draconic";
-races[103].abilities = "Strength, Constitution +1";
-races[103].size = "Medium";
+races[103].name = "Dromite";
+races[103].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
+races[103].abilities = "Constitution +2, Strength +1";
+races[103].size = "Small";
 races[103].type = "humanoid (supernal)";
-races[103].speed = "40 feet";
-races[103].senses = "";
-races[103].traits = Darkvision() + Quadruped() + Armored() + Talons();
+races[103].speed = "25 feet";
+races[103].senses = "darkvision 60 feet, ";
+races[103].traits = Darkvision() + BoltFire() + ResistDamageFire();
 
 races[104] = {};
 races[104].name = randomize("Hyborean, Daelkyr");
@@ -2414,49 +2462,20 @@ races[127].speed = "30 feet";
 races[127].senses = "";
 races[127].traits = Automata() + Cantrip("Tactics", "Guidance", "Intelligence");
 
-races[128] = {};
-races[128].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
-races[128].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[128].abilities = "Strength, Consitution +1";
-races[128].size = "Medium";
-races[128].type = "humanoid (automata)";
-races[128].speed = "30 feet";
-races[128].senses = "";
-races[128].traits = Automata()
-	+ "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
+races[128] = {}; // Mindflayer pawn
+races[128].name = "Neolithid";
+races[128].languages = "Common, Deep Speech";
+races[128].abilities = "Dexterity +2, Wisdom +1";
+races[128].size = "Small";
+races[128].type = "aberrant";
+races[128].speed = "20 feet, swim 40 feet";
+races[128].senses = "blindsight 30 feet, ";
+races[128].traits = "<i>A dog sized worm with a lamprey mouth surrounded by a crown of strong grasping tentacles</i><p>"
+	+ Aberrant() + Tentacles() + Tendrils() + TentacleSpear();
 
-races[129] = {}; // Azer
-races[129].name = "Dromite";
-races[129].languages = "Common, Hob";
-races[129].abilities = "Constitution +2, Strength +1";
-races[129].size = "Medium";
-races[129].type = "humanoid (supernal)";
-races[129].speed = "25 feet";
-races[129].senses = "darkvision 60 feet, ";
-races[129].traits = "<b>Heatwave Aura</b> Anyone that touches or strikes you with a physical attack takes 1d4 points of fire damage<br>"
-	+ "<b>Fiery Weapon</b> Attacks with natural or metal weapons do 1d4 bonus fire damage<br>";
 
-races[130] = {}; // Eldar Hob
-races[130].name = randomize("Dracon, Dromite, Lumi, Luminary");
-races[130].languages = "Common, Supernal";
-races[130].abilities = "Constitution +2, Strength +1";
-races[130].size = "Medium";
-races[130].type = "humanoid (supernal)";
-races[130].speed = "25 feet";
-races[130].senses = "darkvision 60 feet, ";
-races[130].traits = "<b>Radiant Aura</b> You constinually radiate light (as the cantrip). Successful Concentration can suppress this effect until your concentration is disrupted. You continue to radiate light when unconscious, but your light fades if you are slain. Anyone that touches or strikes you with a physical attack takes 1d4 points of cold damage<br>"
-	+ "<b>Radiant Weapon</b> Attacks with natural or metal weapons do 1d4 bonus radiant damage<br>";
 
-races[131] = {}; // Dracon/Dromite
-races[131].name = randomize("Dracon, Dromite, Lumi, Luminary");
-races[131].languages = "Common, Supernal";
-races[131].abilities = "Constitution +2, Strength +1";
-races[131].size = "Medium";
-races[131].type = "humanoid (supernal)";
-races[131].speed = "25 feet";
-races[131].senses = "darkvision 60 feet, ";
-races[131].traits = "<b>Shadowy Aura</b> Anyone that touches an Azer or strikes it with a physical attack takes 1d4 points of necrotic damage<br>"
-	+ "<b>Black Weapon</b> Attacks with natural or metal weapons do 1d4 bonus necrotic damage<br>";
+
 
 //main
 function main() {
