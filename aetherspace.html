@@ -709,7 +709,7 @@ function Tentacles(input) { try { if (input.length > 1) {
 function TentacleSpear(input) { try { if (input.length > 1) {
 	return ("<b>" + input + "</b> You can make an unarmed weapon for 1d12 piercing damage at a 10 foot range<br><br>");
 	}} catch (err) {
-	return ("<b>Slitherspear</b> You can make an unarmed weapon for 1d12 piercing damage at a 10 foot range<br>");
+	return ("<b>Slitherspear</b> You can make an unarmed weapon attack for 1d12 piercing damage at a 10 foot range<br>");
 }};
 
 function TentacleStinger(input) { try { if (input.length > 1) {
@@ -1071,7 +1071,7 @@ races[2].senses = "darkvision 60 feet, ";
 races[2].traits = Darkvision() + EldarAncestry() + BonusSkills();
 
 races[3] = {}; // Core Race / Halforc
-races[3].name = randomize("Halforc, Orc, Ork, Orog, Scro, Ruk, Druuge");
+races[3].name = randomize("Scro, Ruk, Druuge");
 races[3].languages = "Common, Giant";
 races[3].abilities = "Strength +2, Constitution +1";
 races[3].size = "Medium";
