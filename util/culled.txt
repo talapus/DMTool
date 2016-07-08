@@ -83,17 +83,6 @@ races[148].traits = Flight() + Cantrip("Telekinesis", "Mage Hand", "Constitution
 */
 
 
-/*
-races[144] = {};
-races[144].name = "Swanmay";
-races[144].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[144].abilities = "Dexterity +2, Wisdom +1";
-races[144].size = "Medium";
-races[144].type = "humanoid (Shapechanger)";
-races[144].speed = "30 feet";
-races[144].senses = "";
-races[144].traits = "<b>Shapeshift</b> You can assume the shape of a Swan or your default shape as a standard action. In Swan form, you gain a fly speed of 50 and your size becomes small. You revert to your true form if you become unconscious or die<br>" + AnimalAncestry() + "<b>Animal Friends</b> You can speak with animals at will<br>";
-
 races[145] = {}; // Paizo
 races[145].name = randomize("Ratfolk, Ratkin");
 races[145].languages = "Common, Primordial";
@@ -140,16 +129,6 @@ races[130].speed = "25 feet";
 races[130].senses = "";
 races[130].traits = Darkvision() + "<b>Weapon Training</b> You are proficient in the use of Rapiers, Longswords, and Greatswords<br><b>Gifted Linguist</b> Extra language<br>" + Mimicry();
 
-races[131] = {}; // cat
-races[131].name = "Grimalkin";
-races[131].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)] + ", " + languages[Math.floor(Math.random()*languages.length)];
-races[131].abilities = "Dexterity, Charisma +1";
-races[131].size = "Medium";
-races[131].type = "humanoid (Shapechanger)";
-races[131].speed = "30 feet"
-races[131].senses = "";
-races[131].traits = "<b>Shapechanger</b> As an action, you can polymorph into any medium to tiny sized mammal that you have seen, or back into your default form. Your equipment does not change with you. If you become unconscious or die, you revert to your natural form<br>"
-
 races[132] = {}; //
 races[132].name = randomize("Nidarian, Psion");
 races[132].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
@@ -171,16 +150,6 @@ races[126].type = "humanoid (Shapechanger)";
 races[126].speed = "30 feet";
 races[126].senses = "darkvision 60 feet, ";
 races[126].traits = Darkvision() + Shifting() + "<b>Flux Shifting</b> While shifting, the temporary hit point bonus granted by your shifting renews itself each round<br>";
-
-races[127] = {}; // Aberrant
-races[127].name = randomize("Dolgrim, Aberrant");
-races[127].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[127].abilities = "Dexterity, Constitution +1";
-races[127].size = "Small";
-races[127].type = "humanoid (aberrant)";
-races[127].speed = "25 feet";
-races[127].senses = "";
-races[127].traits = Darkvision() + Aberrant() + "<b>Duality</b> A dolgrim has two sets of arms, each controlled by a separate brain and able to act independently. The second pair of arms controlled by the other brain can make one melee attack as a bonus action<br>";
 
 races[128] = {}; // Paizo
 races[128].name = randomize("Kitsune, Foxfolk, Shapeshifter");
@@ -307,7 +276,7 @@ races[97].type = "humanoid (construct)";
 races[97].speed = "30 feet";
 races[97].senses = "";
 races[97].traits = LivingConstruct() + ImmunityDisease() + Repletion() + Cantrip("Tactics", "Guidance", "Intelligence");
-*/
+
 
 /*
 races[93] = {};
@@ -372,7 +341,8 @@ races[71].size = "Medium";
 races[71].type = "humanoid (celestial)";
 races[71].speed = "25 feet, fly 50 feet";
 races[71].senses = "";
-races[71].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br><b>Celestial Weaponry</b> You may use an action to summon a holy melee weapon that you are proficient with. Treat this weapon as magical for purposes of overcoming resistances<br>";
+races[71].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br>"
+  + "<b>Celestial Weaponry</b> You may use an action to summon a holy melee weapon that you are proficient with. Treat this weapon as magical for purposes of overcoming resistances<br>";
 */
 
 /*
@@ -408,7 +378,9 @@ races[55].size = "Medium";
 races[55].type = "humanoid (construct)";
 races[55].speed = "30 feet";
 races[55].senses = "";
-races[55].traits = LivingConstruct() + ImmunityDisease() + Repletion() + "<b>Rapier Hands</b> You fight with two rapiers that are actually parts of your body. These rapiers are treated as natural weapons. When not in use, the weapons fold into your forearm and you can use your hands normally. You can fully deploy both rapiers as a free action<br><b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a human<br>";
+races[55].traits = LivingConstruct()
+  + "<b>Rapier Hands</b> You fight with two rapiers that are actually parts of your body. These rapiers are treated as natural weapons. When not in use, the weapons fold into your forearm and you can use your hands normally. You can fully deploy both rapiers as a free action<br>"
+  + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a human<br>";
 
 /*
 races[56] = {}; // extended race material
