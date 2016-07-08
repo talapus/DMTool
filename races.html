@@ -1,0 +1,78 @@
+
+
+// race list display functions
+
+function displayRace(race) {
+	document.write("<table cellpadding=0><tr><td><div id='main'>")
+	document.write("<b>" + races[race].name + " </b> ")
+	document.write("<div id='whitebox'>" + races[race].size + " " + races[race].type)
+	document.write("<br><b>Abilities</b> "+ races[race].abilities)
+	document.write("<br><b>Languages</b> "+ races[race].languages)
+	document.write("<br><b>Speed</b> " + races[race].speed + "<p>")
+	document.write(races[race].traits + "</div>")
+	document.write("</td></tr></table></div>")
+}
+
+function displayTitle(input) {
+	document.write("<table cellpadding=0><tr><td><div id='title'>")
+	document.write("<input id='reload-button' type='button' value='^' onClick='window.location.reload()'><center><big><b>" + input + "</big></b></center>")
+	document.write("</td></tr></table></div>")
+}
+
+function displayType(input) { //'humanoid'
+	displayTitle(input)
+	for (var i=0; i<races.length; i++) {
+		if (races[i].type === input) {
+			displayRace(i)
+		}
+	}
+}
+
+//not working
+function typeCount(input) {
+	var typeCount = 0
+	for (var i=0; i<races.length; i++) {
+		if (races[i].type === input) {
+			typeCount += 1
+		}
+		return(typeCount)
+	}
+}
+
+//main
+function main() {
+	race = randomNumber(races.length)
+	// race = 113 //DEBUG
+
+	document.write("<a name='top'></a><table cellpadding=0><tr><td><div id='main'><blockquote>")
+
+	document.write('<a href="#humanoid">Humanoid</a><p>')
+	document.write('<a href="#aberrant">Aberrant</a><br>')
+	document.write('<a href="#primal">Primal</a><br>')
+	document.write('<a href="#shadow">Shadow</a><br>')
+	document.write('<a href="#supernal">Supernal</a>')
+
+	document.write("</td></tr></table></div>")
+
+	document.write('<a name="humanoid"></a>')
+	displayType('humanoid')
+
+	document.write('<a name="aberrant"></a>')
+	displayType('humanoid (aberrant)')
+
+	document.write('<a name="shadow"></a>')
+	displayType('humanoid (shadow)')
+
+	document.write('<a name="supernal"></a>')
+	displayType('humanoid (supernal)')
+
+}
+
+// this makes the button work
+window.onbeforeunload = function(){
+	window.scrollTo(0,0);
+}
+
+main()
+
+</script></body></html>
