@@ -557,9 +557,9 @@ function Talons(input) { try { if (input.length > 1) {
 }};
 
 function Tentacles(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b>Tentacles sprout from your shoulders. You can attack with your tentacles as a reach 10 unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br><br>");
+	return ("<b>" + input + "</b>Tentacles sprout from your shoulders. You can attack with your tentacles as an unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br><br>");
 	}} catch (err) {
-	return ("<b>Tentacles</b> Tentacles sprout from your shoulders. You can attack with your tentacles as a ranged unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br>");
+	return ("<b>Tentacles</b> Tentacles sprout from your shoulders. You can attack with your tentacles as an unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br>");
 }};
 
 function Telepathy(input) { try { if (input.length > 1) {
@@ -938,7 +938,7 @@ races[7].type = "humanoid (celestial)";
 races[7].speed = "30 feet";
 races[7].senses = "darkvision 60 feet, ";
 races[7].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
+	+ Spells135("Primordial Powers", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
 races[8] = {}; // Core Race / Genasi
 races[8].name = randomize("Ifrit, Primordial");
@@ -1388,7 +1388,7 @@ races[47].size = "Medium";
 races[47].type = "humanoid";
 races[47].speed = "30 feet";
 races[47].senses = "darkvision 60 feet, ";
-races[47].traits = Darkvision() + ResiliencePsychic()
+races[47].traits = Darkvision() + ResiliencePsychic("Strong Mind")
 	+ Spells135("Psychic", "Mage Hand", "Unseen Servant", "Detect Thoughts", "Constitution");
 
 races[48] = {};
@@ -1421,7 +1421,7 @@ races[50].size = "Medium";
 races[50].type = "humanoid";
 races[50].speed = "30 feet";
 races[50].senses = "";
-races[50].traits = Telepathy() + ResiliencePsychic()
+races[50].traits = Telepathy() + ResiliencePsychic("Strong Mind")
 	+ "<b>Mindblast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once per rest<br>";
 
 races[51] = {};
@@ -1525,7 +1525,7 @@ races[59].type = "humanoid (celestial)";
 races[59].speed = "30 feet";
 races[59].senses = "darkvision 60 feet, ";
 races[59].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
+	+ Spells135("Primordial Powers", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
 
 races[60] = {}; // core race
 races[60].name = randomize("Minotaur, Asterion");
@@ -1603,7 +1603,7 @@ races[66].size = "Medium";
 races[66].type = "humanoid";
 races[66].speed = "30 feet";
 races[66].senses = "darkvision 60 feet, ";
-races[66].traits = Darkvision() + ResiliencePsychic()
+races[66].traits = Darkvision() + ResiliencePsychic("Strong Mind")
 	+ Spells135("Psychic", "Feather Fall", "Jump", "Detect Thoughts", "Constitution");
 
 races[67] = {};
@@ -1624,7 +1624,7 @@ races[68].size = "Medium";
 races[68].type = "humanoid";
 races[68].speed = "30 feet";
 races[68].senses = "darkvision 60 feet, ";
-races[68].traits = Darkvision() + ResiliencePsychic()
+races[68].traits = Darkvision() + ResiliencePsychic("Strong Mind")
 	+ Spells135("Psychic", "Friends", "Charm Person", "Crown of Madness", "Charisma");
 
 races[69] = {}; // evil cannibals with faces on their chests
@@ -1824,7 +1824,7 @@ races[86].size = "Medium";
 races[86].type = "humanoid";
 races[86].speed = "30 feet";
 races[86].senses = "";
-races[86].traits = Telepathy() + ResiliencePsychic()
+races[86].traits = Telepathy() + ResiliencePsychic("Strong Mind")
 	+ "<b>Mindshock</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once per rest<br>";
 
 races[87] = {};  // Dracon
@@ -1891,8 +1891,10 @@ races[92].type = "humanoid (celestial)";
 races[92].speed = "30 feet, climb 30 feet";
 races[92].senses = "";
 races[92].traits = HumanoidPlant()
-	+ Cantrip("Thorn Whip", "Thorn Whip", "Constitution") + Armored("Bark")
-	+ Camouflage();
+	+ Cantrip("Vine grab", "Thorn Whip", "Constitution")
+	+ Tentacles("Vine strike")
+	//+ Armored("Bark")
+	//+ Camouflage();
 
 races[93] = {};
 races[93].name = "Dralasite";
@@ -1938,7 +1940,7 @@ races[96].type = "humanoid (celestial)";
 races[96].speed = "30 feet, climb 30 feet";
 races[96].senses = "";
 races[96].traits = HumanoidPlant() + ResiliencePoison()
-	+ "<b>Poisonous</b> Mandrake blood is poison. Any creature that comes in contact with Mandrak blood, or scores an unarmed slashing attack or a bite attack on the mandrake must save to avoid becoming poisoned<br>";
+	+ "<b>Poisonous</b> Mandrake blood is a sticky, poisonous resin. Any creature that comes in contact with Mandrak blood, or scores an unarmed slashing attack or a bite attack on the mandrake must save to avoid becoming poisoned<br>";
 
 races[97] = {}; // Eldar Hob
 races[97].name = randomize("Pixie, Hob, Eldar");
@@ -2117,7 +2119,7 @@ races[112].type = "humanoid (celestial)";
 races[112].speed = "30 feet";
 races[112].senses = "darkvision 60 feet, ";
 races[112].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Flame Bolt", "Burning Hands", "Aganzar's Scorcher", "Constitution");
+	+ Spells135("Primordial Powers", "Flame Bolt", "Burning Hands", "Aganzar's Scorcher", "Constitution");
 
 races[113] = {}; // Core Race / Tiefling
 races[113].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2128,7 +2130,7 @@ races[113].type = "humanoid (celestial)";
 races[113].speed = "30 feet";
 races[113].senses = "darkvision 60 feet, ";
 races[113].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
+	+ Spells135("Primordial Powers", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
 races[114] = {}; // Core Race / Tiefling
 races[114].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2139,7 +2141,7 @@ races[114].type = "humanoid (celestial)";
 races[114].speed = "30 feet";
 races[114].senses = "darkvision 60 feet, ";
 races[114].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Thaumaturgy", "Burning Hands", "Darkness", "Constitution");
+	+ Spells135("Primordial Powers", "Thaumaturgy", "Burning Hands", "Darkness", "Constitution");
 
 races[115] = {}; // Core Race / Tiefling
 races[115].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2150,7 +2152,7 @@ races[115].type = "humanoid (celestial)";
 races[115].speed = "30 feet";
 races[115].senses = "darkvision 60 feet, ";
 races[115].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Legacy", "Vicious Mockery", "Charm Person", "Enthrall", "Charisma");
+	+ Spells135("Primordial Powers", "Vicious Mockery", "Charm Person", "Enthrall", "Charisma");
 
 races[116] = {}; // Core Race / Tiefling
 races[116].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2161,7 +2163,7 @@ races[116].type = "humanoid (celestial)";
 races[116].speed = "30 feet";
 races[116].senses = "darkvision 60 feet, ";
 races[116].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Wings("Primordial Legacy");
+	+ Wings("Primordial Powers");
 
 races[117] = {}; // Daelkyr "knight"
 races[117].name = "Dolgaunt";
@@ -2182,7 +2184,7 @@ races[118].type = "humanoid (aberrant)";
 races[118].speed = "30 feet";
 races[118].senses = "darkvision 60 feet, ";
 races[118].traits = Darkvision() + Aberrant()
-	+ "<b>Dual Minds</b> Make an extra attack as a bonus action<br>";
+	+ "<b>Dual Minds</b> A dolgrim has two sets of arms, each controlled by a separate brain and able to act independently. The second pair of arms controlled by the other brain can make one melee attack as a bonus action<br>";
 
 races[119] = {}; // Mindflayer "Ambassador"
 races[119].name = "Illithid";
@@ -2211,13 +2213,87 @@ races[121] = {}; // Daelkyr enforcer
 races[121].name = "Dolgrue";
 races[121].languages = "Common, Deep Speech";
 races[121].abilities = "Dexterity +2, Wisdom +1";
-races[121].size = "Small";
-races[121].type = "aberrant";
+races[121].size = "large";
+races[121].type = "humanoid (aberrant)";
 races[121].speed = "30 feet, climb 30 feet";
 races[121].senses = "darkvision 60 feet, ";
 races[121].traits = "<i>Ten feet tall, heavily muscled, with mottled pink skin dotted with bony nodules and plates. A long and muzzled head, with several rows of teeth and arms that end in crab-like claws</i><p>" + Darkvision() + Aberrant()
 		+ HealSelf("Regeneration")
 		+ Talons("Pincers");
+
+races[122] = {};
+races[122].name = randomize("Tengu, Rook, Ravenfolk, Ravenkin");
+races[122].languages = "Common, Auran, " + languages[Math.floor(Math.random()*languages.length)];;
+races[122].abilities = "Strength +2, Constitution +1";
+races[122].size = "Small";
+races[122].type = "humanoid (celestial)";
+races[122].speed = "25 feet";
+races[122].senses = "";
+races[122].traits = Darkvision()
+	+ "<b>Weapon Training</b> You are proficient in the use of Rapiers, Longswords, and Greatswords<br>"
+	+ "<b>Gifted Linguist</b> Extra language<br>" + Mimicry();
+
+races[123] = {};
+races[123].name = "Grimalkin";
+races[123].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)] + ", " + languages[Math.floor(Math.random()*languages.length)];
+races[123].abilities = "Dexterity, Charisma +1";
+races[123].size = "Medium";
+races[123].type = "humanoid (primal)";
+races[123].speed = "30 feet"
+races[123].senses = "";
+races[123].traits = "<b>Shapechanger</b> As an action, you can polymorph into any medium to tiny sized mammal that you have seen, or back into your default form. Your equipment does not change with you. If you become unconscious or die, you revert to your natural form<br>"
+
+races[124] = {};
+races[124].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[124].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[124].abilities = "Strength, Constitution +1";
+races[124].size = "Medium";
+races[124].type = "humanoid (automata)";
+races[124].speed = "35 feet";
+races[124].senses = "";
+races[124].traits = LivingConstruct() + "<b>Scout</b> Your base move speed is 35 feet<br>";
+
+races[125] = {};
+races[125].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[125].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[125].abilities = "Strength, Constitution +1";
+races[125].size = "Medium";
+races[125].type = "humanoid (automata)";
+races[125].speed = "30 feet";
+races[125].senses = "";
+races[125].traits = LivingConstruct() + "<b>Skirmisher</b> You are proficient with two weapons of your choice<br>";
+
+races[126] = {};
+races[126].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[126].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[126].abilities = "Strength, Constitution +1";
+races[126].size = "Medium";
+races[126].type = "humanoid (automata)";
+races[126].speed = "30 feet";
+races[126].senses = "";
+races[126].traits = LivingConstruct() + "<b>Archer</b> You are proficient with Longbows, Shortbows, and Crossbows<br>";
+
+races[127] = {};
+races[127].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[127].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[127].abilities = "Strength, Constitution +1";
+races[127].size = "Medium";
+races[127].type = "humanoid (automata)";
+races[127].speed = "30 feet";
+races[127].senses = "";
+races[127].traits = LivingConstruct() + Cantrip("Tactics", "Guidance", "Intelligence");
+
+races[128] = {};
+races[128].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
+races[128].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[128].abilities = "Strength, Consitution +1";
+races[128].size = "Medium";
+races[128].type = "humanoid (automata)";
+races[128].speed = "30 feet";
+races[128].senses = "";
+races[128].traits = LivingConstruct()
+	+ "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
+
 
 
 //main
