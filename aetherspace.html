@@ -1123,7 +1123,7 @@ races[7].size = "Medium";
 races[7].type = "humanoid (supernal)";
 races[7].speed = "30 feet";
 races[7].senses = "darkvision 60 feet, ";
-races[7].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
+races[7].traits = Darkvision() + ResistDamageFire()
 	+ Spells135("Primordial Powers", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
 races[8] = {}; // Core Race / Genasi
@@ -1486,7 +1486,7 @@ races[39].traits = Darkvision() + Shifting()
 + "<b>Wildhunt</b> While shifting, you gain advantage on all Wisdom-based checks and saving throws<br>";
 
 races[40] = {};
-races[40].name = randomize("Mul, Hob");
+races[40].name = "Mul";
 races[40].languages = "Common, Hob, " + languages[Math.floor(Math.random()*languages.length)];
 races[40].abilities = "Strength +2, Constitution +1";
 races[40].size = "Medium";
@@ -1517,7 +1517,7 @@ races[42].senses = "darkvision 60 feet, ";
 races[42].traits = Darkvision() + ResiliencePoison("Resilience")
 	+ WeaponTrainingDwarf("Weapon Training")
 	+ Spells135("Shadow Magic", "Minor Illusion", "Tasha's Hideous Laughter", "Crown of Madness", "Constitution")
-	+ SunlightSensitivity() ;
+	+ SunlightSensitivity();
 
 races[43] = {};
 races[43].name = randomize("Duergar, Hob");
@@ -1708,8 +1708,8 @@ races[59].size = "Medium";
 races[59].type = "humanoid (supernal)";
 races[59].speed = "30 feet";
 races[59].senses = "darkvision 60 feet, ";
-races[59].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Primordial Powers", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
+races[59].traits = Darkvision() + ResistDamageFire()
+	+ Spells135("Primordial", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
 
 races[60] = {}; // core race
 races[60].name = randomize("Minotaur, Asterion");
@@ -1845,16 +1845,15 @@ races[71].traits = Blindsight()
 	+ SunlightSensitivity()
 	+ "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br>";
 
-races[72] = {}; // primal centaur
-races[72].name = randomize("Centaur, Wildborn");
-races[72].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[72] = {};
+races[72].name = "Hyborean";
+races[72].languages = "Supernal, " + languages[Math.floor(Math.random()*languages.length)];
 races[72].abilities = "Strength, Constitution +1";
 races[72].size = "Medium";
-races[72].type = "humanoid (primal)";
-races[72].speed = "40 feet";
+races[72].type = randomize("humanoid (Aberrant), humanoid");
+races[72].speed = "30 feet";
 races[72].senses = "";
-races[72].traits = Quadruped() + AnimalAncestry()
-	+ "<b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
+races[72].traits = Immortal() + Repletion() + Aberrant();
 
 races[73] = {}; // turtlefolk
 races[73].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
@@ -1913,20 +1912,19 @@ races[77].traits = Darkvision()
 	+ "<b>Brute</b> A melee weapon deals one extra die of its damage when you hit with it once per round<br>"
 	+ "<b>Surprise Attack</b> If you surprise a creature and hit it with an attack during the first round of combat, you have advantage on the damage roll for that attack<br>";
 
-races[78] = {};
-races[78].name = randomize("Giff, Thraddash");
-races[78].languages = "Supernal, Giff, " + languages[Math.floor(Math.random()*languages.length)]
-races[78].abilities = "Strength +2, Constitution +1";
-races[78].size = "Medium";
-races[78].type = "humanoid (supernal)";
-races[78].speed = "30 feet";
-races[78].senses = "";
-races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. The weapon takes one round to reload. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>"
-	+ Toughness()
-	+ "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
+races[78] = {}; // Mindflayer pawn
+races[78].name = "Neolithid";
+races[78].languages = "Common, Deep Speech";
+races[78].abilities = "Dexterity +2, Wisdom +1";
+races[78].size = "Small";
+races[78].type = "aberrant";
+races[78].speed = "20 feet, swim 40 feet";
+races[78].senses = "blindsight 30 feet, ";
+races[78].traits = "<i>A dog sized worm with a lamprey mouth surrounded by a crown of strong grasping tentacles</i><p>"
+	+ Aberrant() + Tentacles() + Tendrils() + TentacleSpear();
 
 races[79] = {};
-races[79].name = randomize("Sea Elf, Baedwegalfar, Merfolk, Triton, Atlantean, Lemurian, Eldar");
+races[79].name = randomize("Baedwegalfar, Triton, Lemurian, Eldar");
 races[79].languages = "Common, Elven";
 races[79].abilities = "Dexterity +2, Wisdom +1";
 races[79].size = "Medium";
@@ -1945,7 +1943,7 @@ races[80].type = "humanoid (primordial)";
 races[80].speed = "30 feet";
 races[80].senses = "";
 races[80].traits = Immortal() + Sustained()
-	+ "<b>Vanir Weapon Training</b> Longsword, Longbow<br>";
+	+ "<b>Weapon Training</b> Longsword, Longbow<br>";
 
 races[81] = {};
 races[81].name = randomize("Aesir, Empyrean, Celestial");
@@ -1956,7 +1954,7 @@ races[81].type = "humanoid (supernal)";
 races[81].speed = "30 feet";
 races[81].senses = "";
 races[81].traits = Immortal() + Sustained()
-	+ "<b>Aesir Weapon Training</b> Greataxe, Greatspear <br>";
+	+ "<b>Weapon Training</b> Greataxe, Greatspear <br>";
 
 races[82] = {}; // Core Race
 races[82].name = randomize("Aarakocra, Rook");
@@ -2014,7 +2012,7 @@ races[87].name = "Dracon";
 races[87].languages = "Supernal, Draconic";
 races[87].abilities = "Constitution +1, Strength +1";
 races[87].size = "Medium";
-races[87].type = "humanoid (primal)";
+races[87].type = "humanoid (supernal)";
 races[87].speed = "30 feet";
 races[87].senses = "";
 races[87].traits = HoldBreath() + Armored("Scaled Hide") + Camouflage() + Bite();
@@ -2030,7 +2028,7 @@ races[35].senses = "";
 races[35].traits = BoltPoison() + ResistDamagePoison();
 
 races[89] = {};
-races[89].name = randomize("Laskarim, Orog, Scro");
+races[89].name = randomize("Laskarim, Ruk, Scro");
 races[89].languages = "Common, Giant";
 races[89].abilities = "Strength +2, Constitution +1";
 races[89].size = "Medium";
@@ -2198,7 +2196,7 @@ races[103].senses = "darkvision 60 feet, ";
 races[103].traits = Darkvision() + BoltFire() + ResistDamageFire();
 
 races[104] = {};
-races[104].name = randomize("Hyborean, Daelkyr");
+races[104].name = "Daelkyr";
 races[104].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[104].abilities = "Strength, Constitution +1";
 races[104].size = "Medium";
@@ -2210,14 +2208,14 @@ races[104].traits = Immortal() + Repletion() + Aberrant()
 	+ SunlightSensitivity();
 
 races[105] = {};
-races[105].name = randomize("Bariaur, Centaur, Cloven, Eldar");
+races[105].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
 races[105].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
 races[105].abilities = "Strength, Constitution +1";
 races[105].size = "Medium";
-races[105].type = "humanoid (supernal)";
-races[105].speed = "40 feet";
+races[105].type = "humanoid (automata)";
+races[105].speed = "30 feet";
 races[105].senses = "";
-races[105].traits = Quadruped() + EldarAncestry() + Horns();
+races[105].traits = Automata() + Cantrip("Tactics", "Guidance", "Intelligence");
 
 races[106] = {};
 races[106].name = randomize("Aasimar, Empyrean, Celestial");
@@ -2297,8 +2295,8 @@ races[112].size = "Medium";
 races[112].type = "humanoid (supernal)";
 races[112].speed = "30 feet";
 races[112].senses = "darkvision 60 feet, ";
-races[112].traits = Darkvision() + ResistDamageFire("Primordial")
-	+ Spells135("Tiefling", "Flame Bolt", "Burning Hands", "Aganzar's Scorcher", "Constitution");
+races[112].traits = Darkvision() + ResistDamageFire()
+	+ Spells135("Primordial", "Flame Bolt", "Burning Hands", "Aganzar's Scorcher", "Constitution");
 
 races[113] = {}; // Core Race / Tiefling
 races[113].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2308,8 +2306,8 @@ races[113].size = "Medium";
 races[113].type = "humanoid (supernal)";
 races[113].speed = "30 feet";
 races[113].senses = "darkvision 60 feet, ";
-races[113].traits = Darkvision() + ResistDamageFire("Primordial")
-	+ Spells135("Cambion", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
+races[113].traits = Darkvision() + ResistDamageFire()
+	+ Spells135("Primordial", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
 
 races[114] = {}; // Core Race / Tiefling
 races[114].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2319,8 +2317,8 @@ races[114].size = "Medium";
 races[114].type = "humanoid (supernal)";
 races[114].speed = "30 feet";
 races[114].senses = "darkvision 60 feet, ";
-races[114].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Fiend", "Thaumaturgy", "Burning Hands", "Darkness", "Constitution");
+races[114].traits = Darkvision() + ResistDamageFire()
+	+ Spells135("Primordial", "Thaumaturgy", "Burning Hands", "Darkness", "Constitution");
 
 races[115] = {}; // Core Race / Tiefling
 races[115].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2330,8 +2328,8 @@ races[115].size = "Medium";
 races[115].type = "humanoid (supernal)";
 races[115].speed = "30 feet";
 races[115].senses = "darkvision 60 feet, ";
-races[115].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Spells135("Alu-Fiend", "Vicious Mockery", "Charm Person", "Enthrall", "Charisma");
+races[115].traits = Darkvision() + ResistDamageFire()
+	+ Spells135("Primordial", "Vicious Mockery", "Charm Person", "Enthrall", "Charisma");
 
 races[116] = {}; // Core Race / Tiefling
 races[116].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
@@ -2341,8 +2339,8 @@ races[116].size = "Medium";
 races[116].type = "humanoid (supernal)";
 races[116].speed = "30 feet";
 races[116].senses = "darkvision 60 feet, ";
-races[116].traits = Darkvision() + ResistDamageFire("Primordial Resilience")
-	+ Wings("Abyssal");
+races[116].traits = Darkvision() + ResistDamageFire()
+	+ Wings("Primordial");
 
 races[117] = {}; // Daelkyr "knight"
 races[117].name = "Dolgaunt";
@@ -2452,26 +2450,9 @@ races[126].speed = "30 feet";
 races[126].senses = "";
 races[126].traits = Automata() + "<b>Archer</b> You are proficient with Longbows, Shortbows, and Crossbows<br>";
 
-races[127] = {};
-races[127].name = randomize("Automata, Modron, Immortal, Warforged, Aeon");
-races[127].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[127].abilities = "Strength, Constitution +1";
-races[127].size = "Medium";
-races[127].type = "humanoid (automata)";
-races[127].speed = "30 feet";
-races[127].senses = "";
-races[127].traits = Automata() + Cantrip("Tactics", "Guidance", "Intelligence");
 
-races[128] = {}; // Mindflayer pawn
-races[128].name = "Neolithid";
-races[128].languages = "Common, Deep Speech";
-races[128].abilities = "Dexterity +2, Wisdom +1";
-races[128].size = "Small";
-races[128].type = "aberrant";
-races[128].speed = "20 feet, swim 40 feet";
-races[128].senses = "blindsight 30 feet, ";
-races[128].traits = "<i>A dog sized worm with a lamprey mouth surrounded by a crown of strong grasping tentacles</i><p>"
-	+ Aberrant() + Tentacles() + Tendrils() + TentacleSpear();
+
+
 
 
 

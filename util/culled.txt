@@ -367,7 +367,7 @@ races[65].type = "humanoid (construct)";
 races[65].speed = "30 feet";
 races[65].senses = "";
 races[65].traits = LivingConstruct() + ImmunityDisease() + Repletion() +  "<b>Singular Purpose</b> You were designed to fulfill a certain task with utmost efficiency. You gain proficiency in one skill of your choice. Your proficiency bonus is doubled for any ability check you make that uses this skill<br>";
-*/
+
 
 /*
 races[55] = {}; // extended race material
@@ -393,15 +393,30 @@ races[56].speed = "30 feet";
 races[56].senses = "";
 races[56].traits = Darkvision() + Aberrant() + AberrantAppetite() + ArmorTraining();
 
-races[57] = {}; // extended race material
-races[57].name = "Thri-kreen";
-races[57].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
-races[57].abilities = "Dexterity, Wisdom +1";
-races[57].size = "Medium";
-races[57].type = "humanoid (monstrous)";
-races[57].speed = "30 feet";
-races[57].senses = "";
-races[57].traits = Armored("Exoskeleton") + "<b>Extra Arms</b> Make one additional unarmed strike for 1d4 damage or one additional attack with a Thri-keen racial weapon as a bonus action during their turn<br><b>Gytka</b> Thri-kreen racial weapon. One handed, three-bladed weapon used for punching or throwing.  It deals 1d6 slashing damage and has a range of 60/120<br><b>Chatka</b> Thri-kreen racial weapon. Twin bladed polearm weapon which deals 1d10 slashing damage and has reach 5<br>" + Trance("Torpor") + Leap() + "<b>Desert Adapted</b> You do not need to drink water. You get everything you need from the food that you eat<br>";
+
+races[72] = {}; // primal centaur
+races[72].name = randomize("Centaur, Wildborn");
+races[72].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[72].abilities = "Strength, Constitution +1";
+races[72].size = "Medium";
+races[72].type = "humanoid (primal)";
+races[72].speed = "40 feet";
+races[72].senses = "";
+races[72].traits = Quadruped() + AnimalAncestry()
+	+ "<b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
+
+
+  races[105] = {};
+  races[105].name = randomize("Bariaur, Centaur, Cloven, Eldar");
+  races[105].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+  races[105].abilities = "Strength, Constitution +1";
+  races[105].size = "Medium";
+  races[105].type = "humanoid (supernal)";
+  races[105].speed = "40 feet";
+  races[105].senses = "";
+  races[105].traits = Quadruped() + EldarAncestry() + Horns();
+
+
 */
 
 /*
