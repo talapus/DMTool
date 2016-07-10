@@ -701,7 +701,7 @@ function Tendrils(input) { try { if (input.length > 1) { // Cantrip: Thorn Whip
 }};
 
 function Tentacles(input) { try { if (input.length > 1) {
-	return ("<b>" + input + "</b> You can attack with your tentacles as an unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br><br>");
+	return ("<b>" + input + "</b> You can attack with your tentacles as an unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br>");
 	}} catch (err) {
 	return ("<b>Tentacles</b> You can attack with your tentacles as an unarmed weapon for 1d4 piercing damage. You can spend a bonus action to make an unarmed attack with a tentacle<br>");
 }};
@@ -1573,7 +1573,7 @@ races[47].type = "humanoid";
 races[47].speed = "30 feet";
 races[47].senses = "darkvision 60 feet, ";
 races[47].traits = Darkvision() + ResiliencePsychic()
-	+ Spells135("Psychic", "Mage Hand", "Unseen Servant", "Detect Thoughts", "Constitution");
+	+ Spells135("Psionic", "Mage Hand", "Unseen Servant", "Detect Thoughts", "Constitution");
 
 races[48] = {};
 races[48].name = randomize("Bogart, Hob");
@@ -1788,7 +1788,7 @@ races[66].type = "humanoid";
 races[66].speed = "30 feet";
 races[66].senses = "darkvision 60 feet, ";
 races[66].traits = Darkvision() + ResiliencePsychic()
-	+ Spells135("Psychic", "Feather Fall", "Jump", "Detect Thoughts", "Constitution");
+	+ Spells135("Psionic", "Feather Fall", "Jump", "Detect Thoughts", "Constitution");
 
 races[67] = {};
 races[67].name = "Elan";
@@ -1809,7 +1809,7 @@ races[68].type = "humanoid";
 races[68].speed = "30 feet";
 races[68].senses = "darkvision 60 feet, ";
 races[68].traits = Darkvision() + ResiliencePsychic()
-	+ Spells135("Psychic", "Friends", "Charm Person", "Crown of Madness", "Charisma");
+	+ Spells135("Psionic", "Friends", "Charm Person", "Crown of Madness", "Charisma");
 
 races[69] = {}; // evil cannibals with faces on their chests
 races[69].name = randomize("Blemmyes, Akephaloi, Anthropophage");
