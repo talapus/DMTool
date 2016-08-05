@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random NPC Generator</title>
+
+<style>
+
+body {
+	background-color: #e3e3e3;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#main {
+	margin: auto;
+	background-color: #ffffff;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 10px;
+	width: 500px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px black;
+}
+
+#whitebox {
+  border-radius: 10px;
+	margin: auto;
+  background: #ffffff;
+}
+
+#background {
+  border-radius: 10px;
+	margin: auto;
+  background: #e2e2e2;
+  padding: 10px; /* padding: 6px 12px 7px !important; */
+}
+
+</style>
+
+</head><body><script>
+
+
+function getName() {
+
+  function getVowel() {
+    var vowels = ['a', 'e', 'i', 'o', 'u' ]
+    return(vowels[randomNumber(vowels.length)])
+  }
+
+  function getConsonant() {
+    var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n',
+											'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+    return(consonants[randomNumber(consonants.length)])
+  }
+
+  var getOptional = function() {
+    return(getConsonant() + getVowel() + getConsonant())
+  }
+
+  var getWord = function() {
+
+    var myWord = getConsonant().toUpperCase() // first letter uppercase
+    for (var i=0; i<randomNumber(2)+1; i++) {  // followed by 1-2 vowels
+      myWord += getVowel()
+    }
+
+    myWord += getConsonant()
+    if (randomNumber(3) > 0) { // 75% chance of an optional word segment
+      myWord += getOptional()
+    }
+    return(myWord)
+  }
+
+  var myName = getWord()
+  return(myName)
+}
+
+
+
+var getAC = function() {
+  if (DEX === 12 || DEX === 13) {
+    return (11);
+  } else if (DEX === 14 || DEX === 15) {
+    return (12)
+  } else if (DEX == 16 || DEX == 17) {
+    return (13)
+  } else if (DEX == 18 || DEX === 19) {
+    return (14)
+  } else {
+    return (10)
+  }
+}
+
+var getModifier = function(stat) {
+  if (stat === 12 || stat === 13) {
+    return ("+1");
+  } else if (stat === 14 || stat === 15) {
+    return ("+2")
+  } else if (stat == 16 || stat == 17) {
+    return ("+3")
+  } else if (stat == 18 || stat === 19) {
+    return ("+4")
+  } else {
+    return ("+0")
+  }
+}
+
+var getBaseMod = function(stat) {
+  if (stat === 12 || stat === 13) {
+    return (1);
+  } else if (stat === 14 || stat === 15) {
+    return (2)
+  } else if (stat == 16 || stat == 17) {
+    return (3)
+  } else if (stat == 18 || stat === 19) {
+    return (4)
+  } else {
+    return (0)
+  }
+}
+
+var rollStat = function() {
+  return (Math.floor(Math.random() * 11)+8);
+};
+
+function randomize(input) {
+  anArray = input.split(', ');
+  return anArray[Math.floor(Math.random() * anArray.length)];
+}
+
+var randomNumber = function(input) {
+  return(Math.floor(Math.random()*input))
+}
+
+alignments = ["Lawful Good", "Good", "Chaotic Good", "Neutral", "Lawful", "Chaotic", "Evil", "Lawful Evil", "Chaotic Evil"];
+
+//all_languages = ["Dwarvish", "Elven", "Giant", "Gnomish", "Goblin", "Halfling", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Aquan", "Ignan", "Auran", "Terran"];
+
+languages = ["Abyssal", "Celestial", "Draconic", "Fiendish", "Infernal", "Primordial", "Sylvan", "Undercommon", "Modron", "Kythric", "Supernal", "Irial", "Mabaran"];
+
+
+//Traits
+
+function Aberrant(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Vulnerable to byeshk. Advantage against charm and magic saving throws. You have resistance to psychic damage<br>");
+	}} catch (err) {
+	return ("<b>Aberrant</b> Vulnerable to byeshk. Advantage against charm and magic saving throws. You have resistance to psychic damage<br>");
+}};
+
+function AberrantAppetite(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can ingest any bite sized material and gain sustenance from it<br>");
+	}} catch (err) {
+	return ("<b>Aberrant Appetite</b> You can ingest any bite sized material and gain sustenance from it<br>");
+}};
+
+function Amphibious(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can breathe air and water<br>");
+	}} catch (err) {
+	return ("<b>Amphibious</b> You can breathe air and water<br>");
+}};
+
+function AnimalAncestry(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> you gain advantage on all Wisdom-based checks and saving throws<br>");
+	}} catch (err) {
+	return ("<b>Animal Ancestry</b> you gain advantage on all Wisdom-based checks and saving throws<br>");
+}};
+
+function Armored(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have a +1 bonus to Armor Class<br>");
+	}} catch (err) {
+	return ("<b>Armored</b> You have a +1 bonus to Armor Class<br>");
+}};
+
+function ArmorTraining(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have training in light and medium armor<br>");
+	}} catch (err) {
+	return ("<b>Armor Training</b> You have training in light and medium armor<br>");
+}};
+
+function Bite(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
+	}} catch (err) {
+	return ("<b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage<br>");
+}};
+
+function BiteGrapple(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
+	}} catch (err) {
+	return ("<b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>");
+}};
+
+function Blindsight(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> 30 feet radius. Using nonvisual senses, you can maneuver and fight as well as a sighted creature. Invisibility, darkness, and most kinds of concealment are irrelevant, though you must have line of effect to a creature or object to discern that creature or object. You usually do not need to make Spot or Listen checks to notice creatures within range of its blindsight ability. Blindsight is continuous, and you need do nothing to use it<br>");
+	}} catch (err) {
+	return ("<b>Blindsight</b> 30 feet radius. Using nonvisual senses, you can maneuver and fight as well as a sighted creature. Invisibility, darkness, and most kinds of concealment are irrelevant, though you must have line of effect to a creature or object to discern that creature or object. You usually do not need to make Spot or Listen checks to notice creatures within range of its blindsight ability. Blindsight is continuous, and you need do nothing to use it<br>");
+}};
+
+function BonusCriticalDamage(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> When you score a critical hit with a melee weapon attack, you can roll one of the weapons damage dice one additional time and add it to the extra damage of the critical hit<br>");
+	}} catch (err) {
+	return ("<b>Bonus Critical Damage</b> When you score a critical hit with a melee weapon attack, you can roll one of the weapons damage dice one additional time and add it to the extra damage of the critical hit<br>");
+}};
+
+function BonusSkill(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Choose an extra skill proficiency<br>");
+	}} catch (err) {
+	return ("<b>Skill</b> Choose an extra skill proficiency<br>");
+}};
+
+function BonusSkills(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You gain proficincy in two skills of your choice<br>");
+	}} catch (err) {
+	return ("<b>Skill versatility</b> You gain proficincy in two skills of your choice<br>");
+}};
+
+function BonusFeat(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Choose an extra feat<br>");
+	}} catch (err) {
+	return ("<b>Gift</b> Choose an extra feat<br>");
+}};
+
+function StoneCamouflage(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on Dexterity (stealth) checks to hide in rocky terrain<br>");
+	}} catch (err) {
+	return ("<b>Stone Camouflage</b> You have advantage on Dexterity (stealth) checks to hide in rocky terrain<br>");
+}};
+
+//arg1= Descriptive name, arg2= skill
+function Cantrip(arg1, arg2, arg3) {
+	return ("<b>" + arg1 + "</b> You know the <i>" + arg2 + "</i>  cantrip. " + arg3 + " is your spellcasting ability for this skill<br>") };
+
+function Claws(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d4 slashing damage<br>");
+	}} catch (err) {
+	return ("<b>Claws</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d4 slashing damage<br>");
+}}
+
+function ClawsBonus(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d4 slashing damage. You can make a claw attack as a bonus action when you have used an attack action. You use Strength for attack and damage bonus for claw attacks<br>");
+	}} catch (err) {
+	return ("<b>Claws</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d4 slashing damage. You can make a claw attack as a bonus action when you have used an attack action. You use Strength for attack and damage bonus for claw attacks<br>");
+}}
+
+function Cunning(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic<br>");
+	}} catch (err) {
+	return ("<b>Cunning</b> You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic<br>");
+}}
+
+function DarkDweller(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You gain proficiency in the Stealth skill. You can take a hide action as a bonus action whenever you are in dim light or darkness<br>");
+	}} catch (err) {
+	return ("<b>Dark Dweller</b> You gain proficiency in the Stealth skill. You can take a hide action as a bonus action whenever you are in dim light or darkness<br>");
+}};
+
+function Darkvision(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can not discern color in darkness, only shades of gray<br>");
+	}} catch (err) {
+	return ("<b>Darkvision</b> You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can not discern color in darkness, only shades of gray<br>");
+}};
+
+function DarkvisionSuperior(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can not discern color in darkness, only shades of gray<br>");
+	}} catch (err) {
+	return ("<b>Darkvision</b> You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can not discern color in darkness, only shades of gray<br>");
+}};
+
+function Deathless(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. You have no heartbeat. While asleep, you are indistinguishable from a corpse<br>");
+	}} catch (err) {
+	return ("<b>Deathless</b> You are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or drink, but you can ingest food and drink if you wish. You do not need to breathe. You have no heartbeat. While asleep, you are indistinguishable from a corpse<br>");
+}};
+
+function FeyAncestry(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Advantage against charm and magic saving throws. You can not be put to sleep<br>");
+	}} catch (err) {
+	return ("<b>Fey Ancestry</b> Advantage against charm and magic saving throws. You can not be put to sleep<br>");
+}};
+
+function Flight(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
+	}} catch (err) {
+	return ("<b>Flight</b> When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You fall to the ground at the end of your turn unless you move at least half your fly speed during your turn<br>");
+}};
+
+function Resilient(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> When you are reduced to 0 hit points but not killed outright, you can be reduced to 1 hp instead. You can not use this feature again until you finish a long rest<br>");
+	}} catch (err) {
+	return ("<b>Resilience</b> When you are reduced to 0 hit points but not killed outright, you can be reduced to 1 hp instead. You can not use this feature again until you finish a long rest<br>");
+}};
+
+function HealSelf(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. You may use this ability once per rest<br>");
+	}} catch (err) {
+	return ("<b>Heal</b> Roll 1d12 and add your Constitution modifier to the number rolled. Heal that amount. You may use this ability once per rest<br>");
+}};
+
+function HoldBreath(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Hold your breath one minute for every constitution bonus point and level you have<br>");
+	}} catch (err) {
+	return ("<b>Hold Breath</b> Hold your breath one minute for every constitution bonus point and level you have<br>");
+}};
+
+function Horns(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Deal 1d10 piercing damage, offer advantage on shoving checks, automatically shove when used as part of an Attack action, and can be used to gore an enemy as a bonus action even after a Dash<br>");
+	}} catch (err) {
+	return ("<b>Horns</b> Deal 1d10 piercing damage, offer advantage on shoving checks, automatically shove when used as part of an Attack action, and can be used to gore an enemy as a bonus action even after a Dash<br>");
+}};
+
+function HumanoidPlant(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight satisfies your food requirements for the day. Without sunlight, you can rely on humanoid food sources. Once per day, you may regenerate 1 hit point per class level <br>");
+	}} catch (err) {
+	return ("<b>Humanoid Plant</b> You are subject to spells that affect humanoid creatures. 4 hours of unobstructed sunlight satisfies your food requirements for the day. Without sunlight, you can rely on humanoid food sources. Once per day, you may regenerate 1 hit point per class level <br>");
+}};
+
+function ImmunityDisease(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are immune to disease<br>");
+	}} catch (err) {
+	return ("<b>Disease Immunity</b> You are immune to disease<br>");
+}};
+
+function Immortal(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You do not age<br>");
+	}} catch (err) {
+	return ("<b>Immortal</b> You do not age<br>");
+}};
+
+function Keen(arg1, arg2) { return ("<b>" + arg1 + "</b> You have advantage on Perception(Wisdom) rolls that rely on " + arg2 + "<br>") };
+
+function Leap(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Advantage on Athletics skill rolls for jumping<br>");
+	}} catch (err) {
+	return ("<b>Leap</b> Advantage on Athletics skill rolls for jumping<br>");
+}};
+
+function LivingConstruct(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Although you are an artificial life form, you are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or breathe, but you can ingest food and drink if you wish. Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+	}} catch (err) {
+	return ("<b>Living Construct</b> Although you are an artificial life form, you are subject to spells that affect living creatures. You are immune to disease. You do not need to eat or breathe, but you can ingest food and drink if you wish. Instead of sleeping, you enter an inactive state for 4 hours each day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+}};
+
+function Lucky(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll<br>");
+	}} catch (err) {
+	return ("<b>Lucky</b> When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll<br>");
+}};
+
+function MartialAdvantage(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not incapacitated<br>");
+	}} catch (err) {
+	return ("<b>Martial Advantage</b> You have advantage on damage rolls against a creature if at least one of your allies are within 5 feet of the creature and the ally is not incapacitated<br>");
+}};
+
+function Mimicry(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br>");
+	}} catch (err) {
+	return ("<b>Mimicry</b> You can mimic simple sounds you have heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 10 Wisdom (Insight) check<br>");
+}};
+
+function NaturalWeapons(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can make a bite attack for 1d6 piercing damage. Your unarmed attacks deal 1d4 slashing damage<br>");
+	}} catch (err) {
+	return ("<b>Natural Weapons</b> You can make a bite attack for 1d6 piercing damage. Your unarmed attacks deal 1d4 slashing damage<br>");
+}};
+
+function Nimble(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can move through the space of any creature that is of a size larger than yours<br>");
+	}} catch (err) {
+	return ("<b>Nimble</b> You can move through the space of any creature that is of a size larger than yours<br>");
+}};
+
+function NimbleEscape(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> The goblin can take the Disengage or Hide as a bonus action on each of its turns<br>");
+	}} catch (err) {
+	return ("<b>Nimble Escape</b> You can Disengage or Hide as a bonus action on each of your turns<br>");
+}};
+
+function Powerful(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br>");
+	}} catch (err) {
+	return ("<b>Powerful</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br>");
+}};
+
+function Psychic(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Advantage against charm and magic saving throws. You have resistance to psychic damage<br>>");
+	}} catch (err) {
+	return ("<b>Psychic</b> Advantage against saving throws for charm and mind influencing effects. You have resistance to psychic damage<br>");
+}};
+
+function Repletion(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Instead of sleeping, you enter an inactive state. Meditating for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+	}} catch (err) {
+	return ("<b>Repletion</b> Instead of sleeping, you enter an inactive state. Meditating for 4 hours satisfies the need for sleep, food, and drink for the rest of the day. You do not dream in this state; you are fully aware of your surroundings and notice approaching enemies and other events as normal<br>");
+}};
+
+function ResilienceAcid(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against acid attacks, and you have resistance to acid damage<br>");
+	}} catch (err) {
+	return ("<b>Acid Resilience</b> You have advantage on saving throws against acid attacks, and you have resistance to acid damage<br>");
+}};
+
+function ResistDamageAcid(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to acid damage<br>");
+	}} catch (err) {
+	return ("<b>Acid Resistance</b> You have resistance to acid damage<br>");
+}};
+
+function ResilienceBlunt(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against blunt attacks, and you have resistance to blunt damage<br>");
+	}} catch (err) {
+	return ("<b>Blunt Resilience</b> You have advantage on saving throws against blunt attacks, and you have resistance to blunt damage<br>");
+}};
+
+function ResistDamageBlunt(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to blunt damage<br>");
+	}} catch (err) {
+	return ("<b>Blunt Resistance</b> You have resistance to blunt damage<br>");
+}};
+
+function ResilienceCold(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against cold attacks, and you have resistance to cold damage<br>");
+	}} catch (err) {
+	return ("<b>Cold Resilience</b> You have advantage on saving throws against cold attacks, and you have resistance to cold damage<br>");
+}};
+
+function ResistDamageCold(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to cold damage<br>");
+	}} catch (err) {
+	return ("<b>Cold Resistance</b> You have resistance to cold damage<br>");
+}};
+
+function ResilienceFire(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against fire attacks, and you have resistance to fire damage<br>");
+	}} catch (err) {
+	return ("<b>Fire Resilience</b> You have advantage on saving throws against fire attacks, and you have resistance to fire damage<br>");
+}};
+
+function ResistDamageFire(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to fire damage<br>");
+	}} catch (err) {
+	return ("<b>Fire Resistance</b> You have resistance to fire damage<br>");
+}};
+
+function ResilienceLightning(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against lightning attacks, and you have resistance to lightning damage<br>");
+	}} catch (err) {
+	return ("<b>Lightning Resilience</b> You have advantage on saving throws against lightning attacks, and you have resistance to lightning damage<br>");
+}};
+
+function ResistDamageLightning(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to lightning damage<br>");
+	}} catch (err) {
+	return ("<b>Lightning Resistance</b> You have resistance to lightning damage<br>");
+}};
+
+function ResilienceNecrotic(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against necrotic attacks, and you have resistance to necrotic damage<br>");
+	}} catch (err) {
+	return ("<b>Necrotic Resilience</b> You have advantage on saving throws against necrotic attacks, and you have resistance to necrotic damage<br>");
+}};
+
+function ResistDamageNecrotic(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to necrotic damage<br>");
+	}} catch (err) {
+	return ("<b>Necrotic Resistance</b> You have resistance to necrotic damage<br>");
+}};
+
+function ResiliencePiercing(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against piercing attacks, and you have resistance to piercing damage<br>");
+	}} catch (err) {
+	return ("<b>Piercing Resilience</b> You have advantage on saving throws against slashing attacks, and you have resistance to piercing damage<br>");
+}};
+
+function ResistDamagePiercing(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to piercing damage<br>");
+	}} catch (err) {
+	return ("<b>Piercing Resistance</b> You have resistance to piercing damage<br>");
+}};
+
+function ResiliencePoison(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against poison attacks, and you have resistance to poison damage<br>");
+	}} catch (err) {
+	return ("<b>Poison Resilience</b> You have advantage on saving throws against poison attacks, and you have resistance to poison damage<br>");
+}};
+
+function ResistDamagePoison(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to poison damage<br>");
+	}} catch (err) {
+	return ("<b>Poison Resistance</b> You have resistance to poison damage<br>");
+}};
+
+function ResilienceRadiant(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against radiant attacks, and you have resistance to radiant damage<br>");
+	}} catch (err) {
+	return ("<b>Radient Resilience</b> You have advantage on saving throws against radiant attacks, and you have resistance to radiant damage<br>");
+}};
+
+function ResistDamageRadiant(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to radiant damage<br>");
+	}} catch (err) {
+	return ("<b>Radiant Resistance</b> You have resistance to radiant damage<br>");
+}};
+
+function ResilienceSlashing(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have advantage on saving throws against slashing attacks, and you have resistance to slashing damage<br>");
+	}} catch (err) {
+	return ("<b>Slashing Resilience</b> You have advantage on saving throws against slashing attacks, and you have resistance to slashing damage<br>");
+}};
+
+function ResistDamageSlashing(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have resistance to slashing damage<br>");
+	}} catch (err) {
+	return ("<b>Slashing Resistance</b> You have resistance to slashing damage<br>");
+}};
+
+function ShadowFade(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Whenever you are in dim light or darkness, you can take a hide action as a bonus action<br>");
+	}} catch (err) {
+	return ("<b>Fade Into Shadows</b> Whenever you are in dim light or darkness, you can take a hide action as a bonus action<br>");
+}};
+
+function Shifting(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> On your turn, you can shift as a bonus action. Shifting lasts for 1 minute or until you end it on your turn as a bonus action. While shifting, you gain temporary hit points equal to your level + your Constitution bonus (minimum of 1)<br>");
+	}} catch (err) {
+	return ("<b>Shifting</b> On your turn, you can shift as a bonus action. Shifting lasts for 1 minute or until you end it on your turn as a bonus action. While shifting, you gain temporary hit points equal to your level + your Constitution bonus (minimum of 1)<br>");
+}};
+
+function Shield(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br>");
+	}} catch (err) {
+	return ("<b>Shield</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br>");
+}};
+
+// arg1= Descriptive name, arg2= skill
+function Skill(arg1, arg2) { return ("<b>" + arg1 + "</b> You gain proficiency in the " + arg2 + " skill<br>") };
+
+// arg1= Descriptive name, arg2= skill
+function Spells(arg1, arg2, arg3, arg4) { return ("<b>" + arg1 + "</b> You know the " + arg2 + " cantrip. You may cast " + arg3 + " once per day. " + arg4 + " is your spellcasting ability for this skill<br>") };
+
+// arg1= Descriptive name, arg2= skill
+function Spells135(arg1, arg2, arg3, arg4, arg5) { return ("<b>" + arg1 + "</b> You know the " + arg2 + " cantrip. At 3rd level, you may cast " + arg3 + " once per day. At 5th level, you may cast " + arg4 + " once per day. " + arg5 + " is your spellcasting ability for this skill<br>") };;
+
+function SunlightSensitivity(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Disadvantage on attack rolls and Perception checks in sunlight<br>");
+	}} catch (err) {
+	return ("<b>Sunlight Sensitivity</b> Disadvantage on attack rolls and Perception checks in sunlight<br>");
+}};
+
+function Symbiote(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "<b>Symbiote</b> You are a hybrid entity with symbiote rhizomes growing throughout your body. When you are reduced to 0 hit points but not killed outright, the symbiote changes your health to 1 hit point. You can not use this feature again until you finish a long rest. You are vulnerable to byeshk<br>");
+	}} catch (err) {
+	return ("<b>Symbiote</b> You are a hybrid entity with symbiote rhizomes growing throughout your body. When you are reduced to 0 hit points but not killed outright, the symbiote changes your health to 1 hit point. You can not use this feature again until you finish a long rest. You are vulnerable to byeshk<br>");
+}};
+
+function Talons(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d6 slashing damage<br>");
+	}} catch (err) {
+	return ("<b>Talons</b> You are proficient with unarmed attacks. Your unarmed attacks deal 1d6 slashing damage<br>");
+}};
+
+function Tentacles(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b>You have a drape of tentacles around your shoulders instead of arms. Working together, multiple tentacles can effectively act as a spare hand for picking locks, reaching into and disabling devices etc. You can wear shirts and conventional armor without penalty<br>");
+	}} catch (err) {
+	return ("<b>Tentacles</b> You have a drape of tentacles around your shoulders instead of arms. Working together, multiple tentacles can manipulate objects as easily as hands. You can wear shirts and conventional armor without penalty. You may use your tentacles for fine manipulation. You are proficient with tentacle attacks. You can spend a bonus action to make an unarmed attack with a tentacle for 1d4 damage<br>");
+}};
+
+function Telekinesis(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You can cast Unseen Servant once per rest<br>");
+	}} catch (err) {
+	return ("<b>Telekinesis</b> You can cast Unseen Servant once per rest<br>");
+}};
+
+function Telepathy(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Telepathically communicate with any creature in line of sight that can speak at least one language. 30 foot range<br>");
+	}} catch (err) {
+	return ("<b>Telepathy</b> Telepathically communicate with any creature in line of sight that can speak at least one language. 30 foot range<br>");
+}};
+
+function Toughness(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Your hit point maximum +1, and it increases by 1 every time you gain a level<br>");
+	}} catch (err) {
+	return ("<b>Toughness</b> Your hit point maximum +1, and it increases by 1 every time you gain a level<br>");
+}};
+
+function Trance(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> Wakeful trance for 4 hours instead of sleeping<br>");
+	}} catch (err) {
+	return ("<b>Trance</b> Wakeful trance for 4 hours instead of sleeping<br>");
+}};
+
+function WeaponTrainingDrow(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have proficiency with rapier, shortsword, and hand crossbow<br>");
+	}} catch (err) {
+	return ("<b>Weapon training</b> You have proficiency with rapier, shortsword, and hand crossbow<br>");
+}};
+
+function WeaponTrainingDwarf(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer<br>");
+	}} catch (err) {
+	return ("<b>Weapon Training</b> You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer<br>");
+}};
+
+function WeaponTrainingElf(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You have proficiency with longsword, shortsword, and longbow<br>");
+	}} catch (err) {
+	return ("<b>Weapon Training</b> You have proficiency with longsword, shortsword, and longbow<br>");
+}};
+
+function Sustained(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "</b> You do not need to eat or drink, but you can ingest food and drink if you wish<br>");
+	}} catch (err) {
+	return ("<b>Sustained</b> You do not need to eat or drink, but you can ingest food and drink if you wish<br>");
+}};
+
+function Camouflage(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br>");
+	}} catch (err) {
+	return ("<b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br>");
+}};
+
+function StunSpore(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>");
+	}} catch (err) {
+	return ("<b>Stun Spore</b> Once per per rest, you can use an Action to emit a cloud of stun spores at a target within 5 feet of you. One target may be affected. Target must save vs DC 11 to resist being stunned for one minute<br>");
+}};
+
+function Wings(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+	}} catch (err) {
+	return ("<b>Wings</b> You must be in a space wide enough to accommodate your wingspan to fly. Your wingspan is equal to twice your height. When you take damage while flying, make a Constitution save with a DC equal to 10 or half the damage taken, whichever is higher. If you fail the saving throw, you fall. If you are wearing armor you are not proficient in or any Medium or Heavy armor, you may not fly. You may not fly in normal backpacks or armor. The cost to alter your gear to be suitable for flight is equal to half the cost of the gear.<br>");
+}};
+
+function Quadruped(input) { try { if (input.length > 1) {
+	return ("<b>" + input + "/b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+	}} catch (err) {
+	return ("<b>Quadruped</b> +10 base land speed at a gallop, advantage on rolls to resist tripping<br>");
+}};
+
+
+
+// Backgrounds
+
+backgrounds = [];
+backgrounds[0] = {};
+backgrounds[0].name = "Outlander";
+backgrounds[0].feature = "<b>Wanderer</b> You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided tha tthe land offers berries, small game, water, and so forth";
+backgrounds[0].proficiencies = "Athletics, Survival";
+backgrounds[0].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[0].equipment = ["A staff, a hunting trap, a trophy from an animal you killed, a set of traveler clothes, and a belt pouch containing 10 gp"];
+backgrounds[0].traits = ["I am driven by a waderlust that led me away from home", "I watch over my friends as if they were a litter of newborn pups", "I once ran twenty-five miles without stopping to warn to my clan of an approaching orc horde. I woul ddo it again if I had to", "I have a lesson for every situation, drawn from observing nature", "I place no stock in wealthy or well-mannered folk. Money and nmanners will not save you from a hungry owlbear", "I am always picking things up, absently fiddling with them, and sometimes accidentally breaking them", "I feel far more comfortable around animals than people", "I as, in fact, raised by wolves"];
+backgrounds[0].ideal = ["Glory. I must earn glory in battle, for myself and my clan"];
+backgrounds[0].bonds = ["My family, clan, or tribe is the most important th ing in my life, even when they are far from me", "An injury to the unspoiled wilderness of my home is an inury to me", "I will bring terrible wrath down upon theevil doers who destroyed my homeland", "I am the last of my tribe, and it is up to me to ensure their names enter elegend", "I suffer awful visions of a coming disaster an will do anything to prevent it", "It is my duty to prvide children to sustain my tribe"];
+backgrounds[0].flaws = ["I am too enamored of ale, wine, and other intoxicants", "There is no room for caution in a life lived to the fullets", "I remember every insult I have received and nurse a silent resentment toward anyone who has ever wronged me", "I am slow to trust members of other races, tribes, and societies", "Violence is my answer to almost any challenbge", "Do not expect me to save those who can not save themselves. It is natures way that the strong thrive and the weak perish"];
+
+backgrounds[1] = {};
+backgrounds[1].name = "Noble";
+backgrounds[1].feature = "<b>Position of Privilege</b> Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accomodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.";
+backgrounds[1].proficiencies = "History, Persuasion";
+backgrounds[1].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[1].equipment = "A set of fine clothes, a signet ring, a scroll of pedigree, and a purse containing 25 gp";
+backgrounds[1].traits = ["My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world", "The common folk love me for my kindness and generosity", "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses", "I take great pains to always look my best and follow the latest fashions", "I do not like to get my hands dirty, and I will not be caught dead in unsuitable accommodations", "Despite my noble birth, I do not place myself above other folk. We all have the same blood", "My favor, once lost, is lost forever", "If you do me an injury, I will crush you, ruin your name, and salt your fields"];
+backgrounds[1].ideal = "Family. Blood runs thicker than water";
+
+//backgrounds[1].ideals = ["Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity. (Good)", "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine. (Lawful)", "Independence. I must prove that I can handle myself without the coddling of my family. (Chaotic)", "Power. If I can attain more power, no one will tell me what to do. (Evil)", "Family. Blood runs thicker than water", "Noble Obligation. It is my duty to protect and care for the people beneath me. (Good)"];
+
+/* Figure out:
+	- how to handle with two "good" options
+	- handle the no-alignment option
+
+backgrounds[1].ideals = [];
+backgrounds[1].ideals["Good"] = "Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity"; //(Good)
+backgrounds[1].ideals["Lawful"] = "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine"; //(Lawful)
+backgrounds[1].ideals["Chaotic"] =  "Independence. I must prove that I can handle myself without the coddling of my family"; //(Chaotic)
+backgrounds[1].ideals["Evil"] = "Power. If I can attain more power, no one will tell me what to do. (Evil)"; //(Evil)
+backgrounds[1].ideals[""] = "Family. Blood runs thicker than water";
+backgrounds[1].ideals["Good"] = "Noble Obligation. It is my duty to protect and care for the people beneath me. (Good)"; //(Good)
+*/
+
+backgrounds[1].bonds = ["I will face any challenge to win the approval of my family", "The alliance with my House another noble family must be sustained at all costs", "Nothing is more important than the other members of my family", "I am in love with the heir of a family that my family despises", "My loyalty to my sovereign is unwavering", "The common folk must see me as a hero of the people"];
+backgrounds[1].flaws = ["I secretly believe that everyone is beneath me", "I hide a truly scandalous secret that could ruin my family forever", "I too often hear veiled insults and threats in every word addressed to me, and I’m quick to anger", "I have an insatiable desire for carnal pleasures", "In fact, the world does revolve around me", "By my words and actions, I often bring shame to my family"];
+
+backgrounds[2] = {};
+backgrounds[2].name = "Criminal";
+backgrounds[2].feature = "<b>Criminal Contact</b> You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messsages to and from your contact, even over great distances; specifically, you know the local messagers, corrupt caravan masters, and seedy sailors who can deliver messages for you.";
+backgrounds[2].proficiencies = "Deception, Stealth";
+backgrounds[2].languages = "";
+backgrounds[2].equipment = "A crowbar, a set of dark common clothes including a hood, and a belt pouch containing 15 gp";
+backgrounds[2].traits = ["I always have a plan for what to do when things go wrong", "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me", "The first thing I do in a new place is note the locations of everything valuable—or where such things could be hidden", "I would rather make a new friend than a new enemy", "I am incredibly slow to trust. Those who seem the fairest often have the most to hide", "I do not pay attention to the risks in a situation. Never tell me the odds", "The best way to get me to do something is to tell me I can not do it", "I blow up at the slightest insult"];
+
+backgrounds[2].ideal = ["People. I am loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."];
+//backgrounds[2].ideals = ["Honor. I don’t steal from others in the trade. (Lawful)", "Freedom. Chains are meant to be broken, as are those who would forge them. (Chaotic)", "Charity. I steal from the wealthy so that I can help people in need. (Good)", "Greed. I will do whatever it takes to become wealthy. (Evil)", "People. I’m loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care. (Neutral)", "Redemption. There’s a spark of good in everyone. (Good)"];
+backgrounds[2].bonds = ["I am trying to pay off an old debt I owe to a generous benefactor", "My ill-gotten gains go to support my family", "Something important was taken from me, and I aim to steal it back", "I will become the greatest thief that ever lived", "I am guilty of a terrible crime. I hope I can redeem myself for it", "Someone I loved died because of I mistake I made. That will never happen again"];
+backgrounds[2].flaws = ["When I see something valuable, I can not think about anything but how to steal it", "When faced with a choice between money and my friends, I usually choose the money", "If there is a plan, I will forget it. If I do not forget it, I will ignore it", "I have a tell that reveals when I am lying", "I turn tail and run when things look bad", "An innocent person is in prison for a crime that I committed. I am okay with that"];
+
+backgrounds[3] = {};
+backgrounds[3].name = "Sailor";
+backgrounds[3].feature = "<b>Ship Passage</b> When you need to, you can secure free passage on a sailing ship for yourself and your adventuring companions. You might sail on the ship you served on, or another ship you have good relations with (perhaps one captained by a former crewmate). Because you are calling in a favor, you can not be certain of a schedule or route that will meet your every need. Your Game Master will determine how long it takes to get where you need to go. In return for your free passage you and your companions are expected to assist the crew during the voyage. ";
+backgrounds[3].proficiencies = "Athletics, Perception";
+backgrounds[3].languages = "";
+backgrounds[3].equipment = "A belaying pin (club), 50 feet of silk rope, a lucky charm such as a rabbit foot or a small stone with a hole in the center for you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, and a belt pouch containing 10 gp";
+backgrounds[3].traits = ["My friends know they can rely on me, no matter what", "I work hard so that I can  play hard when th work is done", "I enjoy sailing into new ports and making new friends over a flagon of ale", "I stretch the truth for the sake of a good story", "To me, a tavern brawl is a nice way to get to know a new city", "I never pass up a friendly wager", "My language is as foul as an otyugh nest", "I like a job well done, especially if I can convince someone else to do it"];
+backgrounds[3].ideal = ["Aspiration. Someday I will own my own ship and chart my own destiny"];
+backgrounds[3].bonds = ["I am loyal to my captain first, eveyrthing else second", "The ship is most importnt - crew mates and captains come and go", "I will always remember my first ship", "In a harbor town, I hav a paramour whos eyes nearly stole me from the sea", "I was cheated out of my fair share of hte profits, and I want to get my due", "Ruthless pirates murdered my captain and crewmates, plundered our ship, and left me to die. Vengeance will be mine"];
+backgrounds[3].flaws = ["I follow orders, even if I think they are wrong", "I will say anything to avoid having to do extra work", "Once somone questions my courage, I never back down no matter how  dangerous the situatiuon", "Once I start drinking, It is hard for me to stop", "I can not help but pocket loose coins and other trinkets I come across", "My pride will probably lead to my desctruction"];
+
+backgrounds[4] = {};
+backgrounds[4].name = "Folk Hero";
+backgrounds[4].feature = "<b>Rustic Hospitality</b> Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide rest, or recuperate among other commoners, unless you have shown yourself ot be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you";
+backgrounds[4].proficiencies = "Animal Handling, Survival";
+backgrounds[4].languages = "";
+backgrounds[4].equipment = "A set of artisan tools (one of your choice), a shovel, an iron pot, a set of common clothes, and a belt pouch containing 10 gp";
+backgrounds[4].traits = ["I judge people by their actions, not their words", "If someone is in trouble, I am always ready to lend help", "When I set my mind to something, I follow through no matter what gets in my way", "I have a strong sense of fair play and always try to find the most equitable solution to arguments", "I am confident in my own abilities and do what I can to instill confidence in others", "Thinking is for other people. I prefer action", "I misuse long words in an attempt to sound smarter", "I get bored easily. When am I going to get on with my destiny?"];
+
+backgrounds[4].ideal = ["Destiny. Nothing and no one can steer me away from my higher calling"];
+//backgrounds[4].ideals = ["Respect. People deserve to be treated with dignity and respect. (Good)", "Fairness. No one should get preferential treatment before the law, and no one is above the law. (Lawful)", "Freedom. Tyrants must not be allowed to oppress the people. (Chaotic)", "Might. If I become strong, I can take what I want—what I deserve. (Evil)", "Sincerity. There’s no good in pretending to be something I’m not. (Neutral)", "Destiny. Nothing and no one can steer me away from my higher calling"];
+backgrounds[4].bonds = ["I have a family, but I have no idea where they are. One day, I hope to see them again", "I worked the land, I love the land, and I will protect the land", "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter", "My tools are symbols of my past life, and I carry them so that I will never forget my roots", "I protect those who cannot protect themselves", "I wish my childhood sweetheart had come with me to pursue my destiny"];
+backgrounds[4].flaws = ["The tyrant who rules my land will stop at nothing to see me killed", "I am convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure", "The people who knew me when I was young know my shameful secret, so I can never go home again", "I have a weakness for the vices of the city, especially hard drink", "Secretly, I believe that things would be better if I were a tyrant lording over the land", "I have trouble trusting in my allies"];
+
+backgrounds[5] = {};
+backgrounds[5].name = "Sage";
+backgrounds[5].feature = "<b>Researcher</b> When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or tha tit simple cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign.";
+backgrounds[5].proficiencies = "Arcana, History";
+backgrounds[5].languages = ", " + languages[Math.floor(Math.random()*languages.length)] + " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[5].equipment = "A bottle of black ink, a quill, a small knife, a letter from a dead colleague posing a question you have not yet been able to answer, a set of common clothes, and a belt pouch containing 10 gp"
+backgrounds[5].traits = ["I use polysyllabic words that convey the impression of great erudition", "I have read every book in the world greatest libraries, or I like to boast that I have", "I am used to helping out those who are not as smart as I am, and I patiently explain anything and everything to others", "There is nothing I like more than a good mystery", "I am willing to listen to every side of an argument before I make my own judgment", "I ... speak ... slowly ... when talking ... to idiots, ... which ... almost ... everyone ... is ... compared ... to me", "I am horribly, horribly awkward in social situations", "I am convinced that people are always trying to steal my secrets"];
+
+backgrounds[5].ideal = ["Self-Improvement. The goal of a life of study is the betterment of oneself"];
+//backgrounds[5].ideals = ["Knowledge. The path to power and self-improvement is through knowledge. (Neutral)", "Beauty. What is beautiful points us beyond itself toward what is true. (Good)", "Logic. Emotions must not cloud our logical thinking. (Lawful)", "No Limits. Nothing should fetter the infinite possibility inherent in all existence. (Chaotic)", "Power. Knowledge is the path to power and domination. (Evil)", "Self-Improvement. The goal of a life of study is the betterment of oneself"];
+backgrounds[5].bonds = ["It is my duty to protect my students", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands", "I work to preserve a library, university, scriptorium, or monastery", "My life work is a series of tomes related to a specific field of lore", "I have been searching my whole life for the answer to a certain question", "I sold my soul for knowledge. I hope to do great deeds and win it back"];
+backgrounds[5].flaws = ["I am easily distracted by the promise of information", "Most people scream and run when they see a demon. I stop and take notes on its anatomy", "Unlocking an ancient mystery is worth the price of a civilization", "I overlook obvious solutions in favor of complicated ones", "I speak without really thinking through my words, invariably insulting others", "I can not keep a secret to save my life, or anyone else’s"];
+
+backgrounds[6] = {};
+backgrounds[6].name = "Hermit";
+backgrounds[6].feature = "<b>Discovery</b> The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery. The exact nature of this revelation depends on the nature of your seclusion. It might be a great truth about the cosmos, the deities, the powerful beings of the outer planes, or the forces of nature. It could be a site that no one else has ever seen. You might have uncovered a fact that has long been forgotten, or unearthed some relic of the past that could rewrite history. It might be information that would be damaging to the people who consigned you to exile, and hence the reason for yoru reeturn to society. Work with your DM to determine the details of your discovery and its impact on the campaign";
+backgrounds[6].proficiencies = "Medicine, Religion";
+backgrounds[6].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[6].equipment = ["A scroll case stuffed full of notes from your studies or prayers, a winter blanket, a set of common clothes, an herbalism kit, and 5 gp"];
+backgrounds[6].traits = ["I have been isolated for so long that I rarely speak, preferring gestures and the occasional grunt", "I am utterly serene, even in the face of disaster", "The leader of my community had something wise to say on every topic, and I am eager to share that wisdom", "I feel tremendous empathy for all who suffer", "I am oblivious to etiquette and social expectations", "I connect everything that happens to me to a grand cosmic plan", "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings", "I am working on a grand philosophical theory and love sharing my ideas"];
+backgrounds[6].ideal = ["Self-Knowledge. If you know yourself, there is nothing left to know"];
+backgrounds[6].bonds = ["Nothing is more imortant than the other members of my hermitage, order or association", "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them", "I am still seeking the enlightenment I pursued in my seclusion, and it still eludes me", "I entered seclusion because I loved someone I could  not have", "Should my discovery come to light, it could bring ruin to the world", "My isolation gave me great insight into a great evil that only I can destroy"];
+backgrounds[6].flaws = ["Now that I have returned to the world, I enjoy its delights a little too much", "I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell", "I am dogmatic in my thoughts and philosophy", "I let my need to win arguments overshadow friendships and harmony", "I would risk too much to uncover a lost bit of knowledge", "I like keeping secrets and will not share them with anyone"];
+
+backgrounds[7] = {};
+backgrounds[7].name = "Acolyte";
+backgrounds[7].feature = "<b>Shelter of the Faithful</b> You command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle. You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.";
+backgrounds[7].proficiencies = "Insight, Religion";
+backgrounds[7].languages = ", " + languages[Math.floor(Math.random()*languages.length)] + " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[7].equipment = "A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a belt pouch containing 15 gp";
+backgrounds[7].traits = ["I idolize a particular hero of my faith, and constantly refer to that person’s deeds and example.", "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.", "I see omens in every event and action. The gods try to speak to us, we just need to listen", "Nothing can shake my optimistic attitude.", "I quote (or misquote) sacred texts and proverbs in almost every situation.", "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.", "I have enjoyed fine food, drink, and high society among my temple elite. Rough living grates on me", "I have spent so long in the temple that I have little practical experience dealing with people in the outside world"];
+backgrounds[7].bonds = ["I would die to recover an ancient relic of my faith that was lost long ago", "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic", "I owe my life to the priest who took me in when my parents died", "Everything I do is for the common people", "I will do anything to protect the temple where I served", "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy"];
+
+backgrounds[7].ideal = ["Aspiration. I seek to prove myself worthy of the favor of the gods by matching my actions against his or her teachings."];
+//backgrounds[7].ideals = ["Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)", "Charity. I always try to help those in need, no matter what the personal cost. (Good)", "Change. We must help bring about the changes the gods are constantly working in the world. (Chaotic)", "Power. I hope to one day rise to the top of my faith’s religious hierarchy. (Lawful)", "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. (Lawful)", "Aspiration. I seek to prove myself worthy of my the favor of the gods by matching my actions against his or her teachings."];
+backgrounds[7].flaws = ["I judge others harshly, and myself even more severely", "I put too much trust in those who wield power within my the hierarchy of my temple", "My piety sometimes leads me to blindly trust those that profess faith in my god.", "I am inflexible in my thinking", "I am suspicious of strangers and expect the worst of them", "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life"];
+
+backgrounds[8] = {};
+backgrounds[8].name = "Charlatan";
+backgrounds[8].feature = "<b>False Identity</b> You have created a second identity that includes documentation, established aquaintances, and disguises that allow you to assume that persona. Additionally you can forge docuents including official papers and personal letters, as long as you have seen an example of the kind of document or the handwriting you are trying to copy.";
+backgrounds[8].proficiencies = "Deception, Sleight of Hand";
+backgrounds[8].languages = "";
+backgrounds[8].equipment = "A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke), and a belt pouch containing 15 gp"
+backgrounds[8].traits = ["I fall in and out of love easily and am always pursuing someone", "I have a joke for every occasion, especially occasions where humor is inappropriate", "Flattery is my preferrred trick for getting what I want", "I am a born gambler who cannot resist taking a risk for a potential payoff", "I lie about almost everything, event when there is no good reason to", "Sarcasm and insults are my weapons of choice", "I keep multiple holy symbols on my and invoke whatever diety might come in useful at any given moment", "I pocket anything I see that might have some value"];
+backgrounds[8].ideal = ["Aspiration. I am determined to make something of myself."];
+//backgrounds[8].ideals = ["Independence. I am a free spirit -- no one tells me what to do (Chaotic)", "Fairness. I never target people who can not afford to lose a few coins. (Lawful)", "Charity. I distribute the money I aquite to the people who really need it. (Good)", "Creativity. I never run the same con twice. (Chaotic)", "Aspiration. I am determined to make something of myself."];
+backgrounds[8].bonds = ["I fleeced the wrong person and must work to ensure tha tthi sindividual never crosses paths with me or those I care about", "I owe everythin to my mentor - a horrible person who has probably rotting in jail somewhere", "Somewhere out there, I have a child who does not know me. I am making the world better for him or her", "I come from a noble family, and one day I will reclaim my lands and title from those who stole them from me", "A powerful person killed someone I love. Some day soon, I will have my revenge", "I swindled and ruined a person who didn not deserver it. I seek to atone for my misdeeds but might never be able to forgive myself"];
+backgrounds[8].flaws = ["I can not resist a pretty face", "I am always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in", "I am convinced that no one could ever fool me the way I fool others", "Im too greedy for my own good. I can not resist taking a risk if there has money involved", "I can not resist swindling people who are more powerful than me", "I hate to admit it and will hate myself for it, but I will run and preserve my own hide if the going gets tough"];
+
+backgrounds[9] = {};
+backgrounds[9].name = "Entertainer"
+backgrounds[9].feature = "<b>By Popular Demand</b> You can always find a place to perform, usually in an inn or tavern but possibly with a circus, at a theater, or even in the court of a noble. At such a place, you receive free lodging and food of a modest or comfortable standard (depending on the quality of the establishment) as long as you perform each night. You something of a local figure. When strangers recognize you in town where you have performed, they typically take a liking to you.";
+backgrounds[9].proficiencies = "Acrobatics, Performance";
+backgrounds[9].languages = "";
+backgrounds[9].equipment = "A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket) a costume, and a belt pouch containing 15 gp";
+backgrounds[9].traits = ["I know a story relevant to almost every situation", "Whenever I come to a new place, I collect local rumors and spread gossip", "I am a hopeless romantic, always searching for the special someone", "Nobody stays angry at me or around me for long, since I can defuse any amount of tension", "I love a good insult, even one directed at me", "I get bitter if I am not the center of attention", "I will settle for nothing less than perfection", "I change my mood or my mind as quickly as I change key in a song"];
+backgrounds[9].ideal = ["Honesty. Art should reflect the soul; it should come from within and reveal who we really are."];
+//backgrounds[9].ideals = ["Beauty. when I perform, I make the wolrd better than it was (Good)", "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are. (Lawful)", "Creativity. The world is in need of new ideas and bold action. (Chaotic)", "Greed. I am only in it for the money and fame. (Evil)", "People. I like seeing the smiles on people's faces when I perform. That is all that matters. (Neutral)", "Honesty. Art should reflect the soul; it should come from within and reveal who we really are."];
+backgrounds[9].bonds = ["My instrument is my most treasured possession, and it reminds me of someone I love", "Somone stole my precious instrument, and someday I will get it back", "I want to be famous, whatever it takes", "I idolize a hero of the old tales and measure my deeds against that the deeds of another person", "I will do anything to prove myself superior to my  rival", "I would do anything for the other members of my old troupe"];
+backgrounds[9].flaws = ["I will do anyting to win fame and renown", "I am sucker for a pretty face", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat", "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble", "Despite my best efforts, I am unreliable to my friends"];
+
+backgrounds[10] = {};
+backgrounds[10].name = "Guild Artisan";
+backgrounds[10].feature = "<b>Guild Membership</b> Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral if needed. In some cities and towns, a guild hall offers a central place to meet other members of your profession, which can be a good place to meet potential patrons, allies, or hirelings. Guilds often wield tremendous political power. If you are accused of a crime, your guild will support you if a good case can be made for your innocence or the crime is justifiable. You can also gain access to powerful political figures through the guild, if you are a member in good standing. Such connections might require the donation of money or magic items to the guild coffers. You must pay dues of 5 gp per month to the guild. If you miss payments, you must pake up back dues to remain in the good graces of the guild.";
+backgrounds[10].proficiencies = "Insight, Persuasion";
+backgrounds[10].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[10].equipment = "A set of artisan tools (one of your choice), a letter of introduction from you guild, a set of traveling clothes, and a belt pouch containing 15 gp";
+backgrounds[10].traits = ["I believe that anything worth doing is worth doing right. I can not help it -- I am a perfectionist", "I am a snob who looks down on those who can not appreciate fine art", "I always want to know how things work and what makes people tick", "I am full of witty aphorisms and have a proverb for every occasion", "I am rude to people who lack my commitment to hard work and fair play", "I like to talk at length about my profession", "I do not part with my money easily and will haggle tirelessly to get the best deal possible", "I am well known for my work, and I want to make sure everyone appreciates it. I am always taken aback when people have not heard of me"];
+backgrounds[10].ideal = ["Aspiration. I work hard to be the best there is at my craft"];
+backgrounds[10].bonds = ["The workshop where I learned my trade is the most important place in the world to me", "I created a great work fo rsomeone, and then found them unworthy to receive it. I am still looking for somone worthy", "I owe my guild a great debt for forging me into the person I am today", "I pursue wealth to secure someones love", "One day I will return to my guild and prove that I am the greatest artisan of them all", "I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood"];
+backgrounds[10].flaws = ["I will do anything to get my hands on something rare or priceless", "I am quick to assume that someone is trying to cheat me", "No one must ever learn that I once stole money from guild coffers", "I am never satisfied with what I have - I always want more", "I would kill to aquire a noble title", "I am horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I am surrounded by rivals"];
+
+backgrounds[11] = {};
+backgrounds[11].name = "Soldier";
+backgrounds[11].feature = "<b>Military Rank</b> You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer toyou if they are of lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use. You can also usually gain access to friendly military encampments and fortresses where your rank is recognized.";
+backgrounds[11].proficiencies = "Athletics, Intimidation";
+backgrounds[11].languages = "";
+backgrounds[11].equipment = "An insignia of rank, a trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner), a set of bone dice or deck of cards, a set of common clothes, and a belt pouch containing 10 gp";
+backgrounds[11].traits = ["I am always polite and respectful", "I am haunted by memories of war. I can not get the images of violence out of my mind", "I have lost too many friends, and I am slow to make new ones", "I am full of inspiring and cautionary tales from my military experience relevant to almost every combat situation", "I can stare down a hell hound without flinching", "I enjoy being strong and like breaking things", "I have a crude sense of humor", "I face problems head-on. A simple, direct solution is the best path to success"];
+backgrounds[11].ideal = ["Nation. My city, nation, or people are all that matter."];
+//backgrounds[11].ideals = ["Greater Good. Our lot is to lay down our lives in defense of others. (Good)", "Responsibility. I do what I must and obey just authority. (Lawful)", "Independence. When people follow orders blindly, they embrace a kind of tyranny. (Chaotic)", "Might. In life as in war, the stronger force wins. (Evil)", "Live and Let Live. Ideals are not worth killing over or going to war for. (Neutral)", "Nation. My city, nation, or people are all that matter"];
+backgrounds[11].bonds = ["I would still lay down my life for the people I served with", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind", "My honor is my life", "I will never forget the crushing defeat my company suffered or the enemies who dealt it", "Those who fight beside me are those worth dying for", "I fight for those who cannot fight for themselves"];
+backgrounds[11].flaws = ["The monstrous enemy we faced in battle still leaves me quivering with fear", "I have little respect for anyone who is not a proven warrior", "I made a terrible mistake in battle that cost many lives - and I would do anything to keep that mistake secret", "My hatred of my enemies is blind and unreasoning", "I obey the law, even if the law causes misery", "I would rather eat my armor than admit when I’m wrong"];
+
+backgrounds[12] = {};
+backgrounds[12].name = "Urchin";
+backgrounds[12].feature = "<b>City Streets</b> You know the secret patterns and flow of cities and can find passages through the urban sprawl that others would miss. When you are not in combat, you (and companions you lead) can travel between any two locations in the city twice as fast as your speed would normally allow.";
+backgrounds[12].proficiencies = "Sleight of Hand, Stealth";
+backgrounds[12].languages = "";
+backgrounds[12].equipment = "A small knife, a map of the city you grew up in, a pet mouse, a token to remember your parents by, a set of common clothes, and a belt pouch containing 10 gp";
+backgrounds[12].traits = ["I hide scraps of food and trinkets away in my pockets", "I ask a lot of questions", "I like to squeeze into small places where no one else can get to me", "I sleep with my back to a wall or tree, with everything I own wrapped in a bunle in my arms", "I eat like a pig and have bad manners", "I think anyone who is nice to me is hiding evil intent", "I do not like to bathe", "I bluntly say what other people are hinting or hiding"];
+backgrounds[12].ideal = ["Aspiration. I am going to prove that I am worthy of a better life"];
+backgrounds[12].bonds = ["My town or city is my home, and I will fight to defend it", "I sponsor an orphanage to keep others from enduring what I was forced to endure", "I owe my survival to another urchin who taught me to live on the streets", "I owe a debt I can never repay to the person who took pity on me", "I escaped my life of poverty by robbing an important person, and I am wanted for it", "No one else should have to endure the hardships I have been through"];
+backgrounds[12].flaws = ["If I am outnumbered, I will run away from a fight", "Gold seems like a lot of money to me, and I will do just about anything for more of it"];
+
+backgrounds[13] = {};
+backgrounds[13].name = "Pirate";
+backgrounds[13].feature = "<b>Bad Reputation</b> No matter where you go, people are afraid of you due to your reputation. When you are in a civilized settlement, you can get away with a minor criminal offenses, such as refusing to pay for food at a tavern or breaking down doors at a local shop, since people will not report your activity to the authorities";
+backgrounds[13].proficiencies = "Athletics, Perception";
+backgrounds[13].languages = "";
+backgrounds[13].equipment = "A belaying pin (club), 50 feet of silk rope, a lucky charm such as a rabbit foot or a small stone with a hole in the center for you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, and a belt pouch containing 10 gp";
+backgrounds[13].traits = ["My friends know they can rely on me, no matter what", "I work hard so that I can  play hard when th work is done", "I enjoy sailing into new ports and making new friends over a flagon of ale", "I stretch the truth for the sake of a good story", "To me, a tavern brawl is a nice way to get to know a new city", "I never pass up a friendly wager", "My language is as foul as an otyugh nest", "I like a job well done, especially if I can convince someone else to do it"];
+backgrounds[13].ideal = ["Aspiration. Someday I will own my own ship and chart my own destiny"];
+backgrounds[13].bonds = ["I am loyal to my captain first, eveyrthing else second", "The ship is most importnt - crew mates and captains come and go", "I will always remember my first ship", "In a harbor town, I hav a paramour whos eyes nearly stole me from the sea", "I was cheated out of my fair share of hte profits, and I want to get my due", "Ruthless pirates murdered my captain and crewmates, plundered our ship, and left me to die. Vengeance will be mine"];
+backgrounds[13].flaws = ["I follow orders, even if I think they are wrong", "I will say anything to avoid having to do extra work", "Once somone questions my courage, I never back down no matter how  dangerous the situatiuon", "Once I start drinking, It is hard for me to stop", "I can not help but pocket loose coins and other trinkets I come across", "My pride will probably lead to my desctruction"];
+
+backgrounds[14] = {};
+backgrounds[14].name = "Knight";
+backgrounds[14].feature = "<b>Retainers</b> You have the service of three retainers loyal to your family. These retainers can be attendants or messengers, and one might be a majordomo. Your retainers are commoners who can perform mundane tasks for you, but they do not fight for you, will not follow you into obviously dangerous areas (such as dungeons) and will leave if they are frequently endangered or abused.";
+backgrounds[14].proficiencies = "History, Persuasion";
+backgrounds[14].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[14].equipment = "A set of fine clothes, a signet ring, a scroll of pedigree, and a purse containing 25 gp";
+backgrounds[14].traits = ["My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world", "The common folk love me for my kindness and generosity", "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses", "I take great pains to always look my best and follow the latest fashions", "I do not like to get my hands dirty, and I will not be caught dead in unsuitable accommodations", "Despite my noble birth, I do not place myself above other folk. We all have the same blood", "My favor, once lost, is lost forever", "If you do me an injury, I will crush you, ruin your name, and salt your fields"];
+backgrounds[14].ideal = ["Family. Blood runs thicker than water"];
+//backgrounds[14].ideals = ["Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity. (Good)", "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine. (Lawful)", "Independence. I must prove that I can handle myself without the coddling of my family. (Chaotic)", "Power. If I can attain more power, no one will tell me what to do. (Evil)", "Family. Blood runs thicker than water", "Noble Obligation. It is my duty to protect and care for the people beneath me. (Good)"];
+backgrounds[14].bonds = ["I will face any challenge to win the approval of my family", "The alliance with my House another noble family must be sustained at all costs", "Nothing is more important than the other members of my family", "I am in love with the heir of a family that my family despises", "My loyalty to my sovereign is unwavering", "The common folk must see me as a hero of the people"];
+backgrounds[14].flaws = ["I secretly believe that everyone is beneath me", "I hide a truly scandalous secret that could ruin my family forever", "I too often hear veiled insults and threats in every word addressed to me, and I am quick to anger", "I have an insatiable desire for carnal pleasures", "In fact, the world does revolve around me", "By my words and actions, I often bring shame to my family"];
+
+backgrounds[15] = {};
+backgrounds[15].name = "Guild Merchant";
+backgrounds[15].feature = "<b>Guild Membership</b> As an established and respected member of a guild, you can rely on certain benefits that membership provides. Your fellow guild members will provide you with lodging and food if necesary, and pay for your funeral if needed. In some cities and towns, a guild hall offers a central place to meet other members of your profession, which can be a good place to meet potential patrons, allies, or hirelings. Guilds often wield tremendous political power. If you are accused of a crime, your guild will support you if a good case can be made for your innocence or the crime is justifiable. You can also gain access to powerful political figures through the guild, if you are a member in good stnding. Suc connections might require the donation of money or magic ites to the guild coffers You must pay dues of 5 gp per month ot the guild. If you miss payments, you must pake up back dues to remin in the good graces of the guild";
+backgrounds[15].proficiencies = "Insight, Persuasion";
+backgrounds[15].languages = " and " + languages[Math.floor(Math.random()*languages.length)];
+backgrounds[15].equipment = "A set of artisan tools (one of your choice), a letter of introduction from you guild, a set of traveling clothes, and a belt pouch containing 15 gp";
+backgrounds[15].traits = ["I believe that anything worth doing is worth doing right. I can not help it -- I am a perfectionist", "I am a snob who looks down on those who can not appreciate fine art", "I always want to know how things work and what makes people tick", "I am full of witty aphorisms and have a proverb for every occasion", "I am rude to people who lack my commitment to hard work and fair play", "I like to talk at length about my profession", "I do not part with my money easily and will haggle tirelessly to get the best deal possible", "I am well known for my work, and I want to make sure everyone appreciates it. I am always taken aback when people have not heard of me"];
+backgrounds[15].ideal = ["Aspiration. I work hard to be the best there is at my craft"];
+backgrounds[15].bonds = ["The workshop where I learned my trade is the most important place in the world to me", "I created a great work fo rsomeone, and then found them unworthy to receive it. I am still looking for somone worthy", "I owe my guild a great debt for forging me into the person I am today", "I pursue wealth to secure someones love", "One day I will return to my guild and prove that I am the greatest artisan of them all", "I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood"];
+backgrounds[15].flaws = ["I will do anything to get my hands on something rare or priceless", "I am quick to assume that someone is trying to cheat me", "No one must ever learn that I once stole money from guild coffers", "I am never satisfied with what I have - I always want more", "I would kill to aquire a noble title", "I am horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I am surrounded by rivals"];
+
+backgrounds[16] = {};
+backgrounds[16].name = "Gladiator"
+backgrounds[16].feature = "<b>By Popular Demand</b> You can always find a place to performe, usually in an inn or tavern but possibly with a circus, at a theatore, or even in a the court of a noble. At such a place, you receive free lodging and food of a modest or comfortable standard (depending on the quality of the establishment) as long as you perform each night. In addition your performance aes you something of a local figure. When strangers recognize you in town where you have performed, they typically take a liking to you.";
+backgrounds[16].proficiencies = "Acrobatics, Performance";
+backgrounds[16].languages = "";
+backgrounds[16].equipment = "A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket) a costume, and a belt pouch containing 15 gp";
+backgrounds[16].traits = ["I know a story relevant to almost every situation", "Whenever I come to a new place, I collect local rumors and spread gossip", "I am a hopeless romantic, always searching for the special someone", "Nobody stays angry at me or around me for long, since I can defuse any amount of tension", "I love a good insult, even one directed at me", "I get bitter if I am not the center of attention", "I will settle for nothing less than perfection", "I change my mood or my mind as quickly as I change key in a song"];
+backgrounds[16].ideal = ["Honesty. Art should reflect the soul; it should come from within and reveal who we really are"];
+//backgrounds[9].ideals = ["Beauty. when I perform, I make the wolrd better than it was (Good)", "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are. (Lawful)", "Creativity. The world is in need of new ideas and bold action. (Chaotic)", "Greed. I am only in it for the money and fame. (Evil)", "People. I like seeing the smiles on people's faces when I perform. That's all that matters. (Neutral)", "Honesty. Art should reflect the soul; it should come from within and reveal who we really are"];
+backgrounds[16].bonds = ["My instrument is my most treasured possession, and it reminds me of someone I love", "Somone stole my precious instrument, and someday I will get it back", "I want to be famous, whatever it takes", "I idolize a hero of the old tales and measure my deeds against the deeds of that person", "I will do anything to prove myself superior to my  rival", "I would do anything for the other members of my old troupe"];
+backgrounds[16].flaws = ["I will do anyting to win fame and renown", "I am a sucker for a pretty face", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat", "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble", "Despite my best efforts, I am unreliable to my friends"];
+
+
+// Races
+
+races = []; // Core Race / Human
+races[0] = {};
+races[0].name = randomize("Human, Hyborean, Androsynth, Ancient, Biot");
+races[0].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[0].abilities = "All abilities +1";
+races[0].size = "Medium";
+races[0].type = "humanoid";
+races[0].speed = "30 feet";
+races[0].senses = "";
+races[0].traits = "";
+
+races[1] = {}; // Core Race / Dragonborn
+races[1].name = randomize("Brass Dragonborn, Drake, Dragonkin");
+races[1].languages = "Common, Draconic";
+races[1].abilities = "Strength +2, Charisma +1";
+races[1].size = "Medium";
+races[1].type = "humanoid (dragon)";
+races[1].speed = "30 feet";
+races[1].senses = "";
+races[1].traits = "<b>Dragon Ancestry</b> Brass<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of fire once per rest<br>" + ResistDamageFire();
+
+races[2] = {}; // Core Race / Halfelf
+races[2].name = randomize("Halfelf, Aelfkin, Fae");
+races[2].languages = "Common, Elven, " + languages[Math.floor(Math.random()*languages.length)];
+races[2].abilities = "Charisma +2, Intelligence +1";
+races[2].size = "Medium";
+races[2].type = "humanoid (fey)";
+races[2].speed = "30 feet";
+races[2].senses = "darkvision 60 feet, ";
+races[2].traits = Darkvision() + FeyAncestry() + BonusSkills();
+
+races[3] = {}; // Core Race / Halforc
+races[3].name = randomize("Halforc, Orc, Ork, Orog, Scro, Ruk, Druuge");
+races[3].languages = "Common, Giant";
+races[3].abilities = "Strength +2, Constitution +1";
+races[3].size = "Medium";
+races[3].type = "humanoid (giant)";
+races[3].speed = "30 feet";
+races[3].senses = "darkvision 60 feet, ";
+races[3].traits = Darkvision() + Skill("Menacing", "Intimidation") + Resilient("Relentless Endurance") + BonusCriticalDamage("Savage Attacks");
+
+races[4] = {}; // Eberron / Changeling
+races[4].name = randomize("Changeling, Shapeshifter, Skinthief, Doppleganger");
+races[4].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)] + ", " + languages[Math.floor(Math.random()*languages.length)];
+races[4].abilities = "Dexterity, Charisma +1";
+races[4].size = "Medium";
+races[4].type = "humanoid (monstrous)";
+races[4].speed = "30 feet"
+races[4].senses = "";
+races[4].traits = Skill("Duplicity", "Deception") + "<b>Shapeshifter</b> As an action, you can polymorph into any humanoid of your size that you have seen, or back into your true form. Your equipment does not change with you. If you die, you revert to your natural appearance<br>";
+
+races[5] = {}; // Wildkin
+races[5].name = randomize("Kenku, Skulk, Wildborn, Wildkin, Wildling, Rook, Ravenfolk");
+races[5].languages = "Common, Kenku, " + languages[Math.floor(Math.random()*languages.length)];
+races[5].abilities = "Dexterity +2, Wisdom +1";
+races[5].size = randomize("Small, Medium");
+races[5].type = "humanoid (monstrous)";
+races[5].speed = "25 feet";
+races[5].senses = "darkvision 60 feet";
+races[5].traits = "<b>Ambusher</b> You have advantage on attack rolls against any creature you have surprised<br>" + Mimicry() + Skill("Stealthy", "Stealth")
+
+races[6] = {}; // Core Race / Aasimar
+races[6].name = randomize("Celestial, Aasimar");
+races[6].languages = "Common, Celestial";
+races[6].abilities = "Charisma +2, Wisdom +1";
+races[6].size = "Medium";
+races[6].type = "humanoid (celestial)";
+races[6].speed = "30 feet";
+races[6].senses = "darkvision 60 feet, ";
+races[6].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Light", "Lesser Restoration", "Daylight");
+
+races[7] = {}; // Core Race / Tiefling
+races[7].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
+races[7].languages = "Common, Fiendish";
+races[7].abilities = "Charisma +2, Intelligence +1";
+races[7].size = "Medium";
+races[7].type = "humanoid (fiend)";
+races[7].speed = "30 feet";
+races[7].senses = "darkvision 60 feet, ";
+races[7].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Thaumaturgy", "Hellish Rebuke", "Darkness", "Constitution");
+
+races[8] = {}; // Core Race / Genasi
+races[8].name = randomize("Ignan, Ifrit, Fire Genasi, Genasi, Jann");
+races[8].languages = "Common, Ignan";
+races[8].abilities = "Strength, Charisma +1";
+races[8].size = "Medium";
+races[8].type = "humanoid (elemental)";
+races[8].speed = "30 feet";
+races[8].senses = "darkvision 60 feet, ";
+races[8].traits = Darkvision() + ResistDamageFire() + Spells("Reach to the Blaze", "Produce Flame", "Hellish Rebuke", "Constitution");
+
+races[9] = {}; // Core Race / Genasi
+races[9].name = randomize("Aquan, Undine, Water Genasi, Genasi, Jann");
+races[9].languages = "Common, Aquan";
+races[9].abilities = "Strength, Charisma +1";
+races[9].size = "Medium";
+races[9].type = "humanoid (elemental)";
+races[9].speed = "30 feet, swim 30 feet";
+races[9].senses = "";
+races[9].traits = Amphibious() + ResistDamageAcid() + Spells("Call to the Wave", "Shape Water", "Create and Destroy Water", "Constitution")
+
+races[10] = {}; // Core Race / Genasi
+races[10].name = randomize("Auran, Jinn, Air Genasi, Genasi, Jann");
+races[10].languages = "Common, Auran";
+races[10].abilities = "Strength, Charisma +1";
+races[10].size = "Medium";
+races[10].type = "humanoid (elemental)";
+races[10].speed = "30 feet";
+races[10].senses = "";
+races[10].traits = "<b>Unending Breath</b> You can hold your breath indefinitely while you are not incapacitated<br><b>Mingle with the Wind</b> You can cast the levitate spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
+
+races[11] = {}; // Core Race / Genasi
+races[11].name = randomize("Terran, Oread, Earth Genasi, Genasi, Jann");
+races[11].languages = "Common, Terran";
+races[11].abilities = "Strength, Charisma +1";
+races[11].size = "Medium";
+races[11].type = "humanoid (elemental)";
+races[11].speed = "30 feet";
+races[11].senses = "";
+races[11].traits = "<b>Earth Walk</b> You can move across difficult terrain made of earth or stone without expending extra movement<br><b>Merge with Stone</b> You can cast the pass without trace spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell<br>";
+
+races[12] = {}; // Core Race / Dwarf
+races[12].name = randomize("Hill Dwarf, Bergdwor, Dwarf, Dwor");
+races[12].languages = "Common, Dwarven";
+races[12].abilities = "Constitution +2, Wisdom +1";
+races[12].size = "Medium";
+races[12].type = "humanoid";
+races[12].speed = "25 feet";
+races[12].senses = "darkvision 60 feet, ";
+races[12].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Toughness();
+
+races[13] = {}; // Core Race / Dwarf
+races[13].name = randomize("Mountain Dwarf, Dundwor, Dwarf, Dwor");
+races[13].languages = "Common, Dwarven";
+races[13].abilities = "Constitution +2, Strength +1";
+races[13].size = "Medium";
+races[13].type = "humanoid";
+races[13].speed = "25 feet";
+races[13].senses = "darkvision 60 feet, ";
+races[13].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + ArmorTraining();
+
+races[14] = {}; // Core Race / Gnome
+races[14].name = randomize("Forest Gnome, Forest Hob, Greenhob, Hob, Menehune, Fae");
+races[14].languages = "Common, Gnomish";
+races[14].abilities = "Strength, Charisma scores +1";
+races[14].size = "Small";
+races[14].type = "humanoid (fey)";
+races[14].speed = "25 feet";
+races[14].senses = "darkvision 60 feet, ";
+races[14].traits = Darkvision() + Cunning() + Cantrip("Natural Illusionist", "Minor Illusion", "Intelligence") + "<b>Speak with Small Beasts</b> Communicate with Small or smaller beasts through grunts and gestures<br>";
+
+races[15] = {}; // Core Race / Gnome
+races[15].name = randomize("Tinkerer Gnome, Tinkerer Hob, Hob, Fae");
+races[15].languages = "Common, Gnomish";
+races[15].abilities = "Strength, Charisma scores +1";
+races[15].size = "Small";
+races[15].type = "humanoid (fey)";
+races[15].speed = "25 feet";
+races[15].senses = "darkvision 60 feet, ";
+races[15].traits = Darkvision() + Cunning() + "<b>Artificer Lore</b> Add twice your skill proficiency on alchemy or technology related History rolls<br><b>Tinker</b> You have proficiency with artisan tinker tools. Using these tools you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can create a clockwork toy, a fire starter, or a music box<br>";
+
+races[16] = {}; // Core Race / Gnome
+races[16].name = randomize("Svirfneblin, Deep Gnome, Deep Hob, Hob, Fae");
+races[16].languages = "Gnomish, Undercommon";
+races[16].abilities = "Intelligence +2, Dexterity +1";
+races[16].size = "Small";
+races[16].type = "humanoid (fey)";
+races[16].speed = "25 feet";
+races[16].senses = "darkvision 60 feet, ";
+races[16].traits = Darkvision() + Cunning() + StoneCamouflage();
+
+races[17] = {}; // Core Race / Halfling
+races[17].name = randomize("Lightfoot Halfling, Lightfoot Hob, Hob, Fae");
+races[17].languages = "Common, Halfling";
+races[17].abilities = "Dexterity +2, Charisma +1";
+races[17].size = "Small";
+races[17].type = "humanoid (fey)";
+races[17].speed = "25 feet";
+races[17].senses = "";
+races[17].traits = Lucky() + "<b>Brave</b> You have advantage on saving throws against being frightened<br>" + Nimble() + "<b>Natural Stealth</b> You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you<br>";
+
+races[18] = {}; // Core Race / Halfling
+races[18].name = randomize("Stout Halfling, Stout Hob, Hob, Fae");
+races[18].languages = "Common, Halfling";
+races[18].abilities = "Dexterity +2, Charisma +1";
+races[18].size = "Small";
+races[18].type = "humanoid (fey)";
+races[18].speed = "25 feet";
+races[18].senses = "";
+races[18].traits = Lucky() + "<b>Brave</b> You have advantage on saving throws against being frightened<br>" + Nimble() + ResiliencePoison();
+
+races[19] = {}; // Core Race / Elf
+races[19].name = randomize("Eladrin, Elf, Fae");
+races[19].languages = "Common, Elven";
+races[19].abilities = "Dexterity +2, Intelligence +1";
+races[19].size = "Medium";
+races[19].type = "humanoid (fey)";
+races[19].speed = "30 feet";
+races[19].senses = "darkvision 60 feet, ";
+races[19].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fey Step</b> You may cast Misty Step once per rest<br>";
+
+races[20] = {}; // Eberron / Warforged
+races[20].name = randomize("Living Construct, Warforged, Modron, Aeon");
+races[20].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[20].abilities = "Strength, Constitution +1";
+races[20].size = "Medium";
+races[20].type = "humanoid (construct)";
+races[20].speed = "30 feet";
+races[20].senses = "";
+races[20].traits = LivingConstruct() + Armored("Composite Plating");
+
+races[21] = {}; // Core Race / Elf
+races[21].name = randomize("Wood Elf, Ljosalfar, Elf, Fae");
+races[21].languages = "Common, Elven";
+races[21].abilities = "Dexterity +2, Wisdom +1";
+races[21].size = "Medium";
+races[21].type = "humanoid (fey)";
+races[21].speed = "35 feet";
+races[21].senses = "darkvision 60 feet, ";
+races[21].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Fleet of Foot</b> Your base walking speed is 35 feet<br>" + Camouflage();
+
+races[22] = {}; // Core Race / Elf
+races[22].name = randomize("High Elf, Beornalfar, Elf, Fae");
+races[22].languages = "Common, Elven, " + languages[Math.floor(Math.random()*languages.length)];
+races[22].abilities = "Dexterity +2, Intelligence +1";
+races[22].size = "Medium";
+races[22].type = "humanoid (fey)";
+races[22].speed = "30 feet";
+races[22].senses = "darkvision 60 feet, ";
+races[22].traits = Darkvision() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingElf() + "<b>Cantrip</b> You know one cantrip of your choice from the Wizard spell list. Intelligence is your spellcasting ability for it<br>";
+
+races[23] = {}; // Core Race / Elf
+races[23].name = randomize("Drow, Dark Elf, Dokkalfar, Elf, Fae");
+races[23].languages = "Common, Elven";
+races[23].abilities = "Dexterity +2, your Charisma +1";
+races[23].size = "Medium";
+races[23].type = "humanoid (fey)";
+races[23].speed = "30 feet";
+races[23].senses = "120 feet";
+races[23].traits = DarkvisionSuperior() + Skill("Keen Senses", "Perception") + FeyAncestry() + Trance() + WeaponTrainingDrow() + Spells135("Drow Magic", "Dancing Lights", "Faerie Fire", "Darkness", "Charisma") + SunlightSensitivity();
+
+races[24] = {}; // Core Race / Goliath
+races[24].name = randomize("Goliath, Giantkin, Halfgiant, Ogrekin, Halfogre, Ogrillion");
+races[24].languages = "Common, Giant";
+races[24].abilities = "Strength +2, Constitution +1";
+races[24].size = "Medium";
+races[24].type = "humanoid (giant)";
+races[24].speed = "30 feet";
+races[24].senses = "";
+races[24].traits = Skill("Natural Athlete", "Athletics") + Shield("Stone Endurance") + Powerful("Powerful Build") + "<b>Mountain Born</b> You are acclimated to high altitude, including elevations above 20,000 feet. You are also naturally adapted to cold climates, as described in chapter 5 of the Dungeon Master Guide<br>";
+
+races[25] = {}; // Core Race / Shifter
+races[25].name = randomize("Longtooth Shifter, Shifter");
+races[25].languages = "Common, Silvan";
+races[25].abilities = "Dexterity, Strength +1";
+races[25].size = "Medium";
+races[25].type = "humanoid (shapeshifter)";
+races[25].speed = "30 feet";
+races[25].senses = "darkvision 60 feet, ";
+races[25].traits = Darkvision() + Shifting() + "<b>Longtooth Shifting</b> While shifting, you can make a bite attack as an action. This is a melee weapon attack that uses Strength for its attack roll and damage bonus and deals 1d6 piercing damage. If this attack hits a target that is your size or smaller, the target is also grappled<br>";
+
+races[26] = {}; // Core Race / Shifter
+races[26].name = randomize("Razorclaw Shifter, Shifter");
+races[26].languages = "Common, Silvan";
+races[26].abilities = "Dexterity +2";
+races[26].size = "Medium";
+races[26].type = "humanoid (shapeshifter)";
+races[26].speed = "30 feet";
+races[26].senses = "darkvision 60 feet, ";
+races[26].traits = Darkvision() + Shifting() + "<b>Razorclaw Shifting</b> While shifting, you can make an unarmed strike as a bonus action. You can use Strength for its attack roll and damage bonus, and this attack deals slashing damage<br>";
+
+races[27] = {}; // Core Race / Dragonborn
+races[27].name = randomize("Gold Dragonborn, Drake, Dragonkin");
+races[27].languages = "Common, Draconic";
+races[27].abilities = "Strength +2, Charisma +1";
+races[27].size = "Medium";
+races[27].type = "humanoid (dragon)";
+races[27].speed = "30 feet";
+races[27].senses = "";
+races[27].traits = "<b>Dragon Ancestry</b> Gold<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
+
+races[28] = {}; // Core Race / Dragonborn
+races[28].name = randomize("Silver Dragonborn, Drake, Dragonkin");
+races[28].languages = "Common, Draconic";
+races[28].abilities = "Strength +2, Charisma +1";
+races[28].size = "Medium";
+races[28].type = "humanoid (dragon)";
+races[28].speed = "30 feet";
+races[28].senses = "";
+races[28].traits = "<b>Dragon Ancestry</b> Silver<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
+
+races[29] = {}; // Core Race / Dragonborn
+races[29].name = randomize("Bronze Dragonborn, Bronze Drake, Bronze Dragonkin, Braesdrake, Drake, Dragonborn, Dragonkin");
+races[29].languages = "Common, Draconic";
+races[29].abilities = "Strength +2, Charisma +1";
+races[29].size = "Medium";
+races[29].type = "humanoid (dragon)";
+races[29].speed = "30 feet";
+races[29].senses = "";
+races[29].traits = "<b>Dragon Ancestry</b> Bronze<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of lightning once per rest<br><b>Damage Resistance</b> You have resistance to lightning<br>";
+
+races[30] = {}; // Core Race / Dragonborn
+races[30].name = randomize("Red Dragonborn, Drake, Dragonkin");
+races[30].languages = "Common, Draconic";
+races[30].abilities = "Strength +2, Charisma +1";
+races[30].size = "Medium";
+races[30].type = "humanoid (dragon)";
+races[30].speed = "30 feet";
+races[30].senses = "";
+races[30].traits = "<b>Dragon Ancestry</b> Red<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of fire once per rest<br><b>Damage Resistance</b> You have resistance to fire<br>";
+
+races[31] = {}; // Core Race / Dragonborn
+races[31].name = randomize("Black Dragonborn, Black Drake, Black Dragonkin, Svartaldrake, Drake, Dragonborn, Dragonkin");
+races[31].languages = "Common, Draconic";
+races[31].abilities = "Strength +2, Charisma +1";
+races[31].size = "Medium";
+races[31].type = "humanoid (dragon)";
+races[31].speed = "30 feet";
+races[31].senses = "";
+races[31].traits = "<b>Dragon Ancestry</b> Black<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
+
+races[32] = {}; // Core Race / Dragonborn
+races[32].name = randomize("Green Dragonborn, Drake, Dragonkin");
+races[32].languages = "Common, Draconic";
+races[32].abilities = "Strength +2, Charisma +1";
+races[32].size = "Medium";
+races[32].type = "humanoid (dragon)";
+races[32].speed = "30 feet";
+races[32].senses = "";
+races[32].traits = "<b>Dragon Ancestry</b> Green<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of poison once per rest<br><b>Damage Resistance</b> You have resistance to poison<br>";
+
+races[33] = {}; // Core Race / Dragonborn
+races[33].name = randomize("White Dragonborn, Drake, Dragonkin");
+races[33].languages = "Common, Draconic";
+races[33].abilities = "Strength +2, Charisma +1";
+races[33].size = "Medium";
+races[33].type = "humanoid (dragon)";
+races[33].speed = "30 feet";
+races[33].senses = "";
+races[33].traits = "<b>Dragon Ancestry</b> White<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of cold once per rest<br><b>Damage Resistance</b> You have resistance to cold<br>";
+
+races[34] = {}; // Core Race / Human variant
+races[34].name = randomize("Human, Hyborean, Utwig, Androsynth, Lemurian, Atlantean, Ancient, Biot");
+races[34].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[34].abilities = "Two abilities of your choice +1";
+races[34].size = randomize("Small, Medium");
+races[34].type = "humanoid";
+races[34].speed = "30 feet";
+races[34].senses = "";
+races[34].traits = BonusSkill() + BonusFeat();
+
+races[35] = {}; // Core Race / Dragonborn
+races[35].name = randomize("Copper Dragonborn, Drake, Dragonkin");
+races[35].languages = "Common, Draconic";
+races[35].abilities = "Strength +2, Charisma +1";
+races[35].size = "Medium";
+races[35].type = "humanoid (dragon)";
+races[35].speed = "30 feet";
+races[35].senses = "";
+races[35].traits = "<b>Dragon Ancestry</b> Copper<br><b>Breath Weapon</b> You can use your action to exhale a 5x30 foot line of acid once per rest<br><b>Damage Resistance</b> You have resistance to acid<br>";
+
+races[36] = {}; // Core Race / Shifter
+races[36].name = randomize("Beasthide Shifter, Shifter");
+races[36].languages = "Common, Silvan";
+races[36].abilities = "Dexterity and Constitution scores and +1";
+races[36].size = "Medium";
+races[36].type = "humanoid (shapeshifter)";
+races[36].speed = "30 feet";
+races[36].senses = "darkvision 60 feet, ";
+races[36].traits = Darkvision() + Shifting() + "<b>Beasthide Shifting</b> While shifting, you gain a +1 bonus to Armor Class<br>";
+
+races[37] = {}; // Core Race / Shifter
+races[37].name = randomize("Cliffwalk Shifter, Shifter");
+races[37].languages = "Common, Silvan";
+races[37].abilities = "Dexterity +2";
+races[37].size = "Medium";
+races[37].type = "humanoid (shapeshifter)";
+races[37].speed = "30 feet";
+races[37].senses = "darkvision 60 feet, ";
+races[37].traits = Darkvision() + Shifting() + "<b>Cliffwalk Shifting</b> While shifting, you gain a climb speed of 30 feet<br>";
+
+races[38] = {}; // Core Race / Shifter
+races[38].name = randomize("Longstride Shifter, Shifter");
+races[38].languages = "Common, Silvan";
+races[38].abilities = "Dexterity +2";
+races[38].size = "Medium";
+races[38].type = "humanoid (shapeshifter)";
+races[38].speed = "30 feet";
+races[38].senses = "darkvision 60 feet, ";
+races[38].traits = Darkvision() + Shifting() + "<b>Longstride Shifting</b> While shifting, you can use the Dash action as a bonus action<br>";
+
+races[39] = {}; // Core Race / Shifter
+races[39].name = randomize("Wildhunt Shifter, Shifter");
+races[39].languages = "Common, Silvan";
+races[39].abilities = "Dexterity, Wisdom +1";
+races[39].size = "Medium";
+races[39].type = "humanoid (shapeshifter)";
+races[39].speed = "30 feet";
+races[39].senses = "darkvision 60 feet, ";
+races[39].traits = Darkvision() + Shifting() + "<b>Wildhunt Shifting</b> While shifting, you gain advantage on all Wisdom-based checks and saving throws<br>";
+
+
+// Generic Extended race material. Not extensively playtested, but should be balanced.
+
+races[40] = {}; // dwarf
+races[40].name = randomize("Mul, Halfdwarf, Half-dwarf, Dweorkin");
+races[40].languages = "Common, Dwarven, " + languages[Math.floor(Math.random()*languages.length)];
+races[40].abilities = "Strength +2, Constitution +1";
+races[40].size = "Medium";
+races[40].type = "humanoid";
+races[40].speed = "30 feet";
+races[40].senses = "darkvision 60 feet, ";
+races[40].traits = Darkvision() + ResiliencePoison() + BonusSkills() + "<b>Tireless</b> You have advantage on saving throws and ability checks against increasing your exhaustion level<br>";
+
+races[41] = {}; // goblin
+races[41].name = randomize("Hobgoblin, Goblin");
+races[41].languages = "Common, Goblin";
+races[41].abilities = "Constitution +2, Strength +1";
+races[41].size = "Medium";
+races[41].type = "humanoid (goblin)";
+races[41].speed = "30 feet";
+races[41].senses = "darkvision 60 feet, ";
+races[41].traits = Darkvision() + ArmorTraining() + MartialAdvantage();
+
+races[42] = {}; // dwarf
+races[42].name = randomize("Derro, Svartalfar, Dark Dwarf, Dwarf, Dwor");
+races[42].languages = "Common, Dwarven";
+races[42].abilities = "Constitution +2, Intelligence +1";
+races[42].size = "Medium";
+races[42].type = "humanoid (fey)";
+races[42].speed = "25 feet";
+races[42].senses = "darkvision 60 feet, ";
+races[42].traits = Darkvision() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Derro Magic", "Minor Illusion", "Tasha's Hideous Laughter", "Crown of Madness", "Constitution") + SunlightSensitivity() ;
+
+races[43] = {}; // dwarf
+races[43].name = randomize("Duergar, Grey Dwarf, Graedwor, Dwarf, Dwor");
+races[43].languages = "Dwarven, Undercommon";
+races[43].abilities = "Constitution +2, Dexterity +1";
+races[43].size = "Medium";
+races[43].type = "humanoid";
+races[43].speed = "25 feet";
+races[43].senses = "darkvision 120 feet, ";
+races[43].traits = DarkvisionSuperior() + ResiliencePoison("Dwarven Resilience") + WeaponTrainingDwarf("Dwarven Weapon Training") + Spells135("Dwergar Magic", "Minor Illusion", "Disguise Self", "Enlarge", "Constitution") + SunlightSensitivity();
+
+races[44] = {}; // deathless
+races[44].name = "Revenant";
+races[44].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[44].abilities = "Strength, Constitution +1";
+races[44].size = "Medium";
+races[44].type = "humanoid (deathless)";
+races[44].speed = "30 feet";
+races[44].senses = "darkvision 60 feet, ";
+races[44].traits = Deathless() + Resilient("Night Walker");
+
+races[45] = {}; // wildkin
+races[45].name = randomize("Wildborn, Wildkin, Wildling, Mongrelman");
+races[45].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[45].abilities = "Strength, Constitution +1";
+races[45].size = randomize("Small, Medium");
+races[45].type = "humanoid (monstrous)";
+races[45].speed = randomize("25 feet, 30 feet");
+races[45].senses = "";
+races[45].traits = Keen("Keen Hearing and Smell", "hearing or smell") + AnimalAncestry() + Mimicry() + NaturalWeapons();
+
+races[46] = {}; // wildkin
+races[46].name = randomize("Tabaxi, Leonine, Leonid, Kzinti, Wildborn, Wildkin, Wildling");
+races[46].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[46].abilities = "Strength, Dexterity +1";
+races[46].size = randomize("Small, Medium");
+races[46].type = "humanoid (monstrous)";
+races[46].speed = "30 feet";
+races[46].senses = "Keen hearing and smell";
+races[46].traits = Keen("Hearing and Scent", "hearing or smell")  + AnimalAncestry() + NaturalWeapons();
+
+races[47] = {}; // shadow
+races[47].name = randomize("Ancient, Eldar, Shadowborn, Shade, Shadow");
+races[47].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[47].abilities = "Dexterity +2, Charisma +1";
+races[47].size = "Medium";
+races[47].type = "humanoid (shadow)";
+races[47].speed = "30 feet";
+races[47].senses = "darkvision 60 feet, ";
+races[47].traits = Darkvision() + ResilienceNecrotic("Shadowborn") + Spells135("Shadows", "Minor Illusion", "Disguise Self", "Darkness", "Constitution");
+
+races[48] = {}; // goblin
+races[48].name = randomize("Goblin, Hob, Bogart");
+races[48].languages = "Common, Goblin";
+races[48].abilities = "Dexterity +2, Wisdom +1";
+races[48].size = "Small";
+races[48].type = "humanoid (goblin)";
+races[48].speed = "30 feet";
+races[48].senses = "darkvision 60 feet, ";
+races[48].traits = Darkvision() + Skill("Sneaky", "Stealth") + NimbleEscape() + "<b>Quick</b> You are unusually spry for a small creature. Your movement is 30 feet<br>";
+
+races[49] = {}; // aetherspace
+races[49].name = randomize("Simulacrum, Living Construct, Modron, Aeon");
+races[49].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[49].abilities = "Strength, Constitution +1";
+races[49].size = "Medium";
+races[49].type = "humanoid (construct)";
+races[49].speed = "30 feet";
+races[49].senses = "";
+races[49].traits = LivingConstruct() + "<b>Fine craftmanship</b> A successful spot check under close inspection is required to discern you from a biological humanoid<br>";
+
+races[50] = {}; // aetherspace
+races[50].name = randomize("Gith, Ancient, Eldar, Kalashtar");
+races[50].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)];
+races[50].abilities = "Intelligence, Wisdom +1";
+races[50].size = "Medium";
+races[50].type = "humanoid (supernal)";
+races[50].speed = "30 feet";
+races[50].senses = "";
+races[50].traits = Telepathy() + Psychic() + "<b>Mind Blast</b> 1d10 + Charisma bonus psychic damage in a 15 foot cone once per rest<br>";
+
+races[51] = {}; // dark sun
+races[51].name = "Athasian Halfgiant";
+races[51].languages = "Common, Giant";
+races[51].abilities = "Strength +2, Constitution +1";
+races[51].size = "Medium";
+races[51].type = "humanoid (giant)";
+races[51].speed = "30 feet";
+races[51].senses = "";
+races[51].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Nomad</b> You are naturally adapted to desert environments or any hot, arid climate where water is scarce<br>";
+
+races[52] = {}; // aetherspace
+races[52].name = randomize("Automata, Living Construct, Modron, Aeon");
+races[52].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[52].abilities = "Strength, Constitution +1";
+races[52].size = "Medium";
+races[52].type = "humanoid (construct)";
+races[52].speed = "30 feet";
+races[52].senses = "";
+races[52].traits = LivingConstruct() + "<b>Artificer</b> You know the Mend cantrip. You have advantage on alchemy or technology related rolls<br>";
+
+races[53] = {}; // aetherspace
+races[53].name = randomize("Simian, Awakened Ape, Forestfolk");
+races[53].languages = "Common";
+races[53].abilities = "Strength +2, Dexterity +1";
+races[53].size = "Medium";
+races[53].type = "humanoid";
+races[53].speed = "30 feet, climb 30 feet";
+races[53].senses = "";
+races[53].traits = "<b>Keen Scent</b> Advantage on Perception(Wisdom) rolls that rely on smell<br><b>Mask of the Wild</b> You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena<br><b>Climb</b> You have proficiency with the Athletics skill<br><b>Ropecraft</b> You have an advanced knowledge of rope use. You can make any snare involving a rope, line, or noose. You have proficiency with the lasso. You can construct rope without tools if suitable materials (vine, hemp fiber, etc.) are available<br><b>Vegetarian</b> You prefer to eat green vegetation, fruit, and insects. You become sickened if you eat traditional meat, cheese, or grain-based foods<br>";
+
+races[54] = {}; // aetherspace
+races[54].name = randomize("Biot, Simulacrum, Living Construct, Androsynth, Aeon");
+races[54].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[54].abilities = "Strength, Constitution +1";
+races[54].size = "Medium";
+races[54].type = "humanoid (construct)";
+races[54].speed = "30 feet";
+races[54].senses = "";
+races[54].traits = Darkvision() + LivingConstruct();
+
+races[55] = {}; // goblins
+races[55].name = randomize("Norker, Goblin");
+races[55].languages = "Common, Goblin";
+races[55].abilities = "Constitution +2, Strength +1";
+races[55].size = "Medium";
+races[55].type = "humanoid (goblin)";
+races[55].speed = "30 feet";
+races[55].senses = "darkvision 60 feet, ";
+races[55].traits = Darkvision() + Armored("Tough Hide") + MartialAdvantage();
+
+races[56] = {}; // aetherspace
+races[56].name = randomize("Yazarian, Hadozee");
+races[56].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
+races[56].abilities = "Strength +2, Dexterity +1";
+races[56].size = "Medium";
+races[56].type = "humanoid (supernal)";
+races[56].speed = "30 feet, climb 30 feet, glide 40 feet";
+races[56].senses = "";
+races[56].traits = Keen("Keen Scent", "smell") + "<b>Glide</b> Membranes between your arms and torso allow you to glide at a speed of 40 feet per round (5 feet of altitude are lost every 20 feet). You can use your gliding ability to negate falling damage if your arms are unrestrained<br><b>Extra Manipulators</b> You have very dexterous feet which can function as an alternate pair of hands. They can even use their big toes as opposable thumbs<br>";
+
+races[57] = {}; //
+races[57].name = randomize("Kobold, Drake, Dragonkin");
+races[57].languages = "Common, Draconic";
+races[57].abilities = "Strength +2, Constitution +1";
+races[57].size = "Small";
+races[57].type = "humanoid (dragon)";
+races[57].speed = "25 feet";
+races[57].senses = "";
+races[57].traits = Darkvision() + Armored("Scaly Hide") + "<b>Trap Makers</b> You have Advantage on rolls to make traps<br><b>Miner</b> You are a skilled miner<br>";
+
+races[58] = {}; // deathless
+races[58].name = randomize("Deathless, Vaettir, Wight");
+races[58].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[58].abilities = "Strength, Constitution +1";
+races[58].size = "Medium";
+races[58].type = "humanoid (deathless)";
+races[58].speed = "30 feet";
+races[58].senses = "darkvision 60 feet, ";
+races[58].traits = Darkvision() + Deathless();
+
+races[59] = {}; // fiend
+races[59].name = randomize("Tiefling, Cambion, Alu-Fiend, Fiend");
+races[59].languages = "Common, Fiendish";
+races[59].abilities = "Charisma +2, Intelligence +1";
+races[59].size = "Medium";
+races[59].type = "humanoid (fiend)";
+races[59].speed = "30 feet";
+races[59].senses = "darkvision 60 feet, ";
+races[59].traits = Darkvision() + ResistDamageFire("Fiendish Resilience") + Spells135("Fiendish Legacy", "Minor Illusion", "Charm Person", "Suggestion", "Constitution");
+
+races[60] = {}; // core race / minotaur
+races[60].name = randomize("Minotaur, Asterion");
+races[60].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[60].abilities = "Strength +2";
+races[60].size = "Medium";
+races[60].type = "humanoid (monstrous)";
+races[60].speed = "30 feet";
+races[60].senses = "";
+races[60].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Mountain Born</b> You are acclimated to high altitude, including elevations above 20,000 feet. You are also naturally adapted to cold climates<br>";
+
+races[61] = {}; // shadow / eladrin
+races[61].name = "Shadar-kai, Shadowborn ,Shade, Shadow";
+races[61].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[61].abilities = "Dexterity +2, Charisma +1";
+races[61].size = "Medium";
+races[61].type = "humanoid (shadow)";
+races[61].speed = "30 feet";
+races[61].senses = "darkvision 60 feet, ";
+races[61].traits = Darkvision() + ShadowFade() + "<b>Shadow Step</b> You may cast Misty Step once per rest<br>";
+
+races[62] = {}; // shadow / drow
+races[62].name = "Shadowborn, Shade, Shadow";
+races[62].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[62].abilities = "Dexterity +2, Charisma +1";
+races[62].size = "Medium";
+races[62].type = "humanoid (shadow)";
+races[62].speed = "30 feet";
+races[62].senses = "120 feet";
+races[62].traits = DarkvisionSuperior() + ShadowFade() + Spells135("Shadow Magic", "Minor Illusion", "Disguise Self", "Darkness", "Constitution") + SunlightSensitivity();
+
+races[63] = {}; // giant
+races[63].name = randomize("Trollkin, Trow, Trollir, Troll");
+races[63].languages = "Common, Giant";
+races[63].abilities = "Strength +2, Constitution +1";
+races[63].size = "Medium";
+races[63].type = "humanoid (giant)";
+races[63].speed = "30 feet";
+races[63].senses = "";
+races[63].traits = HealSelf("Regeneration") + Resilient() + Keen("Scent", "smell");
+
+races[64] = {}; // giant
+races[64].name = "Firbolg";
+races[64].languages = "Common, Giant";
+races[64].abilities = "Strength +2, Constitution +1";
+races[64].size = "Medium";
+races[64].type = "humanoid (giant)";
+races[64].speed = "30 feet";
+races[64].senses = "";
+races[64].traits = "<b>Natural Athlete</b> You have proficiency in the Athletics skill<br><b>Stone Endurance</b> You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. You may use this ability once per rest<br><b>Powerful Build</b> You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift<br><b>Walk among them</b> You can shrink to standard human size or return to your natural size as a standard action. Death or unconsciousness return you to your default size. Firbolgs often consort with and live among humans, and prefer to keep their natures a secret<br>";
+
+races[65] = {}; // shadow / deathless
+races[65].name = randomize("Shade, Shadowborn, Shadow");
+races[65].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[65].abilities = "Strength, Constitution +1";
+races[65].size = "Medium";
+races[65].type = "humanoid (shadow)";
+races[65].speed = "30 feet";
+races[65].senses = "darkvision 60 feet, ";
+races[65].traits = Deathless() + ShadowFade() + "<b>Incorporeality</b> Once per rest, you may become incorporeal and move through other creates or objects as if they were difficult terrain. If you end your turn inside an object, you are ejected into the nearest open space and take 1d6 force damage for each square you are ejected through<br>" + SunlightSensitivity();
+
+races[66] = {}; // aetherspace
+races[66].name = randomize("Gith, Kalashtar, Eldar, Ancient");
+races[66].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
+races[66].abilities = "Wisdom +2, Intelligence +1";
+races[66].size = "Medium";
+races[66].type = "humanoid (supernal)";
+races[66].speed = "30 feet";
+races[66].senses = "darkvision 60 feet, ";
+races[66].traits = Darkvision() + Psychic() + Spells135("Psychic Powers", "Feather Fall", "Jump", "Detect Thoughts", "Constitution");
+
+races[67] = {}; // aetherspace
+races[67].name = randomize("Elan, Immortal, Ancient, Eldar");
+races[67].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[67].abilities = "Strength, Constitution +1";
+races[67].size = "Medium";
+races[67].type = "humanoid (supernal)";
+races[67].speed = "30 feet";
+races[67].senses = "";
+races[67].traits = Immortal() + Psychic() + Repletion();
+
+races[68] = {}; // aetherspace
+races[68].name = "Supox"
+races[68].languages = "Common, Supernal, Supox"
+races[68].abilities = "Constitution +2, Wisdom +1";
+races[68].size = "Medium";
+races[68].type = "humanoid (plant)";
+races[68].speed = "30 feet";
+races[68].senses = "";
+races[68].traits = HumanoidPlant() + HealSelf("Regrowth") + "<b>Berries</b> Once per day, you can produce the effects of the <i>Goodberry</i> spell<br>";
+
+races[69] = {}; // aetherspace
+races[69].name = randomize("Blemmyes, Akephaloi, Anthropophage");
+races[69].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[69].abilities = "Two abilities of your choice +1";
+races[69].size = "Medium";
+races[69].type = "humanoid";
+races[69].speed = "30 feet";
+races[69].senses = "";
+races[69].traits = Keen("Keen Scent", "smell");
+
+races[70] = {}; // goblin
+races[70].name = randomize("Varag, Goblin");
+races[70].languages = "Goblin";
+races[70].abilities = "Constitution +2, Strength +1";
+races[70].size = "Medium";
+races[70].type = "humanoid (goblin)";
+races[70].speed = "30 feet";
+races[70].senses = "darkvision 60 feet, ";
+races[70].traits = Darkvision() + Keen("Scent", "smell") + MartialAdvantage() + Bite() + "<b>Prey driven</b> You are impulsive and bestial. Disadvantage to resist obeying your primal instinct to hunt and kill prey<br>";
+
+races[71] = {}; // aetherspace / plant / Juffa-Wup, Non, Void.
+races[71].name = randomize("Myconid, Mycon");
+races[71].languages = "Common, Undercommon, " + languages[Math.floor(Math.random()*languages.length)];
+races[71].abilities = "Wisdom +2, Constitution +1";
+races[71].size = "Medium";
+races[71].type = "humanoid (plant)";
+races[71].speed = "30 feet";
+races[71].senses = "";
+races[71].traits = Blindsight() + SunlightSensitivity() + "<b>Rapport</b> Specialized spore cloud allows you to telepathically communicate with any creature in a 30 foot radius that can speak at least one language<br>";
+
+races[72] = {}; // fae
+races[72].name = "Centaur";
+races[72].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[72].abilities = "Strength, Constitution +1";
+races[72].size = "Medium";
+races[72].type = "humanoid (fey)";
+races[72].speed = "40 feet";
+races[72].senses = "";
+races[72].traits = Quadruped() + FeyAncestry() + "<b>Weapon training</b> You have proficiency with nets, bolas, and pikes<br>";
+
+races[73] = {}; // turtlefolk
+races[73].name = randomize("Burvixese, Koopa, Kappa, Turtlefolk");
+races[73].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)]
+races[73].abilities = "Strength +2, Constitution +1";
+races[73].size = "Medium";
+races[73].type = "humanoid (monstrous)";
+races[73].speed = "30 feet, swim 30 feet";
+races[73].senses = "";
+races[73].traits = Darkvision() + "<b>Shell</b> Your shell acts like organic medium armor, providing Armor Class +6. You cannot wear manufactured armor<br>" + ClawsBonus();
+
+races[74] = {}; // frogfolk
+races[74].name = randomize("Grippli, Bullywug, Batrachi");
+races[74].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[74].abilities = "Wisdom, Dexterity +1";
+races[74].size = "Small";
+races[74].type = "humanoid (monstrous)";
+races[74].speed = "25 feet, climb 30 feet";
+races[74].senses = "";
+races[74].traits = HoldBreath() + "<b>Ranine</b> Your native language also allows you to communicate simple concepts to frogs and toads<br>" + Leap() + "<b>Swamp Adapted</b> Advantage on Dexterity (Stealth) checks made to hide in swampy areas. You suffer no movement penalties for moving through marsh, swamp, or muddy landscape<br>";
+
+races[75] = {};
+races[75].name = randomize("Auran, Jinn, Elemental");
+races[75].languages = "Common, Celestial, " + languages[Math.floor(Math.random()*languages.length)];
+races[75].abilities = "Dexterity +2, Wisdom +1";
+races[75].size = "Medium"
+races[75].type = "humanoid (elemental)";
+races[75].speed = "25 feet, fly 40 feet";
+races[75].senses = "";
+races[75].traits = Flight() + Cantrip("Windshear", "Gust", "Constitution");
+
+races[76] = {}; // aetherspace
+races[76].name = randomize("Gith, Ancient, Eldar, Kalashtar");
+races[76].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
+races[76].abilities = "Intelligence +2, Wisdom +1";
+races[76].size = "Medium";
+races[76].type = "humanoid (supernal)";
+races[76].speed = "30 feet";
+races[76].senses = "";
+races[76].traits = Telepathy() + Psychic() + Telekinesis();
+
+races[77] = {}; // goblin
+races[77].name = randomize("Bugbear, Goblin");
+races[77].languages = "Common, Goblin";
+races[77].abilities = "Strength +2, Dexterity +1";
+races[77].size = "Medium";
+races[77].type = "humanoid (goblin)";
+races[77].speed = "30 feet";
+races[77].senses = "darkvision 60 feet, ";
+races[77].traits = Darkvision() + "<b>Brute</b> A melee weapon deals one extra die of its damage when bugbear hits with it once per round<br><b>Surprise Attack</b> If the bugbear surprises a creature and hits it with an attack during the first round of combat, the bugbear has advantage on the damage roll for that attack<br>";
+
+races[78] = {}; // aetherspace
+races[78].name = randomize("Giff, Thraddash");
+races[78].languages = "Supernal, Giff, " + languages[Math.floor(Math.random()*languages.length)]
+races[78].abilities = "Strength +2, Constitution +1";
+races[78].size = "Medium";
+races[78].type = "humanoid (supernal)";
+races[78].speed = "30 feet";
+races[78].senses = "";
+races[78].traits = "<b>Black Powder Weapons</b> You are familiar with the usage and maintenance of any black powder weapon. You specialize in a racial weapon like an elaborate musket. You can clean, maintain, repair, and completely rebuild this weapon, given enough time and materials. It does 1d10 piercing damage to a single target at a range of 60/120/240. The weapon takes one round to reload. Each time the weapon is fired, there is a 3% chance that it will explode, destroying itself and dealing 3d10 fire damage to everyone in a 5 foot radius<br>" + Toughness() + "<b>Magic Resistant</b> Advantage against magic saving throws. You have resistance to magic<br>";
+
+races[79] = {};
+races[79].name = randomize("Sea Elf, Baedwegalfar, Merfolk, Triton, Atlantean, Lemurian, Fae");
+races[79].languages = "Common, Elven";
+races[79].abilities = "Dexterity +2, Wisdom +1";
+races[79].size = "Medium";
+races[79].type = "humanoid (fey)";
+races[79].speed = "30 feet, swim 40 feet";
+races[79].senses = "darkvision 60 feet, ";
+races[79].traits = Amphibious() + Darkvision() + FeyAncestry() + Trance() + "<b>Weapon training</b> You have proficiency with pike, net, and harpoon<br>";
+
+races[80] = {}; // aetherspace
+races[80].name = randomize("Vanir, Empyrean, Demigod");
+races[80].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[80].abilities = "Strength, Constitution +1";
+races[80].size = "Medium";
+races[80].type = "humanoid (celestial)";
+races[80].speed = "30 feet";
+races[80].senses = "";
+races[80].traits = Immortal() + Sustained() + "<b>Vanir Weapon Training</b> Longsword, Longbow<br>";
+
+races[81] = {}; // aetherspace
+races[81].name = randomize("Aesir, Empyrean, Demigod");
+races[81].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[81].abilities = "Strength, Constitution +1";
+races[81].size = "Medium";
+races[81].type = "humanoid (celestial)";
+races[81].speed = "30 feet";
+races[81].senses = "";
+races[81].traits = Immortal() + Sustained() + "<b>Aesir Weapon Training</b> Greataxe, Greatspear <br>";
+
+races[82] = {}; // aetherspace
+races[82].name = randomize("Abatwa");
+races[82].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[82].abilities = "Two abilities of your choice +1";
+races[82].size = "Tiny";
+races[82].type = "humanoid";
+races[82].speed = "20 feet";
+races[82].senses = "";
+races[82].traits = BonusSkill() + BonusFeat() + Cantrip("Mage Hand");
+
+races[83] = {};
+races[83].name = randomize("Avariel, Sky Elf, Fae");
+races[83].languages = "Common, Elvish";
+races[83].abilities = "Charisma +2, Intelligence +1";
+races[83].size = randomize("Small, Medium");
+races[83].type = "humanoid (fey)";
+races[83].speed = "25 feet, fly 50 feet";
+races[83].senses = "darkvision 60 feet, ";
+races[83].traits = "<b>Winged Flight</b> Your wings must be unhindered and you can not be wearing medium or heavy armor to use this ability<br>" + Darkvision() + Trance();
+
+races[84] = {}; // aetherspace
+races[84].name = randomize("Dromite, Ancient, Eldar");
+races[84].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[84].abilities = "Strength, Constitution +1";
+races[84].size = randomize("Small, Medium");
+races[84].type = "humanoid (supernal)";
+races[84].speed = "25 feet";
+races[84].senses = "";
+races[84].traits = Darkvision() + "<b>Energy Bolt</b> Make a ranged spell attack against the target. On a hit, the target takes 1d10 damage of your chosen energy type. The spell damage increases when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)<br><b>Resistance</b> Resistance to chosen energy type<br>";
+
+races[85] = {}; // extended race material
+races[85].name = randomize("Rook, Ravenfolk");
+races[85].languages = "Common, Primordial, Auran";
+races[85].abilities = "Dexterity +2, Wisdom +1";
+races[85].size = randomize("Small, Medium");
+races[85].type = "humanoid (monstrous)";
+races[85].speed = "25 feet, fly 50 feet";
+races[85].senses = "";
+races[85].traits = Wings() + Mimicry();
+
+races[86] = {}; // aetherspace
+races[86].name = randomize("Gith, Ancient, Eldar, Kalashtar");
+races[86].languages = "Common, Supernal, " + languages[Math.floor(Math.random()*languages.length)]
+races[86].abilities = "Strength, Constitution +1";
+races[86].size = "Medium";
+races[86].type = "humanoid (supernal)";
+races[86].speed = "30 feet";
+races[86].senses = "";
+races[86].traits = Telepathy() + Psychic() + "<b>Psychic Crush</b> 1d10 + Charisma bonus psychic damage to one target, in line of sight, within 30 feet. Target must save vs psychic or be knocked unconscious. You can do this once per rest<br>";
+
+races[87] = {};  //
+races[87].name = "Lizardfolk";
+races[87].languages = "Common, Lizardfolk";
+races[87].abilities = "Constitution +1, Strength +1";
+races[87].size = "Medium";
+races[87].type = "humanoid (monstrous)";
+races[87].speed = "30 feet";
+races[87].senses = "";
+races[87].traits = HoldBreath() + Armored("Scaled Hide") + Camouflage() + Bite();
+
+races[88] = {}; // drake
+races[88].name = randomize("Shadow Dragonborn, Drake, Dragonkin");
+races[88].languages = "Common, Draconic";
+races[88].abilities = "Strength +2, Charisma +1";
+races[88].size = "Medium";
+races[88].type = "humanoid (shadow)";
+races[88].speed = "30 feet";
+races[88].senses = "";
+races[88].traits = "<b>Dragon Ancestry</b> Shadow<br><b>Breath Weapon</b> You can use your action to exhale a 15 foot cone of necrosis once per rest<br><b>Shadowborn</b> You have resistance to necrotic damage<br>";
+
+races[89] = {}; // giant
+races[89].name = randomize("Laskarim, Halforc, Orc, Ork, Orog, Scro, Ruk");
+races[89].languages = "Common, Giant";
+races[89].abilities = "Strength +2, Constitution +1";
+races[89].size = "Medium";
+races[89].type = "humanoid (giant)";
+races[89].speed = "30 feet";
+races[89].senses = "darkvision 60 feet, ";
+races[89].traits = Darkvision() + "<b>Sea Reaver</b> Proficiency with navigator's tools and waterborne vehicles<br>" + Resilient() + BonusCriticalDamage();
+
+races[90] = {}; // giant
+races[90].name = randomize("Halfgiant, Ogrillion, Giantkin, Ogrekin, Halfogre");
+races[90].languages = "Common, Giant";
+races[90].abilities = "Strength +2, Constitution +1";
+races[90].size = "Medium";
+races[90].type = "humanoid (giant)";
+races[90].speed = "30 feet";
+races[90].senses = "";
+races[90].traits = Skill("Athletic", "athletics") + Toughness("Tough") + Powerful() + BonusCriticalDamage("Strong");
+
+races[91] = {}; // aetherspace
+races[91].name = randomize("Mercane, Melnorme, Mael-Num");
+races[91].languages = "Common, Supernal, Mercane"
+races[91].abilities = "Intelligence +1, Constitution +1";
+races[91].size = "Medium";
+races[91].type = "humanoid (supernal)";
+races[91].speed = "30 feet";
+races[91].senses = "";
+races[91].traits = "<b>Personal Space</b> Once per day, you may enter a personal demiplane accessible only by you and the items you are carrying. It is large enough to hold up to 8 medium sized creatures. Attacks and spells can not cross through the entrance into or out of the extradimensional space, but you can see out as if through a 3 foot by 5 foot window centered on the point of entry. You may remain inside for one hour per level. You are unable to bring other pocket dimensions into this one; they physically can't enter, falling onto the floor. The space persists in your absence and items left behind remain there<br><b>Recall</b> You may use an action to summon a hand-held item stored in your personal space<br>";
+
+races[92] = {}; // aetherspace / Plant
+races[92].name = randomize("Briarborn, Bloodvine, Trapper, Lasher, Wildvine, Triffid");
+races[92].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[92].abilities = "Dexterity +2, Wisdom +1";
+races[92].size = "Medium";
+races[92].type = "humanoid (plant)";
+races[92].speed = "30 feet, climb 30 feet";
+races[92].senses = "";
+races[92].traits = HumanoidPlant() + Cantrip("Thorn Whip", "Thorn Whip", "Constitution") + Armored("Bark") + Camouflage();
+
+races[93] = {}; // aetherspace
+races[93].name = randomize("Dralasite");
+races[93].languages = "Common, Supernal, Dralasite"
+races[93].abilities = "Strength, Constitution +1";
+races[93].size = "Medium";
+races[93].type = "humanoid (supernal)";
+races[93].speed = "25 feet";
+races[93].senses = "";
+races[93].traits = Keen("Scent", "smell") + "<b>Elasticity</b> A Dralasite can move through a space as small as 1 inch wide without squeezing.<br><b>Pseudopods</b> A Dralasite can produce a pseudopod at will to manipulate objects. An additional psuedopod can be produced for every bonus constitution point. Pseudopods use strength just like arms and hands<br>";
+
+races[94] = {}; // aetherspace
+races[94].name = randomize("Ettercap, Spiderfolk, Ilwrath");
+races[94].languages = "Common, "+ languages[Math.floor(Math.random()*languages.length)];
+races[94].abilities = "Dexterity+2, Constitution +1";
+races[94].size = "Small";
+races[94].type = "humanoid (monstrous)";
+races[94].speed = "25 feet, climb 30 feet";
+races[94].senses = "Websense 60 feet, ";
+races[94].traits = Darkvision() +  "<b>Spider Climb</b> You can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check<br><b>Bite</b> You can make a bite attack as an action. This is a melee weapon attack that deals 1d6 piercing damage plus save or become poisoned<br>";
+
+races[95] = {}; // aetherspace
+races[95].name = randomize("Grimlock, Cthonian, Morlock");
+races[95].languages = "Undercommon";
+races[95].abilities = "Wisdom, Dexterity +1";
+races[95].size = "Medium";
+races[95].type = "humanoid (aberrant)";
+races[95].speed = "40 feet";
+races[95].senses = "Blindsight 30 feet, ";
+races[95].traits = Blindsight() + Keen("Hearing and Scent", "hearing and smell") + StoneCamouflage();
+
+races[96] = {}; // plant
+races[96].name = randomize("Mandrake", "Sylvan", "Arboreal");
+races[96].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[96].abilities = "Dexterity +2, Wisdom +1";
+races[96].size = "Medium";
+races[96].type = "humanoid (plant)";
+races[96].speed = "30 feet, climb 30 feet";
+races[96].senses = "";
+races[96].traits = HumanoidPlant() + ResiliencePoison() + "<b>Poisonous Blood</b> Mandrake blood is poisonous. Any creature that scores a bite attack on the mandrake must save to avoid becoming poisoned<br>";
+
+races[97] = {}; // fae
+races[97].name = randomize("Pixie, House Hob, Hob, Fae");
+races[97].languages = "Common, Gnomish";
+races[97].abilities = "Strength, Charisma scores +1";
+races[97].size = "Tiny";
+races[97].type = "humanoid (fey)";
+races[97].speed = "20 feet"; // fly 30 while carried by a mage hand
+races[97].senses = "darkvision 60 feet, ";
+races[97].traits = Darkvision() + Cunning() + "<b>Fae Magic</b> You know the Minor Illusion and Mage Hand cantrips<br>";
+
+races[98] = {}; // aetherspace
+races[98].name = randomize("Barghest, Wolfen, Werewolf, Shapeshifter");
+races[98].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[98].abilities = "Strength, Constitution +1";
+races[98].size = "Medium";
+races[98].type = "humanoid (shapeshifter)";
+races[98].speed = "30 feet";
+races[98].senses = "";
+races[98].traits = NaturalWeapons() + "<b>Shapeshifter</b> You can assume humanoid, wolf, or your natural form as a standard action. In humanoid form, you cannot use your natural weapons but can wield weapons and wear armor. In Wolf form, you lose your claw attacks but gain movement 40 feet. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>";
+
+races[99] = {}; // minotaur
+races[99].name = randomize("Minotaur, Asterion");
+races[99].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[99].abilities = "Strength +1, Intelligence +1";
+races[99].size = "Medium";
+races[99].type = "humanoid (monstrous)";
+races[99].speed = "30 feet";
+races[99].senses = "";
+races[99].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Sea Reaver</b> Proficiency with navigator's tools and waterborne vehicles<br>";
+
+races[100] = {}; // minotaur
+races[100].name = randomize("Yakman, Minotaur, Asterion");
+races[100].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[100].abilities = "Strength +1, Wisdom +1";
+races[100].size = "Medium";
+races[100].type = "humanoid (monstrous)";
+races[100].speed = "30 feet";
+races[100].senses = "";
+races[100].traits = Horns() + "<b>Labyrinthine Recall</b> Perfect recall of any path traveled down, land, dungeon, or sea<br><b>Geomancy</b> You know the Druidcraft cantrip<br>";
+
+races[101] = {}; // aetherspace
+races[101].name = "Einherjar";
+races[101].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[101].abilities = "Strength, Constitution +1";
+races[101].size = "Medium";
+races[101].type = "humanoid (celestial)";
+races[101].speed = "30 feet";
+races[101].senses = "darkvision 60 feet, ";
+races[101].traits = Deathless() + "<b>Weapon Training</b> Greataxe, Greatspear<br>";
+
+races[102] = {}; // aetherspace
+races[102].name = "Hrimthur";
+races[102].languages = "Common, Dwarven, Ignan";
+races[102].abilities = "Constitution +2, Strength +1";
+races[102].size = "Medium";
+races[102].type = "humanoid (elemental)";
+races[102].speed = "25 feet";
+races[102].senses = "darkvision 60 feet, ";
+races[102].traits = "<b>Freezing Aura</b> Anyone that touches an Azer or strikes it with a physical attack takes 1d4 points of cold damage<br><b>Frozen Weapon</b> Attacks with natural or metal weapons do 1d6 bonus cold damage<br>";
+
+races[103] = {}; // aetherspace / Dragon Centaur
+races[103].name = randomize("Dracon, Saurian");
+races[103].languages = "Common, Supernal, Draconic";
+races[103].abilities = "Strength, Constitution +1";
+races[103].size = "Medium";
+races[103].type = "humanoid (dragon)";
+races[103].speed = "40 feet";
+races[103].senses = "";
+races[103].traits = Darkvision() + Quadruped() + Armored() + Talons();
+
+races[104] = {}; // aetherspace
+races[104].name = randomize("Daelkyr");
+races[104].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[104].abilities = "Strength, Constitution +1";
+races[104].size = "Medium";
+races[104].type = "humanoid (aberrant)";
+races[104].speed = "30 feet";
+races[104].senses = "";
+races[104].traits = "<b>Human Seeming</b> Without symbiont armor and weaponry, you are physically indistinguishable from a human" + Immortal() + Repletion() + Aberrant() + "<b>Xoriat Nobility</b> All aberrations are biologically programmed not to attack you unless you attack first<br>" + SunlightSensitivity();
+
+races[105] = {}; // fae
+races[105].name = randomize("Bariaur, Cloven, Fey");
+races[105].languages = "Common, " + languages[Math.floor(Math.random()*languages.length)];
+races[105].abilities = "Strength, Constitution +1";
+races[105].size = "Medium";
+races[105].type = "humanoid (fey)";
+races[105].speed = "40 feet";
+races[105].senses = "";
+races[105].traits = Quadruped() + FeyAncestry() + Horns();
+
+races[106] = {}; // aasimar
+races[106].name = randomize("Aasimar, Celestial, Hyperion, Eldar, Empyrean");
+races[106].languages = "Common, Celestial";
+races[106].abilities = "Charisma +2, Wisdom +1";
+races[106].size = "Medium";
+races[106].type = "humanoid (celestial)";
+races[106].speed = "30 feet";
+races[106].senses = "darkvision 60 feet, ";
+races[106].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Thaumaturgy", "Cure Wounds", "Lesser Restoration");
+
+races[107] = {}; // aasimar
+races[107].name = randomize("Aasimar, Celestial, Hyperion, Eldar, Empyrean");
+races[107].languages = "Common, Celestial";
+races[107].abilities = "Charisma +2, Wisdom +1";
+races[107].size = "Medium";
+races[107].type = "humanoid (celestial)";
+races[107].speed = "30 feet";
+races[107].senses = "darkvision 60 feet, ";
+races[107].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Wings()
+
+races[108] = {}; // aasimar
+races[108].name = randomize("Aasimar, Celestial, Hyperion, Eldar, Empyrean");
+races[108].languages = "Common, Celestial";
+races[108].abilities = "Charisma +2, Wisdom +1";
+races[108].size = "Medium";
+races[108].type = "humanoid (celestial)";
+races[108].speed = "30 feet";
+races[108].senses = "darkvision 60 feet, ";
+races[108].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Hero", "Shillelagh", "Detect Evil and Good", "Find Steed");
+
+races[109] = {}; // aasimar
+races[109].name = randomize("Aasimar, Celestial, Hyperion, Eldar, Empyrean");
+races[109].languages = "Common, Celestial";
+races[109].abilities = "Charisma +2, Wisdom +1";
+races[109].size = "Medium";
+races[109].type = "humanoid (celestial)";
+races[109].speed = "30 feet";
+races[109].senses = "darkvision 60 feet, ";
+races[109].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + Spells135("Celestial Legacy", "Dancing Lights", "Find Familiar", "Find Steed", "Charisma");
+
+races[110] = {}; // aasimar
+races[110].name = randomize("Aasimar, Celestial, Hyperion, Eldar, Empyrean");
+races[110].languages = "Common, Celestial";
+races[110].abilities = "Charisma +2, Wisdom +1";
+races[110].size = "Medium";
+races[110].type = "humanoid (celestial)";
+races[110].speed = "30 feet";
+races[110].senses = "darkvision 60 feet, ";
+races[110].traits = Darkvision() + "<b>Celestial Resilience</b> Resistance to necrotic and radiant damage<br>" + "<b>Presence</b> A righteous aura surrounds you when angry or in combat. Any hostile creature within a 20-foot radius of you must succeed on a Will save to resist the effects of your presence. The save DC is Charisma-based, and includes a +2 racial bonus. Those who fail have disadvantage on attacks, Armor Class, and saves for 24 hours or until they successfully hit you. A creature that has resisted or broken the effect cannot be affected again by your presence for 24 hours<br>";
+
+races[111] = {}; // genie
+races[111].name = randomize("Jann, Jinn, Empyrean, Elemental, Eldar");
+races[111].languages = "Common, Primordial";
+races[111].abilities = "Charisma +2, Intelligence +1";
+races[111].size = "Medium";
+races[111].type = "humanoid (elemental)";
+races[111].speed = "25 feet, fly 50 feet";
+races[111].senses = "";
+races[111].traits = Flight() + "<b>Genie Magic</b> You know the Minor Illusion cantrip";
+
+races[112] = {}; // Core Race
+races[112].name = randomize("Aarakocra, Rook, Ravenfolk");
+races[112].languages = "Common, Aarakocra, Auran";
+races[112].abilities = "Dexterity +2, Wisdom +1";
+races[112].size = randomize("Small, Medium");
+races[112].type = "humanoid (monstrous)";
+races[112].speed = "25 feet, fly 50 feet";
+races[112].senses = "";
+races[112].traits = Wings() + Talons();
+
+races[113] = {}; // aetherspace
+races[113].name = randomize("Rook, Ravenfolk, Swanmay");
+races[113].languages = "Common, Auran, " + languages[Math.floor(Math.random()*languages.length)];
+races[113].abilities = "Dexterity +2, Wisdom +1";
+races[113].size = randomize("Small, Medium");
+races[113].type = "humanoid (shapeshifter)";
+races[113].speed = "25 feet";
+races[113].senses = "";
+races[113].traits = "<b>Shapeshifter</b> You can assume humanoid or avian form as a standard action. In avian form your size becomes Tiny, you gain flight speed 50, and you cannot use weapons. Your statistics are otherwise the same in each form. You revert to your true form if you die or become unconscious<br>"
+
+
+
+
+//main
+function main() {
+	// roll up the character
+	race = Math.floor(Math.random()*races.length);
+	//race = 1
+
+	background = Math.floor(Math.random()*backgrounds.length);
+	alignment = Math.floor(Math.random()*alignments.length);
+
+	STR = rollStat();
+	DEX = rollStat();
+	CON = rollStat();
+	INT = rollStat();
+	WIS = rollStat();
+	CHR = rollStat();
+	HP = Math.floor(Math.random()*8)+1 + getBaseMod(CON);
+
+	// show the DMTool menu and refresh button
+	/* buttons
+	document.write("<table cellpadding=6><tr><td valign='top'>")
+	document.write("<input id='menu' type='button' value='&#9776;' onClick='window.location.reload()'>")
+	document.write("<p><input id='reload-button' type='button' value='&#9850;' onClick='window.location.reload()'></td><td>")
+	*/
+
+	// display the character
+
+	document.write("<table cellpadding=0><tr><td><div id='main'> <b>" + getName() + ", ");
+	document.write(races[race].name + " " + backgrounds[background].name + "</b><br>")
+	document.write("<br><i>" + races[race].size + " " + races[race].type + ", " + alignments[alignment] + "</i><p>");
+	document.write("<b>Armor Class</b> " + getAC() + "<br>");
+	document.write("<b>Hit Points</b> " + HP + " (1d8" + getModifier(CON) + ")");
+	document.write("<br><b>Speed</b> " + races[race].speed);
+	//document.write("<br><b>Abilities</b> " + races[race].abilities);
+	document.write("<br><b>Skills</b> "+ backgrounds[background].proficiencies);
+	document.write("<br><b>Senses</b> " + races[race].senses + " passive perception " + (getBaseMod(WIS)+10));
+	document.write("<br><b>Languages</b> "+ races[race].languages + backgrounds[background].languages);
+
+	document.write("<p><table border=0><tr><td valign='top'>");
+
+	document.write("<table cellpadding=7 cellspacing=0 border=0>");
+	document.write("<tr><td>" + STR + "</td><td bgcolor=#e2e2e2><b>STR</b></td><td>");
+	document.write(getModifier(STR) + "</td><td>" + getModifier(STR) + "</td></tr>") ;
+	document.write("<tr><td>" + DEX + "</td><td bgcolor=#e2e2e2><b>DEX</b></td><td>");
+	document.write(getModifier(DEX) + "</td><td>" + getModifier(DEX) + "</td></tr>");
+	document.write("<tr><td>" + CON + "</td><td bgcolor=#e2e2e2><b>CON</b></td><td>");
+	document.write(getModifier(CON) + "</td><td>" + getModifier(CON) + "</td></tr>");
+	document.write("<tr><td>" + INT + "</td><td bgcolor=#e2e2e2><b>INT</b></td><td>");
+	document.write(getModifier(INT) + "</td><td>" + getModifier(INT) + "</td></tr>");
+	document.write("<tr><td>" + WIS + "</td><td bgcolor=#e2e2e2><b>WIS</b></td><td>");
+	document.write(getModifier(WIS) + "</td><td>" + getModifier(WIS) + "</td></tr>");
+	document.write("<tr><td>" + CHR + "</td><td bgcolor=#e2e2e2><b>CHR</b></td><td>");
+	document.write(getModifier(CHR) + "</td><td>" + getModifier(CHR) + "</td></tr></table>");
+
+	document.write("</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>")
+
+	document.write("<table cellpadding=2 cellspacing=0 border=0 ><tr>");
+	document.write("<td>Acrobatics</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Animal Handling</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Arcana</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Athletics</td><td>&nbsp;" + getModifier(STR) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Deception</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>History</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Intimidation</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Medicine</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Nature</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Perception</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Performance</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Persuasion</td><td>&nbsp;" + getModifier(CHR) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Religion</td><td>&nbsp;" + getModifier(INT) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Search</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Sense Motive</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Slight of Hand</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("</tr><tr>");
+	document.write("<td>Stealth</td><td>&nbsp;" + getModifier(DEX) + "&nbsp;&nbsp;</td>");
+	document.write("<td>Survival</td><td>&nbsp;" + getModifier(WIS) + "&nbsp;&nbsp;</td>");
+	document.write("</tr></table><p>");
+
+	document.write("</td></tr></table>")
+
+	document.write("<div id='whitebox'>" + races[race].traits);
+	document.write(backgrounds[background].feature + "</div>");
+
+	document.write("<p><div id='background'>");
+	document.write("<b>Trait</b> ");
+	document.write(backgrounds[background].traits[Math.floor(Math.random() * backgrounds[background].traits.length)]);
+	document.write("<br><b>Ideal</b> ");
+	document.write(backgrounds[background].ideal);
+	document.write("<br><b>Bond</b> ");
+	document.write(backgrounds[background].bonds[Math.floor(Math.random() * backgrounds[background].bonds.length)]);
+	document.write("<br><b>Flaw</b> ");
+	document.write(backgrounds[background].flaws[Math.floor(Math.random() * backgrounds[background].flaws.length)]);
+	document.write("</div>")
+
+	document.write("<p><div id='whitebox'><b>Equipment</b> "+ backgrounds[background].equipment + "</div></div>");
+
+	document.write("</td></tr></table></div>");
+}
+
+main()
+
+</script></body></html>
