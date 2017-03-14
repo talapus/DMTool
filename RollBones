@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+
+import sys
+from random import randint
+
+
+def print_dice(die, rolls):
+    print('\n--- ' + str(rolls) + 'd' + str(die) + ' ---')
+
+
+def print_usage():
+    print('\n' + ' RollBones #1 #2')
+    print('  #1: enter a number for die type (eg: number of faces)')
+    print('  #2: enter a number for how many die roll results to display')
+
+
+def roll_em (die, rolls):
+    print_dice (die, rolls)
+
+    while rolls > 0:
+        output = randint(1,int(die))
+        print (' d' + str(die) + '/#' + str(rolls) + ' | ' + str(output))
+        rolls -= 1
+
+
+try:
+    die = int(sys.argv[1])
+    rolls = int(sys.argv[2])
+    roll_em (die ,rolls)
+except IndexError:
+    print_usage()
+except TypeError:
+    print_usage()
+except ValueError:
+    print_usage()
