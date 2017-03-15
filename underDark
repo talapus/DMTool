@@ -3,6 +3,9 @@
 from sys import argv
 from sys import stdout
 from random import randint
+from random import shuffle
+from faker import Faker
+fake = Faker()
 
 '''
 Generic
@@ -15,29 +18,87 @@ Generic
 	Boneyard
 '''
 
+## scratch
+
+def feature():
+    data = ['feature' + str(randint(0,99))]
+    return(data[randint(0,len(data)-1)])
+
+def furnishing():
+    data = ['furnishing' + str(randint(0,99))]
+    return(data[randint(0,len(data)-1)])
+
+def utensil():
+    data = ['utensil' + str(randint(0,99))]
+    return(data[randint(0,len(data)-1)])
+
+def book():
+    data = ['book' + str(randint(0,99))]
+    return(data[randint(0,len(data)-1)])
+
+def antechamber():
+    data = ['starting_area' + str(randint(0,99))]
+    return(data[randint(0,len(data)-1)])
+
+def obstacle():
+    data = ['obstacle#' + str(randint(0,99)) + '!']
+    return(data[randint(0,len(data)-1)])
+
+def treasure():
+    data = ['treasure' + str(randint(0,99)) + '!']
+    return(data[randint(0,len(data)-1)])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## main
+
 def usage():
     print('underDark [# of chambers] [type(optional)]')
 
+
+def colorize(name, string):
+    color = {}
+    color['black'] = '\033[30m'
+    color['red'] = '\033[31m'
+    color['green'] = '\033[32m'
+    color['orange'] = '\033[33m'
+    color['blue'] = '\033[34m'
+    color['purple'] = '\033[35m'
+    color['cyan'] = '\033[36m'
+    color['darkgrey'] = '\033[90m'
+    color['lightred'] = '\033[91m'
+    color['lightgreen'] = '\033[92m'
+    color['yellow'] = '\033[93m'
+    color['lightblue'] = '\033[94m'
+    color['pink'] = '\033[95m'
+    color['lightcyan'] = '\033[96m'
+    stdout.write(color[name] + string + '\033[0m')
+
+
 def chamber():
-    chamber = ['armory', 'audience chamber', 'aviary', 'banquet room',
-        'barracks', 'latrine', 'bedroom', 'bestiary', 'cell', 'torture chamber', 'laboratory']
-    dressing = ['The air feels damp and clammy', 'You feel a draft', 'You feel a draft of cold air',
-        'A cold and foggy mist clings to you',
-        'A mist covers the floor', 'The air feels warm', 'The air is hazy and humid',
-        'The air is steamy and humid', 'You smell smoke',
-        'Mist covers the ceiling', 'You smell an acrid odor', 'You smell a chemical odor',
-        'You smell a dank or moldy odor',
-        'You smell an earthy odor', 'You smell a manure odor', 'You smell a metallic odor',
-        'You smell an ozone odor', 'You smell a putrid odor', 'You smell a rotting odor',
-        'The air feels salty and moist', 'You smell a smoky odor', 'You smell a stale odor',
-        'You smell a sulfurous odor', 'You smell a stinky odor']
+    chamber = ['small cave', 'round stone chamber', 'room', 'chamber', 'cell', 'basin']
     content = []
-    content.append('A monster (dominant inhabitant)\n\t- motivation: ' + motivation())
-    content.append('A monster (dominant inhabitant) with ' + treasure() + '\n\tmotivation: ' + motivation())
-    content.append('A monster (pet or allied creature)\n\t- motivation: ' + motivation())
-    content.append('A monster (pet or allied creature) guarding ' + treasure())
-    content.append('A monster (random creature)\n\t- motivation: ' + motivation())
-    content.append('A monster (random creature) with ' + treasure() + '\n\t- motivation: ' + motivation())
+    content.append('A monster with motivation: ' + motivation())
+    content.append('A monster with ' + treasure() + ' motivation: ' + motivation())
     content.append(hazard() + ' with ' + treasure())
     content.append(obstacle())
     content.append('A Trap! ' + trap())
@@ -45,12 +106,12 @@ def chamber():
     content.append(trick())
     content.append('The room appears empty')
 
-    if randint(0,2) > 1:
+    if randint(0,3) > 1:
         return('\n\n\t\033[91m' + chamber[randint(0,len(chamber)-1)].title() + '\033[0m\n\t'
-        + dressing[randint(0,len(dressing)-1)] + '\n\tThe room appears empty')
+        + 'The room appears empty')
     else:
         return('\n\n\t\033[91m' + chamber[randint(0,len(chamber)-1)].title() + '\033[0m\n\t'
-        + dressing[randint(0,len(dressing)-1)] + '\n\t' + content[randint(0,len(content)-1)])
+        + content[randint(0,len(content)-1)])
 
 def thing_location():
     data = ['in the cupboard', 'buried shallowly', 'in a cobwebby wall nook', 'beneath a hidden panel',
@@ -79,47 +140,21 @@ def trap():
         'Touched (doorknob, statue)', 'Opened (door, chest)', 'Looked at (mirror, arcane symbol)',
         'Moved (cart, block)']
     severity = ['Setback', 'Dangerous', 'Deadly']
-    effect = ['trap effect: ' + str(randint(0,99))]
-    return('\n\t- Trigger: ' + trigger[randint(0,len(trigger)-1)] + ', '
-    + '\n\t- Severity: ' + severity[randint(0,len(severity)-1)] + ', '
-    + '\n\t- Trap Effect: ' + effect[randint(0,len(effect)-1)])
+    effect = ['#' + str(randint(0,99))]
+    return('Trigger: ' + trigger[randint(0,len(trigger)-1)] + ', '
+    + 'Severity: ' + severity[randint(0,len(severity)-1)] + ', '
+    + 'Effect' + effect[randint(0,len(effect)-1)] + ' ')
 
-def obstacle():
-    data = ['obstacle#' + str(randint(0,99)) + '!']
-    return(data[randint(0,len(data)-1)])
-
-def treasure():
-    data = ['treasure#' + str(randint(0,99)) + '!']
-    return(data[randint(0,len(data)-1)])
 
 def motivation():
     data = ['Find a sactuary', 'Conquer the dungeon', 'Seek an item in the dungeon',
-    'Slay a rival', 'Hide from enemies', 'Recover from a battle', 'Avoid danger', 'Seek wealth']
-    return(data[randint(0,len(motivation)-1)])
+    'Slay a rival', 'Hide from enemies', 'Recover from a battle', 'Avoid danger', 'Seek wealth',
+	'Raise a family', 'Join the church', 'Slay everyone', 'Flee']
+    return(data[randint(0,len(data)-1)])
 
 def hazard():
     data = ['Brown Mold', 'Green Slime', 'Shrieker', 'Spiderwebs', 'Violet fungus', 'Yellow Mold', 'Russet Mold',
     'hazard' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
-def feature():
-    data = ['feature' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
-def furnishing():
-    data = ['furnishing' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
-def utensil():
-    data = ['utensil' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
-def book():
-    data = ['book' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
-def antechamber():
-    data = ['starting_area' + str(randint(0,99))]
     return(data[randint(0,len(data)-1)])
 
 def lighting():
@@ -135,49 +170,48 @@ def passage():
         return(str(randint(1,8)*5) + ' feet wide and ')
 
     def description():
-        description = ['corridor', 'passageway', 'narrow cavern', 'ravine']
+        description = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
         return(description[randint(0,len(description)-1)])
 
-    detail = ['The passage continues ',
-        'There is a door on the right.\nThe passage continues ',
-        'There is a door on the left.\nThe passage continues ',
-        'There is a side passage to the right.\nThe passage continues ',
-        'There is a side passage to the left.\nThe passage continues ',
-        'The passage turns left, continues ',
-        'The passage turns right, continues ']
     return('\033[94m'
-        + lighting() + ' '
         + description() + ' '
         + width()
-        + length() + ' long ' #+ '\n'
-        #+ detail[randint(0,len(detail)-1)]
-        #+ length()
+        + length() + ' long '
         + '\033[0m')
 
 def door():
-    door_type = ['a wooden door', 'a barred and locked wooden door', 'a stone door', 'archway',
-        'jagged break in the wall', 'a barred and locked stone door', 'an iron door', 'a barred and locked iron door',
-        'a portcullis', 'a locked portcullis', 'a wall (secret door)', 'a wall (barred and locked secret door)',
-        'an elevator up', 'a shaft down', 'a chimney down', 'a chimney up', 'stairs up', 'wooden trapdoor',
-        'iron trapdoor', 'stairs down', 'a ladder down', 'a ladder up']
-    if randint(0,4) == 0:
-        return('\033[32m' + door_type[randint(0,len(door_type)-1)] + '\033[0m (trapped)' + trap())
-    else:
+    def complication():
+        complications = ['hidden', 'locked', 'barred', 'trapped']
+        shuffle(complications)
+        wheel = randint(1,3)
+        if wheel == 1:
+            return complications[0]
+        elif wheel == 2:
+            return complications[0] + ' and ' + complications[1]
+        else:
+            return complications[0] + ' and ' + complications[1] + ' and ' + complications[2]
+    door_type = ['wooden door', 'archway', 'jagged break in the wall', 'stone door', 'an iron door',
+        'portcullis', 'rope up', 'slope down', 'slope up', 'wooden trapdoor',
+        'iron trapdoor', 'stairs down', 'a ladder down', 'ladder up', 'rope ladder up a shaft',
+        'rope ladder down into a dark pit', 'hidden trap door', 'pile of rubble', 'gate',
+		'hanging vines', 'curtain of algae', 'waterfall', 'rope bridge across a cavern',
+		'rope bridge over a lava pit', 'rope bridge over a slime pit']
+    if randint(0,99) > 30:
         return('\033[32m' + door_type[randint(0,len(door_type)-1)] + '\033[0m')
+    else:
+        return('\033[32m' + complication() + ' ' + door_type[randint(0,len(door_type)-1)] + '\033[0m')
 
 try:
-    # dungeon_type = argv[1].lower()
     chamber_number = int(argv[1])
-
     print(antechamber() + '\n')
-    # chamber()
     for i in range(chamber_number):
-        print(door().capitalize()
+        print(door()
         + '\n'
         + passage()
         + '\n'
         + door() + '. '
-        + chamber() + '\n')
+        + chamber()
+        + '\n')
 
 except IndexError:
     usage()
