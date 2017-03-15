@@ -18,7 +18,8 @@ Generic
 	Boneyard
 '''
 
-## scratch
+def usage():
+    print('underDark [# of chambers] [type(optional)]')
 
 def feature():
     data = ['feature' + str(randint(0,99))]
@@ -36,10 +37,6 @@ def book():
     data = ['book' + str(randint(0,99))]
     return(data[randint(0,len(data)-1)])
 
-def antechamber():
-    data = ['starting_area' + str(randint(0,99))]
-    return(data[randint(0,len(data)-1)])
-
 def obstacle():
     data = ['obstacle#' + str(randint(0,99)) + '!']
     return(data[randint(0,len(data)-1)])
@@ -49,33 +46,7 @@ def treasure():
     return(data[randint(0,len(data)-1)])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## main
-
-def usage():
-    print('underDark [# of chambers] [type(optional)]')
-
-
-def colorize(name, string):
+def colorize(name, phrase):
     color = {}
     color['black'] = '\033[30m'
     color['red'] = '\033[31m'
@@ -91,14 +62,20 @@ def colorize(name, string):
     color['lightblue'] = '\033[94m'
     color['pink'] = '\033[95m'
     color['lightcyan'] = '\033[96m'
-    stdout.write(color[name] + string + '\033[0m')
+    return(color[name] + phrase + '\033[0m')
+
+def antechamber():
+    data = ['large open space', 'cavern', 'cave opening', 'opening', 'antechamber',
+	'natural antechamber', 'ancient ruin', 'open cave with a pool in the middle',
+	'subterranean lake', 'mushroom forest', 'volcanic feature']
+    return(data[randint(0,len(data)-1)])
 
 
 def chamber():
     chamber = ['small cave', 'round stone chamber', 'room', 'chamber', 'cell', 'basin']
     content = []
-    content.append('A monster with motivation: ' + motivation())
-    content.append('A monster with ' + treasure() + ' motivation: ' + motivation())
+    content.append('A monster (motivation: ' + motivation() + ')')
+    content.append('A monster with ' + treasure() + ' (motivation: ' + motivation() + ')')
     content.append(hazard() + ' with ' + treasure())
     content.append(obstacle())
     content.append('A Trap! ' + trap())
@@ -107,11 +84,10 @@ def chamber():
     content.append('The room appears empty')
 
     if randint(0,3) > 1:
-        return('\n\n\t\033[91m' + chamber[randint(0,len(chamber)-1)].title() + '\033[0m\n\t'
-        + 'The room appears empty')
+        return('\n\n\t' + colorize('blue', chamber[randint(0,len(chamber)-1)].title())
+            + '\n\t' + colorize('blue', 'The room appears empty'))
     else:
-        return('\n\n\t\033[91m' + chamber[randint(0,len(chamber)-1)].title() + '\033[0m\n\t'
-        + content[randint(0,len(content)-1)])
+        return('\n\n\t' + chamber[randint(0,len(chamber)-1)].title() + '\n\t' + content[randint(0,len(content)-1)])
 
 def thing_location():
     data = ['in the cupboard', 'buried shallowly', 'in a cobwebby wall nook', 'beneath a hidden panel',
@@ -163,8 +139,8 @@ def lighting():
     return(data[randint(0,len(data)-1)])
 
 def passage():
-    def length(): # 10 - 90 feet
-        return(str(randint(1,18)*5) + ' feet')
+    def length(): # 10 - 100 feet
+        return(str(randint(1,20)*5) + ' feet')
 
     def width(): # 5 - 40 feet
         return(str(randint(1,8)*5) + ' feet wide and ')
@@ -173,11 +149,9 @@ def passage():
         description = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
         return(description[randint(0,len(description)-1)])
 
-    return('\033[94m'
-        + description() + ' '
+    return(description() + ' '
         + width()
-        + length() + ' long '
-        + '\033[0m')
+        + length() + ' long ')
 
 def door():
     def complication():
@@ -197,21 +171,18 @@ def door():
 		'hanging vines', 'curtain of algae', 'waterfall', 'rope bridge across a cavern',
 		'rope bridge over a lava pit', 'rope bridge over a slime pit']
     if randint(0,99) > 30:
-        return('\033[32m' + door_type[randint(0,len(door_type)-1)] + '\033[0m')
+        return(door_type[randint(0,len(door_type)-1)])
     else:
-        return('\033[32m' + complication() + ' ' + door_type[randint(0,len(door_type)-1)] + '\033[0m')
+        return(complication() + ' ' + door_type[randint(0,len(door_type)-1)])
 
 try:
     chamber_number = int(argv[1])
     print(antechamber() + '\n')
     for i in range(chamber_number):
-        print(door()
-        + '\n'
-        + passage()
-        + '\n'
-        + door() + '. '
-        + chamber()
-        + '\n')
+        print(door() + '\n' + passage() + '\n' + door() + '. ' + chamber() + '\n')
+    print(antechamber() + '\n')
 
 except IndexError:
-    usage()
+	print(antechamber() + '\n')
+	print(door() + '\n' + passage() + '\n' + door() + '. ' + chamber() + '\n')
+	print(antechamber() + '\n')
