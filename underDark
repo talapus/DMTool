@@ -65,11 +65,10 @@ def colorize(name, phrase):
     return(color[name] + phrase + '\033[0m')
 
 def antechamber():
-    data = ['large open space', 'cavern', 'cave opening', 'opening', 'antechamber',
+    data = ['large open space', 'cavern', 'cave opening', 'antechamber',
 	'natural antechamber', 'ancient ruin', 'open cave with a pool in the middle',
-	'subterranean lake', 'mushroom forest', 'volcanic feature']
+	'subterranean lake', 'mushroom forest', 'volcanic feature', 'large cavern']
     return(data[randint(0,len(data)-1)])
-
 
 def chamber():
     chamber = ['small cave', 'round stone chamber', 'room', 'chamber', 'cell', 'basin']
@@ -82,12 +81,11 @@ def chamber():
     content.append('A Trap! ' + trap()+ treasure() + thing_location())
     content.append(trick())
     content.append('The room appears empty')
-
     if randint(0,3) > 1:
-        return('\n\n\t' + colorize('blue', chamber[randint(0,len(chamber)-1)].title())
-            + '\n\t' + colorize('blue', 'The room appears empty'))
+        return('\n- ' + chamber[randint(0,len(chamber)-1)].capitalize() + '. The room appears empty')
     else:
-        return('\n\n\t' + chamber[randint(0,len(chamber)-1)].title() + '\n\t' + content[randint(0,len(content)-1)])
+        return('\n- ' + chamber[randint(0,len(chamber)-1)].capitalize() + '. '
+			+ content[randint(0,len(content)-1)])
 
 def thing_location():
     data = ['in the cupboard', 'buried shallowly', 'in a cobwebby wall nook', 'beneath a hidden panel',
@@ -146,16 +144,15 @@ def passage():
         return(str(randint(1,8)*5) + ' feet wide and ')
 
     def description():
-        description = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
-        return(description[randint(0,len(description)-1)])
+        data = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
+        return(data[randint(0,len(description)-1)])
 
-    return(description() + ' '
-        + width()
-        + length() + ' long ')
+    return(description() + ' ' + width() + length() + ' long')
 
 def door():
     def complication():
-        complications = ['hidden', 'locked', 'barred', 'trapped']
+        complications = ['hidden', 'locked', 'trapped']
+
         shuffle(complications)
         wheel = randint(1,3)
         if wheel == 1:
@@ -163,13 +160,14 @@ def door():
         elif wheel == 2:
             return complications[0] + ' and ' + complications[1]
         else:
-            return complications[0] + ' and ' + complications[1] + ' and ' + complications[2]
+            return complications[0] + ', ' + complications[1] + ' and ' + complications[2]
     door_type = ['wooden door', 'archway', 'jagged break in the wall', 'stone door', 'an iron door',
         'portcullis', 'rope up', 'slope down', 'slope up', 'wooden trapdoor',
         'iron trapdoor', 'stairs down', 'a ladder down', 'ladder up', 'rope ladder up a shaft',
         'rope ladder down into a dark pit', 'hidden trap door', 'pile of rubble', 'gate',
 		'hanging vines', 'curtain of algae', 'waterfall', 'rope bridge across a cavern',
-		'rope bridge over a lava pit', 'rope bridge over a slime pit']
+		'rope bridge over a lava pit', 'rope bridge over a slime pit', 'opening', 'jagged opening',
+		'round opening', 'triangular opening', 'square opening', 'octagonal opening']
     if randint(0,99) > 30:
         return(door_type[randint(0,len(door_type)-1)])
     else:
@@ -177,12 +175,12 @@ def door():
 
 try:
     chamber_number = int(argv[1])
-    print(antechamber() + '\n')
+    print('\n- ' + antechamber().capitalize())
     for i in range(chamber_number):
-        print(door() + '\n' + passage() + '\n' + door() + '. ' + chamber() + '\n')
-    print(antechamber() + '\n')
+        print('- ' + door().capitalize() + ', ' + passage() + ', ' + door() + '. ' + chamber())
+    print('- ' + antechamber().capitalize() + '\n')
 
 except IndexError:
-	print(antechamber() + '\n')
-	print(door() + '\n' + passage() + '\n' + door() + '. ' + chamber() + '\n')
-	print(antechamber() + '\n')
+	print(antechamber().capitalize() + '\n')
+	print(door().capitalize() + '\n' + passage() + '\n' + door() + '. ' + chamber())
+	print(antechamber().capitalize() + '\n')
