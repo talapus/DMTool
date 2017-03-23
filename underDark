@@ -18,9 +18,6 @@ Generic
 	Boneyard
 '''
 
-def usage():
-    print('underDark [# of chambers] [type(optional)]')
-
 def feature():
     data = ['feature' + str(randint(0,99))]
     return(data[randint(0,len(data)-1)])
@@ -44,7 +41,6 @@ def obstacle():
 def treasure():
     data = ['treasure' + str(randint(0,99)) + '!']
     return(data[randint(0,len(data)-1)])
-
 
 def colorize(name, phrase):
     color = {}
@@ -119,7 +115,6 @@ def trap():
     + 'Severity: ' + severity[randint(0,len(severity)-1)] + ', '
     + 'Effect' + effect[randint(0,len(effect)-1)] + ' ')
 
-
 def motivation():
     data = ['Find a sactuary', 'Conquer the dungeon', 'Seek an item in the dungeon',
     'Slay a rival', 'Hide from enemies', 'Recover from a battle', 'Avoid danger', 'Seek wealth',
@@ -145,7 +140,7 @@ def passage():
 
     def description():
         data = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
-        return(data[randint(0,len(description)-1)])
+        return(data[randint(0,len(data)-1)])
 
     return(description() + ' ' + width() + length() + ' long')
 
