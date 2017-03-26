@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+from sys import argv
+
+def usage():
+    print('Usage: blah')
+
+try:
+    thing = argv[1]
+except IndexError:
+    usage()
+
+def basement():
+    return 'basement'
