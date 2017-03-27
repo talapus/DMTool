@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+from sys import argv
+from random import randint
+
+def usage():
+    print('Usage: edifice [#rooms] [type]')
+
+def get_time():
+    return randint(0,24)
+
+def edifice(location):
+    def location():
+        data = ['rural', 'urban', 'industrial', 'residential']
+        return data[randint(0,len(data))]
+
+    def edifice_type():
+        data = ['home', 'warehouse', 'farmhouse', 'office complex', 'factory', 'bank', 'retail store', 'grocery', 'restaurant']
+        return data[randint(0,len(data))]
+
+    def condition():
+        data = ['dilapitaded', 'modern', 'deserted', 'condemned', 'under construction', 'inhabited by vagabonds']
+        return data[randint(0,len(data))]
+
+    def basement():
+        data = ['root cellar', 'dungeon', 'torture chamber', 'cult temple', 'underground complex']
+        return data[randint(0,len(data)-1)]
+
+    if randint(0,1) < 1: #50% chance of a basement
+        return 'Location: ' + location() + '\n'\
+            + 'Edifice_type: ' + edifice_type() + '\n'\
+            + 'Condition: ' + condition() + '\n'\
+            + 'Weather: ' + weather() + '\n'\
+            + 'basement: ' + basement()
+    else:
+        return 'Location: ' + location() + '\n'\
+            + 'Edifice_type: ' + edifice_type() + '\n'\
+            + 'Condition: ' + condition() + '\n'\
+            + 'Weather: ' + weather()
+
+try:
+    edifice_location = argv[2]
+    print 'rooms: ' + argv[1]
+    print edifice(argv[2])
+except IndexError:
+    print argv
+    #usage()
