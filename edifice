@@ -1,23 +1,35 @@
 #!/usr/bin/env python
 
 from sys import argv
+from sys import stdout
 from random import randint
 
 def edifice(place):
     location = {}
-    location['rural'] = ['Farmhouse', 'Barn', 'Shack']
-    location['urban'] = ['Police station', 'Fire station', 'Grocery Store', 'Bank', 'Office Complex', 'Factory',
-                        'Warehouse', 'Office Complex']
-    location['any'] = ['Residence', 'Gas station', 'Grocery Store', 'Transit station', 'Gun store', 'Hardware store',
-                        'Restaurant', 'Burned wreckage', 'Demolished rubble', 'Empty lot with a hidden trap door']
+    location['rural'] = ['Farmhouse', 'Barn', 'Shack', 'Cannery', 'Butcher']
+    location['urban'] = ['Police station', 'Fire station', 'Grocery Store', 'Bank',
+                         'Office Complex', 'Factory']
+    location['any'] = ['Residence', 'Gas station', 'Grocery Store', 'Transit station',
+                        'Gun store', 'Hardware store', 'Restaurant', 'Burned wreckage',
+                        'Demolished rubble', 'Empty lot', 'Warehouse', 'Vacant building',
+                        'General store']
     if place == 'rural':
-        return location[place][randint(0,len(location[place])-1)]
+        stdout.write(location[place][randint(0,len(location[place])-1)])
+        stdout.write('. ')
+        if randint(0,3) > 0:
+            stdout.write('Ground floor, cellar')
     elif place == 'urban':
-        return location[place][randint(0,len(location[place])-1)]
+        stdout.write(location[place][randint(0,len(location[place])-1)])
+        stdout.write('. ')
+        stdout.write('Floors: ' + randint(0,10))
     else:
-        return location['any'][randint(0,len(location['any'])-1)]
+        stdout.write(location['any'][randint(0,len(location['any'])-1)])
+        stdout.write('. ')
+        if randint(0,3) > 0:
+            stdout.write('Hidden trap door to cellar')
+    print
 
 try:
-    print(edifice(argv[1]))
+    edifice(argv[1])
 except IndexError:
-    print(edifice('any'))
+    edifice('any')
