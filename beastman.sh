@@ -40,7 +40,7 @@ roll_mutation() {   # determines the beastman's chaos-granted mutation
               "body that weeps maggots, larvae, and flies from its open maw, ears, and eyes."
               "thick, leathery skin and the head of ${head}"
               "dark, shiny skin and the head of ${head}"
-              "long unhealing sores with black hairs growing from them and a head of ${head}"
+              "unhealing sores that have black hairs growing from them and a head of ${head}"
               "$(( 2 + RANDOM % 3)) arms and a head of ${head}"
               #"two heads: ${head} and ${head}"  # ant and ant
               "translucent skin and glowing bones"
