@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+
+'''
+creates various tasty investigators
+'''
+
+from random import randint
+from random import choice
+from faker import Faker
+
+
+class Investigator(object):
+    """A class that makes various tasty investigators."""
+    def __init__(self, special, human):
+        f = Faker()
+        self.occupation = choice(['fireman', 'policeman', 'gas station attendant', 'janitor', 'toll collector', 
+                                  'retail sales clerk', 'cashier', 'accountant', 'lawyer', 'paralegal', 
+                                  'project manager', 'senator', 'official', 'executive', 'sales person', 
+                                  'district manager', 'office manager', 'waste removal technician', 
+                                  'bus driver', 'train operator', 'pilot', 'tugboat captain', 'cruise ship captain', 
+                                  'baggage handler', 'security guard', 'stevedore', 'cooper', 'distiller', 
+                                  'bartender', 'teacher', 'principal', 'counsellor', 'migrant farm worker', 
+                                  'cattle hand', 'rancher', 'farmer', 'taxi driver', 'stock trader', 'dry cleaner', 
+                                  'carpet cleaner', 'painter', 'electrician', 'plumber', 'carpenter', 
+                                  'construction worker', 'pest exterminator', 'email marketer', 
+                                  'software developer', 'car mechanic', 'neurosurgeon', 'heart surgeon', 
+                                  'pediatrician', 'judge', 'telephone repairman', 'appliance repairman', 
+                                  'shoe salesman', 'vacuum cleaner salesman', 'psychologist', 'nurse', 'dentist', 
+                                  'writer', 'newscaster', 'weather man', 'fashion designer', 
+                                  'vice president of {}'.format(choice(['sales', 'marketing', 'retail'])),
+                                  'CTO', 'CEO', 'CFO', 'COO', 'CSO', 'CIO', 
+                                  'air traffic control coordinator', 'air marshal', 'us marshal', 'army reservist', 
+                                  'air force pilot', 'naval officer', 'marine'])
+        self.quality = choice(['strong', 'quick', 'resilient', 'smart', 'persuasive', 'strange'])
+        self.special = special
+        self.human = human
+        self.name = f.name()
+        self.str = randint(3, 18)
+        self.agi = randint(3, 18)
+        self.sta = randint(3, 18)
+        self.int = randint(3, 18)
+        self.per = randint(3, 18)
+        self.lck = randint(3, 18)
+
+    def mod(self, stat):
+        if stat < 4:
+            return ' -3'
+        elif stat in [4, 5]:
+            return ' -2'
+        elif stat in [6, 7, 8]:
+            return ' -1'
+        elif stat in [9, 10, 11, 12]:
+            return ''
+        elif stat in [13, 14, 15]:
+            return '+1'
+        elif stat in [16, 17]:
+            return '+2'
+        else:
+            return '+3'
+
+    def description(self):
+        print("{} is a {} {} who {}.".format(self.name, self.quality, self.occupation, self.special))
+
+    def is_human(self):
+        if not self.human:
+            # EQ: Alignment: Migo. Foci: Outer Gods, Bioscience. Explanation: Reversal of surgical procedure due to brain tissue regeneration. 
+            # DS: Alignment: Chthulu Foci: the Abyss, Great Old Ones. Explanation: Evolution
+            # YI: A echo formed from contact with the Great Race. Foci: psychic powers, energy science. Evolution: self-realization over time
+            # OT: 'Human' from an alternate dimension/timeline. Foci: Dimensional science. Weird tech. Explanation: Selective memory modification devices.
+            # TI: Alignment: Yog-Sothoth. Foci: Natural weapons, Curvatures of spacetime. Hates Yithians and Otherworlders of the time-travelling variety. Explanation: Gradual realization of instinctual impulses that have always been there. You wake up in unfamiliar surroundings with blood on your hands sometimes. 
+            # OP: Alignment: Serpent people. Foci: Sorcery, Alchemy. Explanation: Break the curse with a ritual learned through drug-induced vision quests and contact with serpent totems. 
+            # DL: 'Human' from the dreamlands moon. Alignment: Moon-beasts. Foci: Dreamlands, Slaves. Explanation: Lucid dreaming. 
+            inhumans = ['Exquisite Corpse', 'Deep Spawn', 'Yithian', 'Otherworlder', 'Tindalosian',
+                        'Ophidian', 'Denizen of Leng']
+            print("{} is {}".format(self.name, choice(inhumans)))
+
+        else:
+            print("{} is human".format(self.name))
+
+
+
+if __name__ == '__main__':
+    p = Investigator("knows the truth", human=False)
+    p.description()
+    p.is_human()
+    print('STR {} {}'.format(p.str, p.mod(p.str)))
+    print('AGI {} {}'.format(p.agi, p.mod(p.agi)))
+    print('STA {} {}'.format(p.sta, p.mod(p.sta)))
+    print('INT {} {}'.format(p.int, p.mod(p.int)))
+    print('PER {} {}'.format(p.per, p.mod(p.per)))
+    print('LCK {} {}'.format(p.lck, p.mod(p.lck)))

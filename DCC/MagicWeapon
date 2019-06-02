@@ -1,0 +1,499 @@
+#!/usr/bin/env python3
+
+from random import randint
+from random import choice
+from random import shuffle
+from sys import stdout
+
+
+def get_name():
+    if randint(0,4) == 0:
+        names = ['Corpsemaker', 'Bloodletter', 'Lightbringer', 'Redemption',
+                 'Rhalthrin', 'Felthorn', 'Headsplitter', 'Greysteil', 'Gram', 'Durandal',
+                 'Joyeuse', 'Sharur', 'Tizona', 'Colada', 'Caliburn', 'Clarent', 'Rhongomaint',
+                 'Almace', 'Curtana', 'Rhongomiant', 'Fragarach', 'Caladbolg', 'Tyrfing',
+                 'Skofnung', 'Ridil', 'Mistilteinn', 'Lævateinn', 'Hrotti', 'Gambanteinn',
+                 'Sumarbrand', 'Dragvandil', 'Angurvadal', 'Dáinsleif', 'Anglachel', 'Caudimordax',
+                 'Narsil', 'Anduril', 'Aiglos', 'Justice', 'Mourning', 'Repentence', 'Daybreak', 'Zysygy']
+        return choice(names)
+    else:
+        word1 = ['Battle', 'War', 'Night', 'Demon', 'Doom', 'Dark', 'Red', 'Black', 'Grey',
+                 'Blood', 'Chaos', 'Sky', 'Deep', 'Star', 'Sun', 'Moon', 'Shadow']
+        word2 = ['bringer', 'bane', 'steel', 'fire', 'wolf', 'hound', 'hawk', 'mourn',
+                 'storm', 'forged', 'falcon', 'drake', 'thorn', 'storm']
+        return choice(word1) + choice(word2)
+
+
+def get_alignment():
+    alignments = ['lawful', 'neutral', 'chaotic']
+    return(choice(alignments))
+
+
+def get_type():
+    weapons = ['dagger', 'short sword', 'long sword', 'great sword', 'great axe',
+               'battle axe', 'great hammer', 'war hammer', 'mace', 'club', 'spear']
+    return(choice(weapons))
+
+
+def get_damage(weapon):
+    if weapon  == 'dagger':
+        return '1d4'
+    elif weapon in ['short sword', 'war hammer', 'mace']:
+        return '1d6'
+    elif weapon in ['long sword', 'battle axe', 'spear']:
+        return '1d8'
+    elif weapon in ['great sword', 'great axe']:
+        return '1d10'
+    else:
+        return None
+
+
+def get_elementals():
+    if randint(0,1) == 0:
+        return 'Elementals'
+    else:
+        elementals = ['Fire', 'Water', 'Air', 'Earth']
+        return choice(elementals) + ' elementals'
+
+
+def get_bane_type():
+    banes = ['Goblinoids', 'Giants', 'Lycanthropes', 'Un-dead', 'Wizards', 'Demons', 'Dragons',
+    'Creatures of opposed alignment', 'Vampires', 'Elves', get_elementals(), 'Clerics', 'Dwarves',
+    'Halflings', 'Men', 'Orcs', 'Fey', 'Thieves', 'Warriors', 'Serpents', 'Naga', 'Sphinxes', 'Golems',
+    'Unicorns', 'Gods']
+    return choice(banes)
+
+
+def get_bane_effect():
+    effects = ['The weapon urges you to attack your Bane at every opportunity (ego check)',
+               'Additional +1 attack bonus', 'Additional +1 damage bonus',
+               'Additional +1 to attack and damage',
+               'Ego check when facing your Bane or gain +4 Strength and Stamia for 2d6 rounds. Exhausted for 1d6 rounds afterwards',
+               'The weapon can be thrown with a 60\' range and always returns to the wielder\'s hand when attacking Banes. It uses the attacker\'s normal missle attack roll when thrown, but includes his or her Strength modifier to damage',
+               '+1 to critical hit threat range (if you normally scored critials on a 19-20, now you will score on 18-20)',
+               'Allies within 100\' engaged in battle against Bane gain +2 bonus to all saving \tthrows and morale checks',
+               'Weapon will attempt to persuade everyone that it can communicate with to attack the Bane under any circumstances (ego check for wielder and possibly others)',
+               'Wounds caused by the weapon against the Bane bleed, inflicting an additional 1 hp of damage (cumulative, per hit) per round until magically healed',
+               'After a direct hit, weapon prevents Bane from using one of its natural powers (as determined by the Judge) for one full day. If Bane does not hav any specific natural powers (eg: if Bane is "men"), weapon gives victim a cumulative -1 attack modifier for every direct hit (fades after 1 day)',
+               'Weapon inflicts normal damage plus 1d4 points of ability score drain per hit against Bane. Determine ability score with 1d5: 1.Strength, 2.Stamina, 3.Agility, 4.Personality, 5.Intelligence',
+               'Allies can fire into melee between wielder and Bane at no penalty and no chance of hitting wielder. Allies attacking Bane with missle fire within 100\' of weapon receive a +1 attack bonus',
+               'A successful Fort save (DC 1d20+10) reduces damage from Bane by half',
+               'Additional 1d10 damage on a critical hit',
+               'Bane must resist Will save vs. DC 1d20+10 or be sent back to its native plane or lair',
+               '+1d4 damage to Bane',
+               '+1d6 damage to Bane, then another +1d4 the following round',
+               'When battling Bane, weapon can summon reinforcements which are a creature type anthithetical to the Bane, of total HD equal to half of the wielder. Weapon can summon 1/day with 50% chance of success for duration of 1d4 turns',
+               'Weapon can detect Bane creatures within 100\', even if invisible or otherwise concealed, and can overcome magical defenses against detection as if with a +10 Will save or spell check', 
+               'Wielder gains +2 AC bonus when defending against attacks from the Bane',
+               'Additional +2 attack', 'Additional +2 damage', 'Additional +2 attack and damage',
+               'Bane must make a Fort save (DC = 1d20+10) or instantly die when struck']
+    return (choice(effects))
+
+
+def get_special(roll, alignment):
+    if roll == 0:
+        return 'No special purpose'
+    if roll == 1:
+        if alignment == 'lawful':
+            return 'enforce the law'
+        elif alignment == 'neutral':
+            return 'avoid conflict'
+        elif alignment == 'chaotic':
+            return 'undermine authority'
+    if roll == 2:
+        if alignment == 'lawful':
+            return 'protect the weak'
+        elif alignment == 'neutral':
+            return 'spill the blood of no man'
+        elif alignment == 'chaotic':
+            return 'dominate others'
+    if roll == 3:
+        if alignment == 'lawful':
+            return 'punish evildoers'
+        elif alignment == 'neutral':
+            return 'Bridge understanding between enemies'
+        elif alignment == 'chaotic':
+            return 'Reward the ambitious at all costs'
+    if roll == 4:
+        if alignment == 'lawful':
+            return 'Punish murderers'
+        elif alignment == 'neutral':
+            return 'Live alone as a warrior-hermit'
+        elif alignment == 'chaotic':
+            return 'Punish interlopers and those who interfere'
+    if roll == 5:
+        if alignment == 'lawful':
+            return 'Punish thieves'
+        elif alignment == 'neutral':
+            return 'Bring balance to a specific place'
+        elif alignment == 'chaotic':
+            return 'Acquire wealth through theft'
+    if roll == 6:
+        if alignment == 'lawful':
+            return 'Jail the guilty'
+        elif alignment == 'neutral':
+            return 'Take no sides'
+        elif alignment == 'chaotic':
+            return 'Free prisoners'
+    if roll == 7:
+        if alignment == 'lawful':
+            return 'Provide charity to the needy'
+        elif alignment == 'neutral':
+            return 'Achieve perfect self-harmony'
+        elif alignment == 'chaotic':
+            return 'Spread the seven deadly sins'
+    if roll == 8:
+        if alignment == 'lawful':
+            return 'Defend against the incursion of Chaos'
+        elif alignment == 'neutral':
+            return 'Become one with nature'
+        elif alignment == 'chaotic':
+            return 'Defend against the incursion of Law'
+    if roll == 9:
+        if alignment == 'lawful':
+            return 'Slay chaotic creatures'
+        elif alignment == 'neutral':
+            return 'Break all allegiances'
+        elif alignment == 'chaotic':
+            return 'Slay lawful creatures'
+    if roll == 10:
+        if alignment == 'lawful':
+            return 'Slay chaotic dragons'
+        elif alignment == 'neutral':
+            return 'Purge the world of all paragons of Law and Chaos'
+        elif alignment == 'chaotic':
+            return 'Slay lawful dragons'
+    if roll == 11:
+        if alignment == 'lawful':
+            return 'Slay chaotic demons'
+        elif alignment == 'neutral':
+            return 'Slay one lawful creature for every chaotic creature slain, and visa versa'
+        elif alignment == 'chaotic':
+            return 'Slay lawful outsiders'
+    if roll == 12:
+        if alignment == 'lawful':
+            return 'Build monuments to great heroes'
+        elif alignment == 'neutral':
+            return 'Bring peace between gods'
+        elif alignment == 'chaotic':
+            return 'Build a monument to Chaos from the rubble of civilization'
+    if roll == 13:
+        if alignment == 'lawful':
+            return 'Build the world\'s greatest city'
+        elif alignment == 'neutral':
+            return 'Seek the Void'
+        elif alignment == 'chaotic':
+            return 'Destroy the world\'s kindoms, one by one'
+    if roll == 14:
+        if alignment == 'lawful':
+            return 'Slay a specific Chaos Lord, demon, or unique monster'
+        elif alignment == 'neutral':
+            return 'Deliver an esoteric item to an identified place at one point of time, performing one \ntiny step in a master plan beyond any man\'s understanding'
+        elif alignment == 'chaotic':
+            return 'Slay a specific ero of Law, such as an angel or celestial'
+    if roll == 15:
+        if alignment == 'lawful':
+            return 'Clear the world of all obstacles to the imposition of Law'
+        elif alignment == 'neutral':
+            return 'Prepare the world for the return of the Old Ones'
+        elif alignment == 'chaotic':
+            return 'Clear the world for the invasion of Chaos'
+    else:
+        newroll = randint(1, 15)
+        newroll2 = randint(1, 15)
+        data = get_special(newroll, alignment) + ', ' + get_special(newroll2, alignment)
+        return data
+
+
+def get_power(level):
+    roll = randint(1,100)
+    if level == 'I':  # natural
+        if roll < 6:
+            return 'Power: Read any non-magical map at will'
+        if roll >= 6 and roll <= 10:
+            return 'Power: Read 1d6 randomly determined languages'
+        if roll <= 11 and roll <= 15:
+            return 'Power: Cast Comprehend Languages 1/day'
+        if roll <= 16 and roll <= 20:
+            return 'Power: Speak thieves cant'
+        if roll <= 21 and roll <= 25:
+            return 'Power: Detect secret doors within 1d6 x 10\''
+        if roll <= 26 and roll <= 30:
+            return 'Power: Detect gems within 1d4 x 10\''
+        if roll <= 31 and roll <=35:
+            return 'Power: Detect gold within 1d6 x 10\''
+        if roll <= 36 and roll <= 40:
+            return 'Power: Detect evil within 1d4 x 10\''
+        if roll <= 41 and roll <= 45:
+            return 'Power: Detect good within 1d4 x 10\''
+        if roll <= 46 and roll <= 50:
+            return 'Power: Detect traps within 2d4 x 10\''
+        if roll <= 51 and roll <= 55:
+            return 'Power: Cast Detect Magic 1/day'
+        if roll <= 56 and roll <= 60:
+            return 'Power: Cast Detect Magic 2/day'
+        if roll <= 61 and roll <= 65:
+            return 'Power: Cast Detect Invisible 1/day'
+        if roll <= 66 and roll <= 70:
+            return 'Power: Cast Locate Object 2/day'
+        if roll <= 71 and roll <= 75:
+            return 'Power: Shed light with 20\' radius, at will'
+        if roll <= 76 and roll < 80:
+            return 'Power: Obscure surroundings with 20\' globe of darkness, at will'
+        if roll <= 81 and roll <= 85:
+            return 'Power: Detect sloping passages within 1d10 x 10\''
+        if roll <= 86 and roll <= 90:
+            return 'Power: Detect water within 1d8 x 10\''
+        if roll <= 91 and roll <= 95:
+            return 'Power: Detect certain creature level within 1d10 x 100\' (eg: spiders, dragons, goblinoids, men, etc.)'
+        if roll <= 96 and roll <= 99:
+            return 'Power: Wielder gains Infravision 120\''
+        else:
+            pass
+    elif level == 'II':  # combat
+        if roll <= 5:
+            return 'Crippler. Always roll critical hits as warrior of one level higher than wielder'
+        if roll <= 7 and roll <= 10:
+            return 'Flame Brand. Ignite in flame 3/day. Duration 6 rounds. Inflicts additional 1d6 damage and ignites targerts on fire (Ref save to avoid; DC = 1d10+5)'
+        if roll <= 11 and roll <= 15:
+            return 'Flame tongue. Launch jet of flame 1/day. Jet is cone, 40\' long, and 10\' wide at the end. All within take 2d6 damage and may catch on fire (Ref save to avoid; DC = 1d10+10)'
+        if roll <= 16 and roll <= 20:
+            return 'Frostburn. Inflict additional 1d3 cold damage with every strike. Double damage against fire elementals'
+        if roll <= 21 and roll <= 24:
+            return 'Cleave. Each time an enemy is slain with this blade, the wielder automatically receives another attack (but cannot move). Note that certain bloodthirsty blades may attempt to force the wielder to attack an ally'
+        if roll <= 25 and roll <= 29:
+            return 'Vampiric touch. Any time the wielder inflicts 10 or more points of damage in a single stroke, he heals 1 point'
+        if roll <= 30 and roll <= 32:
+            return 'Life drainer. the blade drains 1d4 XP with every blow, in addition to other damage'
+        if roll <= 33 and roll <= 37:
+            return 'Regenerator. When wielding this blade, the wielder\'s natural rate of healing is doubled. In addition, the wielder recovers twice as many hit points when a cleric lays hands upon him.'
+        if roll <= 38 and roll <= 39:
+            return 'Energy mimic. When attacked by any form of energy attack (e.g.: fire, cold, force, electricity, etc.) the wielder may attempt to capture the energy within the sword. Make an attack roll (this is not actually an attack, but reflects the sword\'s ability. Note that it does not prevent the wielder from taking damage. Attempt saves as normal per the spell effect.) If the attack roll exceeds the spell check DC of the energy effect, the wielder captures that effect. He may unleash an identical effect as an attack action at some point within the next 24 hours. Once unleashed, the effect is lost. The sword only retains the most recent captured effect'
+        if roll <= 40 and roll <= 44:
+            return 'Shock blade. Inflict an additional 1d4 electrical damage with every strike. Doubled to 2d4 if opponent wears metal armor, is in the water, or is composed of metal (such as a golem or living statue)'
+        if roll == 45:
+            return 'Vorpal blade. On any critical hit, the wielder automatically decapitates enemy, causing instant death'
+        if roll <= 46 and roll <= 50:
+            return 'Thunder blade. In place of an attack, the wielder may strike the ground to create the resounding boom of thunder. All enemies within 40\' take 1d8 points of sonic damage (no save)'
+        if roll <= 51 and roll <= 55:
+            return 'Eviscerator. When rolling damage, the wielder rolls an additional damage die any tie he rools the highest result on a die. For example, if this weapon is a long sword and the wielder rolls an 8 on the 1d8 damage roll, he then rolls another 1d8 and adds that to the damage result. If that second 1d8 produces another 8, he rolls again, and so on'
+        if roll <= 56 and roll <= 60:
+            return 'Medusa\'s Touch. A creature struck by this blade must make a Fort save (DC = 1d10+10) or be turned to stone permanently'
+        if roll <= 61 and roll <= 70:
+            return 'Great strength. Wielder\'s Strength is increased by +4 while wielding the blade'
+        if roll <= 71 and roll <= 75:
+            return 'Holy brand. Inflicts an additional +1d4 bonus to attack rolls'
+        if roll <= 76 and roll <= 81:
+            return 'Precise strike. Additional +1d4 bonus to attack rolls'
+        if roll <= 82 and roll <= 86:
+            return 'Whirlwind strike. Instead of making his normal attack, the wielder can make two attacks in a single round, but rolls 1d10 for each attack instead of 1d20. He applies his normal attack bonus. Critical hits are not possible when attacking in this manner'
+        if roll <= 87 and roll <= 91:
+            return 'Armor breaker. On any critical hit, the opponent\'s armor is destroyed, in addition to other effects'
+        if roll <= 92 and roll <= 96:
+            return 'Weapon breaker. On any critical hit, the opponent\'s weapon is destroyed, in addition to other effects. If the creature has natural weapons, they are maimed (e.g. claws broken, teeth shattered, etc.)'
+        if roll <= 97 and roll <= 99:
+            return 'Thowing blade. Sword can be thrown up to 20\' to make a ranged attack. It always returns to its owner\s hand after a throw'
+        else:
+            pass # TODO: Roll again twice...
+    elif level == 'III':  # magical
+        if roll <= 7:
+            return 'Spirit healer. Wielder heals spellburn at 3x the normal rate: with no rest, heals 3 points of ability score loss each night, and with rest, heals 6 points each night'
+        if roll <= 8 and roll <= 14:
+            return 'Spellburn reservoir. Each day, the wielder can burn up to 3 points of the sword\'s intelligence on spellburn to affect his spellcasting as if he were spellburning his own abilities. The sword\'s lost ability scores heal in full each night'
+        if roll <= 15 and roll <= 20:
+            return 'Spell magnifier. The wielder casts all spells at +1 caster level'
+        if roll <= 21 and roll <= 25:
+            return 'Shift planes. The wielder can shift to an adjacent plane 1/day, arriving in the position corresponding to his current position. There is a 10% chance that the sword also allows him to take along up to 1d4+1 allies with each plane shift'
+        if roll <= 26 and roll <= 30:
+            return 'Demon binding. With any successful strike against a demon or other extraplanar creature, the target must make a DC20 Will save or be bound to its current exact location for 1d4 turns. It cannot take any steps or teleport out unless this effect is magically dispelled'
+        if roll <= 31 and roll <= 39:
+            return 'Summon creature. The sword is magically keyed to a specific creature type (e.g.: wolf, lion, pegasus, etc). The wielder can summon each creature 1d3 times per day'
+        if roll <= 40 and roll <= 51:
+            return 'Magical Power: Level III power'
+        if roll <= 52 and roll <= 58:
+            return 'Magical Power: Level III power'
+        if roll <= 59 and roll <= 65:
+            return 'Magical Power: Level III power'
+        if roll <= 66 and roll <= 75:
+            return 'Magical Power: Level III power'
+        if roll <= 76 and roll <= 84:
+            return 'Magical Power: Level III power'
+        if roll <= 85 and roll <= 90:
+            return 'Magical Power: Level III power'
+        if roll <= 51 and roll <= 55:
+            return 'Magical Power: Level III power'
+        if roll <= 91 and roll <= 94:
+            return 'Magical Power: Level III power'
+        if roll <= 95 and roll <= 97:
+            return 'Magical Power: Level III power'
+        else:
+            return 'Magical Power: Level III power'
+    else:
+        return None
+
+
+# determine weapon type
+roll = randint(1,100)
+if roll < 51:
+    ALIGNMENT = get_alignment()
+    BONUS = '+1'
+    INT = randint(1, 6)
+    COMMUNICATION = None
+    BANES = None
+    roll = randint(1, 12) - 6 #'1d12-6'
+    if roll < 0: roll = 0
+    SPECIAL_ROLL = roll
+    if randint(0, 1) == 0:
+        POWERS = get_power('I')
+    else:
+        POWERS = None
+
+elif roll > 50 and roll < 76:
+    ALIGNMENT = get_alignment()
+    BONUS = '+1'
+    INT = randint(1, 6) + 2
+    COMMUNICATION = 'simple urges'
+    BANES = 1
+    SPECIAL_ROLL = randint(1, 6) #'1d6'
+    if randint(0, 3) != 0:
+        POWERS = get_power('I')
+    else:
+        POWERS = None
+
+elif roll > 75 and roll < 86:
+    ALIGNMENT = get_alignment()
+    BONUS = '+1'
+    INT = randint(3,12)
+    COMMUNICATION = 'simple urges'
+    BANES = randint(1, 3) - 1
+    SPECIAL_ROLL = randint(2, 12) + 6 #'1d6 + 1d6+6'
+    if randint(0, 1) == 0:
+        POWERS = get_power('I')
+    else:
+        POWERS = get_power('I') + '\n' + get_power('II')
+
+elif roll > 85 and roll < 91:
+    ALIGNMENT = get_alignment()
+    COMMUNICATION = 'empathy'
+    BONUS = '+1'
+    INT = randint(2, 12)
+    BANES = randint(1, 4) - 1
+    SPECIAL_ROLL = randint(1, 12) #'1d12'
+    if randint(0, 3) != 0:
+        POWERS = get_power('II') + '\n  '
+        for i in range(randint(1, 3)):
+            POWERS += get_power('I') + '\n '
+    else:
+        POWERS = ''
+        for i in range(randint(1, 3)):
+            POWERS += get_power('I') + '\n '
+
+
+elif roll in [91, 92, 93, 94]:
+    ALIGNMENT = get_alignment()
+    BONUS = '+2'
+    INT = randint(2, 12) + 2
+    COMMUNICATION = randint(2, 22) #'1d8 then 1d14'
+    BANES = randint(1,4)
+    SPECIAL_ROLL = randint(1, 6) #'1d6'
+    if randint(0, 1) == 0:
+        POWERS = get_power('III') + '\n '
+        for i in range(randint(1, 4)):
+            if randint(0, 1) == 0:
+                POWERS += get_power('I') + '\n '
+            else:
+                POWERS += get_power('II') + '\n '
+    else:
+        POWERS = ''
+        for i in range(randint(1, 4)):
+            if randint(0, 1) == 0:
+                POWERS += get_power('I') + '\n '
+            else:
+                POWERS += get_power('II') + '\n' 
+
+elif roll in [95, 96]:
+    ALIGNMENT = get_alignment()
+    BONUS = '+2'
+    INT = randint(3, 18)
+    COMMUNICATION = 'speech'
+    BANES = randint(1, 3) + 1
+    SPECIAL_ROLL = randint(3, 42) #'1d14 three times'
+    if randint(0, 3) != 0:
+        POWERS = get_power('III') + '\n '
+        for i in range(randint(1, 4)):
+            if randint(0, 1) == 0:
+                POWERS += get_power('I') + '\n '
+            else:
+                POWERS += get_power('II') + '\n '
+    else:
+        POWERS = ''
+        for i in range(randint(1, 4)):
+            if randint(0, 1) == 0:
+                POWERS += get_power('I') + '\n '
+            else:
+                POWERS += get_power('II') + '\n '
+
+elif roll in [97, 98]:
+    ALIGNMENT = get_alignment()
+    if randint(0, 100) > 74:
+        BONUS = '+4'
+    else:
+        BONUS = '+3'
+    INT = randint(3, 18) + 2
+    COMMUNICATION = 'telepathy'
+    BANES = randint(1, 4) + 1
+    SPECIAL_ROLL = randint(2, 12) + 6 #'1d6 + 1d6+6'
+    POWERS = get_power('III') + '\n '
+    for i in range(randint(1, 4)):
+        if randint(0, 1) == 0:
+            POWERS += get_power('I') + '\n '
+        else:
+            POWERS += get_power('II') + '\n '
+
+elif roll in [99, 100]:
+    ALIGNMENT = get_alignment()
+    bonusroll = randint(0, 100)
+    if bonusroll > 84:
+        BONUS = '+5'
+    elif bonusroll < 50:
+        BONUS = '+3'
+    else:
+        BONUS = '+4'
+    INT = randint(3, 18) + 4
+    COMMUNICATION = 'speech and telepathy'
+    BANES = randint(2, 8)
+    SPECIAL_ROLL = randint(2, 12) + 10 #'1d6 + 1d6+10'
+    POWERS = ''
+    for i in range(0, randint(1, 4) + 2):
+        if randint(0, 1) == 0:
+            POWERS += get_power('I') + '\n'
+        else:
+            POWERS += get_power('II') + '\n'
+    for i in range(randint(1, 3)):
+        POWERS += get_power('III') + '\n'
+
+else:
+    print('else? {}'.format(roll))
+
+# display weapon
+stdout.write('\n{}, {} {}: INT {}; AL {}; Communication: {}'.format(get_name(),
+                                                                    BONUS,
+                                                                    get_type(),
+                                                                    INT,
+                                                                    ALIGNMENT,
+                                                                    COMMUNICATION))
+
+if get_special(SPECIAL_ROLL, ALIGNMENT) == 'No special purpose':
+    pass
+else:
+    stdout.write('; Purpose: {}'.format(get_special(SPECIAL_ROLL, ALIGNMENT)))
+
+if BANES != None:
+    #print('')
+    for i in range(BANES):
+        stdout.write('; Bane of {}: {}'.format(get_bane_type(), get_bane_effect()))
+
+if POWERS != None:
+    print('; {}'.format(POWERS))
+
+print('') #-%

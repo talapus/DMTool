@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+
+from random import randint
+from random import choice
+from random import shuffle
+from sys import stdout
+
+
+def get_name():
+    def get_vowel(number=1):
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        shuffle(vowels)
+        segment = ''
+        for i in range(number):
+            segment += vowels.pop()
+        return segment
+
+    def get_consonant(number=1):
+        consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+        shuffle(consonants)
+        segment = ''
+        for i in range(number):
+            segment += consonants.pop()
+        return segment
+
+
+    def get_segment(segtype):
+        if segtype == 'vowel':
+            if randint(0, 1) == 0:
+                segment = get_vowel(2)
+            else:
+                segment = get_vowel()
+            return segment
+        elif segtype == 'consonant':
+            if randint(0, 1) == 0:
+                segment = get_consonant(2)
+            else:
+                segment = get_consonant()
+            return segment
+        else:
+            return None
+
+
+    if randint(0, 1) == 0:
+        name = get_consonant(1) + get_segment('vowel')
+        if randint(0, 1) == 0:
+            name += get_segment('consonant')
+            if randint(0, 1) == 0:
+                name += get_segment('vowel')
+    else:
+        name = get_segment('vowel') + get_segment('consonant')
+        if randint(0, 1) == 0:
+            name += get_segment('vowel')
+            name += get_consonant(1)
+            if randint(0, 1) == 0:
+                name += get_segment('consonant')
+                name += get_vowel(1)
+ 
+    return name.title()
+
+
+def base_type():
+    types = ['Beetle', 'Ant', 'Mantis', 'Bee', 'Wasp', 'Elephant', 
+             'Camel', 'Goat', 'Cow', 'Ox', 'Horse', 'Armadillo', 
+             'Rhinocerous', 'Bear', 'Zombie', 'Goblin', 
+             'Humanoid', 'Snake', 'Lizard', 'Crocodilian', 'Spider', 
+             'Crab', 'Frog', 'Toad', 'Ape', 'Skeleton', 'Scarecrow'
+             'Dust-devil', 'Frozen corpse', 'Dog', 'Wolf', 'Coyote', 'Hyena',
+             'Lion', 'Turtle', 'Blaze', 'Ball of fire', 'Slime', 'Centaur',
+             'Mud-man']
+    return choice(types)
+
+
+def trait():
+    traits = ['Enormous', 'Tiny', 'Barbed', 'Spined', 'Hairy', 
+              'Scaled', 'Armored', 'Beautiful', 'Tusksed', 'Horned', 'Winged', 
+              'Tall', 'Obese', 'Smelly', 'Rotting', 'Molding', 'Stinking', 
+              'Vermin covered', 'Filth covered', 'Metal', 'Fly covered',
+              'Sore covered', 'Lich-like', 'Telepathic', 'Chameleon-like', 'Mechanical',
+              'Many eyed', 'Blind', 'Antennaed', 'Incredibly strong', 'Gemstone', 
+              'Highly intelligent', 'Slavering', 'Amphibious', 'Finned', 'Vampiric',
+              'Sail-backed', 'Teleportating', 'Elastic limbed', 'Plant-like']
+    return choice(traits)
+
+
+def basic_attack():
+    attacks = ['claw', 'bite', 'tail', 'sting', 'constriction', 'gore', 'charge', 'kick', 'unarmed']
+    shuffle(attacks)
+    myattacks = attacks.pop()
+    if randint(0, 1) == 0:
+        myattacks += ', ' + attacks.pop()
+    return myattacks
+
+
+def special_attacks():
+    attacks = ['{} poison'.format(poison()), '{}'.format(curse()), 'drain {}'.format(get_ability()), 'XP drain', 'sleep', 'paralysis', 'possession', 
+               'drain blood', 'spells: {}'.format(spells()), 'suffocation', 'swallow whole', 'breath weapon']
+    return choice(attacks)
+
+
+def get_ability():
+    abilities = ['STR', 'AGI', 'STA', 'INT', 'PER', 'LUCK']
+    return choice(abilities)
+
+
+def poison():
+    poisons = ['adder', 'asp', 'black widow', 'centipede', 'cobra', 'jellyfish','scorpion', 
+                'tarantula', 'viper', 'wasp', 'black lotus', 'black widow', 'manticore sting', 
+                'medusa venom', 'mummy rot', 'toxic ooze']
+    return 'demonic ' + choice(poisons)
+
+
+def curse():
+    curses = ['goblin sight', 'lost love', 'locusts', 'blindness']
+    return 'Curse of ' + choice(curses)
+
+
+def spells():
+    spells = ['animal summoning', 'cantrip', 'charm person', 'chill touch', 'choking cloud', 
+              'color spray', 'comprehend languages', 'detect magic', 'ekim\'s mystical mask', 
+              'enlarge', 'feather fall', 'find familiar', 'flaming hands', 'force manipulation', 
+              'invoke patron', 'magic missle', 'magic shield', 'mending', 'patron bond', 
+              'read magic', 'ropework', 'runic alphabet: mortal', 'sleep', 'spider climb', 
+              'ventriloquism', 'ward portal', 'Arcane affinity', 'detect evil', 'detect invisible', 
+              'ESP', 'fire resistance', 'forget', 'onvisibility', 'invisible companion', 
+              'knock', 'Levitate', 'Locate object', 'magic mouth', 'Mirror image', 
+              'moster summoning', 'nythuul\'s porcupine coat', 'phantasm', 'ray of enfeedblement', 
+              'scare', 'scorching ray', 'shatter', 'spider web', 'strength', 'wizard staff',
+              'binding', 'breathe life', 'consult spirit', 'demon summoning', 'dispel magic', 
+              'eldritch hound', 'emrikol\'s entropic maelstrom', 'eternal champion', 'fireball', 
+              'fly', 'gust of wind', 'haste', 'lightning bolt', 'make potion', 'paralysis', 
+              'planar step', 'runic alphabet: fey', 'slow', 'sword magic', 'transference', 
+              'turn to stone', 'water breathing', 'write magic', 'control fire', 'control ice',
+              'lokerimon\'s orderly assistance', 'polymorph', 'trasmute earth', 'wizard sense', 
+              'hepsoj\'s fecud fungi', 'Lokerimon\'s unerring hunter', 'magic bulwark', 'mind purge', 
+              'repliciation']
+    shuffle(spells)
+    known = spells.pop()
+    roll = randint(0, 3)
+    if roll != 0:
+        for i in range(roll):
+            known += ', ' + choice(spells)
+    return known
+
+
+def get_health(HD):
+    health = 0
+    for i in range(HD):
+        health += randint(1, 10)
+    return health
+
+
+def demon_type():
+    infernal_id = randint(0, 5)
+    if infernal_id == 0:
+        HD = randint(1, 4)
+        return 'Type I, {0} health ({1} HD), AC {2}, +{3} attack, target save DC {2}'.format(get_health(HD), 
+                                                                                             HD, HD + 10, HD + 1)
+    elif infernal_id == 1:
+        HD = randint(4, 8)
+        return 'Type II, {0} health ({1} HD), AC {2}, +{3} attack, target save DC {2}'.format(get_health(HD), 
+                                                                                              HD, HD + 10, HD + 2)
+    elif infernal_id == 2:
+        HD = randint(6, 12)
+        return 'Type III, {0} health ({1} HD), AC {2}, +{3} attack, target save DC {2}'.format(get_health(HD), 
+                                                                                               HD, HD + 8, HD + 3)
+    elif infernal_id == 3:
+        HD = randint(8, 16)
+        return 'Type IV, {0} health ({1} HD), AC {2}, +{3} attack, target save DC {2}'.format(get_health(HD), 
+                                                                                              HD, HD + 9, HD + 4)
+    elif infernal_id == 4:
+        HD = randint(10, 20)
+        return 'Type V, {0} health ({1} HD), AC {2}, +{3} attack, target save DC {2}'.format(get_health(HD), 
+                                                                                             HD, HD + 10, HD + 5)
+    elif infernal_id == 5:
+        HD = randint(15, 30)
+        return 'Type VI, {0} health ({1} HD), AC {2}, +{2} attack, target save DC {1}'.format(get_health(HD), 
+                                                                                              HD, HD + 10)
+    else:
+        return None
+
+stdout.write('{} the {} {}'.format(get_name(), trait(), base_type()))
+stdout.write('; {}'.format(demon_type()))
+stdout.write('; Basic attacks: {}'.format(basic_attack()))
+print('; Special attacks: {}'.format(special_attacks()))

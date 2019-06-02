@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+
+from random import randint
+from random import choice
+from random import shuffle
+
+
+def get_name():
+    def get_vowel(number=1):
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        shuffle(vowels)
+        segment = ''
+        for i in range(number):
+            segment += vowels.pop()
+        return segment
+
+    def get_consonant(number=1):
+        consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+        shuffle(consonants)
+        segment = ''
+        for i in range(number):
+            segment += consonants.pop()
+        return segment
+
+
+    def get_segment(segtype):
+        if segtype == 'vowel':
+            if randint(0, 1) == 0:
+                segment = get_vowel(2)
+            else:
+                segment = get_vowel()
+            return segment
+        elif segtype == 'consonant':
+            if randint(0, 1) == 0:
+                segment = get_consonant(2)
+            else:
+                segment = get_consonant()
+            return segment
+        else:
+            return None
+
+
+    if randint(0, 1) == 0:
+        name = get_consonant(1) + get_segment('vowel')
+        if randint(0, 1) == 0:
+            name += get_segment('consonant')
+            if randint(0, 1) == 0:
+                name += get_segment('vowel')
+    else:
+        name = get_segment('vowel') + get_segment('consonant')
+        if randint(0, 1) == 0:
+            name += get_segment('vowel')
+            name += get_consonant(1)
+            if randint(0, 1) == 0:
+                name += get_segment('consonant')
+                name += get_vowel(1)
+ 
+    return name.title()
+
+def get_alignment():
+    alignments = ['lawful', 'neutral', 'chaotic']
+    return(choice(alignments))
+
+
+roll = randint(1,20)
+if roll == 1:
+    size = 'pseudodragon'
+    HD = randint(1, 3)
+elif roll >= 2 and roll <= 5:
+    size = 'small'
+    HD = randint(1, 6) + 2
+elif roll >= 6 and roll <= 15:
+    size = 'average'
+    HD = randint(1, 8) + 4
+elif roll >= 16 and roll <= 19:
+    size = 'large'
+    HD = randint(1, 10) + 6
+elif roll == 20:
+    size = 'godlike'
+    HD = randint(3, 18) + 10
+
+print('{} the {} {}'.format(get_name(), get_alignment()))
+

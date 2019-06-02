@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+
+from random import randint
+from random import choice
+from random import shuffle
+from sys import stdout
+
+
+def get_name():
+    def get_vowel(number=1):
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        shuffle(vowels)
+        segment = ''
+        for i in range(number):
+            segment += vowels.pop()
+        return segment
+
+
+    def get_consonant(number=1):
+        consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+        shuffle(consonants)
+        segment = ''
+        for i in range(number):
+            segment += consonants.pop()
+        return segment
+
+
+    def get_segment(segtype):
+        if segtype == 'vowel':
+            if randint(0, 1) == 0:
+                segment = get_vowel(2)
+            else:
+                segment = get_vowel()
+            return segment
+        elif segtype == 'consonant':
+            if randint(0, 1) == 0:
+                segment = get_consonant(2)
+            else:
+                segment = get_consonant()
+            return segment
+        else:
+            return None
+
+
+    if randint(0, 1) == 0:
+        name = get_consonant(1) + get_segment('vowel')
+        if randint(0, 1) == 0:
+            name += get_segment('consonant')
+            if randint(0, 1) == 0:
+                name += get_segment('vowel')
+    else:
+        name = get_segment('vowel') + get_segment('consonant')
+        if randint(0, 1) == 0:
+            name += get_segment('vowel')
+            name += get_consonant(1)
+            if randint(0, 1) == 0:
+                name += get_segment('consonant')
+                name += get_vowel(1)
+
+    return name.title()
+
+
+def get_alignment():
+    alignments = ['lawful', 'neutral', 'chaotic']
+    return(choice(alignments))
+
+
+def appearance():
+    appearances = ['skeletal', 'mummified', 'emaciated', 'old', 'withered', 'decayed', 'corpse',
+                   'partially decayed', 'ashen', 'pale', 'grey-eyed', 'desecrated', 'night walker'
+                   'chained', 'vivisected', 'slain', 'ghost', 'shadow', 'stitched', 'risen',
+                   'arisen', 'returned', 'crazed', 'insane', 'cold', 'frozen', 'burned',
+                   'excoriated', 'tortured', 'broken', 'grey', 'black', 'white', 'walking corpse'
+                   'unholy', 'bestial', 'dead-eyed', 'reconstructed', 'reassembled', 'bloated',
+                   'decaying', 'ancient', 'forlorn', 'blasphemed', 'blasphemous', 'harrowed', 'lost',
+                   'damned', 'corrupted', 'betrayed', 'forsaken', 'red', 'forsaken', 'lost',
+                   'ashen eyed']
+    return choice(appearances)
+
+
+def curse():
+    curses = ['goblin sight', 'lost love', 'locusts', 'blindness']
+    return 'Curse of ' + choice(curses)
+
+
+def spells():
+    spells = ['animal summoning', 'cantrip', 'charm person', 'chill touch', 'choking cloud',
+              'color spray', 'comprehend languages', 'detect magic', 'ekim\'s mystical mask',
+              'enlarge', 'feather fall', 'find familiar', 'flaming hands', 'force manipulation',
+              'invoke patron', 'magic missle', 'magic shield', 'mending', 'patron bond',
+              'read magic', 'ropework', 'runic alphabet: mortal', 'sleep', 'spider climb',
+              'ventriloquism', 'ward portal', 'Arcane affinity', 'detect evil', 'detect invisible',
+              'ESP', 'fire resistance', 'forget', 'onvisibility', 'invisible companion',
+              'knock', 'Levitate', 'Locate object', 'magic mouth', 'Mirror image',
+              'moster summoning', 'nythuul\'s porcupine coat', 'phantasm', 'ray of enfeedblement',
+              'scare', 'scorching ray', 'shatter', 'spider web', 'strength', 'wizard staff',
+              'binding', 'breathe life', 'consult spirit', 'demon summoning', 'dispel magic',
+              'eldritch hound', 'emrikol\'s entropic maelstrom', 'eternal champion', 'fireball',
+              'fly', 'gust of wind', 'haste', 'lightning bolt', 'make potion', 'paralysis',
+              'planar step', 'runic alphabet: fey', 'slow', 'sword magic', 'transference',
+              'turn to stone', 'water breathing', 'write magic', 'control fire', 'control ice',
+              'lokerimon\'s orderly assistance', 'polymorph', 'trasmute earth', 'wizard sense',
+              'hepsoj\'s fecud fungi', 'Lokerimon\'s unerring hunter', 'magic bulwark', 'mind purge',
+              'repliciation']
+    shuffle(spells)
+    known = spells.pop()
+    roll = randint(0, 3)
+    if roll != 0:
+        for i in range(roll):
+            known += ', ' + choice(spells)
+    return known
+
+
+def trait():
+    def transformation():
+        varmints = ['cat', 'cougar', 'wolf', 'bear', 'serpent']
+        critters = ['rats', 'bats', 'spiders', 'scorpions', 'moths', 'flies', 'bugs', 'worms', 'beetles']
+        elements = ['smoke', 'mist', 'fog', 'dust', 'darkness', 'corruption']
+        return 'transform into a {}, a swarm of {} or escape as a cloud of {}'.format(choice(varmints),
+                                                                                      choice(critters),
+                                                                                      choice(elements))
+
+    traits = ['visible only in bright light', 'energy-draining touch (Will save to resist)',
+              'level-draining touch (Will save to resist)',
+              'searing gaze 1d6 damage', 'touch of cold; 1d4 damage.\nImmune to fire spells',
+              'chill aura; all within 100\' take 1d4 cold damage.\nImmune to fire spells',
+              'blood drain; 1d4 damage +1 Stamina point', 'flight', transformation(),
+              'strength 22+', 'swift; 2 actions per round', 'slow; 1 action every 2 rounds',
+              'immune to non-magical weapons', 'immune to non-silvered weapons',
+              'resistant to spells (50% unaffected)',
+              'cannot be killed without special ritual (stake through the heart, exorcism, etc.)',
+              'paralysis with touch', 'can become transparent or invisible',
+              '{} with every strike'.format(curse()), 'spells: {}'.format(spells()),
+              'spells: {}, can turn living as a cleric turns unholy'.format(spells())]
+    return choice(traits)
+
+
+def basic_attack():
+    attacks = ['claw 1d4 damage', 'bite 1d6 damage', 'unarmed 1d3 damage']
+    shuffle(attacks)
+    myattacks = attacks.pop()
+    if randint(0, 1) == 0:
+        myattacks += ', ' + attacks.pop()
+    return myattacks
+
+
+stdout.write('{} the {}'.format(get_name(), appearance()))
+stdout.write('; AC:{}, HP:{}'.format(randint(10, 13), randint(1, 12)))
+stdout.write('; Trait: {}'.format(trait()))
+print('; Attacks: {}'.format(basic_attack()))

@@ -1,0 +1,379 @@
+#!/usr/bin/env python3
+
+from random import choice
+from random import randint
+from random import shuffle
+from faker import Faker
+
+f = Faker()
+
+'''
+def get_alignment():
+    alignments = ['Lawful', 'Chaotic', 'Neutral']
+    return choice(alignments)  # moar pythonic than: return (randint(0, len(alignments)-1))
+'''
+
+def get_augur(bonus):
+    augurs = ['{} to attack rolls'.format(bonus), 
+              '{} to melee attack rolls'.format(bonus),
+              '{} to missile fire attack rolls'.format(bonus), 
+              '{} to unarmed attack rolls'.format(bonus),
+              '{} to mounted attack rolls'.format(bonus), 
+              '{} to damage rolls'.format(bonus),
+              '{} to melee damage rolls'.format(bonus), 
+              '{} to missile fire damage rolls'.format(bonus),
+              '{} to attack and damage rolls for 0-level trained weapon'.format(bonus), 
+              '{} to skill checks (including thief skills)'.format(bonus),
+              '{} to find/disable traps'.format(bonus), 
+              '{} to find secret doors'.format(bonus),
+              '{} to spell checks'.format(bonus),
+              '{} to spell damage'.format(bonus),
+              '{} to turn unholy checks'.format(bonus),
+              '{} to magical healing'.format(bonus),
+              '{} to saving throws'.format(bonus),
+              '{} to savings throws to escape traps'.format(bonus),
+              '{} to saving throws against poison'.format(bonus),
+              '{} to reflex saving throws'.format(bonus),
+              '{} to fortitude saving throws'.format(bonus),
+              '{} to willpower saving throws'.format(bonus),
+              '{} to armor class'.format(bonus),
+              '{} to initiative'.format(bonus),
+              '{} to hit points (applies at each level)'.format(bonus),
+              '{} to critical hit tables'.format(bonus),
+              '{} to corruption rolls'.format(bonus),
+              '{} to fumbles'.format(bonus),
+              '{} additional known languages'.format(bonus),
+              '{} to speed (each +1 = +5’ speed)'.format(bonus)]
+    return choice(augurs)
+
+
+def get_mod(stat):
+    if stat < 4:
+        return '-3'
+    elif stat in [4, 5]:
+        return '-2'
+    elif stat in [6, 7, 8]:
+        return '-1'
+    elif stat in [9, 10, 11, 12]:
+        return '0'
+    elif stat in [13, 14, 15]:
+        return '+1'
+    elif stat in [16, 17]:
+        return '+2'
+    elif stat == 18:
+        return '+3'
+    else:
+        return None
+
+
+def get_hp(stat):
+    basehp = randint(1,4)
+    hp = 0
+    if stat < 4:
+        hp = basehp - 3
+    elif stat in [4, 5]:
+        hp = basehp - 2
+    elif stat in [6, 7, 8]:
+        hp = basehp - 1
+    elif stat in [9, 10, 11, 12]:
+        pass
+    elif stat in [13, 14, 15]:
+        hp = basehp + 1
+    elif stat in [16, 17]:
+        hp = basehp + 2
+    elif stat == 18:
+        hp = basehp + 3
+    if hp < 1:
+        return 1
+    else:
+        return hp
+
+
+def get_ac(stat):
+    baseac = 10
+    if stat < 4:
+        return '7'
+    elif stat in [4, 5]:
+        return '8'
+    elif stat in [6, 7, 8]:
+        return '9'
+    elif stat in [9, 10, 11, 12]:
+        return '10'
+    elif stat in [13, 14, 15]:
+        return '11'
+    elif stat in [16, 17]:
+        return '12'
+    elif stat == 18:
+        return '13'
+
+
+def get_languages(bonus, race='Human'):
+    languages = ['German', 'French', 'Mandarin', 'Russian', 'Spanish' 
+                 'Portugese', 'Maori', 'Swahili', 'Arabic', 'Farsi', 'Hindi', 'Confucian', 
+                 'Thai', 'Korean', 'Vietnamese', 'Cambodian', 'Armenian', 'Bosnian', 
+                 'Transylvanian', 'Polish', '', 'Serbian', 'Croatian', 'Bengali', 
+                 'Turkish', 'Mongolian', 'Tibetan', 'Ukrainian', 'Italian', 'Norwegian', 
+                 'Danish', 'Swedish', 'Swiss', 'Gaelic', '']
+    shuffle(languages)
+    known = 'English' # everyone knows enough English to get by with basic words and commonly used phrases
+
+    if race == 'Dwoerg' and bonus not in ['-1', '-2', '-3']:
+        known += ', Dwoerg'  # INT > 8 + Dwarf = Dwarven for 'free'
+    elif race == 'Eldar' and bonus not in ['-1', '-2', '-3']:
+        known += ', Eldar'    # INT > 8 + Elf = Elven for 'free'
+    elif race == 'Hob' and bonus not in ['-1', '-2', '-3']:
+        known += ', Hob' # INT > 8 + Halfling = Halfling for 'free'
+    
+    if bonus == '-3':  # Illiterate
+        known = 'Spoken English (Illiterate)'
+    elif bonus in ['+1', '+2', '+3']:
+        for i in range(int(bonus.split('+')[1])):
+            known += ', ' + languages.pop()
+
+    return known
+
+
+def get_occupation():
+    roll = randint(1, 100)
+    if roll == 1: return 'Alchemist'
+    elif roll == 2: return 'Animal trainer'
+    elif roll in [3, 4]: return 'Armorer'
+    elif roll == 5: return 'Astrologer'
+    elif roll in [6, 7, 8]: return 'Blacksmith'
+    elif roll in [9, 10]: return 'Caravan guard'
+    elif roll == 11: return 'Cobbler'
+    elif roll == 12: return 'Confidence artist'
+    elif roll == 13: return 'Cooper'
+    elif roll in [14, 15]: return 'Cutpurse'
+    elif roll in [16, 17]: return 'Ditch digger'
+    elif roll in [18, 19, 20, 21]: return 'Dwoerg blacksmith'
+    elif roll in [22, 23]: return 'Dwoerg herder'
+    elif roll in [24, 25, 26, 27]: return 'Dwoerg miner'
+    elif roll in [28, 29, 30, 31]: return 'Eldar artisan'
+    elif roll in [32, 33, 34, 35]: return 'Eldar forester'
+    elif roll in [36, 37]: return 'Eldar sage'
+    elif roll in [38, 39, 40, 41, 42, 43, 44, 45, 46, 47]: return 'Farmer'
+    elif roll == 48: return 'Fortune-teller'
+    elif roll == 49: return 'Gambler'
+    elif roll == 50: return 'Gongfarmer'
+    elif roll in [51, 52]: return 'Grave digger'
+    elif roll in [53, 54]: return 'Guild beggar'
+    elif roll in [55, 56, 57, 58]: return 'Hob gypsy'
+    elif roll in [59, 60, 61, 62]: return 'Hob trader'
+    elif roll in [63, 64]: return 'Hob vagrant'
+    elif roll == 65: return 'Healer'
+    elif roll == 66: return 'Herbalist'
+    elif roll in [67, 68, 69]: return 'Herder'
+    elif roll in [70, 71, 72]: return 'Hunter'
+    elif roll == 73: return 'Indenture servant'
+    elif roll == 74: return 'Jester'
+    elif roll == 75: return 'Jeweller'
+    elif roll == 76: return 'Locksmitch'
+    elif roll == 77: return 'Mercenary'
+    elif roll == 78: return 'Miller/Baker'
+    elif roll == 79: return 'Minstrel'
+    elif roll == 80: return 'Noble'
+    elif roll == 81: return 'Orphan'
+    elif roll == 82: return 'Ostler'
+    elif roll == 83: return 'Outlaw'
+    elif roll == 84: return 'Scribe'
+    elif roll == 85: return 'Shaman'
+    elif roll == 86: return 'Slave'
+    elif roll == 87: return 'Smuggler'
+    elif roll in [88, 89]: return 'Soldier'
+    elif roll in [90, 91]: return 'Squire'
+    elif roll in [92, 93]: return 'Trapper'
+    elif roll == 94: return 'Urchin'
+    elif roll == 95: return 'Wainright'
+    elif roll == 96: return 'Weaver'
+    elif roll == 97: return 'Wizard apprentice'
+    else: return 'Woodcutter'
+
+
+def goods(occupation):
+    equip = ''
+    if occupation == 'Alchemist': 
+        equip += 'Staff, Oil (1 flask), ' + get_equipment()
+    elif occupation == 'Animal trainer': 
+        equip +=  'Club, Pony, ' + get_equipment()
+    elif occupation == 'Armorer': 
+        equip +=  'Hammer (club), Iron helmet, ' + get_equipment()
+    elif occupation == 'Astrologer': 
+        equip +=  'Dagger, Spyglass, ' + get_equipment()
+    elif occupation == 'Blacksmith': 
+        equip +=  'Hammer (club), Steel tongs, ' + get_equipment()
+    elif occupation == 'Caravan guard': 
+        equip +=  'Shortsword, Linen (1 yard), ' + get_equipment()
+    elif occupation == 'Cobbler': 
+        equip +=  'Awl (dagger), Shoehorn, ' + get_equipment()
+    elif occupation == 'Confidence artist': 
+        equip +=  'Dagger, Quality cloak, ' + get_equipment()
+    elif occupation == 'Cooper': 
+        equip +=  'Crowbar (club), Barrel, ' + get_equipment()
+    elif occupation == 'Cutpurse': 
+        equip +=  'Dagger, Small chest, ' + get_equipment()
+    elif occupation == 'Ditch digger': 
+        equip +=  'Shovel (staff), Fine dirt (1 lb.), ' + get_equipment()
+    elif occupation == 'Dwoerg blacksmith': 
+        equip +=  'Hammer (club), Mithril (1 oz.)'
+    elif occupation == 'Dwoerg herder': 
+        equip +=  'Staff, Sow'
+    elif occupation == 'Dwoerg miner': 
+        equip +=  'Pick (club), Lantern'
+    elif occupation == 'Eldar artisan': 
+        equip +=  'Staff, Clay (1 lb.)'
+    elif occupation == 'Eldar forester': 
+        equip +=  'Staff, Herbs (1 lb.)'
+    elif occupation == 'Eldar sage': 
+        equip +=  'Dagger, Parchment, Quill pen'
+    elif occupation == 'Farmer': 
+        equip +=  'Pitchfork (spear), Hen'
+    elif occupation == 'Fortune-teller': 
+        equip +=  'Dagger, Tarot deck'
+    elif occupation == 'Gambler': 
+        equip +=  'Club, Dice'
+    elif occupation == 'Gongfarmer': 
+        equip +=  'Trowel (dagger), Sack of night soil'
+    elif occupation == 'Grave digger': 
+        equip +=  'Shovel (staff), Trowel (dagger)'
+    elif occupation == 'Guild beggar': 
+        equip +=  'Sling, Crutches'
+    elif occupation == 'Hob gypsy': 
+        equip +=  'Sling, Hex doll'
+    elif occupation == 'Hob trader': 
+        equip +=  'Short sword, 20 sp'
+    elif occupation == 'Hob vagrant': 
+        equip +=  'Club, Begging bowl'
+    elif occupation == 'Healer': 
+        equip +=  'Club, Holy water (1 vial)'
+    elif occupation == 'Herbalist': 
+        equip +=  'Club, Herbs (1 lb.)'
+    elif occupation == 'Herder': 
+        equip +=  'Staff, Herding dog'
+    elif occupation == 'Hunter': 
+        equip +=  'Shortbow, Deer pelt'
+    elif occupation == 'Indentured servant': 
+        equip +=  'Staff, Locket'
+    elif occupation == 'Jester': 
+        equip +=  'Dart, Silk clothes'
+    elif occupation == 'Jeweller': 
+        equip +=  'Dagger, Gem worth 20 gp'
+    elif occupation == 'Locksmitch': 
+        equip +=  'Dagger, Fine tools'
+    elif occupation == 'Mercenary': 
+        equip +=  'Longsword, Hide armor'
+    elif occupation == 'Miller/Baker': 
+        equip +=  'Club, Flour (1 lb.)'
+    elif occupation == 'Minstrel': 
+        equip +=  'Dagger, Ukelele'
+    elif occupation == 'Noble': 
+        equip +=  'Longsword, Gold ring worth 10 gp'
+    elif occupation == 'Orphan': 
+        equip +=  'Club, Rag doll'
+    elif occupation == 'Ostler': 
+        equip +=  'Staff, Bridle'
+    elif occupation == 'Outlaw': 
+        equip +=  'Shortsword, Leather armor'
+    elif occupation == 'Scribe': 
+        equip +=  'Dart, Parchment 10 sheets'
+    elif occupation == 'Shaman': 
+        equip +=  'Mace, Herbs (1 lb.)'
+    elif occupation == 'Slave': 
+        equip +=  'Club, Strange looking rock'
+    elif occupation == 'Smuggler': 
+        equip +=  'Sling, Water-proof sack'
+    elif occupation == 'Soldier': 
+        equip +=  'Spear, Shield'
+    elif occupation == 'Squire': 
+        equip +=  'Longword, Steel helmet'
+    elif occupation == 'Trapper': 
+        equip +=  'Sling, Badger pelt'
+    elif occupation == 'Urchin': 
+        equip +=  'Stick (club), Begging bowl'
+    elif occupation == 'Wainright':
+        cart = randint(0, 6)
+        stuff = 'Club'
+        if cart == 0:
+            stuff += ', Pushcart of tomatoes'
+        elif cart == 1:
+            stuff += ', Pushcart'
+        elif cart == 2:
+            stuff += ', Pushcart of straw'
+        elif cart == 3:
+            stuff += ', Pushcart of your dead'
+        elif cart == 4:
+            stuff += ', Pushcart of dirt'
+        elif cart == 5:
+            stuff += ', Pushcart of rocks'
+        equip +=  stuff
+    elif occupation == 'Weaver': 
+        equip +=  'Dagger, Fine suit of clothes'
+    elif occupation == 'Wizard apprentice': 
+        equip +=  'Dagger, Black grimoire'
+    elif occupation == 'Woodcutter': 
+        equip +=  'Handaxe, Bundle of wood'
+    equip += ', ' + get_equipment()
+    return equip
+
+
+def get_equipment():
+    equip = ['Backpack', 'Candle', 'Chain 10 feet', 'Chalk (1 piece)', 
+             'Chest (empty)', 'Crowbar', 'Flask (empty)', 'Flint & Steel', 
+             'Grappling Hook', 'Hammer (small)', 'Holy symbol', 
+             'Holy water (1 vial)', 'Iron spike', 'Lantern', 'Hand-sized mirror', 
+             'Oil (1 flask)', '10 foot pole', 'Rations (1 day)', 'Rope (50 feet)', 
+             'Large sack', 'Small sack', 'Investigator\'s tools', 'Torch', 'Wineskin (full)', 
+             'Small can of gasoline', 'Small can of kerosene', 'Small can of propane', 
+             'Flashlight', '{} Flares'.format(randint(1,4)), 'Water bottle (full)', 'Bottle of wine', 
+             'Six pack of cheap beer', 'Bottle of rotgut', 'Bottle of good scotch', 'Bag of groceries', 
+             'Antique Black market pistol', 'Home made firearm', '{} wooden stakes'.format(randint(1,4)), 
+             '']
+    return choice(equip)
+
+
+def get_race(occupation):
+    if occupation.split(' ')[0] == 'Eldar':
+        return ''
+    elif occupation.split(' ')[0] == 'Dwoerg':
+        return ''
+    elif occupation.split(' ')[0] == 'Hob':
+        return ''
+    elif randint(0,4) == 0:
+        return ' Shapeshifter'
+    else:
+        return ' Human'
+
+
+
+STR = randint(3,18)
+AGI = randint(3,18)
+STA = randint(3,18)
+PER = randint(3,18)
+INT = randint(3,18)
+LUCK = randint(3,18)
+OCCUPATION = get_occupation()
+
+# this if/else block and the get_race() function are for adding 'Human' to 
+# the titles of non-demihuman characters. This should be improved
+if get_race(OCCUPATION) == 'Human':
+    print('{}, human {}'.format(f.name(), 
+                                # get_alignment().lower(), 
+                                OCCUPATION.lower()))
+else:
+    print('{},{} {}'.format(f.name(), 
+                                # get_alignment().lower(), 
+                                get_race(OCCUPATION).lower(), 
+                                OCCUPATION.lower()))
+
+print('AC:{} HP:{}'.format(get_ac(AGI), get_hp(STA)))
+print('\nSTR  {} ({})'.format(STR, get_mod(STR)))
+print('AGI  {} ({})'.format(AGI, get_mod(AGI)))
+print('STA  {} ({})'.format(STA, get_mod(STA)))
+print('PER  {} ({})'.format(PER, get_mod(PER)))
+print('INT  {} ({})'.format(INT, get_mod(INT)))
+print('LUCK {} ({})'.format(LUCK, get_mod(LUCK)))
+
+print('\n{}'.format(get_augur(get_mod(LUCK))))
+print('Languages: {}'.format(get_languages(get_mod(INT), OCCUPATION.split(' ')[0])))
+print('Equipment: {}, {} copper pieces'.format(goods(OCCUPATION), randint(5, 60)))
+print('')

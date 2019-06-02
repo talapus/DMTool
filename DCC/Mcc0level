@@ -1,0 +1,273 @@
+#!/usr/bin/env python3
+
+from random import choice
+from random import randint
+from random import shuffle
+
+
+def get_name():
+    def get_vowel(number=1):
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        vowel = ''
+        for i in range(number):
+            vowel += vowels.pop()
+        return vowel
+
+    def get_consonant():
+        constants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+        return constants[randint(0, len(constants)-1)]
+
+    def get_optional():
+        # TODO more randomness within optionals
+        optional = ''
+        optional_type = randint(0, 4)
+        if optional_type == 0:
+            optional += get_consonant() + get_vowel()
+        if optional_type == 1:
+            optional += get_vowel() + get_consonant()
+        if optional_type == 3:
+            optional += get_consonant() + get_vowel() + get_consonant()
+        else:
+            optional += get_consonant()
+        return optional
+
+    def get_word():
+        myword = get_consonant().upper()  # first letter uppercase
+        if randint(0,1) == 0:  # followed by 1-2 vowels
+            myword += get_vowel()
+        else:
+            myword += get_vowel(2)
+        myword += get_consonant()
+        if (randint(0, 3) > 0):  # 75% chance for an optional
+            myword += get_optional()
+        return myword
+
+    return get_word()
+
+
+def get_augur(bonus):
+    augurs = ['Nuclear Winter: {} to attack rolls'.format(bonus),
+              'The Roxen: {} to melee attack rolls'.format(bonus),
+              'The Triffid: {} to missile fire attack rolls'.format(bonus),
+              'The Beast: {} to unarmed attack rolls'.format(bonus),
+              'The Millisteed: {} to mounted attack rolls'.format(bonus),
+              'The Apocolypse: {} to damage rolls',
+              'Ragnarok: {} to melee damage rolls'.format(bonus),
+              'Revelations: {} to missile fire damage rolls'.format(bonus),
+              'The Hunter: {} to attack and damage rolls for 0-level trained weapon'.format(bonus),
+              'The Gatherer: {} to skill checks (including thief skills)'.format(bonus),
+              'The Outsider: {} to find/disable traps'.format(bonus),
+              'The Sensor: {} to find secret doors'.format(bonus),
+              'The Genomorph: {} to mutation checks'.format(bonus),
+              'The Alpha Striker: {} to mutation damage rolls'.format(bonus),
+              'The Programmer: {} to AI recognition rolls'.format(bonus),
+              'The Hypospray: {} to healing rolls'.format(bonus),
+              'The Survivor: {} to saving throws'.format(bonus),
+              'The Multitool: {} to escape traps'.format(bonus),
+              'The Healer: {} to saving throws against poison'.format(bonus),
+              'The Scientist: {} to reflex saving throws'.format(bonus),
+              'The Glow: {} to fortitude saving throws'.format(bonus),
+              'The Esper: {} to willpower saving throws'.format(bonus),
+              'The Bunker: {} to armor class'.format(bonus),
+              'The CPU: {} to initiative'.format(bonus),
+              'The Ecobot: {} to hit points (applies at each level)'.format(bonus),
+              'The War-Bot: {} to critical hit tables'.format(bonus),
+              'The Unchanging: {} to defect rolls'.format(bonus),
+              'The Backup Disk: {} to fumbles'.format(bonus),
+              'The Universal Translator: {} known languages'.format(bonus),
+              'The Accelerant: Speed: {} to speed (each +1 = +5’ speed)'.format(bonus)]
+    return choice(augurs)
+
+
+def get_mod(stat):
+    if stat < 4:
+        return '-3'
+    elif stat in [4, 5]:
+        return '-2'
+    elif stat in [6, 7, 8]:
+        return '-1'
+    elif stat in [9, 10, 11, 12]:
+        return '0'
+    elif stat in [13, 14, 15]:
+        return '+1'
+    elif stat in [16, 17]:
+        return '+2'
+    elif stat == 18:
+        return '+3'
+    else:
+        return None
+
+
+def get_hp(stat):
+    basehp = randint(1,4)
+    hp = 0
+    if stat < 4:
+        hp = basehp - 3
+    elif stat in [4, 5]:
+        hp = basehp - 2
+    elif stat in [6, 7, 8]:
+        hp = basehp - 1
+    elif stat in [9, 10, 11, 12]:
+        pass
+    elif stat in [13, 14, 15]:
+        hp = basehp + 1
+    elif stat in [16, 17]:
+        hp = basehp + 2
+    elif stat == 18:
+        hp = basehp + 3
+    if hp < 1:
+        return 1
+    else:
+        return hp
+
+
+def get_ac(stat):
+    baseac = 10
+    if stat < 4:
+        return '7'
+    elif stat in [4, 5]:
+        return '8'
+    elif stat in [6, 7, 8]:
+        return '9'
+    elif stat in [9, 10, 11, 12]:
+        return '10'
+    elif stat in [13, 14, 15]:
+        return '11'
+    elif stat in [16, 17]:
+        return '12'
+    elif stat == 18:
+        return '13'
+
+
+def get_languages(bonus):
+    languages = ['Manimal, canine', 'Manimal, insectoid', 'Manimal, avian', 'Manimal, feline',
+                 'Plantoid', 'Tribal mutant']
+    shuffle(languages)
+    known = 'Common' # everyone knows Common
+    
+    if bonus == '-3':  # Illiterate
+        known = 'Common (Illiterate)'
+    elif bonus in ['+1', '+2', '+3']:
+        for i in range(int(bonus.split('+')[1])):
+            known += ', ' + languages.pop()
+
+    return known
+
+
+def get_occupation():
+    if randint(1, 2) == 1:
+        return 'Hunter'
+    else:
+        return 'Gatherer'
+
+
+def goods(occupation):
+    equip = ''
+    if occupation == 'Hunter':
+        equip += 'Wood spear (damage: 1d5), ' + get_equipment()
+    elif occupation == 'Gatherer':
+        equip += 'Large leather sack, ' + get_equipment()
+    return equip
+
+
+def get_equipment():
+    equip = ['Blowgun and 12 darts', 'Bone Club', 'Bow and 12 stone tipped arrows', 'Flint dagger', 'Leather sling',
+             'Stone axe', 'Stone-tipped spear', 'Wooden club', 'Fur Cloak', 'Hide armor', 'Leather shield',
+             'Flint fire starter', 'Hemp rope, 50 ft.', 'Jerked roxen meat (2 weeks worth)', 'Leather rucksack',
+             'Torch (x3)', 'Antler hood', 'Bone necklace', 'Conch shell trumpet', 'Magic sticky rock (lode-stone)',
+             'Paints and dyes', 'Bag of sea shells', 'Small shiny thing (trinket non-functional artifact)',
+             'Large shiny thing (trinket non-functional artifact)', 'a telepathic rat (pet)']
+    return choice(equip) + ', ' + choice(equip)
+
+
+def get_genotype():
+    genotypes = ['Human', 'Mutant', 'Manimal', 'Plantient']
+    return choice(genotypes)
+
+
+def genotype_special(genotype='mutant'):
+    if genotype == 'mutant':
+        roll = 25  #randint(1, 28)
+        if roll < 6:
+            return 'Skin color is {}'.format(choice['bright red', 'snow white', 'lemon yellow', 'purple', 'green',
+                                                    'translucent'])
+        elif roll >= 6 and roll <= 9:
+            return 'Skin texture is {}'.format(choice['is mottled', 'is reptilian', 'is chitinous', 'is rocky',
+                                                      'is metallic', 'is invisible'])
+        elif roll >= 10 and roll <= 11:
+            return 'Eyes {}'.format(choice['have slitted pupils', 'have no pupils', 'glow in the dark',
+                                           'are a single eye', 'have compound insect eyes',
+                                           'are covered by semi-transparent skin.'])
+        elif roll >= 12 and roll <= 13:
+            return 'Mouth {}'.format(choice['is fanged', 'is a featureless slit', 'is a beak or bill',
+                                            'is insectoid', 'is located in belly', 'absent, replaced by porous skin.'])
+        elif roll >= 14 and roll <= 16:
+            return 'Head {}'.format(choice['is larger than normal', 'is smaller than normal',
+                                           'has craggy brow and ridged skull', 'has small horns', 'has antennae',
+                                           'retreats into body'])
+        elif roll >= 17 and roll <= 19:
+            return 'Hair {}'.format(choice['stands on end', 'grows into a lion’s mane', 'grows over entire body',
+                                           'drips oil', 'is made of organic metal', 'is comprised of small leaves',
+                                           'wriggles like cilia', 'is a mass of tiny tentacles'])
+        elif roll >= 20 and roll <= 22:
+            return 'Hands {}'.format(choice['have no nails', 'have only three fingers', 'have six fingers',
+                                            'are prehensile claws', 'are comprised of tentacles',
+                                            'absent, replaced with tentacle fingers'])
+        elif roll >= 23 and roll <= 24:
+            return 'Feet {}'.format(choice['are overlarge and padded', 'have 12 toes', 'have claws', 'are bird talons',
+                                           'are hooves', 'absent, replaced with cilia lumps'])
+        elif roll >= 25 and roll <= 27:
+            data = ['has a tail', 'has {} arms'.format(choice([3,4,5,6])), 'has {} legs'.format(choice([2,4,6])),
+                    'has ridged back', 'has symbiotic twin in stomach', 'is segmented like a worm',
+                    'has wrinkled skin which sheds continually', 'secretes sluglike slime']
+            return 'Body {}'.format(choice(data))
+        elif roll == 28:
+            return 'Form is {}'.format(choice['is tripedal', 'is quadrapedal', 'is serpentine', 'is insectoid',
+                                              'is globular',
+                                              'is a condensed ball of plasma that must inhabit clothes to maintain form'])
+        elif roll >= 29 and roll <= 30:
+            pass  # roll twice on table
+
+    elif genotype == 'manimal':
+        manimal_subtypes = ['tiger', 'lion', 'gorilla', 'monkey', 'polar bear', 'pig', 'roach', 'rat',
+                            'hog', 'cow', 'mouse', 'wolf', 'rabbit', 'salamander', 'yak', 'penguin', 'cheetah',
+                            'coyote', 'weasel', 'ferret', 'turtle', 'grizzly bear', 'baboon', 'orangutan',
+                            'chimpanzee', 'hawk', 'antelope', 'vulture', 'beaver', 'brown bear', 'gibbon',
+                            'grasshopper', 'hornet', 'butterfly', 'beetle', 'worm', 'fox', 'panther', 'dog',
+                            'mountain lion', 'bobcat', 'cougar', 'roach', 'owl', 'eagle', 'raven', 'sparrow',
+                            'toad', 'frog', 'moth']
+        return choice(manimal_subtypes) + ' subtype'
+    elif genotype == 'plantient':
+        plantient_subtypes = ['toadstool mushroom', 'horsetail fern', 'aloe cactus', 'maple', 'chestnut', 'pine', 'oak',
+                              'willow', 'liverwort moss', 'lichen', 'hibiscus shrub', 'marratoid fern', 'bamboo',
+                              'arrowroot vine', 'walnut', 'poison ivy', 'algae', 'honey mushroom', 'morel mushroom',
+                              'sword fern', 'lily', 'nastutium', 'sunflower', 'buckeye', 'birch', 'sequoia', 'spruce', 
+                              'acacia', 'heartwood', 'mangrove', 'cypress', 'cedar', 'cottonwood', 'dogwood']
+        return choice(plantient_subtypes) + ' subtype'
+
+
+STR = randint(3,18)
+AGI = randint(3,18)
+STA = randint(3,18)
+PER = randint(3,18)
+INT = randint(3,18)
+LUCK = randint(3,18)
+OCCUPATION = get_occupation()
+GENOTYPE = get_genotype().lower()
+
+print('{}, {} {}'.format(get_name(), GENOTYPE, OCCUPATION.lower()))
+
+print('AC:{} HP:{}'.format(get_ac(AGI), get_hp(STA)))
+print('\nSTR  {} ({})'.format(STR, get_mod(STR)))
+print('AGI  {} ({})'.format(AGI, get_mod(AGI)))
+print('STA  {} ({})'.format(STA, get_mod(STA)))
+print('PER  {} ({})'.format(PER, get_mod(PER)))
+print('INT  {} ({})'.format(INT, get_mod(INT)))
+print('LUCK {} ({})'.format(LUCK, get_mod(LUCK)))
+
+print('\n{}'.format(get_augur(get_mod(LUCK))))
+print('Languages: {}'.format(get_languages(get_mod(INT))))
+print('Equipment: {}'.format(goods(OCCUPATION)))
+if GENOTYPE != 'human':
+    print('{}'.format(genotype_special(GENOTYPE)))
+print('')

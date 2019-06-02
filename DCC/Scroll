@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+
+from random import randint
+from random import choice
+from sys import stdout
+
+def spell(level=1, spell_type='wizard'):
+    wizard = []
+    wizard.append([]) #Level0 spells don't exist in DCC! :)
+    # Level 1
+    wizard.append(['Animal summoning', 'Cantrip', 'Charm person', 'Chill touch', 'Choking cloud',
+                   'Color spray', 'Comprehend languages', 'Detect magic', 'Ekim\’s mystical mask',
+                   'Enlarge', 'Feather fall', 'Find familiar', 'Flaming hands', 'Force manipulation',
+                   'Invoke patron', 'Magic missile', 'Magic shield', 'Mending', 'Patron bond',
+                   'Read magic', 'Ropework', 'Runic alphabet, mortal', 'Sleep', 'Spider climb',
+                   'Ventriloquism', 'Ward portal'])
+    # Level 2
+    wizard.append(['Arcane affinity', 'Detect evil', 'Detect invisible', 'ESP', 'Fire resistance',
+                   'Forget', 'Invisibility', 'Invisible companion', 'Knock', 'Levitate',
+                   'Locate object', 'Magic mouth', 'Mirror image', 'Monster summoning',
+                   'Nythuul\’s porcupine coat', 'Phantasm', 'Ray of enfeeblement', 'Scare',
+                   'Scorching ray', 'Shatter', 'Spider web', 'Strength', 'Wizard staff'])
+    # Level 3
+    wizard.append(['Binding', 'Breathe life', 'Consult spirit', 'Demon summoning', 'Dispel magic',
+                   'Eldritch hound', 'Emirikol\’s entropic maelstrom', 'Eternal champion',
+                   'Fireball', 'Fly', 'Gust of wind', 'Haste', 'Lightning bolt', 'Make potion',
+                   'Paralysis', 'Planar step', 'Runic alphabet, fey', 'Slow', 'Sword magic',
+                   'Transference ', 'Turn to stone', 'Water breathing', 'Write magic'])
+    # Level 4
+    wizard.append(['Control fire', 'Control ice', 'Lokerimon\’s orderly assistance',
+                   'Polymorph', 'Transmute Earth', 'Wizard sense', ])
+    wizard.append(['Hepsoj\’s fecund fungi', 'Lokerimon\’s unnerring hunter',
+                   'Magic bulwark', 'Mind purge', 'Replication'])
+
+    cleric = []
+    cleric.append([]) #Level0 spells don't exist in DCC! :)
+    cleric.append(['Blessing', 'Darkness', 'Detect evil', 'Detect magic', 'Food of the gods',
+                   'Holy sanctuary', 'Paralysis', 'Protection from evil', 'Resist cold or heat',
+                   'Second sight', 'Word of command'])
+    cleric.append(['Banish', 'Binding', 'Cure paralysis', 'Curse', 'Divine symbol', 'Lotus stare',
+                   'Neutralize poison or disease', 'Restore vitality', 'Snake charm',
+                   'Stinging stone', 'Wood wyrding '])
+    cleric.append(['Animate dead', 'Bolt from the blue', 'Exorcise', 'Remove curse',
+                   'Speak with the dead', 'Spiritual weapon', 'True name'])
+    cleric.append(['Affliction of the gods', 'Cause earthquake', 'Sanctify / desecrate',
+                   'Vermin blight'])
+    cleric.append(['Righteous fire', 'Weather control', 'Whirling doom'])
+
+    if spell_type == 'wizard':
+        return choice(wizard[level])
+    elif spell_type == 'cleric':
+        return choice(cleric[level])
+
+
+def contents(spell_type):
+    roll = 64
+    number_of_spells = randint(1, 4)
+    if roll < 30:
+        return '{}'.format(spell(1, spell_type))
+    elif roll > 30 and roll <= 45:
+        return '{}'.format(spell(2, spell_type))
+    elif roll > 45 and roll <= 55:
+        return '{}'.format(spell(3, spell_type))
+    elif roll > 55 and roll <= 60:
+        return '{}'.format(spell(4, spell_type))
+    elif roll > 60 and roll <= 63:
+        return '{}'.format(spell(5, spell_type))
+    elif roll > 63 and roll <= 73:
+        known_spells = spell(1, spell_type)
+        for i in range(number_of_spells - 1):
+            known_spells += ', ' + spell(1, spell_type)
+        return known_spells
+    elif roll > 73 and roll <= 78:
+        return '{} level 1 {} spells and 1 level 2 spell'.format(number_of_spells, spell_type)
+    elif roll > 78 and roll <= 85:
+        return '{} level 2 {} spells'.format(number_of_spells, spell_type)
+    elif roll > 85 and roll <= 90:
+        return '2 level 3 spells'.format(spell_type)
+    elif roll > 90 and roll <= 93:
+        return '{} level 1 spells, 1 level 2 spell, and 1 level 3 spell'.format(number_of_spells, spell_type)
+    elif roll > 93 and roll <= 95:
+        return '1 level 2 {} spell and 1 level 4 spell'.format(spell_type)
+    elif roll > 97 and roll <= 97:
+        return '1 {} spell each of levels 1, 2, 3, 4, and 5'.format(spell_type)
+    elif roll > 97 and roll <= 99:
+        return '1 level 3 {} spell, 1 level 4 spell, and 2 level 5 spells'.format(spell_type)
+    else:
+        return '2 {} spells each of levels 1, 2, 3, 4, and 5'.format(spell_type)
+
+
+def casting_mechanism():
+    roll = randint(1,100)
+    if roll <= 75:
+        return 'Spell check must be made by reader, at his normal result.'
+    elif roll < 75 and roll <= 85:
+        return 'Spell check must be made by reader, at a +2 bonus.'
+    elif roll < 85 and roll <= 90:
+        return 'Spell check must be made by reader, at a -2 penalty.'
+    elif roll > 90 and roll <= 95:
+        return 'Spell is automatically cast at minimal successful result (i.e., 12 for a level 1 spell, 14 for a level 2 spell, etc.)'
+    else:
+        return 'Spell is automatically cast at a defined result (roll randomly or choose).'
+
+
+def unique_trait():
+    roll = randint(1,12)
+    if roll == 1:
+        return 'Signed by creator, in his own name'
+    elif roll == 2:
+        return 'Signed by creator, in his own name, with the notation that, “This scroll is the property of the creator. All others who use it shall be subject to a curse.” (Or something similar.)'
+    elif roll == 3:
+        return 'Unsigned, but warded with a protective rune. Any spellcaster can tell that this rune is designed to prevent the scroll from being cast. Anyone attempting to read the scroll must make a DC 16 Will save or forget that the scroll exists'
+    elif roll == 4:
+        return 'Written in code. When properly deciphered the scroll can be read but not until then'
+    elif roll == 5:
+        return 'Written in a foreign tongue; for example, in orc, gnoll, or even celestial. Use Appendix L to randomly generate ideas, or create your own. Scroll can be cast only if translated'
+    elif roll == 6:
+        return 'Signed with the sigil of a wizards’ conclave. Clearly this scroll was created for their use'
+    elif roll == 7:
+        return 'Signed by the signatures of three wizards, one of whom may have created it'
+    elif roll == 8:
+        return 'Sealed with wax, in which is stamped the sign of a powerful demon'
+    elif roll == 9:
+        return 'Stored in a scroll tube carved from exotic materials and etched with warnings against its use'
+    elif roll == 10:
+        return 'Spell on the scroll is a variant version that also unleashes a powerful watch-demon to hunt the caster when used'
+    elif roll == 11:
+        return 'Spell instructions are intermixed with the casting of a curse. Reader will not realize until about halfway through that the two spells are cast together. Reader can then choose to abandon casting both or finish casting both together. Curse automatically takes effect along with desired spell result.'
+    else:
+        return 'Alien sigils writhe across the tube which contains this scroll'
+
+
+def spell_type():
+    roll = randint(0,1)
+    if roll == 0:
+        return 'cleric'
+    if roll == 1:
+        return 'wizard'
+
+
+stdout.write('Scroll of {}'.format(contents(spell_type())))
+stdout.write('; {}'.format(unique_trait()))
+print('; {}'.format(casting_mechanism()))

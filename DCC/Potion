@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+
+from random import choice
+
+class Potion(object):
+    def __init__(self):
+        def liquid(self):
+            liquids = ['milky', 'clear', 'red', 'chunky', 'viscous', 'gluey', 'curdled', 'slimy', 'congealed',
+                       'jellied', 'cloudy', 'colorful', 'sparkling', 'glowing']
+            return choice(liquids)
+
+        def scent(self):
+            scents = ['of stinky feet', 'of vanilla', 'scentless', 'of cheese', 'of cow stink', 'of mushrooms',
+                           'musky', 'bloody', 'metallic', 'acrid', 'smoky', 'of strawberries', 'of honey',
+                           'of tomatoes', 'of wet dog', 'earthy', 'of fresh baked bread', 'of farts', 'of rot',
+                           'sulphurous', 'fishy', 'of sea water', 'of pond water', 'like clean water', 'froggy']
+            return choice(scents)
+
+        def container(self):
+            bottles = ['urn', 'phial', 'vial', 'jar', 'jug', 'flask', 'flagon', 'decanter', 'ewer', 'carafe', 'cruet',
+                       'beaker', 'ampulla', 'crock', 'goblet', 'bottle', 'chalice', 'demijohn', 'flacon',
+                       'flasket', 'capsule', 'packet', 'pod', 'pot', 'tub', 'pouch', 'package', 'amphora', 'bladder',
+                       'fruit', 'gourd']
+            descriptors = ['metallic', 'glass', 'clay', 'wooden', 'paper', 'leather', 'resin', 'bone']
+            return '{} {}'.format(choice(descriptors).title(), choice(bottles))
+
+        def label(self):
+            labels = ['runic incription', 'no label', 'symbolic label']
+            return choice(labels)
+
+        def stopper(self):
+            stoppers = ['stopper', 'cork', 'seal', 'plug', 'cap', 'spike', 'phellem', 'shive']
+            descriptors = ['lead', 'wax', 'metallic', 'wooden']
+            return '{} {}'.format(choice(descriptors), choice(stoppers))
+
+        def taste(self):
+            tastes = ['muddy', 'like rot', 'sweet', 'tart', 'floral', 'soapy', 'like vinegar', 'like wine',
+                      'like chocolate', 'like fermenting honey', 'metallic', 'like charcoal', 'mineral', 'dusty', 'moldy',
+                      'of apples', 'spicy', 'like cinnamon', 'like spring water', 'cheesy', 'like grass', 'like chicken']
+            return choice(tastes)
+
+        def misfire(self):
+            effects = ['The potion explodes, resulting in 1d10 points of damage (Fort save against a DC equal to the intended potion’s spell check number is allowed for half damage)',
+                       'The imbiber smells like a campfire for 1d4 turns', 'The imbiber falls asleep',
+                       'The imbiber becomes sickened (-1 to all rolls) for 1d4 turns (Fort save against a DC equal to the intended potion’s spell check number)',
+                       'The imbiber grows hair everywhere', 'The imbiber\'s bones become rubbery for 1d4 rounds',
+                       'The imbiber is petrified for 1d4 rounds', 'The imbiber polymorphs into a small vermin',
+                       'The imbiber is poisoned',
+                       'the imbiber permanently gains 1 point of Strength',
+                       'the imbiber permanently gains 1 point of Intelligence',
+                       'the imbiber permanently gains 1 point of Stamina',
+                       'the imbiber permanently gains 1 point of Agility',
+                       'the imbiber permanently gains 1 point of Luck']
+
+        def potion_type(self):
+            types = ['misfire', 'no effect', 'love potion', 'poison', 'animal control', 'gaseous form', 'healing',
+                     'shrinking', 'growth', 'levitation', 'water-breathing', 'polymorph', 'speed', 'heroism',
+                     'invisibility', 'human control', 'fire resistance', 'un-dead control', 'extraordinary healing',
+                     'flying', 'super-heroism', 'giant strength', 'longevity', 'invulnerability']
+            return choice(types)
+
+        self.liquid = liquid(self)
+        self.scent = scent(self)
+        self.container = container(self)
+        self.label = label(self)
+        self.stopper = stopper(self)
+        self.taste = taste(self)
+        self.potion_type = potion_type(self)
+
+
+p = Potion()
+print('{} with a {} and {}. Inside is {} liquid which smells {} and tastes {}. Potion of {}'.format(p.container,
+                                                                                                     p.stopper,
+                                                                                                     p.label,
+                                                                                                     p.liquid,
+                                                                                                     p.scent,
+                                                                                                     p.taste,
+                                                                                                     p.potion_type))
