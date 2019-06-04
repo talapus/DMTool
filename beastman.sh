@@ -25,7 +25,7 @@ roll_mutation() {   # determines the beastman's chaos-granted mutation
           'an elephant' 'a bull' 'a horse' 'a rhino' 'a fly' 'a spider' 'a cockroach'
           'an ant' 'an eagle' 'a cat' 'a fish' 'a shark' 'a praying mantis' 'a dolphin'
           'a peacock' 'a beaver' 'a prawn' 'an earthworm' 'a squirrel' 'an anteater'
-          'a lamprey' 'a jellyfish' 'a giraffe' 'a zebra' 'an antelope' 'am elk')
+          'a lamprey' 'a jellyfish' 'a giraffe' 'a zebra' 'an antelope' 'an elk')
   random_head=$(( RANDOM % ${#heads[*]} ))
   head=${heads[${random_head}]}
   mutations=("thick, bristly fur and the head of ${head}"
@@ -65,7 +65,7 @@ roll_mutation() {   # determines the beastman's chaos-granted mutation
               "a fleshy tail ending in a useable third hand and head of ${head}"
               "a fused cartilaginous links ending in spiked stump that can attack for 1d6 damage"
               "a bushy horse’s tail and head of ${head}"
-              "one hand transformed into a crab claw. Natural attack for 1d6 damage. The claw can no longer grasp normal weapons and objects."
+              "one hand is a crab claw. Natural attack for 1d6 damage. The claw can no longer grasp normal weapons and objects."
               "small tentacles grow around the character’s mouth and ears. The tentacles are maggot-sized at first, but grow at rate of 1” per month to a mature length of 12”."
               "suckered tentacles in the place of limbs"
               "a tongue that forks and narrow to slits for nostrils. The character is able to smell with his tongue like a snake."
