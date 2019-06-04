@@ -112,6 +112,43 @@ get_equipment() {
   printf "some picket fluff"
 }
 
+
+get_augur() {
+  luck_mod=${1-0}  # 0 if nothing provided
+  augurs=("to attack rolls"
+          "to melee attack rolls" 
+          "to missile fire attack rolls" 
+          "to unarmed attack rolls" 
+          "to mounted attack rolls" 
+          "to damage rolls"
+          "to melee damage rolls" 
+          "to missile fire damage rolls" 
+          "to attack and damage rolls for 0-level trained weapon" 
+          "to skill checks (including thief skills)" 
+          "to find/disable traps" 
+          "to find secret doors" 
+          "to mutation checks" 
+          "to mutation damage rolls" 
+          "to AI recognition rolls" 
+          "to healing rolls" 
+          "to saving throws" 
+          "to escape traps" 
+          "to saving throws against poison" 
+          "to reflex saving throws" 
+          "to fortitude saving throws" 
+          "to willpower saving throws" 
+          "to armor class" 
+          "to initiative" 
+          "to hit points (applies at each level)" 
+          "to critical hit tables" 
+          "to defect rolls" 
+          "to fumbles" 
+          "known languages" 
+          "to speed (each +1 = +5’ speed)")
+  random_augur=$(($RANDOM%${#augurs[*]}))
+  printf "${luck_mod} ${augurs[${random_augur}]}"
+}
+
 # main
 
 NAME=$(get_name)
@@ -135,6 +172,6 @@ echo PER ${PER} $(get_mod ${PER})
 echo INT ${INT} $(get_mod ${INT})
 echo LCK ${LCK} $(get_mod ${LCK})
 echo
-echo $(get_augur)
+echo $(get_augur $(get_mod ${LCK}))
 echo Languages $(get_languages)
 echo equipment $(get_equipment)
