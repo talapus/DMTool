@@ -51,7 +51,8 @@ roll_name() {
 }
 
 roll_character_class() {
-  classes=(warrior wizard thief cleric elf hobbit dwarf naturalist warlock shapeshifter beastman 'chaos champion' engineer explorer 'chaos cultist')
+  classes=(warrior wizard thief cleric elf hobbit dwarf naturalist warlock shapeshifter beastman champion engineer explorer cultist)
+
   random_class=$(($RANDOM%${#classes[*]}))
   printf ${classes[${random_class}]}
 }
@@ -95,61 +96,79 @@ roll_armor_class() {  # 10 + agi bonus
 }
 
 roll_languages() {
-  number=${1-1}  # one language, or more if specified
-  language=(common greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian)
+  number=${1-0} # one language, or more if specified
+  language=(greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian lemurian atlantean runic)
 
-  for i in `seq ${number}`; do
-    printf " ${language[${i}]}"
+  for i in `seq 0 ${number}`; do
+    random_language=$(( RANDOM % ${#language[*]} ))
+    printf " ${language[${random_language}]}"
   done
 }
 
 roll_equipment() {
-  trinkets=("pocket fulff" "old keys" "chewing gum" "candy wrappers")
-  change=("some spare coins" "ten bucks" "a few bucks" "a twenty")
+  trinkets=("pocket fluff" "old keys" "chewing gum" "candy wrappers")
+  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty")
   weapons=("hunting knife" "kitchen knife" "combat knife" "broke bottle" "makeshift shiv" brick rock "chair leg" "table leg")
-  printf "some picket fluff"
+  random_trinket=$(($RANDOM%${#trinkets[*]}))
+  random_change=$(($RANDOM%${#change_types[*]}))
+  random_weapon=$(($RANDOM%${#weapons[*]}))
+  trinket=${trinkets[${random_trinket}]}
+  change=${change_types[${random_change}]}
+  weapon=${weapons[${random_weapon}]}
+  printf "a ${weapon}, ${change}, and some ${trinket}"
 }
 
 roll_augur() {
   luck_mod=${1-0}  # 0 if nothing provided
   augurs=("to attack rolls"
-          "to melee attack rolls" 
-          "to missile fire attack rolls" 
-          "to unarmed attack rolls" 
-          "to mounted attack rolls" 
+          "to melee attack rolls"
+          "to missile fire attack rolls"
+          "to unarmed attack rolls"
+          "to mounted attack rolls"
           "to damage rolls"
-          "to melee damage rolls" 
-          "to missile fire damage rolls" 
-          "to attack and damage rolls for 0-level trained weapon" 
-          "to skill checks (including thief skills)" 
-          "to find/disable traps" 
-          "to find secret doors" 
-          "to mutation checks" 
-          "to mutation damage rolls" 
-          "to AI recognition rolls" 
-          "to healing rolls" 
-          "to saving throws" 
-          "to escape traps" 
-          "to saving throws against poison" 
-          "to reflex saving throws" 
-          "to fortitude saving throws" 
-          "to willpower saving throws" 
-          "to armor class" 
-          "to initiative" 
-          "to hit points (applies at each level)" 
-          "to critical hit tables" 
-          "to defect rolls" 
-          "to fumbles" 
-          "known languages" 
+          "to melee damage rolls"
+          "to missile fire damage rolls"
+          "to attack and damage rolls for 0-level trained weapon"
+          "to skill checks (including thief skills)"
+          "to find/disable traps"
+          "to find secret doors"
+          "to mutation checks"
+          "to mutation damage rolls"
+          "to AI recognition rolls"
+          "to healing rolls"
+          "to saving throws"
+          "to escape traps"
+          "to saving throws against poison"
+          "to reflex saving throws"
+          "to fortitude saving throws"
+          "to willpower saving throws"
+          "to armor class"
+          "to initiative"
+          "to hit points (applies at each level)"
+          "to critical hit tables"
+          "to defect rolls"
+          "to fumbles"
+          "known languages"
           "to speed (each +1 = +5’ speed)")
   random_augur=$(($RANDOM%${#augurs[*]}))
   printf "${luck_mod} ${augurs[${random_augur}]}"
+}
+
+roll_alignment() {
+  alignments=(lawful chaotic neutral)
+  random_alignment=$(( RANDOM % ${#alignments[*]} ))
+  printf " ${alignments[${random_alignment}]}"
 }
 
 # main
 
 NAME=$(roll_name)
 CLASS=$(roll_character_class)
+ALIGNMENT=$(roll_alignment)
+if [ ${CLASS} == cultist ] || [ ${CLASS} == champion ]; then
+  ALIGNMENT=chaos  # "chaos champion" hack
+fi
+
 STR=$(( 4 + RANDOM % 15 ))
 AGI=$(( 4 + RANDOM % 15 ))
 STA=$(( 4 + RANDOM % 15 ))
@@ -159,16 +178,15 @@ LCK=$(( 4 + RANDOM % 15 ))
 AC=$(roll_armor_class)
 HP=$(( 1 + RANDOM % 4 ))
 
-echo ${NAME} the ${CLASS}
+echo ${NAME}, ${ALIGNMENT} ${CLASS}
 echo
-printf "AC  ${AC}\t HP ${HP}\n"
-printf "STR ${STR}\t$(get_mod ${STR})\tFort +0\n"
-printf "AGI ${AGI}\t$(get_mod ${AGI})\tRes +0\n"
-printf "STA ${STA}\t$(get_mod ${STA})\t Will +0\n"
-printf "PER ${PER}\t$(get_mod ${PER})\n"
-printf "INT ${INT}\t$(get_mod ${INT})\n"
-printf "LCK ${LCK}\t$(get_mod ${LCK})\n"
+printf "STR ${STR}\t$(get_mod ${STR})\tHP ${HP}\n"
+printf "AGI ${AGI}\t$(get_mod ${AGI})\tAC ${AC}\n"
+printf "STA ${STA}\t$(get_mod ${STA})\n"
+printf "PER ${PER}\t$(get_mod ${PER})\tFort $(get_mod ${STA})\n"
+printf "INT ${INT}\t$(get_mod ${INT})\tRef  $(get_mod ${AGI})\n"
+printf "LCK ${LCK}\t$(get_mod ${LCK})\tWill $(get_mod ${PER})\n"
 echo
-echo Augur $(roll_augur $(get_mod ${LCK}))
-echo Languages $(roll_languages)
-echo equipment $(roll_equipment)
+echo Augur: $(roll_augur $(get_mod ${LCK}))
+echo Languages: Common, $(roll_languages)
+echo Equipment: $(roll_equipment)
