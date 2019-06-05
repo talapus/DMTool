@@ -33,8 +33,7 @@ get_section() {
   sections=(oi ae ai ay yo io li il ta da do di ri mi ni )
 }
 
-
-get_name() {
+roll_name() {
   get_consonant
 
   if [ $(( RANDOM % 2 )) -lt 1 ]; then
@@ -51,8 +50,8 @@ get_name() {
   fi
 }
 
-get_class() {
-  classes=(warrior wizard thief demigod elf hobbit dwarf alchemist warlock elemental shapeshifter beastman 'chaos champion' engineer adventurer)
+roll_character_class() {
+  classes=(warrior wizard thief cleric elf hobbit dwarf naturalist warlock shapeshifter beastman 'chaos champion' engineer explorer 'chaos cultist')
   random_class=$(($RANDOM%${#classes[*]}))
   printf ${classes[${random_class}]}
 }
@@ -95,11 +94,7 @@ roll_armor_class() {  # 10 + agi bonus
   fi
 }
 
-get_augur() {
-  printf "Augur: This will be the augur message"
-}
-
-get_languages() {
+roll_languages() {
   number=${1-1}  # one language, or more if specified
   language=(common greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian)
 
@@ -108,12 +103,14 @@ get_languages() {
   done
 }
 
-get_equipment() {
+roll_equipment() {
+  trinkets=("pocket fulff" "old keys" "chewing gum" "candy wrappers")
+  change=("some spare coins" "ten bucks" "a few bucks" "a twenty")
+  weapons=("hunting knife" "kitchen knife" "combat knife" "broke bottle" "makeshift shiv" brick rock "chair leg" "table leg")
   printf "some picket fluff"
 }
 
-
-get_augur() {
+roll_augur() {
   luck_mod=${1-0}  # 0 if nothing provided
   augurs=("to attack rolls"
           "to melee attack rolls" 
@@ -151,8 +148,8 @@ get_augur() {
 
 # main
 
-NAME=$(get_name)
-CLASS=$(get_class)
+NAME=$(roll_name)
+CLASS=$(roll_character_class)
 STR=$(( 4 + RANDOM % 15 ))
 AGI=$(( 4 + RANDOM % 15 ))
 STA=$(( 4 + RANDOM % 15 ))
@@ -164,14 +161,14 @@ HP=$(( 1 + RANDOM % 4 ))
 
 echo ${NAME} the ${CLASS}
 echo
-echo AC ${AC} HP ${HP}
-echo STR ${STR} $(get_mod ${STR})
-echo AGI ${AGI} $(get_mod ${AGI})
-echo STA ${STA} $(get_mod ${STA})
-echo PER ${PER} $(get_mod ${PER})
-echo INT ${INT} $(get_mod ${INT})
-echo LCK ${LCK} $(get_mod ${LCK})
+printf "AC  ${AC}\t HP ${HP}\n"
+printf "STR ${STR}\t$(get_mod ${STR})\tFort +0\n"
+printf "AGI ${AGI}\t$(get_mod ${AGI})\tRes +0\n"
+printf "STA ${STA}\t$(get_mod ${STA})\t Will +0\n"
+printf "PER ${PER}\t$(get_mod ${PER})\n"
+printf "INT ${INT}\t$(get_mod ${INT})\n"
+printf "LCK ${LCK}\t$(get_mod ${LCK})\n"
 echo
-echo $(get_augur $(get_mod ${LCK}))
-echo Languages $(get_languages)
-echo equipment $(get_equipment)
+echo Augur $(roll_augur $(get_mod ${LCK}))
+echo Languages $(roll_languages)
+echo equipment $(roll_equipment)
