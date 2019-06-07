@@ -26,8 +26,7 @@ roll_mutation() {   # determines the beastman's chaos-granted mutation
           'an ant' 'an eagle' 'a cat' 'a fish' 'a shark' 'a praying mantis' 'a dolphin'
           'a peacock' 'a beaver' 'a prawn' 'an earthworm' 'a squirrel' 'an anteater'
           'a lamprey' 'a jellyfish' 'a giraffe' 'a zebra' 'an antelope' 'an elk')
-  random_head=$(( RANDOM % ${#heads[*]} ))
-  head=${heads[${random_head}]}
+  head=${heads[$(($RANDOM%${#heads[*]}))]}
   mutations=("thick, bristly fur and the head of ${head}"
               "hunched, furred back, with a second, diminutive head"
               "dense coat of feathers and the head of ${head}"
@@ -85,9 +84,7 @@ roll_mutation() {   # determines the beastman's chaos-granted mutation
               "light sensitive eyes (-1 to all rolls in daylight)"
               "infravision (sees heat signatures at range of 100’)"
               "large and unblinking eyes, like a fish")
-  random_mutation=$(( RANDOM % ${#mutations[*]} ))
-  mutation=${mutations[${random_mutation}]}
-  printf "${mutation}"
+  printf "${mutations[$(($RANDOM%${#mutations[*]}))]}"  # random mutation
 }
 
 roll_weapon() {  # assigns melee or ranged weapon
@@ -100,19 +97,17 @@ roll_weapon() {  # assigns melee or ranged weapon
     printf "${weapon} ${weapon_mod} melee (1d4)"
   elif [ ${weapon_type} -eq 1 ]; then  # 1d6 melee
     weapons=(spear shortsword awl staff shovel mace)
-    random_weapon=$(( RANDOM % ${#weapons[*]} ))
+    weapon=${weapons[$(($RANDOM%${#weapons[*]}))]}  # random weapon
     weapon_mod=$(roll_mod)
-    weapon=${weapons[${random_weapon}]}
     printf "${weapon} ${weapon_mod} melee (1d6)"
   elif [ ${weapon_type} -eq 2 ]; then  # 1d4 ranged
     weapons=(sling dart)
-    random_weapon=$(( RANDOM % ${#weapons[*]} ))
+    weapon=${weapons[$(($RANDOM%${#weapons[*]}))]}  # random weapon
     weapon_mod=$(roll_mod)
-    weapon=${weapons[${random_weapon}]}
     printf "${weapon} ${weapon_mod} ranged (1d4)"
   elif [ ${weapon_type} -eq 3 ]; then  # longsword
-    weapon_mod=$(roll_mod)
     weapon=longsword
+    weapon_mod=$(roll_mod)
     printf "${weapon} ${weapon_mod} melee (1d8)"
   fi
 }
