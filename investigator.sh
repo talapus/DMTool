@@ -48,7 +48,6 @@ uppcase_consonants=(B C D F G H J K L M N P Q R S T V W X Y X)
 
 print_vowel() {
   vowels=(a e i o u)
-  random_vowel=$(($RANDOM%${#vowels[*]}))
   printf ${vowels[$(($RANDOM%${#vowels[*]}))]}
 }
 
@@ -144,12 +143,13 @@ roll_armor_class() {  # 10 + agi bonus
 }
 
 roll_equipment() {
-  trinkets=("some pocket fluff" "a grime covered key" "chewing gum" "a box of matches" "a metal washer and some string"
+  trinkets=("some pocket fluff" "a grime covered key" "chewing gum" "a box of matches" "some string tied to a metal washer"
             "a few canadian coins" "a pebble" "a phillips screwdriver" "an empty water bottle"
             "a quartz crystal" "an old worn coin" "a kazoo" "a expired winning lottery ticket" "half a bag of M&Ms")
-  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty" "a hundred" "a few hundred bucks" "a few grand")
+  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty" "a hundred bucks" "a few hundred bucks" "a few grand wrapped in a bundle")
   weapons=("hunting knife" "kitchen knife" "combat knife" "broken bottle" "makeshift shiv" brick rock "chair leg" "table leg")
-  trinket=${trinkets[$(($RANDOM%${#trinkets[*]}))]}  
+  weapons=(${weapons[*]} ".38 special" ".22 rifle" "shotgun" "bear repellent" "tazer" "piece of rebar" "crowbar" "wrench")
+  trinket=${trinkets[$(($RANDOM%${#trinkets[*]}))]}
   change=${change_types[$(($RANDOM%${#change_types[*]}))]}
   weapon=${weapons[$(($RANDOM%${#weapons[*]}))]}
   printf "a ${weapon}, ${change}, and ${trinket}"
@@ -185,32 +185,17 @@ roll_augur() {
           "to critical hit tables"
           "to defect rolls"
           "to fumbles"
-          "known languages"
-          "to speed (each +1 = +5’ speed)")
+          "known languages")
+          #"quick: +$(( $(echo ${luck_mod} | sed s/+//g | sed s/-//g) * 5 )) to speed")
   random_augur=$(($RANDOM%${#augurs[*]}))
   printf "${luck_mod} ${augurs[${random_augur}]}"
 }
 
 # main
 
-
+# generate variable values
 CLASS=${classes[$(($RANDOM%${#classes[*]}))]}
 OCCUPATION=${occupation[$(($RANDOM%${#occupation[*]}))]}
-
-# chaos champion hack
-if [ ${CLASS} == Cultist ] || [ ${CLASS} == Champion ]; then
-  ALIGNMENT=Chaos
-else
-  ALIGNMENT=${alignments[$(($RANDOM%${#alignments[*]}))]}
-fi
-
-# Chaotic people have chaotic names
-if [ ${ALIGNMENT} == Chaos ] || [ ${ALIGNMENT} == Chaotic ]; then
-  NAME=$(chaos_name)
-else
-  NAME=$(echo ${first_name[$(($RANDOM%${#first_name[*]}))]} ${last_name[$(($RANDOM%${#last_name[*]}))]})
-fi
-
 STR=$(( 4 + RANDOM % 15 ))
 AGI=$(( 4 + RANDOM % 15 ))
 STA=$(( 4 + RANDOM % 15 ))
@@ -220,6 +205,21 @@ LCK=$(( 4 + RANDOM % 15 ))
 AC=$(roll_armor_class)
 HP=$(( 1 + RANDOM % 4 ))
 
+# generate alignment // chaos champion hack
+if [ ${CLASS} == Cultist ] || [ ${CLASS} == Champion ]; then
+  ALIGNMENT=Chaos
+else
+  ALIGNMENT=${alignments[$(($RANDOM%${#alignments[*]}))]}
+fi
+
+# generate names // chaotic people have chaotic names
+if [ ${ALIGNMENT} == Chaos ] || [ ${ALIGNMENT} == Chaotic ]; then
+  NAME=$(chaos_name)
+else
+  NAME=$(echo ${first_name[$(($RANDOM%${#first_name[*]}))]} ${last_name[$(($RANDOM%${#last_name[*]}))]})
+fi
+
+# display data
 echo ${NAME}, ${ALIGNMENT} ${CLASS} ${OCCUPATION}
 echo
 printf "STR ${STR}\t$(get_mod ${STR})  HP ${HP}\n"
