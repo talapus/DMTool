@@ -1,60 +1,108 @@
 #!/usr/bin/env bash
 
-get_vowel() {
+languages=(greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian lemurian atlantean runic)
+alignments=(Lawful Chaotic Neutral)
+classes=(Warrior Wizard Thief Cleric Elf Hobbit Dwarf Naturalist Warlock Shapeshifter Beastman)
+classes=(${classes[*]} Champion Explorer Cultist)
+
+# Lawful Names
+first_name=("Fred" "James" "Jennifer" "Sammy" "Janis" "Julio" "Pablo" "Jon" "Shin" "Maka" "Bin" "Jaxon")
+first_name=(${first_name[*]} "Jon" "Ben" "Earl" "Vinton" "Evelin" "Myrtle")
+
+last_name=("Jameson" "Frederickson" "Wheeler" "Bartleby" "Cider" "Jamboree" "Finklestein")
+last_name=(${last_name[*]} "Jacobsen" "Shekelhund" "James" "Jones" "Evans" "Frankson")
+last_name=(${last_name[*]} "Nikelson" "Nickson" "Riley" "O'Rourke" "Backus" "Green" "Brown")
+
+occupation=("Accountant" "Acrobat" "Detective" "Ambassador" "Architect" "Butler")
+occupation=(${occupation[*]} "Artist" "Author" "Barber" "Bartender" "Fixer")
+occupation=(${occupation[*]} "Bookie" "Boss" "Boxer" "Wrestler" "Biologist")
+occupation=(${occupation[*]} "Burglar" "Priest" "Clergy" "Clerk" "Pharmacist")
+occupation=(${occupation[*]} "Communist" "Radical" "Executive" "Columnist" "Cook")
+occupation=(${occupation[*]} "Deacon" "Elder" "Diver" "Dentist" "Operator")
+occupation=(${occupation[*]} "Dilettante" "DJ" "Drifter" "Editor" "Official")
+occupation=(${occupation[*]} "Entertainer" "Explorer" "Farmer" "Farmhand" "Federal")
+occupation=(${occupation[*]} "Fence" "Fireman" "Surgeon" "Gambler" "Punk")
+occupation=(${occupation[*]} "Forger" "Counterfeiter" "Forester" "Psychologist")
+occupation=(${occupation[*]} "Gangster" "Gardener" "Gravedigger" "Hacker")
+occupation=(${occupation[*]} "Goon" "Hitman" "Hobo" "Hooker" "Journalist" "Judge")
+occupation=(${occupation[*]} "Lawyer" "Librarian" "Loanshark" "Lumberjack" "Manager")
+occupation=(${occupation[*]} "Coach" "Technician" "Mercenary" "Miner" "Missionary")
+occupation=(${occupation[*]} "Curator" "Musician" "Nurse" "Rabbi" "Driver")
+occupation=(${occupation[*]} "Occultist" "Painter" "Sculptor" "Parapsychologist")
+occupation=(${occupation[*]} "Photographer" "Photojournalist" "Physician" "Pickpocket")
+occupation=(${occupation[*]} "Pilot" "Surgeon" "Police" "Minister" "Brewer")
+occupation=(${occupation[*]} "Attorney" "Preacher" "Professor" "Teacher" "Programmer")
+occupation=(${occupation[*]} "Rancher" "Cowboy" "Reporter" "Researcher" "Sailor")
+occupation=(${occupation[*]} "Salesman" "Secretary" "Lawyer" "Spy" "Student" "Intern")
+occupation=(${occupation[*]} "Smuggler" "Soldier" "Marine" "Actor" "Stagehand" "Broker")
+occupation=(${occupation[*]} "Criminal" "Surveyor" "Swimmer" "Diver" "Agent" "Tribal")
+occupation=(${occupation[*]} "Undertaker" "Unionist" "Writer" "Zookeeper")
+occupation=(${occupation[*]} "Mechanic" "Doctor" "Archaeologist" "Scientist")
+occupation=(${occupation[*]} "Astrophysicist" "Astronomer" "Historian" "Mystic")
+occupation=(${occupation[*]} "Magician" "Stuntman" "Bodyguard" "Vagrant")
+
+# Chaos names
+
+consonants=(b c d f g h j k l m n p q r s t v w x y z)
+uppcase_consonants=(B C D F G H J K L M N P Q R S T V W X Y X)
+
+print_vowel() {
   vowels=(a e i o u)
   random_vowel=$(($RANDOM%${#vowels[*]}))
-  printf ${vowels[${random_vowel}]}  # ${vowels[$(($RANDOM%${#vowels[*]}))]} doesn't work
+  printf ${vowels[$(($RANDOM%${#vowels[*]}))]}
 }
 
-get_consonant() {
-  consonants=(b c d f g h j k l m n p p r s t v w x y z)
-  random_consonant=$(($RANDOM%${#consonants[*]}))
-  printf ${consonants[${random_consonant}]}
+print_uppcase_consonant() {
+  uppcase_consonants=(B C D F G H J K L M N P Q R S T V W X Y X)
+  printf ${uppcase_consonants[$(($RANDOM%${#uppcase_consonants[*]}))]}
+}
+print_consonant() {
+  consonants=(b c d f g h j k l m n p q r s t v w x y z)
+  printf ${consonants[$(($RANDOM%${#consonants[*]}))]}
 }
 
-get_optional() {
+print_optional() {
   optional=$(( RANDOM % 3 ))
-  if [ optional = 0 ]; then
-    get_consonant
-    get_vowel
-  elif [ optional = 1 ]; then
-    get_vowel
-    get_consonant
-  elif [ optional = 2 ]; then
-    get_consonant
-    get_vowel
-    get_consonant
+  if [ ${optional} = 0 ]; then
+    print_consonant
+    print_vowel
+  elif [ ${optional} = 1 ]; then
+    print_vowel
+    print_consonant
+  elif [ ${optional} = 2 ]; then
+    print_consonant
+    print_vowel
+    print_consonant
   else
-    get_consonant
+    print_consonant
   fi
 }
 
-get_section() {
+print_section() {
   sections=(oi ae ai ay yo io li il ta da do di ri mi ni )
 }
 
-roll_name() {
-  get_consonant
+chaos_name() {
+  print_uppcase_consonant
 
   if [ $(( RANDOM % 2 )) -lt 1 ]; then
-    get_vowel
-    get_vowel
+    print_vowel
+    print_vowel
   else
-    get_vowel
+    print_vowel
   fi
 
-  get_consonant
+  print_consonant
 
   if [ $(( RANDOM % 3 )) -lt 2 ]; then
-    get_optional
+    print_optional
   fi
-}
 
-roll_character_class() {
-  classes=(warrior wizard thief cleric elf hobbit dwarf naturalist warlock shapeshifter beastman champion engineer explorer cultist)
+  if [ $(( RANDOM % 3 )) -lt 2 ]; then
+    printf "\'"
+    print_optional
+  fi
 
-  random_class=$(($RANDOM%${#classes[*]}))
-  printf ${classes[${random_class}]}
 }
 
 get_mod() {
@@ -95,27 +143,16 @@ roll_armor_class() {  # 10 + agi bonus
   fi
 }
 
-roll_languages() {
-  number=${1-0} # one language, or more if specified
-  language=(greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian lemurian atlantean runic)
-
-  for i in `seq 0 ${number}`; do
-    random_language=$(( RANDOM % ${#language[*]} ))
-    printf " ${language[${random_language}]}"
-  done
-}
-
 roll_equipment() {
-  trinkets=("pocket fluff" "old keys" "chewing gum" "candy wrappers")
-  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty")
-  weapons=("hunting knife" "kitchen knife" "combat knife" "broke bottle" "makeshift shiv" brick rock "chair leg" "table leg")
-  random_trinket=$(($RANDOM%${#trinkets[*]}))
-  random_change=$(($RANDOM%${#change_types[*]}))
-  random_weapon=$(($RANDOM%${#weapons[*]}))
-  trinket=${trinkets[${random_trinket}]}
-  change=${change_types[${random_change}]}
-  weapon=${weapons[${random_weapon}]}
-  printf "a ${weapon}, ${change}, and some ${trinket}"
+  trinkets=("some pocket fluff" "a grime covered key" "chewing gum" "a box of matches" "a metal washer and some string"
+            "a few canadian coins" "a pebble" "a phillips screwdriver" "an empty water bottle"
+            "a quartz crystal" "an old worn coin" "a kazoo" "a expired winning lottery ticket" "half a bag of M&Ms")
+  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty" "a hundred" "a few hundred bucks" "a few grand")
+  weapons=("hunting knife" "kitchen knife" "combat knife" "broken bottle" "makeshift shiv" brick rock "chair leg" "table leg")
+  trinket=${trinkets[$(($RANDOM%${#trinkets[*]}))]}  
+  change=${change_types[$(($RANDOM%${#change_types[*]}))]}
+  weapon=${weapons[$(($RANDOM%${#weapons[*]}))]}
+  printf "a ${weapon}, ${change}, and ${trinket}"
 }
 
 roll_augur() {
@@ -154,19 +191,24 @@ roll_augur() {
   printf "${luck_mod} ${augurs[${random_augur}]}"
 }
 
-roll_alignment() {
-  alignments=(lawful chaotic neutral)
-  random_alignment=$(( RANDOM % ${#alignments[*]} ))
-  printf " ${alignments[${random_alignment}]}"
-}
-
 # main
 
-NAME=$(roll_name)
-CLASS=$(roll_character_class)
-ALIGNMENT=$(roll_alignment)
-if [ ${CLASS} == cultist ] || [ ${CLASS} == champion ]; then
-  ALIGNMENT=chaos  # "chaos champion" hack
+
+CLASS=${classes[$(($RANDOM%${#classes[*]}))]}
+OCCUPATION=${occupation[$(($RANDOM%${#occupation[*]}))]}
+
+# chaos champion hack
+if [ ${CLASS} == Cultist ] || [ ${CLASS} == Champion ]; then
+  ALIGNMENT=Chaos
+else
+  ALIGNMENT=${alignments[$(($RANDOM%${#alignments[*]}))]}
+fi
+
+# Chaotic people have chaotic names
+if [ ${ALIGNMENT} == Chaos ] || [ ${ALIGNMENT} == Chaotic ]; then
+  NAME=$(chaos_name)
+else
+  NAME=$(echo ${first_name[$(($RANDOM%${#first_name[*]}))]} ${last_name[$(($RANDOM%${#last_name[*]}))]})
 fi
 
 STR=$(( 4 + RANDOM % 15 ))
@@ -178,15 +220,15 @@ LCK=$(( 4 + RANDOM % 15 ))
 AC=$(roll_armor_class)
 HP=$(( 1 + RANDOM % 4 ))
 
-echo ${NAME}, ${ALIGNMENT} ${CLASS}
+echo ${NAME}, ${ALIGNMENT} ${CLASS} ${OCCUPATION}
 echo
-printf "STR ${STR}\t$(get_mod ${STR})\tHP ${HP}\n"
-printf "AGI ${AGI}\t$(get_mod ${AGI})\tAC ${AC}\n"
+printf "STR ${STR}\t$(get_mod ${STR})  HP ${HP}\n"
+printf "AGI ${AGI}\t$(get_mod ${AGI})  AC ${AC}\n"
 printf "STA ${STA}\t$(get_mod ${STA})\n"
-printf "PER ${PER}\t$(get_mod ${PER})\tFort $(get_mod ${STA})\n"
-printf "INT ${INT}\t$(get_mod ${INT})\tRef  $(get_mod ${AGI})\n"
-printf "LCK ${LCK}\t$(get_mod ${LCK})\tWill $(get_mod ${PER})\n"
+printf "PER ${PER}\t$(get_mod ${PER})  Fort $(get_mod ${STA})\n"
+printf "INT ${INT}\t$(get_mod ${INT})  Ref  $(get_mod ${AGI})\n"
+printf "LCK ${LCK}\t$(get_mod ${LCK})  Will $(get_mod ${PER})\n"
 echo
 echo Augur: $(roll_augur $(get_mod ${LCK}))
-echo Languages: Common, $(roll_languages)
+echo Languages: Common, ${languages[$(($RANDOM%${#languages[*]}))]} # $(roll_languages)
 echo Equipment: $(roll_equipment)
