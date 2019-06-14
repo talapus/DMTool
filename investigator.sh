@@ -78,7 +78,7 @@ print_optional() {
 }
 
 print_section() {
-  sections=(oi ae ai ay yo io li il ta da do di ri mi ni )
+  sections=(oi ae ai ay yo io li il ta da do di ri mi ni)
 }
 
 chaos_name() {
@@ -146,9 +146,9 @@ roll_equipment() {
   trinkets=("some pocket fluff" "a grime covered key" "chewing gum" "a box of matches" "some string tied to a metal washer"
             "a few canadian coins" "a pebble" "a phillips screwdriver" "an empty water bottle"
             "a quartz crystal" "an old worn coin" "a kazoo" "a expired winning lottery ticket" "half a bag of M&Ms")
-  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty" "a hundred bucks" "a few hundred bucks" "a few grand wrapped in a bundle")
-  weapons=("hunting knife" "kitchen knife" "combat knife" "broken bottle" "makeshift shiv" brick rock "chair leg" "table leg")
-  weapons=(${weapons[*]} ".38 special" ".22 rifle" "shotgun" "bear repellent" "tazer" "piece of rebar" "crowbar" "wrench")
+  change_types=("some spare coins" "ten bucks" "a few bucks" "a twenty" "a hundred bucks" "a few hundred bucks")
+  weapons=("hunting knife" "kitchen knife" "combat knife" "broken bottle" "makeshift shiv" "brick" "rock" "chair leg" "table leg")
+  weapons=(${weapons[*]} ".38 special" ".22 rifle" "shotgun" "can of bear repellent" "tazer" "piece of rebar" "crowbar" "wrench")
   trinket=${trinkets[$(($RANDOM%${#trinkets[*]}))]}
   change=${change_types[$(($RANDOM%${#change_types[*]}))]}
   weapon=${weapons[$(($RANDOM%${#weapons[*]}))]}
