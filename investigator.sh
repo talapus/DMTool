@@ -2,47 +2,38 @@
 
 languages=(greek latin babylonian aramaic cimmerian hyperborean tindalosian ophidian saurian lemurian atlantean runic)
 alignments=(Lawful Chaotic Neutral)
-classes=(Warrior Wizard Thief Cleric Elf Hobbit Dwarf Naturalist Warlock Shapeshifter Beastman)
-classes=(${classes[*]} Champion Explorer Cultist)
+classes=(Warrior Wizard Thief Cleric Elf Hobbit Dwarf)
+classes=(${classes[*]} Champion Explorer Cultist Naturalist Warlock Cryptid Mutant)
 
-# Lawful Names
-first_name=("Fred" "James" "Jennifer" "Sammy" "Janis" "Julio" "Pablo" "Jon" "Shin" "Maka" "Bin" "Jaxon")
-first_name=(${first_name[*]} "Jon" "Ben" "Earl" "Vinton" "Evelin" "Myrtle")
+# Generate Lawful Names
+first_name=(Fred James Jennifer Sammy Janis Julio Pablo Jon Candace Eric Jaxon Joe Monte Aaron)
+first_name=(${first_name[*]} Jon Ben Earl Vinton Evelin Myrtle Jimmy Mim Dahlia Sunny Mark Chris)
+first_name=(${first_name[*]} Nancy Harold Chick Ed Edmund Frank Mike Spencer Greg David Gabe Dillard)
+first_name=(${first_name[*]} Dave Harry Benjamin Eve Mi Francesca Edric Greg David Gabe Olive Gomer)
 
-last_name=("Jameson" "Frederickson" "Wheeler" "Bartleby" "Cider" "Jamboree" "Finklestein")
-last_name=(${last_name[*]} "Jacobsen" "Shekelhund" "James" "Jones" "Evans" "Frankson")
-last_name=(${last_name[*]} "Nikelson" "Nickson" "Riley" "O'Rourke" "Backus" "Green" "Brown")
+last_name=(Jameson Frederickson Wheeler Bartleby Cider Jamboree Finklestein Zinkie Cole Cooper)
+last_name=(${last_name[*]} Jacobsen Shekelhund James Jones Evans Frankson Curran Coghlan Stwart)
+last_name=(${last_name[*]} Nikelson Nickson Riley "O'Rourke" "O'Connor" Green Brown Absinthe Wagoner)
+last_name=(${last_name[*]} Crickham Black Daniels Hermes Brachiomonte Klein Pyle Pyre Cairn Payne)
 
-occupation=("Accountant" "Acrobat" "Detective" "Ambassador" "Architect" "Butler")
-occupation=(${occupation[*]} "Artist" "Author" "Barber" "Bartender" "Fixer")
-occupation=(${occupation[*]} "Bookie" "Boss" "Boxer" "Wrestler" "Biologist")
-occupation=(${occupation[*]} "Burglar" "Priest" "Clergy" "Clerk" "Pharmacist")
-occupation=(${occupation[*]} "Communist" "Radical" "Executive" "Columnist" "Cook")
-occupation=(${occupation[*]} "Deacon" "Elder" "Diver" "Dentist" "Operator")
-occupation=(${occupation[*]} "Dilettante" "DJ" "Drifter" "Editor" "Official")
-occupation=(${occupation[*]} "Entertainer" "Explorer" "Farmer" "Farmhand" "Federal")
-occupation=(${occupation[*]} "Fence" "Fireman" "Surgeon" "Gambler" "Punk")
-occupation=(${occupation[*]} "Forger" "Counterfeiter" "Forester" "Psychologist")
-occupation=(${occupation[*]} "Gangster" "Gardener" "Gravedigger" "Hacker")
-occupation=(${occupation[*]} "Goon" "Hitman" "Hobo" "Hooker" "Journalist" "Judge")
-occupation=(${occupation[*]} "Lawyer" "Librarian" "Loanshark" "Lumberjack" "Manager")
-occupation=(${occupation[*]} "Coach" "Technician" "Mercenary" "Miner" "Missionary")
-occupation=(${occupation[*]} "Curator" "Musician" "Nurse" "Rabbi" "Driver")
-occupation=(${occupation[*]} "Occultist" "Painter" "Sculptor" "Parapsychologist")
-occupation=(${occupation[*]} "Photographer" "Photojournalist" "Physician" "Pickpocket")
-occupation=(${occupation[*]} "Pilot" "Surgeon" "Police" "Minister" "Brewer")
-occupation=(${occupation[*]} "Attorney" "Preacher" "Professor" "Teacher" "Programmer")
-occupation=(${occupation[*]} "Rancher" "Cowboy" "Reporter" "Researcher" "Sailor")
-occupation=(${occupation[*]} "Salesman" "Secretary" "Lawyer" "Spy" "Student" "Intern")
-occupation=(${occupation[*]} "Smuggler" "Soldier" "Marine" "Actor" "Stagehand" "Broker")
-occupation=(${occupation[*]} "Criminal" "Surveyor" "Swimmer" "Diver" "Agent" "Tribal")
-occupation=(${occupation[*]} "Undertaker" "Unionist" "Writer" "Zookeeper")
-occupation=(${occupation[*]} "Mechanic" "Doctor" "Archaeologist" "Scientist")
-occupation=(${occupation[*]} "Astrophysicist" "Astronomer" "Historian" "Mystic")
-occupation=(${occupation[*]} "Magician" "Stuntman" "Bodyguard" "Vagrant")
+occupation=(Accountant Acrobat Detective Ambassador Architect Butler Artist Author Barber Bartender)
+occupation=(${occupation[*]} Fixer Bookie Crimelord Boxer Wrestler Biologist Burglar Priest Clergy Clerk)
+occupation=(${occupation[*]} Pharmacist Communist Radical Executive Columnist Cook Deacon Elder Diver)
+occupation=(${occupation[*]} Operator Dilettante DJ Drifter Editor Official Entertainer Dentist)
+occupation=(${occupation[*]} Explorer Farmer Farmhand Federal Fence Fireman Surgeon Gambler Punk)
+occupation=(${occupation[*]} Forger Counterfeiter Forester Psychologist Gangster Gardener "Grave digger")
+occupation=(${occupation[*]} Hacker Goon Hitman Hobo Hooker Journalist Judge Lawyer Librarian)
+occupation=(${occupation[*]} Loanshark Lumberjack Manager Coach Technician Mercenary Miner Missionary)
+occupation=(${occupation[*]} Curator Musician Nurse Rabbi Driver Occultist Painter Sculptor)
+occupation=(${occupation[*]} Parapsychologist Photographer Photojournalist Physician Pickpocket Pilot)
+occupation=(${occupation[*]} Surgeon Police Minister Brewer Attorney Preacher Professor Teacher)
+occupation=(${occupation[*]} Programmer Rancher Cowboy Reporter Researcher Sailor Salesman Secretary)
+occupation=(${occupation[*]} Lawyer Spy Student Intern Smuggler Soldier Marine Actor Stagehand )
+occupation=(${occupation[*]} Broker Criminal Surveyor Swimmer Diver Agent Tribal Undertaker Unionist)
+occupation=(${occupation[*]} Writer Zookeeper Mechanic Doctor Archaeologist Scientist Astrophysicist)
+occupation=(${occupation[*]} Astronomer Historian Mystic Magician Stuntman Bodyguard Vagrant)
 
-# Chaos names
-
+# Generate Chaos names
 consonants=(b c d f g h j k l m n p q r s t v w x y z)
 uppcase_consonants=(B C D F G H J K L M N P Q R S T V W X Y X)
 
@@ -104,6 +95,7 @@ chaos_name() {
 
 }
 
+# functions for generating stats
 get_mod() {
   stat=${1-0}
   if [ ${stat} -eq 3 ]; then
@@ -191,6 +183,7 @@ roll_augur() {
   printf "${luck_mod} ${augurs[${random_augur}]}"
 }
 
+
 # main
 
 # generate variable values
@@ -212,7 +205,7 @@ else
   ALIGNMENT=${alignments[$(($RANDOM%${#alignments[*]}))]}
 fi
 
-# generate names // chaotic people have chaotic names
+# generate names by alignment
 if [ ${ALIGNMENT} == Chaos ] || [ ${ALIGNMENT} == Chaotic ]; then
   NAME=$(chaos_name)
 else
