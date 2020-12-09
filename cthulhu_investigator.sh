@@ -42,8 +42,6 @@ flaw=(${flaw[*]} "hallicinations" "headaches")
 
 alignment=("Hero" "" "Cultist")
 
-
-
 # functions
 
 function bonus {
