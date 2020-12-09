@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+
+# Generic
+#	  Cavernous
+#	  Cramped
+#	  Volcanic
+#	  Mushroom
+#	  Aquatic
+#	  Ruin
+#	  Boneyard
+
+feature() {
+    data = ['feature' + str(randint(0,99))]
+    #return(data[randint(0,len(data)-1)])
+}
+
+furnishing() {
+    data = ['furnishing' + str(randint(0,99))]
+    #return(data[randint(0,len(data)-1)])
+}
+
+utensil() {
+    data = ['utensil' + str(randint(0,99))]
+    #return(data[randint(0,len(data)-1)])
+}
+
+book() {
+    data = ['book' + str(randint(0,99))]
+    #return(data[randint(0,len(data)-1)])
+}
+
+obstacle() {
+    data = ['obstacle#' + str(randint(0,99)) + '!']
+    #return(data[randint(0,len(data)-1)])
+}
+
+treasure() {
+    data = ['treasure' + str(randint(0,99)) + '!']
+    #return(data[randint(0,len(data)-1)])
+}
+
+colorize() {  # (name, phrase):
+    color = {}
+    color['black'] = '\033[30m'
+    color['red'] = '\033[31m'
+    color['green'] = '\033[32m'
+    color['orange'] = '\033[33m'
+    color['blue'] = '\033[34m'
+    color['purple'] = '\033[35m'
+    color['cyan'] = '\033[36m'
+    color['darkgrey'] = '\033[90m'
+    color['lightred'] = '\033[91m'
+    color['lightgreen'] = '\033[92m'
+    color['yellow'] = '\033[93m'
+    color['lightblue'] = '\033[94m'
+    color['pink'] = '\033[95m'
+    color['lightcyan'] = '\033[96m'
+    #return(color[name] + phrase + '\033[0m')
+}
+
+antechamber() {
+    data = ['large open space', 'cavern', 'cave opening', 'antechamber',
+	'natural antechamber', 'ancient ruin', 'open cave with a pool in the middle',
+	'subterranean lake', 'mushroom forest', 'volcanic feature', 'large cavern']
+    #return(data[randint(0,len(data)-1)])
+}
+
+chamber() {
+    chamber = ['small cave', 'round stone chamber', 'room', 'chamber', 'cell', 'basin']
+    content = []
+    content.append('A monster (motivation: ' + motivation() + ')')
+    content.append('A monster with ' + treasure() + ' (motivation: ' + motivation() + ')')
+    content.append(hazard() + ' with ' + treasure())
+    content.append(obstacle())
+    content.append('A Trap! ' + trap())
+    content.append('A Trap! ' + trap()+ treasure() + thing_location())
+    content.append(trick())
+    content.append('The room appears empty')
+    if [ $RANDOM % 3 -gt 1 ]; then  # randint(0,3) > 1:
+        #return('\n- ' + chamber[randint(0,len(chamber)-1)].capitalize() + '. The room appears empty')
+    else
+        #return('\n- ' + chamber[randint(0,len(chamber)-1)].capitalize() + '. '
+			#+ content[randint(0,len(content)-1)])
+    fi
+}
+
+thing_location() {
+    data = ['in the cupboard', 'buried shallowly', 'in a cobwebby wall nook', 'beneath a hidden panel',
+        'behind a hidden panel', 'above a hidden panel', 'inside a statue' ,'buried in the firepit',
+        'beneath a pile of rubble', 'beneath a pile of rubbish', 'on a pedestal',
+        'in the bottom of a pool of water', 'in the bottom of a pool of slimy green water',
+        'wrapped up in cobwebs', 'laying in the corner', 'in the middle of the room',
+        'in a shaft of light', 'on top of a pile of rubble', 'on top of a pile of rubbish',
+        'halfway stuck in a pile of rubbish', 'halfway stuck in a pile of rubble', 'in the dirt',
+        'next to several dead spiders', 'beneath the rug', 'behind a panel', 'beneath a trap door']
+   #return(data[randint(0,len(data)-1)])
+}
+
+trick() {
+    thing = ['Book', 'Brain in a jar', 'Burning fire', 'Cracked gem', 'Door', 'Fresco', 'Furniture',
+    'Glass sculpture', 'Mushroom field', 'Painting', 'Plant or tree', 'Pool of water',
+    'Runes engraved on wall or floor', 'Skull', 'Sphere of magical energy', 'Statue', 'Stone obelisk',
+    'Suit of armor', 'Tapestry or rug', 'Target dummy', 'Canoptic Jar', 'Vial of liquid',
+    'Crystal ball', 'Glass bead', 'Femur', 'Ribcage', 'Skeleton', 'Old book']
+    trick = ['emits a cloud of dust', 'glows briefly when touched', 'vibrates', 'emits a faint tune',
+        'emits a faint smell', 'produces a mild shock when touched', 'tastes salty', 'tastes sweet',
+        'heals 1 hit point when touched', 'produces mild visions when touched']
+    #return('a ' + thing[randint(0,len(thing)-1)] + ' which ' + trick[randint(0,len(trick)-1)])
+}
+
+trap() {
+    trigger = ['Stepped on (floor, stairs)', 'Moved through (doorway, hallway)', 'Touched (doorknob, statue)',
+		'Opened (door, chest)', 'Looked at (mirror, arcane symbol)', 'Moved (cart, block)']
+    severity = ['Setback', 'Dangerous', 'Deadly']
+    effect = ['#' + str(randint(0,99))]
+    return('Trigger: ' + trigger[randint(0,len(trigger)-1)] + ', '
+    + 'Severity: ' + severity[randint(0,len(severity)-1)] + ', '
+    + 'Effect' + effect[randint(0,len(effect)-1)] + ' ')
+}
+
+motivation() {
+    data = ['Find a sactuary', 'Conquer the dungeon', 'Seek an item in the dungeon',
+    'Slay a rival', 'Hide from enemies', 'Recover from a battle', 'Avoid danger', 'Seek wealth',
+	'Raise a family', 'Join the church', 'Slay everyone', 'Flee']
+    #return(data[randint(0,len(data)-1)])
+}
+
+hazard() {
+    data = ['Brown Mold', 'Green Slime', 'Shrieker', 'Spiderwebs', 'Violet fungus', 'Yellow Mold', 'Russet Mold',
+    'hazard' + str(randint(0,99))]
+    #return(data[randint(0,len(data)-1)])
+}
+
+lighting() {
+    data = ['well lit', 'dark', 'shadowy', 'dimly lit', 'smoky', 'misty', 'slimy', 'pungent', 'cold', 'steamy']
+    #return(data[randint(0,len(data)-1)])
+}
+
+passage() {
+    #length(): # 10 - 100 feet
+        #return(str(randint(1,20)*5) + ' feet')
+}
+
+    width(): # 5 - 40 feet
+        return(str(randint(1,8)*5) + ' feet wide and ')
+
+    description():
+        data = ['corridor', 'passageway', 'cavern', 'ravine', 'tunnel']
+        return(data[randint(0,len(data)-1)])
+
+    return(description() + ' ' + width() + length() + ' long')
+
+door():
+    def complication():
+        complications = ['hidden', 'locked', 'trapped']
+        shuffle(complications)
+        wheel = randint(1,3)
+        if wheel == 1:
+            return complications[0]
+        elif wheel == 2:
+            return complications[0] + ' and ' + complications[1]
+        else:
+            return complications[0] + ', ' + complications[1] + ' and ' + complications[2]
+    door_type = ['wooden door', 'archway', 'jagged break in the wall', 'stone door', 'an iron door',
+        'portcullis', 'rope up', 'slope down', 'slope up', 'wooden trapdoor',
+        'iron trapdoor', 'stairs down', 'a ladder down', 'ladder up', 'rope ladder up a shaft',
+        'rope ladder down into a dark pit', 'hidden trap door', 'pile of rubble', 'gate',
+		'hanging vines', 'curtain of algae', 'waterfall', 'rope bridge across a cavern',
+		'rope bridge over a lava pit', 'rope bridge over a slime pit', 'opening', 'jagged opening',
+		'round opening', 'triangular opening', 'square opening', 'octagonal opening']
+    if randint(0,99) > 30:
+        return(door_type[randint(0,len(door_type)-1)])
+    else:
+        return(complication() + ' ' + door_type[randint(0,len(door_type)-1)])
+
+try:
+    chamber_number = int(argv[1])
+    print('\n- ' + antechamber().capitalize())
+    for i in range(chamber_number):
+        print('- ' + door().capitalize() + ', ' + passage() + ', ' + door() + '. ' + chamber())
+    print('- ' + antechamber().capitalize() + '\n')
+
+except IndexError:
+	print(antechamber().capitalize())
+	print(door().capitalize() + '\n' + passage() + '\n' + door() + '. ' + chamber())
+	print(antechamber().capitalize() + '\n')
